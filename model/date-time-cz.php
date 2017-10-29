@@ -56,6 +56,16 @@ class DateTimeCz extends DateTime
   function formatBlog() {
     return strtr(parent::format('j. F Y'), self::$mesice);
   }
+  
+  /** Vrací den ve formátu pro program */
+  function formatProgram() {
+    return $this->format('l j.n.Y');
+  }
+          
+  /** Vrací den ve formátu dne v roce */
+  function formatDenVRoce() {
+    return parent::format('z');  
+  }
 
   /** Zvýší časový údaj o jeden den. Upravuje objekt. */
   function plusDen() {
@@ -109,7 +119,7 @@ class DateTimeCz extends DateTime
           return "za $diff dní";
     }
   }
-
+ 
   /** Jestli tento den je stejný s $d2 v formátu DateTime nebo string s časem */
   function stejnyDen($d2) {
     if(!($d2 instanceof DateTime))
