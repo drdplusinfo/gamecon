@@ -2,7 +2,7 @@
 
 /**
  * Datum a čas s českými názvy dnů a měsíců + další vychytávky
- */ 
+ */
 
 class DateTimeCz extends DateTime
 {
@@ -47,14 +47,25 @@ class DateTimeCz extends DateTime
     return strtr(parent::format($f), self::$dny);
   }
 
-  /** Vrací formát kompatibilní s mysql */
+  /**
+   * @return string blogový/dopisový formát
+   */
+  function formatBlog() {
+    return strtr(parent::format('j. F Y'), self::$mesice);
+  }
+
+  /**
+   * @return string formát kompatibilní s mysql
+   */
   function formatDb() {
     return parent::format('Y-m-d H:i:s');
   }
 
-  /** Vrací blogový/dopisový formát */
-  function formatBlog() {
-    return strtr(parent::format('j. F Y'), self::$mesice);
+  /**
+   * @return string formát kompatibilní s konstruktorem třídy Date v javascriptu
+   */
+  function formatJs() {
+    return parent::format(DATE_ATOM);
   }
 
   /** Zvýší časový údaj o jeden den. Upravuje objekt. */

@@ -14,6 +14,13 @@ class Program {
 
   function htmlHlavicky() {
     // TODO toto by mohla být statická metoda (pro případ více programů v stránce), ovšem může být problém s více komponentami vkládajícími opakovaně react a s více daty (např. jiné aktivity pro dvě instance programu)
+
+    $sestaveneSkripty = $this->cacheSouboru->sestavReact([
+      __DIR__ . '/*.js',
+      __DIR__ . '/*.jsx',
+      '!' . __DIR__ . '/render.jsx'
+    ]);
+
     return '
       <script>
         var '.$this->jsPromenna.' = {
@@ -26,11 +33,7 @@ class Program {
       <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-      ' . $this->cacheSouboru->sestavReact([
-        __DIR__ . '/*.js',
-        __DIR__ . '/*.jsx',
-        '!' . __DIR__ . '/render.jsx'
-      ]) . '
+      '.$sestaveneSkripty.'
     ';
   }
 
@@ -49,19 +52,36 @@ class Program {
   private function jsonAktivity() {
     // TODO aktuální rok
     // TODO listovat tech. aktivity jenom tomu, kdo je může vidět
-    $q = dbQuery('
-      SELECT
-        a.id_akce as "id",
-        a.nazev_akce as "nazev",
-        a.typ as "linie"
-      FROM akce_seznam a
-      WHERE
-        a.rok = $0 AND
-        a.zacatek AND
-        (a.stav IN(1,2,4,5) OR a.typ = 10)
-    ', [ROK - 1]);
 
-    return json_encode($q->fetch_all(MYSQLI_ASSOC), JSON_UNESCAPED_UNICODE);
+    $aktivity = Aktivita::zProgramu();
+    $aktivity = array_map(function($a) {
+      $r = $a->rawDb();
+      return [
+        'id'            =>  (int) $a->id(),
+        'nazev'         =>  $a->nazev(),
+        'linie'         =>  (int) $a->typId(),
+        'zacatek'       =>  $a->zacatek()->formatJs(),
+        'konec'         =>  $a->konec()->formatJs(),
+        'organizatori'  =>  array_map(function($o) { return $o->jmenoNick(); }, $a->organizatori()),
+        'stitky'        =>  array_map(function($t) { return (string) $t; }, $a->tagy()),
+        'prihlaseno_m'  =>  $a->prihlasenoMuzu(),
+        'prihlaseno_f'  =>  $a->prihlasenoZen(),
+
+        // TODO údaje načítané přímo z DB řádku, smazat nebo nějak převést
+        'kapacita_m'    =>  (int) $r['kapacita_m'],
+        'kapacita_f'    =>  (int) $r['kapacita_f'],
+        'kapacita_u'    =>  (int) $r['kapacita'],
+
+        /* TODO:
+        týmová
+        přihlášen/nepřihlášen
+        přihlašovatelná / jsem přihlášen / organizuji
+        krátká anotace
+        */
+      ];
+    }, $aktivity->getArrayCopy());
+
+    return json_encode(array_values($aktivity), JSON_UNESCAPED_UNICODE);
   }
 
   private function jsonLinie() {
@@ -73,17 +93,7 @@ class Program {
       FROM akce_typy t
     ');
 
-    $out = '{';
-    foreach($q as $r) {
-      $out .= '"'.$r['id'].'":{'.
-        '"id":"'.$r['id'].'",'.  
-        '"nazev":"'.$r['nazev'].'",'.
-        '"poradi":'.$r['poradi'].
-      '},';
-    }
-    $out[strlen($out) - 1] = '}';
-
-    return $out;
+    return json_encode($q->fetch_all(MYSQLI_ASSOC), JSON_UNESCAPED_UNICODE);
   }
 
   private function jsonNotifikace() {

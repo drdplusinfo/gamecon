@@ -823,13 +823,11 @@ class Aktivita {
       return 0;
   }
 
-  protected function prihlasenoMuzu()
-  {
+  function prihlasenoMuzu() {
     return substr_count($this->prihlaseniRaw(), 'm');
   }
 
-  protected function prihlasenoZen()
-  {
+  function prihlasenoZen() {
     return substr_count($this->prihlaseniRaw(), 'f');
   }
 
@@ -1429,6 +1427,16 @@ class Aktivita {
   static function zOrganizatora(Uzivatel $u) {
     // join hack na akt. uživatele
     return self::zWhere('JOIN akce_organizatori ao ON (ao.id_akce = a.id_akce AND ao.id_uzivatele = '.$u->id().') WHERE a.rok = '.ROK);
+  }
+
+  /**
+   * Vrátí pole aktivit které se letos potenciálně zobrazí v programu
+   */
+  static function zProgramu() {
+    return self::zWhere(
+      'WHERE a.rok = $1 AND a.zacatek AND ( a.stav IN(1,2,3,4,5) OR a.typ = 10 )',
+      [ROK - 1]
+    );
   }
 
   /**
