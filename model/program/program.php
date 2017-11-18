@@ -10,42 +10,40 @@ class Program {
 
   function __construct() {
     $this->cacheSouboru = new PerfectCache(CACHE, URL_CACHE);
+    $this->cacheSouboru->pridejReact(__DIR__ . '/*.jsx');
   }
 
+  /**
+   * @todo toto by mohla být statická metoda (pro případ více programů v
+   * stránce), ovšem může být problém s více komponentami vkládajícími
+   * opakovaně react a s více daty (např. jiné aktivity pro dvě instance
+   * programu)
+   */
   function htmlHlavicky() {
-    // TODO toto by mohla být statická metoda (pro případ více programů v stránce), ovšem může být problém s více komponentami vkládajícími opakovaně react a s více daty (např. jiné aktivity pro dvě instance programu)
+    return $this->cacheSouboru->htmlHlavicky();
+  }
 
-    $sestaveneSkripty = $this->cacheSouboru->sestavReact([
-      __DIR__ . '/*.js',
-      __DIR__ . '/*.jsx',
-      '!' . __DIR__ . '/render.jsx'
-    ]);
+  function htmlObsah() {
+    return
+      '<div id="'.$this->jsElementId.'"></div>' .
+      $this->jsData() .
+      $this->cacheSouboru->inlineReact('
+        ReactDOM.render(
+          <Program data = {'.$this->jsPromenna.'} />,
+          document.getElementById("'.$this->jsElementId.'")
+        )
+      ');
+  }
 
+  private function jsData() {
     return '
       <script>
         var '.$this->jsPromenna.' = {
-          "elementId": "'.$this->jsElementId.'",
           "aktivity": '.$this->jsonAktivity().',
           "linie": '.$this->jsonLinie().',
           "notifikace": '.$this->jsonNotifikace().'
         }
       </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-      '.$sestaveneSkripty.'
-    ';
-  }
-
-  function htmlObsah() {
-    // TODO na produkci udělat vkládaný react inline (jsou to cca 2 řádky)
-
-    return '
-      <div id="'.$this->jsElementId.'"></div>
-      <script>
-        var programData = '.$this->jsPromenna.'
-      </script>
-      ' . $this->cacheSouboru->sestavReact([__DIR__ . '/render.jsx']) . '
     ';
   }
 

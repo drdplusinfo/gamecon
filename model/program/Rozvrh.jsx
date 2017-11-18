@@ -16,7 +16,7 @@ class Rozvrh extends React.Component{
     }
 
     vypis(){
-        var vyfiltrovanePole = this.filtruj(programData.aktivity);
+        var vyfiltrovanePole = this.filtruj(this.props.aktivity);
         var poleAktivit = vyfiltrovanePole.map((item) =>
             <div key = {item.id} >{item.nazev}</div>
         );

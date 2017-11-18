@@ -10,6 +10,8 @@
 /nastaveni/nastaveni-local.php
 /nastaveni/nastaveni-produkce.php
 
+/node_modules
+
 /vendor
 
 /web/soubory/*

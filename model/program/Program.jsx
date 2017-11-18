@@ -1,35 +1,38 @@
-class Program extends React.Component{
-    constructor(props){
-        super(props);
-        programData.linie = this.uklidLinie(programData.linie);
+class Program extends React.Component {
 
-        //na začátku jsou všechny linie zvolené(viditelné)
-        this.state = {
-            zvoleneLinie: programData.linie.slice()
-        };
+  constructor(props) {
+    super(props);
+    this.props.data.linie = this.uklidLinie(this.props.data.linie);
 
-        this.zvolTytoLinie = this.zvolTytoLinie.bind(this);
-    }
+    // na začátku jsou všechny linie zvolené (viditelné)
+    this.state = {
+      zvoleneLinie: this.props.data.linie.slice()
+    };
 
-    zvolTytoLinie(linie){
-        this.setState({zvoleneLinie: linie});
-    }
+    this.zvolTytoLinie = this.zvolTytoLinie.bind(this);
+  }
 
-    uklidLinie(linie){
-        //Dej linie do pole a zoraď je podle pořadí
-        var linieVPoli = [];
-        for (var cisloLinie in linie){
-            linieVPoli.push(linie[cisloLinie]);
-        }
-        return linieVPoli.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
+  zvolTytoLinie(linie) {
+    this.setState({zvoleneLinie: linie});
+  }
+
+  uklidLinie(linie) {
+    // dej linie do pole a seřaď je podle pořadí
+    var linieVPoli = [];
+    for(var cisloLinie in linie) {
+      linieVPoli.push(linie[cisloLinie]);
     }
-    render(){
-        return (
-            <div>
-                <Header/>
-                    <ZvolLinie linie = {programData.linie} zvoleneLinie = {this.state.zvoleneLinie} zvolTytoLinie = {this.zvolTytoLinie}/>
-                <Rozvrh zvoleneLinie = {this.state.zvoleneLinie} />
-            </div>
-        )
-    }
+    return linieVPoli.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <ZvolLinie linie = {this.props.data.linie} zvoleneLinie = {this.state.zvoleneLinie} zvolTytoLinie = {this.zvolTytoLinie} />
+        <Rozvrh zvoleneLinie = {this.state.zvoleneLinie} aktivity = {this.props.data.aktivity} />
+      </div>
+    )
+  }
+
 }
