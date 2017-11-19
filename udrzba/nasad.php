@@ -17,6 +17,7 @@ require_once __DIR__ . '/../nastaveni/nastaveni-ftpdeploy.php';
 chdir(__DIR__ . '/../');
 
 $deployment = escapeshellarg(realpath(__DIR__ . '/../vendor/dg/ftp-deployment/deployment'));
+$sestavovac = escapeshellarg(realpath(__DIR__ . '/sestav.php'));
 
 // testování větve před pushem a čistoty repa, aby se na FTP nedostalo smetí
 exec('git rev-parse --abbrev-ref HEAD', $out);
@@ -28,6 +29,13 @@ if($vetev !== 'master') {
 exec('git status', $out);
 if(end($out) !== 'nothing to commit, working directory clean') {
   echo "error: working directory is not clean\n";
+  exit(1);
+}
+
+// sestavení souborů
+system("php $sestavovac", $status);
+if($status) {
+  echo "error: build failed\n";
   exit(1);
 }
 

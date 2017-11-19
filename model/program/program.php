@@ -9,7 +9,9 @@ class Program {
     $jsObserveri = [];
 
   function __construct() {
-    $this->cacheSouboru = new PerfectCache(CACHE, URL_CACHE);
+    $this->cacheSouboru = new PerfectCache(CACHE . '/sestavene', URL_CACHE . '/sestavene');
+    $this->cacheSouboru->nastav('reactVProhlizeci', REACT_V_PROHLIZECI);
+    $this->cacheSouboru->nastav('babelBinarka', BABEL_BINARKA);
     $this->cacheSouboru->pridejReact(__DIR__ . '/*.jsx');
   }
 
@@ -27,12 +29,7 @@ class Program {
     return
       '<div id="'.$this->jsElementId.'"></div>' .
       $this->jsData() .
-      $this->cacheSouboru->inlineReact('
-        ReactDOM.render(
-          <Program data = {'.$this->jsPromenna.'} />,
-          document.getElementById("'.$this->jsElementId.'")
-        )
-      ');
+      $this->jsRender();
   }
 
   private function jsData() {
@@ -45,6 +42,15 @@ class Program {
         }
       </script>
     ';
+  }
+
+  private function jsRender() {
+    return $this->cacheSouboru->inlineCekejNaBabel('
+      ReactDOM.render(
+        React.createElement(Program, { data: '.$this->jsPromenna.' }),
+        document.getElementById("'.$this->jsElementId.'")
+      );
+    ');
   }
 
   private function jsonAktivity() {

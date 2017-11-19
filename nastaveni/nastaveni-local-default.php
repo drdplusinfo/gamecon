@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-
 // uživatel s základním přístupem
 define('DB_USER', 'root');
 define('DB_PASS', '');
@@ -28,6 +26,12 @@ define('ANALYTICS', false);
 define('MIGRACE_HESLO', '');
 define('HTTPS_ONLY', false);
 
+define('REACT_V_PROHLIZECI', true);
+define('AUTOMATICKE_SESTAVENI', true);
+define('BABEL_BINARKA', null);
+
 // nepovinné konstanty
 define('CRON_KEY', '123');
 define('UNIVERZALNI_HESLO', ''); // obejití zadávání hesla pro vývojové prostředí
+
+error_reporting(E_ALL);
