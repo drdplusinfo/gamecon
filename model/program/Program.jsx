@@ -8,7 +8,7 @@ class Program extends React.Component {
     // na začátku jsou všechny linie zvolené (viditelné)
     // zvolený den je středa - 3
     this.state = {
-      zvoleneLinie: this.props.data.linie.slice(),
+      zvoleneLinie: [],
       zvolenyDen: 3
     };
 
