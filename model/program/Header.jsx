@@ -1,9 +1,9 @@
-//nechávam ako príklad v podobe podobnej pôvodnej - Duli
+class Header extends React.Component {
 
-var Header = React.createClass({
-    render: function() {
+  render() {
     return (
       <h1>Program</h1>
-    )
+    );
   }
-})
+
+}
