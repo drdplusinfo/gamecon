@@ -115,6 +115,14 @@ class PerfectCache {
     $this->cdn[$url] = true;
   }
 
+  /**
+   * @todo změnit z inline na skutečné linkování souboru
+   * @todo upravit $soubor na ...$globVyrazy
+   */
+  function pridejCss($soubor) {
+    $this->hlavicky .= "<style>" . file_get_contents($soubor) . "</style>\n";
+  }
+
   function pridejReact(...$globVyrazy) {
     $this->pridejCdn('https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js');
     $this->pridejCdn('https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js');

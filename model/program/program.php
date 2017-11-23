@@ -13,6 +13,11 @@ class Program {
     $this->cacheSouboru->nastav('reactVProhlizeci', REACT_V_PROHLIZECI);
     $this->cacheSouboru->nastav('babelBinarka', BABEL_BINARKA);
     $this->cacheSouboru->pridejReact(__DIR__ . '/*.jsx');
+
+    // TODO přidat do elementu něco jako `class=cProgramCssClass` a v css
+    // souboru pak dávat `.cProgramCssClass něco {`, nebo to celé obalit
+    // pomocí lessu
+    $this->cacheSouboru->pridejCss(__DIR__ . '/program.css');
   }
 
   /**
