@@ -3,11 +3,11 @@ class Lajna extends React.Component {
   constructor(props) {
     super(props);
 
-    this.vytvorPole = this.vytvorPole.bind(this);
+    this.vytvorPoleAktivit = this.vytvorPoleAktivit.bind(this);
     this.vytvorTabulkuZPole = this.vytvorTabulkuZPole.bind(this);
   }
 
-  vytvorPole() {
+  vytvorPoleAktivit() {
     let pole = []
     pole.push(new Array(16).fill(null));
 
@@ -47,25 +47,19 @@ class Lajna extends React.Component {
       aktivita.delka = delka;
     });
 
-    let polePrazdne = true;
-    pole[0].forEach(item => {
-      if(item){
-        polePrazdne = false;
-      }
-    });
-    return polePrazdne ? [] : pole;
+    return pole;
   }
 
   vytvorTabulkuZPole(pole) {
-    let style = {border: "1px solid black"}
+    let styl = {border: "1px solid black", height: "100%"}
     return pole.map(radekPole => {
       let radekTabulky = [];
       for(let i = 0; i<radekPole.length; i++){
         if(!radekPole[i]){
-          radekTabulky.push(<td style = {style}>{i}</td>);
+          radekTabulky.push(<td style = {styl}>&nbsp;</td>);
         }
         else {
-          radekTabulky.push(<td colSpan={radekPole[i].delka} style = {style}>{radekPole[i].nazev}</td>);
+          radekTabulky.push(<td colSpan={radekPole[i].delka} style = {styl}>{radekPole[i].nazev}</td>);
           i += radekPole[i].delka - 1;
         }
       }
@@ -74,15 +68,15 @@ class Lajna extends React.Component {
   }
 
   render() {
-    let pole = this.vytvorPole();
-    console.log(pole);
+    let pole = this.vytvorPoleAktivit();
     let tabulka = this.vytvorTabulkuZPole(pole);
-    let akt = this.props.aktivity.map(aktivita => <span>{aktivita.nazev}</span>);
+    let styl = {border: "2px solid red"}
+    
     return (
-      <div>
-        <h2>{this.props.nazev}</h2>
-        <table>{tabulka}</table>
-      </div>
+      <tbody style = {styl}>
+        <th rowSpan = {pole.length + 1}>{this.props.nazev}</th>
+        {tabulka}
+      </tbody>
     )
   }
 }

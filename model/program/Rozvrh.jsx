@@ -46,8 +46,17 @@ class Rozvrh extends React.Component{
       return <Lajna aktivity = {aktivity} nazev = {lajna.nazev}/>
     });
 
+    let casy = new Array(16).fill(null).map((item, index) => <th style = {{width: "5%"}}>{index + 8}</th>);
+    let hlavickaNazvu = <th styl = {{width: "20%"}}></th>;
+    casy.unshift(hlavickaNazvu);
+
     return(
-      <div>{linie}</div>
+      <table style = {{width: "100%", borderCollapse: "collapse"}}>
+        <thead>
+          <tr>{casy}</tr>
+        </thead>
+        {linie}
+      </table>
     );
   }
 }
