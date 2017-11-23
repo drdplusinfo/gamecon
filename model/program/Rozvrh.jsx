@@ -43,7 +43,7 @@ class Rozvrh extends React.Component{
   render() {
     let linie = this.filtrujPodleLinie(this.aktivityVLiniich).map(lajna => {
       let aktivity = this.filtrujPodleDne(lajna.aktivity);
-      return <Lajna aktivity = {aktivity} nazev = {lajna.nazev}/>
+      return <Lajna aktivity = {aktivity} nazev = {lajna.nazev} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>
     });
 
     let casy = new Array(16).fill(null).map((item, index) => <th style = {{width: "5%"}}>{index + 8}</th>);

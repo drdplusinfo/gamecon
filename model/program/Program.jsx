@@ -9,11 +9,13 @@ class Program extends React.Component {
     // zvolený den je středa - 3
     this.state = {
       zvoleneLinie: [],
-      zvolenyDen: 3
+      zvolenyDen: 3,
+      zvolenaAktivita: {}
     };
 
     this.zvolTytoLinie = this.zvolTytoLinie.bind(this);
     this.zvolTentoDen = this.zvolTentoDen.bind(this);
+    this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this);
   }
 
   zvolTytoLinie(linie) {
@@ -22,6 +24,11 @@ class Program extends React.Component {
 
   zvolTentoDen(cisloDneVTydnu) {
     this.setState({zvolenyDen: cisloDneVTydnu});
+  }
+
+  zvolTutoAktivitu(aktivita) {
+    console.log(aktivita);
+    this.setState({zvolenaAktivita: aktivita});
   }
 
   uklidLinie(linie) {
@@ -39,7 +46,7 @@ class Program extends React.Component {
         <Header />
         <ZvolLinie linie = {this.props.data.linie} zvoleneLinie = {this.state.zvoleneLinie} zvolTytoLinie = {this.zvolTytoLinie} />
         <ZvolDen zvolenyDen = {this.state.zvolenyDen} zvolTentoDen = {this.zvolTentoDen}/>
-        <Rozvrh data= {this.props.data} zvoleneLinie = {this.state.zvoleneLinie} zvolenyDen = {this.state.zvolenyDen}/>
+        <Rozvrh data= {this.props.data} zvoleneLinie = {this.state.zvoleneLinie} zvolenyDen = {this.state.zvolenyDen} zvolTutoAktivitu = {this.zvolTutoAktivitu}/>
       </div>
     )
   }

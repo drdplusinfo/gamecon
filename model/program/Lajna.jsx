@@ -14,7 +14,7 @@ class Lajna extends React.Component {
     this.props.aktivity.forEach(aktivita => {
       let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 3600000;
       let zacatekIndex = new Date(aktivita.zacatek).getHours() - 8;
-      //řeší, že 24:00 se vyhodnotí jako 0:00
+      //kdyz je zacatek 0:00, index bude -8, to nechceme. Chceme jakoby 24:00 - 8 = 16
       if (zacatekIndex == -8){
         zacatekIndex = 16;
       }
@@ -51,7 +51,7 @@ class Lajna extends React.Component {
   }
 
   vytvorTabulkuZPole(pole) {
-    let styl = {border: "1px solid black", height: "100%"}
+    let styl = {border: "1px solid black"};
     return pole.map(radekPole => {
       let radekTabulky = [];
       for(let i = 0; i<radekPole.length; i++){
@@ -59,7 +59,7 @@ class Lajna extends React.Component {
           radekTabulky.push(<td style = {styl}>&nbsp;</td>);
         }
         else {
-          radekTabulky.push(<td colSpan={radekPole[i].delka} style = {styl}>{radekPole[i].nazev}</td>);
+          radekTabulky.push(<Aktivita aktivita = {radekPole[i]} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>);
           i += radekPole[i].delka - 1;
         }
       }
@@ -71,7 +71,7 @@ class Lajna extends React.Component {
     let pole = this.vytvorPoleAktivit();
     let tabulka = this.vytvorTabulkuZPole(pole);
     let styl = {border: "2px solid red"}
-    
+
     return (
       <tbody style = {styl}>
         <th rowSpan = {pole.length + 1}>{this.props.nazev}</th>
