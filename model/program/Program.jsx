@@ -8,7 +8,7 @@ class Program extends React.Component {
     // na začátku jsou všechny linie zvolené (viditelné)
     // zvolený den je středa - 3
     this.state = {
-      zvoleneLinie: [],
+      zvoleneLinie: this.props.data.linie.slice(),
       zvolenyDen: 3,
       zvolenaAktivita: {}
     };
@@ -45,8 +45,11 @@ class Program extends React.Component {
       <div>
         <Header />
         <ZvolLinie linie = {this.props.data.linie} zvoleneLinie = {this.state.zvoleneLinie} zvolTytoLinie = {this.zvolTytoLinie} />
-        <ZvolDen zvolenyDen = {this.state.zvolenyDen} zvolTentoDen = {this.zvolTentoDen}/>
-        <Rozvrh data= {this.props.data} zvoleneLinie = {this.state.zvoleneLinie} zvolenyDen = {this.state.zvolenyDen} zvolTutoAktivitu = {this.zvolTutoAktivitu}/>
+        <ZvolDen zvolenyDen = {this.state.zvolenyDen} zvolTentoDen = {this.zvolTentoDen} />
+        <Rozvrh data = {this.props.data} zvoleneLinie = {this.state.zvoleneLinie} zvolenyDen = {this.state.zvolenyDen} zvolTutoAktivitu = {this.zvolTutoAktivitu} />
+        {this.state.zvolenaAktivita.id &&
+          <DetailAktivity aktivita = {this.state.zvolenaAktivita} linie = {this.props.data.linie} zvolTutoAktivitu = {this.zvolTutoAktivitu}/>
+        }
       </div>
     )
   }
