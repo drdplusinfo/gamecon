@@ -17,8 +17,13 @@
  *    produkci a vývoj liší.
  *
  * Instalace Babelu (v rootu GC repa):
- *  sudo apt-get install npm
+ *
+ *  # instalaci z ext. zdroje volíme proto, že kompilace je s ním 10x rychlejší
+ *  # díky novým verzím npm
+ *  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+ *  sudo apt-get install nodejs
  *  npm install --save-dev babel-cli babel-preset-env babel-preset-react
+ *
  */
 class PerfectCache {
 
@@ -149,12 +154,12 @@ class PerfectCache {
   private function sestavReactBabel($globVyrazy) {
     $babel = $this->babel();
     $this->sestav($globVyrazy, function($zdroje, $cil)use($babel) {
-      @unlink($cil);
-      file_put_contents($cil, '');
-      foreach($zdroje as $zdroj) {
-        $kod = $babel->preloz(file_get_contents($zdroj));
-        file_put_contents($cil, $kod, FILE_APPEND);
-      }
+      $kod = '';
+      foreach($zdroje as $zdroj) $kod .= file_get_contents($zdroj);
+
+      @unlink($cil); // pro případ dřívějšího souboru s špatnými právy
+      $kod = $babel->preloz($kod);
+      file_put_contents($cil, $kod);
     });
   }
 
