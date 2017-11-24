@@ -33,8 +33,8 @@ class Program extends React.Component {
 
   uklidLinie(linie) {
     // dej linie do pole a seřaď je podle pořadí
-    var linieVPoli = [];
-    for(var cisloLinie in linie) {
+    let linieVPoli = [];
+    for(let cisloLinie in linie) {
       linieVPoli.push(linie[cisloLinie]);
     }
     return linieVPoli.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);

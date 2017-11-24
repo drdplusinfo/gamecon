@@ -10,21 +10,12 @@ class DetailAktivity extends React.Component {
   }
 
   render() {
-    let styl = {
-      position: "fixed",
-      right: "0",
-      top: "0",
-      height: "100%",
-      zIndex: "1",
-      backgroundColor: "#eee"
-    }
-    
     let aktivita = this.props.aktivita;
     let linie = this.props.linie.find(lajna => lajna.id == aktivita.linie);
     linie = <span>Linie: {linie.nazev}</span>;
 
     return (
-      <div style = {styl} onClick = {this.zpracujKlik}>
+      <div className = "detail-aktivity" onClick = {this.zpracujKlik}>
         <h2>{aktivita.nazev}</h2>
         {linie}
         <br/>

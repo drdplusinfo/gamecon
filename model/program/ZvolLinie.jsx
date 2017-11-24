@@ -6,10 +6,10 @@ class ZvolLinie extends React.Component {
 
   //když klikáme, přepínáme jestli je linie zapnutá nebo vypnutá, měníme pole zvolených linií
   handleClick(lajna) {
-    var noveZvoleneLinie = this.props.zvoleneLinie.slice();
+    let noveZvoleneLinie = this.props.zvoleneLinie.slice();
 
     //zjisti index lajny v poli zvolených linií. Jestli tam je, vyhoď ji. Jestli tam není, přidej jí.
-    var indexLajny = this.props.zvoleneLinie.findIndex((lajnaVPoli) => {
+    let indexLajny = this.props.zvoleneLinie.findIndex((lajnaVPoli) => {
       return lajnaVPoli.nazev == lajna.nazev;
     });
     if(indexLajny >= 0) {
@@ -22,20 +22,20 @@ class ZvolLinie extends React.Component {
 
   render() {
     //vyfiltruj záporné pořadí
-    var linie = this.props.linie.filter(lajna => lajna.poradi>0);
+    let linie = this.props.linie.filter(lajna => lajna.poradi>0);
 
     //Udělej tlačítko pro každou linii
-    var tlacitkaLinii = linie.map(lajna => {
+    let tlacitkaLinii = linie.map(lajna => {
       //farba pro nezvolené linie je experimentálně červená
-      var styl = {backgroundColor: "#f00" };
-      var index = this.props.zvoleneLinie.findIndex(lajnaVPoli => lajnaVPoli.nazev == lajna.nazev);
+      let className = "vyber-linie-nezvolena";
+      let index = this.props.zvoleneLinie.findIndex(lajnaVPoli => lajnaVPoli.nazev == lajna.nazev);
 
       //jestli je linie mezi zvolenými, uděláme jí experimentálně zelenou
       if(index>-1) {
-        styl = {backgroundColor: "#0f0"};
+        className = "vyber-linie-zvolena";
       }
 
-      return <button onClick = {() => this.handleClick(lajna)} style = {styl}>
+      return <button onClick = {() => this.handleClick(lajna)} className = {className}>
         {lajna.nazev.charAt(0).toUpperCase() + lajna.nazev.slice(1)}
       </button>
     });

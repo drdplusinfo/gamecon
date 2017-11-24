@@ -10,7 +10,6 @@ class Aktivita extends React.Component {
   }
 
   render() {
-    let styl = {border: "1px solid black"};
     let aktivita = this.props.aktivita;
     let kapacita;
     //TODO: dořešit jaké jsou přesně možnosti a aby server vracel kapacity skutečně v podobě, kterou chceme
@@ -28,7 +27,7 @@ class Aktivita extends React.Component {
     }
 
     return (
-      <td colSpan={aktivita.delka} style = {styl} onClick = {this.zpracujKlik}>
+      <td colSpan={aktivita.delka} className = "tabulka-aktivita" onClick = {this.zpracujKlik}>
         <span>{aktivita.nazev}</span>
         <br/>
         {kapacita}

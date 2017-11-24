@@ -51,13 +51,12 @@ class Lajna extends React.Component {
   }
 
   vytvorTabulkuZPole(pole) {
-    let styl = {border: "1px solid black"};
     return pole.map(radekPole => {
       let radekTabulky = [];
-      
+
       for(let i = 0; i<radekPole.length; i++){
         if(!radekPole[i]) {
-          radekTabulky.push(<td style = {styl}>&nbsp;</td>);
+          radekTabulky.push(<td className = "tabulka-prazdna-bunka">&nbsp;</td>);
         } else {
           radekTabulky.push(<Aktivita aktivita = {radekPole[i]} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>);
           i += radekPole[i].delka - 1;
@@ -70,10 +69,9 @@ class Lajna extends React.Component {
   render() {
     let pole = this.vytvorPoleAktivit();
     let tabulka = this.vytvorTabulkuZPole(pole);
-    let styl = {border: "2px solid red"}
 
     return (
-      <tbody style = {styl}>
+      <tbody className = "tabulka-linie">
         <th rowSpan = {pole.length + 1}>{this.props.nazev}</th>
         {tabulka}
       </tbody>

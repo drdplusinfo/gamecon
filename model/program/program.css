@@ -1,2 +1,27 @@
 
 body { font-family: sans-serif; }
+
+.detail-aktivity {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 1;
+  background-color: #eee;
+}
+
+.tabulka-aktivita { border: 1px solid #000; }
+
+.tabulka-prazdna-bunka { border: 1px solid #000; }
+
+.tabulka-linie { border: 2px solid #00f; }
+
+.tabulka { width: 100%; border-collapse: collapse; }
+
+.tabulka-hlavicka-nazvu { width: 20%; }
+
+.tabulka-hlavicka-cas { width: 5%; }
+
+.vyber-linie-nezvolena { background-color: #f00; }
+
+.vyber-linie-zvolena { background-color: #0f0; }

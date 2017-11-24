@@ -18,7 +18,7 @@ class Rozvrh extends React.Component{
 
   filtrujPodleLinie(poleAktivit) {
     return poleAktivit.filter(aktivita => {
-      for (var i=0;i < this.props.zvoleneLinie.length;i++) {
+      for (let i=0;i < this.props.zvoleneLinie.length;i++) {
         if (aktivita.linie == this.props.zvoleneLinie[i].id) {
           return true;
         }
@@ -32,8 +32,8 @@ class Rozvrh extends React.Component{
   }
 
   vypis() {
-    var vyfiltrovanePole = this.filtrujPodleLinie(this.props.data.aktivity);
-    var poleAktivit = vyfiltrovanePole.map((item) =>
+    let vyfiltrovanePole = this.filtrujPodleLinie(this.props.data.aktivity);
+    let poleAktivit = vyfiltrovanePole.map((item) =>
       <div key = {item.id} >{item.nazev}</div>
     );
     return poleAktivit;
@@ -45,12 +45,12 @@ class Rozvrh extends React.Component{
       return <Lajna aktivity = {aktivity} nazev = {lajna.nazev} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>
     });
 
-    let casy = new Array(16).fill(null).map((item, index) => <th style = {{width: "5%"}}>{index + 8}</th>);
-    let hlavickaNazvu = <th styl = {{width: "20%"}}></th>;
+    let casy = new Array(16).fill(null).map((item, index) => <th className = "tabulka-hlavicka-cas">{index + 8}</th>);
+    let hlavickaNazvu = <th className = "tabulka-hlavicka-nazvu"></th>;
     casy.unshift(hlavickaNazvu);
 
     return (
-      <table style = {{width: "100%", borderCollapse: "collapse"}}>
+      <table className = "tabulka">
         <thead>
           <tr>{casy}</tr>
         </thead>
