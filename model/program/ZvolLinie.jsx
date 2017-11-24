@@ -1,5 +1,5 @@
 class ZvolLinie extends React.Component {
-  
+
   constructor(props) {
     super(props);
   }
@@ -12,10 +12,9 @@ class ZvolLinie extends React.Component {
     var indexLajny = this.props.zvoleneLinie.findIndex((lajnaVPoli) => {
       return lajnaVPoli.nazev == lajna.nazev;
     });
-    if (indexLajny >= 0){
+    if(indexLajny >= 0) {
       noveZvoleneLinie.splice(indexLajny, 1);
-    }
-    else {
+    } else {
       noveZvoleneLinie.push(lajna);
     }
     this.props.zvolTytoLinie(noveZvoleneLinie);
@@ -32,7 +31,7 @@ class ZvolLinie extends React.Component {
       var index = this.props.zvoleneLinie.findIndex(lajnaVPoli => lajnaVPoli.nazev == lajna.nazev);
 
       //jestli je linie mezi zvolenými, uděláme jí experimentálně zelenou
-      if (index>-1){
+      if(index>-1) {
         styl = {backgroundColor: "#0f0"};
       }
 

@@ -1,7 +1,6 @@
 class Rozvrh extends React.Component{
 
   constructor(props) {
-
     super(props)
     this.vypis=this.vypis.bind(this)
 
@@ -50,7 +49,7 @@ class Rozvrh extends React.Component{
     let hlavickaNazvu = <th styl = {{width: "20%"}}></th>;
     casy.unshift(hlavickaNazvu);
 
-    return(
+    return (
       <table style = {{width: "100%", borderCollapse: "collapse"}}>
         <thead>
           <tr>{casy}</tr>

@@ -15,7 +15,7 @@ class Lajna extends React.Component {
       let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 3600000;
       let zacatekIndex = new Date(aktivita.zacatek).getHours() - 8;
       //kdyz je zacatek 0:00, index bude -8, to nechceme. Chceme jakoby 24:00 - 8 = 16
-      if (zacatekIndex == -8){
+      if(zacatekIndex == -8) {
         zacatekIndex = 16;
       }
 
@@ -29,12 +29,12 @@ class Lajna extends React.Component {
             break;
           }
         }
-        if(!obsazeno){
+        if(!obsazeno) {
           volnyRadek = index;
         }
       });
 
-      if(volnyRadek == -1){
+      if(volnyRadek == -1) {
         pole.push(new Array(16).fill(null));
         volnyRadek = pole.length - 1;
       }
@@ -54,11 +54,11 @@ class Lajna extends React.Component {
     let styl = {border: "1px solid black"};
     return pole.map(radekPole => {
       let radekTabulky = [];
+      
       for(let i = 0; i<radekPole.length; i++){
-        if(!radekPole[i]){
+        if(!radekPole[i]) {
           radekTabulky.push(<td style = {styl}>&nbsp;</td>);
-        }
-        else {
+        } else {
           radekTabulky.push(<Aktivita aktivita = {radekPole[i]} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>);
           i += radekPole[i].delka - 1;
         }
