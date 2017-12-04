@@ -9,14 +9,15 @@ class Lajna extends React.Component {
 
   vytvorPoleAktivit() {
     let pole = []
-    pole.push(new Array(16).fill(null));
+    pole.push(new Array(24 - ZACATEK_PROGRAMU).fill(null));
 
     this.props.aktivity.forEach(aktivita => {
       let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 360000;
-      let zacatekIndex = new Date(aktivita.zacatek).getHours() - 8;
-      //kdyz je zacatek 0:00, index bude -8, to nechceme. Chceme jakoby 24:00 - 8 = 16
-      if(zacatekIndex == -8) {
-        zacatekIndex = 16;
+      let zacatekIndex = new Date(aktivita.zacatek).getHours() - ZACATEK_PROGRAMU;
+      /* kdyz je zacatekIndex záporný, je to tím, že začátek aktivity je jakoby už v dalším dni,
+      po 23 hodině následuje jakoby 0 hodina, toto musíme vykompenzovat */
+      if(zacatekIndex < 0) {
+        zacatekIndex += 24;
       }
 
       let volnyRadek = -1;
@@ -35,7 +36,7 @@ class Lajna extends React.Component {
       });
 
       if(volnyRadek == -1) {
-        pole.push(new Array(16).fill(null));
+        pole.push(new Array(24 - ZACATEK_PROGRAMU).fill(null));
         volnyRadek = pole.length - 1;
       }
 

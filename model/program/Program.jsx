@@ -1,3 +1,6 @@
+//začátek programu je v 8:00, předpoklámáme konec o půlnoci;
+const ZACATEK_PROGRAMU = 8;
+
 class Program extends React.Component {
 
   constructor(props) {

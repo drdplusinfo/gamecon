@@ -17,10 +17,11 @@ class Rozvrh extends React.Component{
   }
 
   vytvorHlavicku() {
-    let hlavickaNazvu = [<th className = "tabulka-hlavicka-nazvu"></th>];
-    let casy = new Array(16).fill(null).map((item, index) => <th className = "tabulka-hlavicka-cas">{index + 8}</th>);
-
-    return hlavickaNazvu.concat(casy);
+    let hlavicka = [<th className = "tabulka-hlavicka-nazvu"></th>];
+    for (let hodina = ZACATEK_PROGRAMU; hodina <= 23; hodina++) {
+      hlavicka.push(<th className = "tabulka-hlavicka-cas">{hodina}</th>);
+    }
+    return hlavicka;
   }
 
   render() {
