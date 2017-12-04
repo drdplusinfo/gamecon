@@ -12,7 +12,7 @@ class Lajna extends React.Component {
     pole.push(new Array(16).fill(null));
 
     this.props.aktivity.forEach(aktivita => {
-      let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 3600000;
+      let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 360000;
       let zacatekIndex = new Date(aktivita.zacatek).getHours() - 8;
       //kdyz je zacatek 0:00, index bude -8, to nechceme. Chceme jakoby 24:00 - 8 = 16
       if(zacatekIndex == -8) {
@@ -22,14 +22,14 @@ class Lajna extends React.Component {
       let volnyRadek = -1;
 
       pole.forEach((radek, index) => {
-        let obsazeno = false;
+        let volno = true;
         for(let i = zacatekIndex; i<zacatekIndex + delka; i++){
           if(radek[i]){
-            obsazeno = true;
+            volno = false;
             break;
           }
         }
-        if(!obsazeno) {
+        if(volno) {
           volnyRadek = index;
         }
       });

@@ -1,25 +1,11 @@
-class ZvolDen extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.zvolDen = this.zvolDen.bind(this);
-  }
-
-  zvolDen(den) {
-    this.props.zvolTentoDen(den);
-  }
-
-  render() {
-    return (
-      <div>
-        <button onClick = {this.zvolDen.bind(this, 3)}>Středa</button>
-        <button onClick = {this.zvolDen.bind(this, 4)}>Čtvrtek</button>
-        <button onClick = {this.zvolDen.bind(this, 5)}>Pátek</button>
-        <button onClick = {this.zvolDen.bind(this, 6)}>Sobota</button>
-        <button onClick = {this.zvolDen.bind(this, 0)}>Neděle</button>
-      </div>
-    )
-  }
-
+function ZvolDen(props) {
+  return (
+    <div>
+      <button onClick = {() => props.zvolTentoDen(3)} className = {props.zvolenyDen === 3 ? "den-zvoleny" : "den-nezvoleny"}>Středa</button>
+      <button onClick = {() => props.zvolTentoDen(4)} className = {props.zvolenyDen === 4 ? "den-zvoleny" : "den-nezvoleny"}>Čtvrtek</button>
+      <button onClick = {() => props.zvolTentoDen(5)} className = {props.zvolenyDen === 5 ? "den-zvoleny" : "den-nezvoleny"}>Pátek</button>
+      <button onClick = {() => props.zvolTentoDen(6)} className = {props.zvolenyDen === 6 ? "den-zvoleny" : "den-nezvoleny"}>Sobota</button>
+      <button onClick = {() => props.zvolTentoDen(0)} className = {props.zvolenyDen === 0 ? "den-zvoleny" : "den-nezvoleny"}>Neděle</button>
+    </div>
+  )
 }

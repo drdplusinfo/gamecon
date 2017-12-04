@@ -2,8 +2,7 @@ class Rozvrh extends React.Component{
 
   constructor(props) {
     super(props)
-    this.vypis=this.vypis.bind(this)
-
+    
     this.aktivityVLiniich = this.props.data.linie
     .filter(lajna => lajna.poradi > 0)
     .map(lajna => {
@@ -31,18 +30,10 @@ class Rozvrh extends React.Component{
     return poleAktivit.filter(aktivita => new Date(aktivita.zacatek).getDay() == this.props.zvolenyDen);
   }
 
-  vypis() {
-    let vyfiltrovanePole = this.filtrujPodleLinie(this.props.data.aktivity);
-    let poleAktivit = vyfiltrovanePole.map((item) =>
-      <div key = {item.id} >{item.nazev}</div>
-    );
-    return poleAktivit;
-  }
-
   render() {
     let linie = this.filtrujPodleLinie(this.aktivityVLiniich).map(lajna => {
       let aktivity = this.filtrujPodleDne(lajna.aktivity);
-      return <Lajna aktivity = {aktivity} nazev = {lajna.nazev} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>
+      return <Lajna key = {lajna.linie} aktivity = {aktivity} nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>
     });
 
     let casy = new Array(16).fill(null).map((item, index) => <th className = "tabulka-hlavicka-cas">{index + 8}</th>);

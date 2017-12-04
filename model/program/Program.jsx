@@ -6,10 +6,10 @@ class Program extends React.Component {
     this.props.data.linie = this.uklidLinie(this.props.data.linie);
 
     // na začátku jsou všechny linie zvolené (viditelné)
-    // zvolený den je středa - 3
+    // zvolený den je čtvrtek - 4
     this.state = {
       zvoleneLinie: this.props.data.linie.slice(),
-      zvolenyDen: 3,
+      zvolenyDen: 4,
       zvolenaAktivita: {}
     };
 
@@ -32,12 +32,8 @@ class Program extends React.Component {
   }
 
   uklidLinie(linie) {
-    // dej linie do pole a seřaď je podle pořadí
-    let linieVPoli = [];
-    for(let cisloLinie in linie) {
-      linieVPoli.push(linie[cisloLinie]);
-    }
-    return linieVPoli.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
+    // seřaď linie podle pořadí
+    return linie.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
   }
 
   render() {

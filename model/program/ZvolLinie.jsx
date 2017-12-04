@@ -42,7 +42,7 @@ class ZvolLinie extends React.Component {
 
     return (
       <div>
-        {tlacitkaLinii}
+          {tlacitkaLinii}
       </div>
     );
   }
