@@ -14,13 +14,14 @@ class Program extends React.Component {
       linie: linie,
       zvolenyDen: 4,
       zvolenaAktivita: {},
-      stitky: ziskejStitky()
+      stitky: this.ziskejStitky(),
       jenomVolneAktivity: false
     };
 
     this.prepniVolneAktivity = this.prepniVolneAktivity.bind(this);
     this.ziskejStitky = this.ziskejStitky.bind(this);
     this.zmenLinie = this.zmenLinie.bind(this);
+    this.zmenStitky = this.zmenStitky.bind(this);
     this.zvolTentoDen = this.zvolTentoDen.bind(this);
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this);
   }
@@ -58,6 +59,10 @@ class Program extends React.Component {
     this.setState({linie: linie});
   }
 
+  zmenStitky(stitky) {
+    this.setState({stitky: stitky});
+  }
+
   zvolTentoDen(cisloDneVTydnu) {
     this.setState({zvolenyDen: cisloDneVTydnu});
   }
@@ -72,7 +77,7 @@ class Program extends React.Component {
       <div>
         <Header />
         <ZvolTypy linie = {this.state.linie} zmenLinie = {this.zmenLinie} jenomVolneAktivity = {this.state.jenomVolneAktivity}
-          prepniVolneAktivity = {this.prepniVolneAktivity} />
+          prepniVolneAktivity = {this.prepniVolneAktivity} stitky = {this.state.stitky} zmenStitky = {this.zmenStitky}/>
         <ZvolDen zvolenyDen = {this.state.zvolenyDen} zvolTentoDen = {this.zvolTentoDen} />
         <Rozvrh data = {this.props.data} linie = {this.state.linie} zvolenyDen = {this.state.zvolenyDen} zvolTutoAktivitu = {this.zvolTutoAktivitu} />
         {this.state.zvolenaAktivita.id &&

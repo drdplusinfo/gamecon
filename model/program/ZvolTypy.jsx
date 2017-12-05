@@ -25,7 +25,7 @@ function ZvolTypy(props) {
       }
       return stitek;
     });
-    props.neco(upraveneStitky);
+    props.zmenStitky(upraveneStitky);
   }
 
   function prepniVolneAktivity() {
