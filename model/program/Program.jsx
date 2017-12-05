@@ -14,10 +14,12 @@ class Program extends React.Component {
       linie: linie,
       zvolenyDen: 4,
       zvolenaAktivita: {},
+      stitky: ziskejStitky()
       jenomVolneAktivity: false
     };
 
     this.prepniVolneAktivity = this.prepniVolneAktivity.bind(this);
+    this.ziskejStitky = this.ziskejStitky.bind(this);
     this.zmenLinie = this.zmenLinie.bind(this);
     this.zvolTentoDen = this.zvolTentoDen.bind(this);
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this);
@@ -25,6 +27,31 @@ class Program extends React.Component {
 
   prepniVolneAktivity() {
     this.setState({jenomVolneAktivity: !this.state.jenomVolneAktivity});
+  }
+
+  uklidLinie(linie) {
+    // seřaď linie podle pořadí a dej jim vlajku zvolená
+    let upraveneLinie = linie.map(lajna => Object.assign({}, lajna, {zvolena: true}));
+    return upraveneLinie.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
+  }
+
+  ziskejStitky() {
+    //Projdi pole aktivit, vytáhni všechny štítky a přiřaď je do pole ziskejStitky
+    let stitky = []
+    this.props.data.aktivity.forEach(aktivita => {
+      aktivita.stitky.forEach(stitek => {
+        if (!(stitky.includes(stitek))) {
+          stitky.push(stitek);
+        }
+      })
+    })
+    let stitkyObj = stitky.map(stitek => {
+      return {
+        nazev: stitek,
+        zvoleny: true
+      }
+    })
+    return stitkyObj;
   }
 
   zmenLinie(linie) {
@@ -38,12 +65,6 @@ class Program extends React.Component {
   zvolTutoAktivitu(aktivita) {
     console.log(aktivita);
     this.setState({zvolenaAktivita: aktivita});
-  }
-
-  uklidLinie(linie) {
-    // seřaď linie podle pořadí a dej jim vlajku zvolená
-    let upraveneLinie = linie.map(lajna => Object.assign({}, lajna, {zvolena: true}));
-    return upraveneLinie.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
   }
 
   render() {
