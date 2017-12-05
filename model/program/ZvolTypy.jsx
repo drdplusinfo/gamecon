@@ -58,7 +58,7 @@ function ZvolTypy(props) {
   }
 
   function vytvorTlacitkoVolneAktivity() {
-    let className = props.jenomVolneAktivity ? VOLNE_AKTIVITY_ZVOLENO : VOLNE_AKTIVITY_NEZVOLENO;
+    let className = props.jenVolneAktivity ? VOLNE_AKTIVITY_ZVOLENO : VOLNE_AKTIVITY_NEZVOLENO;
     return (
       <button onClick = {prepniVolneAktivity} className = {className}>
         volné aktivity

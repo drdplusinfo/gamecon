@@ -39,6 +39,17 @@ class Rozvrh extends React.Component{
     })
   }
 
+  filtrujVolneAktivity(aktivity) {
+    if (this.props.jenVolneAktivity) {
+      return aktivity.filter(aktivita => {
+        let kapacita = aktivita.kapacita_f + aktivita.kapacita_m + aktivita.kapacita_u;
+        let prihlaseno = aktivita.prihlaseno_f + aktivita.prihlaseno_m;
+        return kapacita == 0 ? true : kapacita > prihlaseno;
+      })
+    }
+    return aktivity;
+  }
+
   najdiAktivityKLinii(aktivity, lajna) {
     return aktivity.filter(aktivita => aktivita.linie == lajna.id);
   }
@@ -54,6 +65,7 @@ class Rozvrh extends React.Component{
   render() {
     let aktivityDne = this.filtrujPodleDne(this.props.data.aktivity);
     aktivityDne = this.filtrujPodleStitku(aktivityDne);
+    aktivityDne = this.filtrujVolneAktivity(aktivityDne);
     let zvoleneLinie = this.filtrujZvoleneLinie(this.props.linie);
 
     let linie = zvoleneLinie.map(lajna => {
