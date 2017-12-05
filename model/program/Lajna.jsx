@@ -12,7 +12,7 @@ class Lajna extends React.Component {
     pole.push(new Array(24 - ZACATEK_PROGRAMU).fill(null));
 
     this.props.aktivity.forEach(aktivita => {
-      let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 360000;
+      let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 3600000;
       let zacatekIndex = new Date(aktivita.zacatek).getHours() - ZACATEK_PROGRAMU;
       /* kdyz je zacatekIndex záporný, je to tím, že začátek aktivity je jakoby už v dalším dni,
       po 23 hodině následuje jakoby 0 hodina, toto musíme vykompenzovat */
