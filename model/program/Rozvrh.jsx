@@ -12,6 +12,33 @@ class Rozvrh extends React.Component{
     return aktivity.filter(aktivita => new Date(aktivita.zacatek).getDay() == this.props.zvolenyDen);
   }
 
+  filtrujPodleStitku(aktivity) {
+    // Pokud nejsou zvolené žádné štítky, nefiltruj (vrať všechny aktivity)
+    let zadneStitkyNezvoleny = true;
+    this.props.stitky.forEach(stitek => {
+      if(stitek.zvoleny) {
+        zadneStitkyNezvoleny = false;
+      }
+    });
+    if (zadneStitkyNezvoleny) {
+      return aktivity;
+    }
+
+    //Pokud je zvolen alespoň jeden štítek, filtruj (vrať aktivity na základě vybraných štítků)
+    return aktivity.filter(aktivita => {
+      let aktivitaValidni = false;
+      aktivita.stitky.forEach(stitek => {
+        this.props.stitky.forEach(stitekZvoleny => {
+          if (stitek == stitekZvoleny.nazev && stitekZvoleny.zvoleny) {
+            aktivitaValidni = true;
+            console.log("aktivitaValidni se nastavila na true");
+          }
+        })
+      })
+      return aktivitaValidni;
+    })
+  }
+
   najdiAktivityKLinii(aktivity, lajna) {
     return aktivity.filter(aktivita => aktivita.linie == lajna.id);
   }
@@ -26,6 +53,7 @@ class Rozvrh extends React.Component{
 
   render() {
     let aktivityDne = this.filtrujPodleDne(this.props.data.aktivity);
+    aktivityDne = this.filtrujPodleStitku(aktivityDne);
     let zvoleneLinie = this.filtrujZvoleneLinie(this.props.linie);
 
     let linie = zvoleneLinie.map(lajna => {
