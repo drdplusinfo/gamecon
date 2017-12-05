@@ -9,15 +9,22 @@ class Program extends React.Component {
     let linie = this.uklidLinie(this.props.data.linie);
 
     // na začátku je zvolený den čtvrtek - 4
+    // zobrazujeme všechny, nejenom volné aktivity
     this.state = {
       linie: linie,
       zvolenyDen: 4,
-      zvolenaAktivita: {}
+      zvolenaAktivita: {},
+      jenomVolneAktivity: false
     };
 
+    this.prepniVolneAktivity = this.prepniVolneAktivity.bind(this);
     this.zmenLinie = this.zmenLinie.bind(this);
     this.zvolTentoDen = this.zvolTentoDen.bind(this);
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this);
+  }
+
+  prepniVolneAktivity() {
+    this.setState({jenomVolneAktivity: !this.state.jenomVolneAktivity});
   }
 
   zmenLinie(linie) {
@@ -43,7 +50,8 @@ class Program extends React.Component {
     return (
       <div>
         <Header />
-        <ZvolLinie linie = {this.state.linie} zmenLinie = {this.zmenLinie} />
+        <ZvolTypy linie = {this.state.linie} zmenLinie = {this.zmenLinie} jenomVolneAktivity = {this.state.jenomVolneAktivity}
+          prepniVolneAktivity = {this.prepniVolneAktivity} />
         <ZvolDen zvolenyDen = {this.state.zvolenyDen} zvolTentoDen = {this.zvolTentoDen} />
         <Rozvrh data = {this.props.data} linie = {this.state.linie} zvolenyDen = {this.state.zvolenyDen} zvolTutoAktivitu = {this.zvolTutoAktivitu} />
         {this.state.zvolenaAktivita.id &&
