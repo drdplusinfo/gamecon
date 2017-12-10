@@ -131,6 +131,7 @@ class PerfectCache {
   function pridejReact(...$globVyrazy) {
     $this->pridejCdn('https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js');
     $this->pridejCdn('https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js');
+    $this->pridejCdn('https://cdnjs.cloudflare.com/ajax/libs/react-autosuggest/9.3.2/autosuggest.min.js');
 
     $cil = $this->urciCil($globVyrazy);
     if($this->nastaveni['reactVProhlizeci']) {
