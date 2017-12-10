@@ -13,30 +13,23 @@ class Rozvrh extends React.Component{
   }
 
   filtrujPodleStitku(aktivity) {
-    // Pokud nejsou zvolené žádné štítky, nefiltruj (vrať všechny aktivity)
-    let zadneStitkyNezvoleny = true;
-    this.props.stitky.forEach(stitek => {
-      if(stitek.zvoleny) {
-        zadneStitkyNezvoleny = false;
-      }
-    });
-    if (zadneStitkyNezvoleny) {
-      return aktivity;
-    }
+    let zvoleneStitky = this.props.stitky.filter(stitek => stitek.zvoleny);
 
-    //Pokud je zvolen alespoň jeden štítek, filtruj (vrať aktivity na základě vybraných štítků)
     return aktivity.filter(aktivita => {
-      let aktivitaValidni = false;
-      aktivita.stitky.forEach(stitek => {
-        this.props.stitky.forEach(stitekZvoleny => {
-          if (stitek == stitekZvoleny.nazev && stitekZvoleny.zvoleny) {
-            aktivitaValidni = true;
-            console.log("aktivitaValidni se nastavila na true");
-          }
-        })
-      })
+      //předpokládáme, že je aktivita validní
+      let aktivitaValidni = true;
+
+      zvoleneStitky.forEach(zvolenyStitek => {
+        //jestli je ve zvolených štítcích alespoň jeden, který není ve štítcích aktivity,
+        //tak aktivita validní není
+        let indexStitku = aktivita.stitky.findIndex(stitek => zvolenyStitek.nazev === stitek);
+        if (indexStitku === -1) {
+          aktivitaValidni = false
+        }
+      });
+
       return aktivitaValidni;
-    })
+    });
   }
 
   filtrujVolneAktivity(aktivity) {
