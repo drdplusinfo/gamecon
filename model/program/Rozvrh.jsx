@@ -1,15 +1,34 @@
-class Rozvrh extends React.Component{
+class Rozvrh extends React.Component {
 
-  constructor(props) {
-    super(props)
+  filtrujAktivity(aktivity) {
+    let vyfiltrovane = this.filtrujOrganizacni(aktivity);
+    vyfiltrovane = this.filtrujPodleDne(vyfiltrovane);
+    vyfiltrovane = this.filtrujPodleLinie(vyfiltrovane);
+    vyfiltrovane = this.filtrujPodleStitku(vyfiltrovane);
+    return this.filtrujVolneAktivity(vyfiltrovane);
   }
 
-  filtrujZvoleneLinie(linie) {
-    return linie.filter(lajna => lajna.zvolena && lajna.poradi > 0);
+  filtrujOrganizacni(aktivity) {
+    //TODO: sem přijde nějaký test, který nechá jen organizační aktivity, na kterých
+    //se přihlášený uživatel účastní
+    // momentálně vyfiltruje všechny organizační
+    return aktivity.filter(aktivita => aktivita.linie != 10);
   }
 
   filtrujPodleDne(aktivity) {
     return aktivity.filter(aktivita => new Date(aktivita.zacatek).getDay() == this.props.zvolenyDen);
+  }
+
+  filtrujPodleLinie(aktivity) {
+    return aktivity.filter(aktivita => {
+      let aktivitaValidni = false;
+      this.props.linie.forEach(lajna => {
+        if (aktivita.linie == lajna.id && lajna.zvolena) {
+          aktivitaValidni = true;
+        }
+      });
+      return aktivitaValidni;
+    });
   }
 
   filtrujPodleStitku(aktivity) {
@@ -43,8 +62,42 @@ class Rozvrh extends React.Component{
     return aktivity;
   }
 
+  filtrujLinie(linie){
+    //TODO: tady bude nějaký test, který vyfiltruje/nechá "Organizační výpomoc", jestli je uživatel
+    //přihlášen na nějaké tahání beden
+    return linie.filter(lajna => lajna.poradi > 0);
+  }
+
   najdiAktivityKLinii(aktivity, lajna) {
     return aktivity.filter(aktivita => aktivita.linie == lajna.id);
+  }
+
+  vytvorLinie(aktivity, linie) {
+    let vyfiltrovaneLinie = this.filtrujLinie(linie);
+
+    //když jsou aktivity prázné, napiš hlášku - demo
+    //TODO: probrat jestli to vůbec dělat takto
+    if(aktivity.length === 0) {
+      return (
+        <tbody className = 'tabulka-linie'>
+          {vyfiltrovaneLinie.map((lajna, index) =>
+            <tr>
+              <th className = 'tabulka-linie'>{lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}</th>
+              {index == 0 &&
+              <td className = 'tabulka-zadne-aktivity' colSpan = {24-ZACATEK_PROGRAMU} rowSpan = {linie.length}>
+                Pro zvolené filtry je tady hovno
+              </td>}
+            </tr>
+          )}
+        </tbody>
+      );
+    } else {
+      return vyfiltrovaneLinie.map(lajna => {
+        return <Lajna key = {lajna.id} aktivity = {this.najdiAktivityKLinii(aktivity, lajna)}
+          nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
+          zvolTutoAktivitu = {this.props.zvolTutoAktivitu} />
+      });
+    }
   }
 
   vytvorHlavicku() {
@@ -56,23 +109,14 @@ class Rozvrh extends React.Component{
   }
 
   render() {
-    let aktivityDne = this.filtrujPodleDne(this.props.data.aktivity);
-    aktivityDne = this.filtrujPodleStitku(aktivityDne);
-    aktivityDne = this.filtrujVolneAktivity(aktivityDne);
-    let zvoleneLinie = this.filtrujZvoleneLinie(this.props.linie);
-
-    let linie = zvoleneLinie.map(lajna => {
-      return <Lajna key = {lajna.id} aktivity = {this.najdiAktivityKLinii(aktivityDne, lajna)}
-        nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
-        zvolTutoAktivitu = {this.props.zvolTutoAktivitu} />
-    })
+    let aktivity = this.filtrujAktivity(this.props.data.aktivity);
 
     return (
       <table className = "tabulka">
         <thead>
           <tr>{this.vytvorHlavicku()}</tr>
         </thead>
-        {linie}
+        {this.vytvorLinie(aktivity, this.props.linie)}
       </table>
     );
   }

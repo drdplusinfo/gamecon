@@ -16,6 +16,7 @@ body { font-family: sans-serif; }
 .tabulka { width: 100%; border-collapse: collapse; }
 .tabulka-hlavicka-nazvu { width: 20%; }
 .tabulka-hlavicka-cas { width: 5%; }
+.tabulka-zadne-aktivity { text-align: center; }
 
 /*Vypis nazvu linii*/
 .vyber-linie-nezvolena { background-color: #f00; }
