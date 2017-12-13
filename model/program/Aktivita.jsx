@@ -22,12 +22,12 @@ function Aktivita(props) {
     else if(prihlaseno_m >= kapacita_m + kapacita_u) {
       //muži zabrali všechny svá i univerzální místa
       let zeny = kapacita_f > 0 ? <span className = {ZENY}>({prihlaseno_f}/{kapacita_f})</span> : '';
-      let muzi = <span className = {MUZI}>({prihlaseno_m}/{prihlaseno_m})</span>;
+      let muzi = kapacita_m > 0 ? <span className = {MUZI}>({prihlaseno_m}/{prihlaseno_m})</span> : '';
       return <div className = {KAPACITA}>{zeny}{muzi}</div>;
     }
     else if(prihlaseno_f >= kapacita_f + kapacita_u) {
       //ženy zabrali všechny svá i univerzální místa
-      let zeny = <span className = {ZENY}>({prihlaseno_f}/{prihlaseno_f})</span>;
+      let zeny = kapacita_f > 0 ? <span className = {ZENY}>({prihlaseno_f}/{kapacita_f})</span> : '';
       let muzi = kapacita_m > 0 ? <span className = {MUZI}>({prihlaseno_m}/{kapacita_m})</span> : '';
       return <div className = {KAPACITA}>{zeny}{muzi}</div>;
     }
