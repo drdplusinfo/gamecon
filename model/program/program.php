@@ -1,8 +1,11 @@
 <?php
 
+require_once __DIR__ . '/program-api.php';
+
 class Program {
 
   private
+    $api,
     $cacheSouboru,
     $jsElementId = 'cProgramElement', // TODO v případě použití více instancí řešit příslušnost k instancím
     $jsPromenna = 'cProgramPromenna',
@@ -18,6 +21,8 @@ class Program {
     // souboru pak dávat `.cProgramCssClass něco {`, nebo to celé obalit
     // pomocí lessu
     $this->cacheSouboru->pridejCss(__DIR__ . '/program.css');
+
+    $this->api = new JsPhpApiHandler(new ProgramApi);
   }
 
   /**
@@ -52,9 +57,9 @@ class Program {
   private function jsRender() {
     return $this->cacheSouboru->inlineCekejNaBabel('
       ReactDOM.render(
-        React.createElement(Program, { data: '.$this->jsPromenna.' }),
+        React.createElement(Program, { data: '.$this->jsPromenna.', api: '.$this->api->jsApiObjekt().' }),
         document.getElementById("'.$this->jsElementId.'")
-      );
+      )
     ');
   }
 
@@ -111,6 +116,10 @@ class Program {
 
   function zaregistrujJsObserver($nazevFunkce) {
     $this->jsObserveri[] = $nazevFunkce;
+  }
+
+  function zpracujAjax() {
+    $this->api->zpracujVolani();
   }
 
 }

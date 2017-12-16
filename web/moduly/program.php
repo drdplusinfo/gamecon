@@ -4,6 +4,8 @@ $this->bezStranky(true);
 
 $program = new Program;
 
+$program->zpracujAjax();
+
 ?>
 <!DOCTYPE html>
 <html>
