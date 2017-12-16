@@ -5,9 +5,7 @@ $this->bezDekorace(true);
 
 $t->assign([
   'menu'    =>  $menu,
-  'blog'    =>  Novinka::zNejnovejsi(Novinka::BLOG),
-  'novinka' =>  Novinka::zNejnovejsi(Novinka::NOVINKA),
-  'a'       =>  $u ? $u->koncA() : '',
+  'a'       =>  $u ? $u->koncA() : '', //koncovka u slovesa (v šabloně užito jako nepřihlášen{a})
 ]);
 
 if($u && $u->gcPrihlasen() && REG_GC)   $t->parse('titulka.prihlasen');

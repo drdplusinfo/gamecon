@@ -60,18 +60,10 @@ if($m->bezStranky()) {
     'obsah'     => $m->vystup(),  // TODO nastavování titulku stránky
     'sponzori'  => Modul::zNazvu('sponzori')->spust()->vystup(),
     'css'       => perfectcache(
-      'soubory/styl/flaticon.ttf',
-      'soubory/styl/easybox.min.css',
-      'soubory/styl/styl.less',
-      'soubory/styl/fonty.less',
-      'soubory/styl/jquery-ui.min.css'
+      'soubory/styl/index.less'
     ),
     'js'        => perfectcache(
-      'soubory/jquery-2.1.1.min.js',
-      'soubory/scroll-sneak.js',
-      'soubory/aplikace.js',
-      'soubory/jquery-ui.min.js',
-      'soubory/easybox.distrib.min.js' //nějaká debiláž, musí být poslední
+      'soubory/aplikace.js'
     ),
     'jsVyjimkovac'  => Vyjimkovac::js(URL_WEBU.'/ajax-vyjimkovac'),
     'chyba'     => Chyba::vyzvedniHtml(),
