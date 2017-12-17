@@ -30,8 +30,12 @@ if(PHP_SAPI == 'cli' || $_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMO
   require __DIR__ . '/nastaveni-local-default.php'; // výchozí lokální nastavení
 } elseif(substr($_SERVER['SERVER_NAME'], -15) == 'beta.gamecon.cz') {
   require __DIR__ . '/nastaveni-beta.php';
-} else {
+} elseif($_SERVER['SERVER_NAME'] == 'admin.gamecon.cz' || $_SERVER['SERVER_NAME'] == 'gamecon.cz') {
   require __DIR__ . '/nastaveni-produkce.php';
+} else {
+  die('nelze načíst nastavení verze');
 }
+
+// TODO odstranit konstantu VETEV a dodělat specifické konstanty, příp. přidat nastaveni-default.php
 if(!defined('VETEV')) throw new Exception('Konstanta VETEV není nastavena, nastavte na OSTRA nebo VYVOJOVA v lokálním souboru s nastavením');
 require __DIR__ . '/nastaveni.php';

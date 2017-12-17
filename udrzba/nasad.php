@@ -12,18 +12,16 @@
  *
  */
 
-require_once __DIR__ . '/../nastaveni/nastaveni-ftpdeploy.php';
+require_once __DIR__ . '/_pomocne.php';
+$nastaveni = require __DIR__ . '/../nastaveni/nastaveni-nasazovani.php';
 
 chdir(__DIR__ . '/../');
 
-$deployment = escapeshellarg(realpath(__DIR__ . '/../vendor/dg/ftp-deployment/deployment'));
-$sestavovac = escapeshellarg(realpath(__DIR__ . '/sestav.php'));
-
 // testování větve před pushem a čistoty repa, aby se na FTP nedostalo smetí
 exec('git rev-parse --abbrev-ref HEAD', $out);
-$vetev = $out[0]; // TODO test na master?
-if($vetev !== 'master') {
-  echo "notice: you're not on master branch, skipping auto deployment\n";
+$vetev = $out[0];
+if(!($vetev === 'master' || strpos($vetev, 'redesign') === 0)) {
+  echo "notice: you're not on automatically deployed branch, deplyoment skipped\n";
   exit(0);
 }
 exec('git status', $out);
@@ -33,32 +31,30 @@ if(end($out) !== 'nothing to commit, working directory clean') {
 }
 
 // sestavení souborů
-system("php $sestavovac", $status);
-if($status) {
-  echo "error: build failed\n";
-  exit(1);
+call_check(['php', __DIR__ . '/sestav.php']);
+
+// nasazení
+if($vetev == 'master') {
+  nasad([
+    'zdrojovaSlozka'  =>  __DIR__ . '/..',
+    'ciloveFtp'       =>  $nastaveni['ostra']['ftp'],
+    'urlMigrace'      =>  $nastaveni['ostra']['urlMigrace'],
+    'hesloMigrace'    =>  $nastaveni['ostra']['hesloMigrace'],
+    'souborNastaveni' =>  'nastaveni-produkce.php',
+  ]);
+  nasad([
+    'zdrojovaSlozka'  =>  __DIR__ . '/..',
+    'ciloveFtp'       =>  $nastaveni['beta']['ftp'],
+    'urlMigrace'      =>  $nastaveni['beta']['urlMigrace'],
+    'hesloMigrace'    =>  $nastaveni['beta']['hesloMigrace'],
+    'souborNastaveni' =>  'nastaveni-beta.php',
+  ]);
+} else {
+  nasad([
+    'zdrojovaSlozka'  =>  __DIR__ . '/..',
+    'ciloveFtp'       =>  $nastaveni['redesign']['ftp'],
+    'urlMigrace'      =>  $nastaveni['redesign']['urlMigrace'],
+    'hesloMigrace'    =>  $nastaveni['redesign']['hesloMigrace'],
+    'souborNastaveni' =>  'nastaveni-beta.php', // TODO
+  ]);
 }
-
-// nahrání souborů - beta
-$nastaveniBeta = escapeshellarg(realpath(__DIR__ . '/pomocne/nastaveni-ftpdeploy-beta.php'));
-system("php $deployment $nastaveniBeta");
-
-// migrace DB - beta
-echo "\nMigrace DB - beta\n";
-system(
-  'curl --data "cFleeVar=' . BETA_MIGRACE_HESLO . '" --silent ' . // skrýt progressbar
-  escapeshellarg('http://admin.beta.gamecon.cz/migrace.php')
-);
-echo "\n\n";
-
-// nahrání souborů - ostrá
-$nastaveniOstra = escapeshellarg(realpath(__DIR__ . '/pomocne/nastaveni-ftpdeploy-ostra.php'));
-system("php $deployment $nastaveniOstra");
-
-// migrace DB - ostrá
-echo "\nMigrace DB - ostrá\n";
-system(
-  'curl --data "cFleeVar=' . OSTRA_MIGRACE_HESLO . '" --silent ' . // skrýt progressbar
-  escapeshellarg('https://admin.gamecon.cz/migrace.php')
-);
-echo "\n\n";
