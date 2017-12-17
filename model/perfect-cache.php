@@ -283,6 +283,7 @@ class Babel {
     fwrite($proces, $kod);
     fclose($proces);
     $vystup = file_get_contents($output);
+    if($vystup === false) throw new Exception('překlad selhal');
 
     @unlink($output);
 
