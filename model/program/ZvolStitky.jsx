@@ -14,6 +14,9 @@ class ZvolStitky extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
   }
 
   //Změní štítky výše v hierarchii pomocí funkce zmenStitky, kterou máme v props
@@ -88,21 +91,21 @@ class ZvolStitky extends React.Component {
   };
 
   // Autosuggest zavolá tuto funkci vždy když se mají aktualizovat štítky
-  onSuggestionsFetchRequested = ({ value }) => {
+  onSuggestionsFetchRequested({ value }) {
     this.setState({
       suggestions: this.getSuggestions(value)
     });
   };
 
   // Autosuggest zavolá tuto funkci když se mají vymazat návrhy
-  onSuggestionsClearRequested = () => {
+  onSuggestionsClearRequested() {
     this.setState({
       suggestions: []
     });
   };
 
   // Autosuggest zavolá tuto funkci, když si uživatel vybere jeden z návrhů
-  onSuggestionSelected = (event, { suggestion }) => {
+  onSuggestionSelected(event, { suggestion }) {
     this.pridejStitek(suggestion.nazev);
 
     this.setState({
@@ -112,11 +115,13 @@ class ZvolStitky extends React.Component {
   }
 
   // Určuje v jaké podobě budou návrhy vytvořeny
-  renderSuggestion = suggestion => (
-    <div>
-      {suggestion.nazev}
-    </div>
-  );
+  renderSuggestion(suggestion) {
+    return (
+      <div>
+        {suggestion.nazev}
+      </div>
+    );
+  }
 
   render() {
     const { value, suggestions } = this.state;
