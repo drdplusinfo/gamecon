@@ -76,14 +76,36 @@ class Program extends React.Component {
     return (
       <div>
         <Header />
-        <ZvolTypy linie = {this.state.linie} zmenLinie = {this.zmenLinie} jenVolneAktivity = {this.state.jenVolneAktivity}
-          prepniVolneAktivity = {this.prepniVolneAktivity} stitky = {this.state.stitky} zmenStitky = {this.zmenStitky}/>
-        <ZvolStitky stitky = {this.state.stitky} zmenStitky = {this.zmenStitky} />
-        <ZvolDen zvolenyDen = {this.state.zvolenyDen} zvolTentoDen = {this.zvolTentoDen} />
-        <Rozvrh data = {this.props.data} linie = {this.state.linie} stitky = {this.state.stitky} zvolenyDen = {this.state.zvolenyDen}
-          jenVolneAktivity = {this.state.jenVolneAktivity} zvolTutoAktivitu = {this.zvolTutoAktivitu} />
+        <ZvolTypy
+          jenVolneAktivity = {this.state.jenVolneAktivity}
+          linie = {this.state.linie}
+          stitky = {this.state.stitky}
+          prepniVolneAktivity = {this.prepniVolneAktivity}
+          zmenLinie = {this.zmenLinie}
+          zmenStitky = {this.zmenStitky}
+        />
+        <ZvolStitky
+          stitky = {this.state.stitky}
+          zmenStitky = {this.zmenStitky}
+        />
+        <ZvolDen
+          zvolenyDen = {this.state.zvolenyDen}
+          zvolTentoDen = {this.zvolTentoDen}
+        />
+        <Rozvrh
+          data = {this.props.data}
+          jenVolneAktivity = {this.state.jenVolneAktivity}
+          linie = {this.state.linie}
+          stitky = {this.state.stitky}
+          zvolenyDen = {this.state.zvolenyDen}
+          zvolTutoAktivitu = {this.zvolTutoAktivitu}
+        />
         {this.state.zvolenaAktivita.id &&
-          <DetailAktivity aktivita = {this.state.zvolenaAktivita} linie = {this.props.data.linie} zvolTutoAktivitu = {this.zvolTutoAktivitu}/>
+          <DetailAktivity
+            aktivita = {this.state.zvolenaAktivita}
+            linie = {this.props.data.linie}
+            zvolTutoAktivitu = {this.zvolTutoAktivitu}
+          />
         }
       </div>
     )

@@ -93,9 +93,14 @@ class Rozvrh extends React.Component {
       );
     } else {
       return vyfiltrovaneLinie.map(lajna => {
-        return <Lajna key = {lajna.id} aktivity = {this.najdiAktivityKLinii(aktivity, lajna)}
-          nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
-          zvolTutoAktivitu = {this.props.zvolTutoAktivitu} />
+        return (
+          <Lajna
+            aktivity = {this.najdiAktivityKLinii(aktivity, lajna)}
+            key = {lajna.id}
+            nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
+            zvolTutoAktivitu = {this.props.zvolTutoAktivitu}
+          />
+        );
       });
     }
   }

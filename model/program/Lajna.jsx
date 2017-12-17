@@ -57,9 +57,18 @@ class Lajna extends React.Component {
 
       for(let i = 0; i<radekPole.length; i++){
         if(!radekPole[i]) {
-          radekTabulky.push(<td className = "tabulka-prazdna-bunka">&nbsp;</td>);
+          radekTabulky.push(
+            <td className = "tabulka-prazdna-bunka">
+              &nbsp;
+            </td>
+          );
         } else {
-          radekTabulky.push(<Aktivita aktivita = {radekPole[i]} zvolTutoAktivitu = {this.props.zvolTutoAktivitu}/>);
+          radekTabulky.push(
+            <Aktivita
+              aktivita = {radekPole[i]}
+              zvolTutoAktivitu = {this.props.zvolTutoAktivitu}
+            />
+          );
           i += radekPole[i].delka - 1;
         }
       }
