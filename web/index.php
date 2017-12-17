@@ -57,10 +57,11 @@ if($m->bezStranky()) {
     'u'         => $u,
     'base'      => URL_WEBU.'/',
     'admin'     => URL_ADMIN,
-    'obsah'     => $m->vystup(),  // TODO nastavování titulku stránky
+    'obsah'     => $m->vystup(),  // TODO nastavování titulku stránky //Manik: Tohle je co přesně? Musí to tu  být?
     'sponzori'  => Modul::zNazvu('sponzori')->spust()->vystup(),
     'css'       => perfectcache(
-      'soubory/styl/index.less'
+      'soubory/styl/index.less',
+      'soubory/styl/components/nav.less'
     ),
     'js'        => perfectcache(
       'soubory/aplikace.js'
@@ -70,9 +71,10 @@ if($m->bezStranky()) {
     'info'      => $m->info() ? $m->info()->html() : '',
     'a'         => $u ? $u->koncA() : '',
     'datum'     => date('j.', strtotime(GC_BEZI_OD)) . '–' . date('j. n. Y', strtotime(GC_BEZI_DO)),
+
+    'menu'      => $menu->cele()
   ]);
   // tisk věcí a zdar
-  if(!$m->bezMenu())                                $t->assign('menu', $menu->cele());
   if($u && $u->maPravo(P_ADMIN_UVOD))               $t->parse('index.prihlasen.admin');
   elseif($u && $u->maPravo(P_ADMIN_MUJ_PREHLED))    $t->parse('index.prihlasen.mujPrehled');
   if($u && $u->gcPrihlasen() && FINANCE_VIDITELNE)  $t->assign('finance', $u->finance()->stavHr());

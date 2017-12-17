@@ -51,7 +51,7 @@ function datum2($dbRadek)
 }
 
 
-/** Vrací datum ve stylu 1. července 
+/** Vrací datum ve stylu 1. července
  *  akceptuje vše, co žere strtotime */
 function datum3($datum)
 {
@@ -254,7 +254,7 @@ function markdownNoCache($text) {
  *  @param array $poleCas pole s časovými údají odpovídajícími evidenci aktivit
  *  v databázi (den, zacatek jako od, konec jako do)
  *  @param int vyjimka ID akce, která se má vyjmout z hledání (typicky při editu
- *  akce testujeme kolizi ale nezajímá nás kolize "se sebou samou"  
+ *  akce testujeme kolizi ale nezajímá nás kolize "se sebou samou"
  *  @return vrací true nebo false
  *  @todo tato operace by měla být řešena v rámci nějaké třídy speciální
  *  výjimkou, která ponese i seznam kolidujících aktivit v sobě.
@@ -295,7 +295,7 @@ function maVolno($uid,$poleCas,$vyjimka=null)
 
 /** Vrací pole kolizních aktivit posledního "maVolno" volání */
 function maVolnoKolize()
-{ 
+{
   return isset($GLOBALS['maVolnoKolizePole'])?
     $GLOBALS['maVolnoKolizePole']:[];
 }
@@ -360,6 +360,7 @@ function perfectcache($args) {
     if($typ == 'js') {
       foreach($args as $a) if($a) file_put_contents($minf, file_get_contents($a), FILE_APPEND);
     } else {
+      //TO-DO: Add SASS parser (compiler)
       $parser = new Less_Parser(['compress' => true]);
       foreach($args as $a) if($a) {
         if(substr($a, -4) != '.ttf') $parser->parseFile($a, URL_WEBU.'/soubory/styl/');
@@ -423,7 +424,7 @@ function profilInfo()
     </style>
     <img src="'.$iHodiny.'" alt="délka skriptu včetně DB">
     <span style="'.$barva.'">'.round($delka*1000).'&thinsp;ms</span>
-    &ensp; 
+    &ensp;
     <img src="'.$iDb.'" alt="délka odbavení DB/počet dotazů">
     '.round(dbExecTime()*1000).'&thinsp;ms ('.dbNumQ().' dotazů)
     </div>';
@@ -470,7 +471,7 @@ function ma_pravo($uzivatel,$cislo_prava)
         uzivatele_zidle.id_uzivatele = $uzivatel and
         uzivatele_zidle.id_zidle = prava_zidle.id_zidle and
         prava_zidle.id_prava = $cislo_prava";
-        
+
       if(mysqli_num_rows(dbQuery($sql))>0)
         return true;
       else

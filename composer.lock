@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "db918bbaba7c1dec3e761ff68565dd05",
+    "content-hash": "e7213c0d7e30130e7efdc5536cf150b3",
     "packages": [
         {
             "name": "dg/mysql-dump",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/MySQL-dump.git",
-                "reference": "c1c00a6b7ded9cab37f0280fa2940b1809835f90"
+                "reference": "8970328c9a8665e65f3855c849f5d4de94075f13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/MySQL-dump/zipball/c1c00a6b7ded9cab37f0280fa2940b1809835f90",
-                "reference": "c1c00a6b7ded9cab37f0280fa2940b1809835f90",
+                "url": "https://api.github.com/repos/dg/MySQL-dump/zipball/8970328c9a8665e65f3855c849f5d4de94075f13",
+                "reference": "8970328c9a8665e65f3855c849f5d4de94075f13",
                 "shasum": ""
             },
             "type": "library",
@@ -41,7 +41,7 @@
             "keywords": [
                 "mysql"
             ],
-            "time": "2015-04-18 14:09:50"
+            "time": "2017-05-24T12:44:51+00:00"
         },
         {
             "name": "godric/xtemplate",
@@ -68,7 +68,59 @@
                 "source": "https://github.com/godric-cz/xtemplate/tree/master",
                 "issues": "https://github.com/godric-cz/xtemplate/issues"
             },
-            "time": "2016-02-28 19:55:11"
+            "time": "2016-02-28T19:55:11+00:00"
+        },
+        {
+            "name": "leafo/scssphp",
+            "version": "v0.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafo/scssphp.git",
+                "reference": "4f605a51462c85cf6df5bb45460483a138e04025"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/4f605a51462c85cf6df5bb45460483a138e04025",
+                "reference": "4f605a51462c85cf6df5bb45460483a138e04025",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.6",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Leafo\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://leafo.github.io/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "time": "2017-10-14T21:35:01+00:00"
         },
         {
             "name": "michelf/php-markdown",
@@ -123,23 +175,23 @@
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.10",
+            "version": "v1.7.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "a1e2d3c20794b37ac4d0baeb24613e579584033b"
+                "reference": "42925c5a01a07d67ca7e82dfc8fb31814d557bc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/a1e2d3c20794b37ac4d0baeb24613e579584033b",
-                "reference": "a1e2d3c20794b37ac4d0baeb24613e579584033b",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/42925c5a01a07d67ca7e82dfc8fb31814d557bc9",
+                "reference": "42925c5a01a07d67ca7e82dfc8fb31814d557bc9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.18"
+                "phpunit/phpunit": "~4.8.24"
             },
             "bin": [
                 "bin/lessc"
@@ -171,7 +223,7 @@
                     "homepage": "https://github.com/oyejorge"
                 }
             ],
-            "description": "PHP port of the Javascript version of LESS http://lesscss.org",
+            "description": "PHP port of the Javascript version of LESS http://lesscss.org (Originally maintained by Josh Schmidt)",
             "homepage": "http://lessphp.gpeasy.com",
             "keywords": [
                 "css",
@@ -181,7 +233,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-12-30T05:47:36+00:00"
+            "time": "2017-03-28T22:19:25+00:00"
         },
         {
             "name": "roderik/pwgen-php",
@@ -229,16 +281,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.6",
+            "version": "v2.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "c9fbca15b0a11d904c7783b7aad114182618d8d4"
+                "reference": "5b302790edd71924dfe4ec44f499ef61df3f53a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/c9fbca15b0a11d904c7783b7aad114182618d8d4",
-                "reference": "c9fbca15b0a11d904c7783b7aad114182618d8d4",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/5b302790edd71924dfe4ec44f499ef61df3f53a2",
+                "reference": "5b302790edd71924dfe4ec44f499ef61df3f53a2",
                 "shasum": ""
             },
             "require": {
@@ -248,7 +300,10 @@
             },
             "require-dev": {
                 "nette/di": "~2.3",
-                "nette/tester": "~2.0"
+                "nette/tester": "~1.7"
+            },
+            "suggest": {
+                "https://nette.org/donate": "Please support Tracy via a donation"
             },
             "type": "library",
             "extra": {
@@ -280,14 +335,16 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "Tracy: useful PHP debugger",
+            "description": "😎 Tracy: the addictive tool to ease debugging PHP code for cool developers. Friendly design, logging, profiler, advanced features like debugging AJAX calls or CLI support. You will love it.",
             "homepage": "https://tracy.nette.org",
             "keywords": [
+                "Xdebug",
                 "debug",
                 "debugger",
-                "nette"
+                "nette",
+                "profiler"
             ],
-            "time": "2017-01-29T19:39:20+00:00"
+            "time": "2017-10-04T18:43:42+00:00"
         }
     ],
     "packages-dev": [

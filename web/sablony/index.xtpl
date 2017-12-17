@@ -32,21 +32,9 @@
 </head>
 <body>
 
-  {chyba}
+{menu}
 
-  <div class="hlavicka">
-    <a class="logo" href="">
-      <img src="soubory/styl/logo.png" alt="GameCon"><br>
-      <span class="claim">Největší festival nepočítačových her</span>
-    </a>
-    <div class="linfo">
-      <a class="ifb" href="https://www.facebook.com/gamecon"></a>
-      <b>{datum}</b>
-      <b>v Pardubicích</b>
-    </div>
-    <div class="prihlasovani">
       <!-- begin:neprihlasen -->
-      <a class="vlajka" href="/en"></a>
       <div class="neprihlasen">
         <strong>Nejste přihlášeni na web</strong><br>
         <a href="#" onclick="$('#prihlasit').slideToggle(); return false;"><strong>Přihlásit</strong></a> / <a href="registrace">registrovat</a> /
@@ -77,8 +65,6 @@
       <!-- end:prihlasen -->
     </div>
   </div>
-
-  {menu}
 
   <hr class="stin">
 
