@@ -80,18 +80,18 @@ class Program {
         'stitky'        =>  array_map(function($t) { return (string) $t; }, $a->tagy()),
         'prihlaseno_m'  =>  $a->prihlasenoMuzu(),
         'prihlaseno_f'  =>  $a->prihlasenoZen(),
+        'otevreno_prihlasovani' => $a->prihlasovatelna(),
+        'vDalsiVlne'    =>  $a->vDalsiVlne(),
+        'probehnuta'    =>  $a->probehnuta(),
+        'organizuje'    =>  rand(0, 99) < 2, // TODO test data
+        'prihlasen'     =>  rand(0, 99) < 5, // TODO test data
+        'tymova'        =>  (bool) $a->teamova(),
+        'popis_kratky'  =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
 
         // TODO údaje načítané přímo z DB řádku, smazat nebo nějak převést
         'kapacita_m'    =>  (int) $r['kapacita_m'],
         'kapacita_f'    =>  (int) $r['kapacita_f'],
         'kapacita_u'    =>  (int) $r['kapacita'],
-
-        /* TODO:
-        týmová
-        přihlášen/nepřihlášen
-        přihlašovatelná / jsem přihlášen / organizuji
-        krátká anotace
-        */
       ];
     }, $aktivity->getArrayCopy());
 

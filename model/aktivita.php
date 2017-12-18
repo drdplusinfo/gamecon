@@ -29,6 +29,7 @@ class Aktivita {
     AKTIVOVANA      = 1,
     PUBLIKOVANA     = 4,
     PRIPRAVENA      = 5,
+    PROBEHNUTA      = 2,
     //ignore a parametry kolem přihlašovátka
     BEZ_POKUT       = 0b00010000,   // odhlášení bez pokut
     PLUSMINUS       = 0b00000001,   // plus/mínus zkratky pro měnění míst v team. aktivitě
@@ -947,11 +948,12 @@ class Aktivita {
     dbUpdate('akce_seznam', ['stav' => self::PRIPRAVENA], ['id_akce' => $this->id()]);
   }
 
-  /** Zdali už aktivita začla a proběhla (rozhodný okamžik je vyjetí seznamů
-   *  přihlášených na infopultu) */
-  function probehnuta()
-  {
-    return $this->a['stav']==2;
+  /**
+   * @return bool jestli už aktivita začla a proběhla (rozhodný okamžik je
+   * vyjetí seznamů přihlášených na infopultu)
+   */
+  function probehnuta() {
+    return $this->a['stav'] == self::PROBEHNUTA;
   }
 
   /**
