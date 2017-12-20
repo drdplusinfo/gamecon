@@ -96,6 +96,7 @@ class Rozvrh extends React.Component {
         return (
           <Lajna
             aktivity = {this.najdiAktivityKLinii(aktivity, lajna)}
+            api = {this.props.api}
             key = {lajna.id}
             nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
             zvolTutoAktivitu = {this.props.zvolTutoAktivitu}

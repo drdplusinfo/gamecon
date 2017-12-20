@@ -68,6 +68,7 @@ function Lajna(props) {
           radekTabulky.push(
             <Aktivita
               aktivita = {radekPole[i]}
+              api = {props.api}
               zvolTutoAktivitu = {props.zvolTutoAktivitu}
             />
           );

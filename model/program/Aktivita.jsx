@@ -44,6 +44,13 @@ function Aktivita(props) {
       <span>{aktivita.nazev}</span>
       <br/>
       {zjistiKapacitu(aktivita)}
+
+      <TlacitkoPrihlasit
+        aktivita = {aktivita}
+        api = {props.api}
+        trida = 'tlacitko-prihlasit--aktivita'
+      />
+
     </td>
   );
 }

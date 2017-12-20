@@ -93,6 +93,7 @@ class Program extends React.Component {
           zvolTentoDen = {this.zvolTentoDen}
         />
         <Rozvrh
+          api = {this.props.api}
           data = {this.props.data}
           jenVolneAktivity = {this.state.jenVolneAktivity}
           linie = {this.state.linie}

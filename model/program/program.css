@@ -26,6 +26,10 @@ body { font-family: sans-serif; }
 .den-zvoleny { background-color: #f00; }
 .den-nezvoleny { background-color: #888; }
 
+/*Provizorni rozliseni tlacitka prihasit, podle toho, kde se nachazi*/
+.tlacitko-prihlasit--aktivita {}
+.tlacitko-prihlasit--detail { font-size: 1.5em; }
+
 /*React autosuggest začátek*/
 .react-autosuggest__container {
   position: relative;
