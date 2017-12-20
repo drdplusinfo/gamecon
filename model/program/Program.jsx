@@ -103,6 +103,7 @@ class Program extends React.Component {
         {this.state.zvolenaAktivita.id &&
           <DetailAktivity
             aktivita = {this.state.zvolenaAktivita}
+            api = {this.props.api}
             linie = {this.props.data.linie}
             zvolTutoAktivitu = {this.zvolTutoAktivitu}
           />
