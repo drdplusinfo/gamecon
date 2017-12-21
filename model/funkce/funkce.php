@@ -1,5 +1,7 @@
 <?php
 
+use Leafo\ScssPhp\Compiler;
+
 $GLOBALS['SKRIPT_ZACATEK'] = microtime(true); // profiling
 
 /**
@@ -360,13 +362,18 @@ function perfectcache($args) {
     if($typ == 'js') {
       foreach($args as $a) if($a) file_put_contents($minf, file_get_contents($a), FILE_APPEND);
     } else {
-      //TO-DO: Add SASS parser (compiler)
-      $parser = new Less_Parser(['compress' => true]);
+      /* Kompilování SASS */
+      $parser = new Compiler();
+      $parser->registerFunction('soubor', function($args) {
+        return URL_WEBU . '/soubory/' . $args[0][2][0];
+      });
+      $parser->setImportPaths(WWW . '/styl/bootstrap/');
+      $obsahCss = '';
       foreach($args as $a) if($a) {
-        if(substr($a, -4) != '.ttf') $parser->parseFile($a, URL_WEBU.'/soubory/styl/');
-        else $parser->ModifyVars([ perfectcacheFontNazev($a) => 'url("'.perfectcacheFont($a).'")' ]); // prozatím u fontu stačí věřit, že modifikace odpovídá modifikaci stylu
+        $obsahCss .= file_get_contents($a);
       }
-      file_put_contents($minf, $parser->getCss());
+      $vystupCss = $parser->compile($obsahCss);
+      file_put_contents($minf, $vystupCss);
     }
   }
   return $minu.'?v='.$last;

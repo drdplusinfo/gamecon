@@ -60,8 +60,12 @@ if($m->bezStranky()) {
     'obsah'     => $m->vystup(),  // TODO nastavování titulku stránky //Manik: Tohle je co přesně? Musí to tu  být?
     'sponzori'  => Modul::zNazvu('sponzori')->spust()->vystup(),
     'css'       => perfectcache(
-      'soubory/styl/index.less',
-      'soubory/styl/components/nav.less'
+      'styl/bootstrap/bootstrap.scss',
+      'styl/index.scss',
+      ...glob('styl/base/*.scss'),
+      ...glob('styl/components/*.scss'),
+      ...glob('styl/core/*.scss'),
+      ...glob('styl/layout/*.scss')
     ),
     'js'        => perfectcache(
       'soubory/aplikace.js'
@@ -71,7 +75,6 @@ if($m->bezStranky()) {
     'info'      => $m->info() ? $m->info()->html() : '',
     'a'         => $u ? $u->koncA() : '',
     'datum'     => date('j.', strtotime(GC_BEZI_OD)) . '–' . date('j. n. Y', strtotime(GC_BEZI_DO)),
-
     'menu'      => $menu->cele()
   ]);
   // tisk věcí a zdar

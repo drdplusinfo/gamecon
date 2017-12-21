@@ -4,7 +4,7 @@ class Menu {
 
   protected static $linie;
 
-  protected $OGameConu = [
+  protected $ogameconu = [
     'co-je-gamecon' => 'Co je GameCon?',
     'jak-to-probiha' => 'Jak to probíhá?',
     'organizacni-vypomoc' => 'Pomoz nám s přípravou',
@@ -13,7 +13,7 @@ class Menu {
     'kontakt' => 'Kontakt'
   ];
 
-  protected $Prakticke = [
+  protected $prakticke = [
     'kdy-a-kde' => 'Kdy a kde?',
     'ubytovani' => 'Ubytování',
     'stravovani' => 'Stravování',
@@ -21,31 +21,11 @@ class Menu {
     'deti' => 'Děti'
   ];
 
-  //TO-DO: Toto je potřeba refaktorovat
-    protected $stranky = [
-      'prihlaska'           =>  'Přihláška:&ensp;',
-      'o-gameconu'          =>  'Co je GameCon?',
-      'o-parconu'           =>  'Co je ParCon?',
-      'organizacni-vypomoc'     =>  'Organizační výpomoc',
-      'chci-se-prihlasit'   =>  'Chci se přihlásit',
-      'en'                  =>  'English program',
-      'prakticke-informace' =>  'Praktické informace',
-      'kontakty'            =>  'Kontakty',
-      'https://www.facebook.com/pg/gamecon/photos/?tab=album&album_id=1646393038705358' => 'Fotogalerie',
-    ];
-
   protected $url;
 
   function __construct(Uzivatel $u = null, Url $url = null) {
     // personalizace seznamu stránek
     $a = $u ? $u->koncA() : '';
-    if(po(REG_GC_OD)) {
-      $this->stranky['prihlaska'] .= $u && $u->gcPrihlasen() ?
-        '<img src="soubory/styl/ok.png" style="margin-bottom:-3px"> přihlášen'.$a.' na GC':
-        '<img src="soubory/styl/error.png" style="margin-bottom:-3px"> nepřihlášen'.$a.' na GC';
-    } else {
-      $this->stranky['prihlaska'] .= 'přihlašování ještě nezačalo';
-    }
     $this->url = $url;
   }
 
@@ -53,9 +33,14 @@ class Menu {
   function cele() {
     $a = $this->url ? $this->url->cast(0) : null;
     $t = new XTemplate('sablony/menu.xtpl');
-    $t->assign(['ogameconu' => $this->polozkyDropdown('OGameConu'), 'prakticke' => $this->polozkyDropdown('Prakticke'), 'aktivity' => $this->polozkyDropdown('Aktivity') ]
+    $t->assign(['ogameconu' => $this->polozkyDropdown('ogameconu'), 'prakticke' => $this->polozkyDropdown('prakticke'), 'aktivity' => $this->polozkyDropdown('Aktivity') ]
     );
 
+    if(po(REG_GC_OD) && $u && $u->gcPrihlasen()) {
+      $t->parse('menu.prihlasen');
+    } else {
+      $t->parse('menu.neprihlasen');
+    }
     $t->parse('menu');
     return $t->text('menu');
   }
@@ -76,13 +61,13 @@ class Menu {
   function polozkyDropdown($submenu) {
     $o = '';
     switch ($submenu) {
-    case 'OGameConu':
-      foreach($this->OGameConu as $a => $l) {
+    case 'ogameconu':
+      foreach($this->ogameconu as $a => $l) {
         $o .= '<a class="dropdown-item" href="'.$a.'">'.$l.'</a>';
       };
       break;
-    case 'Prakticke':
-    foreach($this->Prakticke as $a => $l) {
+    case 'prakticke':
+    foreach($this->prakticke as $a => $l) {
       $o .= '<a class="dropdown-item" href="'.$a.'">'.$l.'</a>';
     };
     break;

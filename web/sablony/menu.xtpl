@@ -1,49 +1,81 @@
 <!-- begin: menu -->
-<div class="container-fluid">
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="/">gamecon</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-md">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <a class="navbar-brand" href="/">gamecon 2018</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Collect the nav links, forms, and other content for toggling -->
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav sticky-top">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            O GameConu
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {ogameconu}
+  <!-- Položky menu -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto mr-auto sticky-top">
+      <li class="nav-item">
+        <a class="nav-link" href="prihlasit">Program</a>
+      </li>
+      <div class="navbar-slash mr-3 ml-3"></div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-hover="dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Aktivity
+        </a>
+          <div class="dropdown-menu dropdown-menu-large" aria-labelledby="navbarDropdown">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="dropdown-header">
+                  <div>Stolní hry</div>
+                </div>
+                <a class="dropdown-item" href="/">Deskoherna</a>
+                <a class="dropdown-item" href="/">Epické deskovky</a>
+                <a class="dropdown-item" href="/">Turnaje</a>
+                <a class="dropdown-item" href="/">Wargaming</a>
+              </div>
+              <div class="col-md-4">
+                <div class="dropdown-header">
+                  Hry na hrdiny
+                </div>
+                <a class="dropdown-item" href="/">Mistrovství v DrD</a>
+                <a class="dropdown-item" href="/">Legendy Klubu dobrodruhů</a>
+                <a class="dropdown-item" href="/">RPG</a>
+    					</div>
+              <div class="col-md-4">
+                <div class="dropdown-header">
+                  <div>Ostatní hry</div>
+                </div>
+                <a class="dropdown-item" href="/">Larpy</a>
+                <a class="dropdown-item" href="/">Akční a bonusové hry</a>
+                <a class="dropdown-item" href="/">Přednášky a workshopy</a>
+                <a class="dropdown-item" href="/">Doprovodný program</a>
+              </div>
+            </div>
           </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Praktické
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {prakticke}
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Aktivity
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {aktivity}
-          </div>
-        </li>
-        <!-- begin:neprihlasen -->
-        <li class="nav-item">
-          <a class="nav-link" href="prihlasit">Přihlásit</a>
-        </li>
-        <!-- end:neprihlasen -->
-        <!-- begin:prihlasen -->
-        <li class="nav-item">
-          <a class="nav-link" href="prihlasit">Přihlášen</a>
-        </li>
-        <!-- end:prihlasen -->
-      </ul>
-    </div>
-  </nav>
-</div>
+
+      </li>
+      <div class="navbar-slash mr-3 ml-3"></div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-hover="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          O gameconu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {ogameconu}
+        </div>
+      </li>
+      <div class="navbar-slash mr-3 ml-3"></div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-hover="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Informace
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {prakticke}
+        </div>
+      </li>
+    </ul>
+    <!-- Přihlašovací menu -->
+    <!-- begin:neprihlasen -->
+    <a class="nav-link pl-md-3 pl-0" href="prihlasit">Přihlásit</a>
+    <!-- end:neprihlasen -->
+    <!-- begin:prihlasen -->
+    <a class="nav-link" href="prihlasit">Přihlášen</a>
+    <!-- end:prihlasen -->
+  </div><!-- /.navbar-collapse -->
+</nav>
 <!-- end: menu -->
