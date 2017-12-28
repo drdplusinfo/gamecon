@@ -9,6 +9,26 @@ body { font-family: sans-serif; }
   background-color: #eee;
 }
 
+.tymovy-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.tymovy-modal--vnitrek {
+  position: relative;
+  left: 20%;
+  top: 0%;
+  height: 90%;
+  width: 60%;
+  background-color: #ddf;
+  text-align: center;
+}
+
 /*Rozvrh akvivit*/
 .tabulka-aktivita { border: 1px solid #000; }
 .tabulka-prazdna-bunka { border: 1px solid #000; }
@@ -33,12 +53,13 @@ body { font-family: sans-serif; }
 /*React autosuggest začátek*/
 .react-autosuggest__container {
   position: relative;
+  display: inline-block;
 }
 
 .react-autosuggest__input {
   width: 240px;
-  height: 30px;
-  padding: 10px 20px;
+  height: 20px;
+  padding: 5px 10px;
   font-family: Helvetica, sans-serif;
   font-weight: 300;
   font-size: 16px;

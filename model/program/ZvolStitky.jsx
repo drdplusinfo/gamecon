@@ -1,6 +1,6 @@
 class ZvolStitky extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     //Používáme react-autosuggest https://github.com/moroshko/react-autosuggest
     //Je to kontrolovaná komponenta, držime v stave value input pole
@@ -146,6 +146,7 @@ class ZvolStitky extends React.Component {
           onSuggestionSelected = {this.onSuggestionSelected}
           highlightFirstSuggestion = {true}
           inputProps={inputProps}
+          id = "zvolStitky"
         />
         {this.vykresliStitky()}
         <br/>
