@@ -2,7 +2,8 @@
 
 $this->bezStranky(true);
 
-$program = new Program;
+$uzivatel = rand(0,1) ? Uzivatel::zId(407) : null; // TODO demo data
+$program = new Program($uzivatel);
 
 $program->zpracujAjax();
 

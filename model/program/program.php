@@ -9,9 +9,12 @@ class Program {
     $cacheSouboru,
     $jsElementId = 'cProgramElement', // TODO v případě použití více instancí řešit příslušnost k instancím
     $jsPromenna = 'cProgramPromenna',
-    $jsObserveri = [];
+    $jsObserveri = [],
+    $uzivatel;
 
-  function __construct() {
+  function __construct(?Uzivatel $uzivatel) {
+    $this->uzivatel = $uzivatel;
+
     $this->cacheSouboru = new PerfectCache(CACHE . '/sestavene', URL_CACHE . '/sestavene');
     $this->cacheSouboru->nastav('reactVProhlizeci', REACT_V_PROHLIZECI);
     $this->cacheSouboru->nastav('babelBinarka', BABEL_BINARKA);
@@ -22,7 +25,7 @@ class Program {
     // pomocí lessu
     $this->cacheSouboru->pridejCss(__DIR__ . '/program.css');
 
-    $this->api = new JsPhpApiHandler(new ProgramApi);
+    $this->api = new JsPhpApiHandler(new ProgramApi($this->uzivatel));
   }
 
   /**
@@ -48,7 +51,9 @@ class Program {
         var '.$this->jsPromenna.' = {
           "aktivity": '.$this->api->zavolej('aktivity')->json().',
           "linie": '.$this->jsonLinie().',
-          "notifikace": '.$this->jsonNotifikace().'
+          "notifikace": '.$this->jsonNotifikace().',
+          "uzivatel_prihlasen": '.json_encode((bool) $this->uzivatel).',
+          "uzivatel_pohlavi": '.json_encode($this->uzivatel ? $this->uzivatel->pohlavi() : null).'
         }
       </script>
     ';

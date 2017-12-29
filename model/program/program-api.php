@@ -2,6 +2,13 @@
 
 class ProgramApi implements JsPhpApi {
 
+  private
+    $uzivatel; // uživatel, který s API komunikuje (null, pokud nepřihlášen)
+
+  function __construct(?Uzivatel $uzivatel) {
+    $this->uzivatel = $uzivatel;
+  }
+
   /**
    * Převede aktivitu $a na formát, jak má vypadat v API.
    */
@@ -21,8 +28,8 @@ class ProgramApi implements JsPhpApi {
       'otevreno_prihlasovani' => $a->prihlasovatelna(),
       'vDalsiVlne'    =>  $a->vDalsiVlne(),
       'probehnuta'    =>  $a->probehnuta(),
-      'organizuje'    =>  rand(0, 99) < 2, // TODO test data
-      'prihlasen'     =>  rand(0, 99) < 5, // TODO test data
+      'organizuje'    =>  $this->uzivatel ? $this->uzivatel->organizuje($a) : null,
+      'prihlasen'     =>  $this->uzivatel ? $a->prihlasen($this->uzivatel)  : null,
       'tymova'        =>  (bool) $a->teamova(),
       'popis_kratky'  =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
 
