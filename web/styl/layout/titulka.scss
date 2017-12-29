@@ -10,10 +10,8 @@
 }
 
 .coverphoto_nadpis {
-  font-family: "Eczar";
+  @extend h1;
   font-size: 4vw;
-  font-weight: 700;
-  line-height: 120%;
   color: $white;
   position: relative;
   left: 20vw;
@@ -42,6 +40,7 @@
   font-family: 'Eczar';
 }
 .infopruh_odpocet {
+  padding: 0px 15px 0px 0px;
   display: flex;
   align-items: center;
   color: $black;
@@ -58,4 +57,20 @@
     font-weight: 400;
     content: "/";
   }
+}
+
+.zakladniinfo {
+  margin: 80px 0px 40px 0px
+}
+
+.zakladniinfo_cislo {
+  @extend h2;
+  color: $red;
+}
+
+.zakladniinfo_popis {
+  text-transform: uppercase;
+  font-size: $font-size-base * .675;
+  font-weight: 600;
+  margin-top: -6px;
 }

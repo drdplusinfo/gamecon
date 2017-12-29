@@ -35,13 +35,18 @@
 <body onload="Odpocet()">
 
 <div class="container-fluid">
+  <!--                   MENU                    -->
   {menu}
+
+  <!--                COVER PHOTO                    -->
   <div class="coverphoto">
     <div class="coverphoto_nadpis">Největší festival<br>
     nepočítačových her
       <div class="coverphoto_podnadpis">19. - 21. července, Pardubice</div>
     </div>
   </div>
+
+  <!--                   INFOPRUH                    -->
   <div class="row">
     <div class="col infopruh">
       <div class="infopruh_zvyrazneni">Do třetí vlny aktivit zbývá:</div>
@@ -49,6 +54,32 @@
     </div>
   </div>
 
+  <!--                 ZÁKLADNÍ INFO                   -->
+  <div class="row">
+    <div class="col text-center zakladniinfo">
+      <h2>Co čekat od gameconu</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-3 col-sm-2 col-xs-0"></div>
+    <div class="col-md-6 col-sm-8 col-xs-12">
+      <div class="row">  
+        <div class="col-4 text-center">
+          <div class="zakladniinfo_cislo">4</div>
+          <div class="zakladniinfo_popis">dny zábavy</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="zakladniinfo_cislo">200+</div>
+          <div class="zakladniinfo_popis">aktivit</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="zakladniinfo_cislo">800+</div>
+          <div class="zakladniinfo_popis">účastníků</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-2 col-xs-0"></div>
+  </div>
 </div>
 
 
