@@ -1,0 +1,21 @@
+body {
+    background-image:
+    url(soubor('grafika/titulka/pozadi/ctverec.png')),
+    url(soubor('grafika/titulka/pozadi/plus.png')),
+    url(soubor('grafika/titulka/pozadi/linka.png')),
+    url(soubor('grafika/titulka/pozadi/hvezda.png')),
+    url(soubor('grafika/titulka/pozadi/vlny.png')),
+    url(soubor('grafika/titulka/pozadi/trojuhelnik.png')),
+    url(soubor('grafika/titulka/pozadi/kruh.png')),
+    url(soubor('grafika/titulka/pozadi/textura.png'));
+    background-repeat: repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat;
+    background-size: 24px, 24px, 24px, 24px, 26px, 24px, 26px, auto;
+    //TO-DO: Pozice by měly být generovány dynamicky (s rozumnými odstupy) nějakým skriptem
+    background-position: 8% 200%, 15% 100%, 5% 400%, 80% 130%, 90% 70%, 70% 160%, 50% 85%;
+    overflow-x: hidden;
+}
+
+h1 {
+  font-family: "Eczar";
+  font-size: $h1-font-size;
+}

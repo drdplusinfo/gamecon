@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="{base}">
   <link rel="shortcut icon" href="soubory/styl/favicon.ico">
-  <!--TODO: Změnit na lokální font-->
-  <link href="https://fonts.googleapis.com/css?family=Eczar|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{css}" media="screen,projection">
   <!-- Includes for bootstrap -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -33,12 +31,22 @@
   <!-- end: analytics -->
 </head>
 
-<body>
+<!-- TO-DO: Toto by se nemělo vázat k celému body, ale k renderingu divu infopruh_odpocet -->
+<body onload="Odpocet()">
 
 <div class="container-fluid">
   {menu}
-
   <div class="coverphoto">
+    <div class="coverphoto_nadpis">Největší festival<br>
+    nepočítačových her
+      <div class="coverphoto_podnadpis">19. - 21. července, Pardubice</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col infopruh">
+      <div class="infopruh_zvyrazneni">Do třetí vlny aktivit zbývá:</div>
+      <div class="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
+    </div>
   </div>
 
 </div>

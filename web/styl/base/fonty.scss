@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "Open Sans"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Open_Sans/OpenSans-Regular.ttf"));
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Open Sans"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Open_Sans/OpenSans-SemiBold.ttf"));
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Open Sans"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Open_Sans/OpenSans-Bold.ttf"));
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Open Sans"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Open_Sans/OpenSans-ExtraBold.ttf"));
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "Eczar"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Eczar/Eczar-Regular.ttf"));
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Eczar"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Eczar/Eczar-SemiBold.ttf"));
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Eczar"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Eczar/Eczar-Bold.ttf"));
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Eczar"; /* deklarace fontu */
+    src: url(soubor("grafika/fonty/Eczar/Eczar-ExtraBold.ttf"));
+    font-weight: 900;
+}
