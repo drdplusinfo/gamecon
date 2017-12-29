@@ -46,11 +46,12 @@ class JsPhpApiHandler {
       $parametry = array_map(function($parametr) {
         return $parametr->getName();
       }, $metoda->getParameters());
-      $parametry = implode(',', $parametry);
+      $parametry = implode(', ', $parametry);
 
       return strtr(self::$sablonaMetody, [
         '<nazev>'     =>  $metoda->getName(),
-        '<parametry>' =>  $parametry,
+        '<parametry>' =>  $parametry ? ($parametry . ',') : '',
+        '<poleParametru>' => '[' . $parametry . ']',
       ]);
     }, $this->metody);
 
