@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/js-php-api-odpoved.php';
+
 /**
  * Třída, která z php kódu vygeneruje js api s odpovídajícími metodami a umí
  * volání z tohoto api zpracovat v php.
@@ -66,6 +68,23 @@ class JsPhpApiHandler {
   }
 
   /**
+   * Zavolá na api metodu s názvem daným prvním parametrem a parametry danými
+   * parametry 2 až N. Výsledek zaobalí jako JsPhpApiOdpoved pro jednodušší
+   * zpracování.
+   * @return JsPhpApiOdpoved
+   */
+  function zavolej($metoda, ...$parametry) {
+    if(!isset($this->metody[$metoda]))
+      throw new Exception('Volaná metoda v api neexistuje');
+
+    // TODO kontrola počtu a typu parametrů
+
+    $vysledek = $this->api->$metoda(...$parametry);
+
+    return new JsPhpApiOdpoved($vysledek);
+  }
+
+  /**
    * Pokud byla v JS zavolána nějaká funkce získaná pomocí jsApiObjekt výš,
    * potom toto provede php kód, vytiskne json výsledek a **ukončí skript**.
    * Pokud funkce zavolána nebyla, neprovede se nic.
@@ -74,22 +93,15 @@ class JsPhpApiHandler {
     if(!isset($_POST[$this->jsPromenna])) return;
     $data = json_decode($_POST[$this->jsPromenna]);
 
-    $volanaMetoda = $data->metoda;
-    if(!isset($this->metody[$volanaMetoda]))
-      throw new Exception('Volaná metoda v api neexistuje');
-
-    $volaneParametry = $data->parametry;
-    // TODO kontrolovat počet parametrů, případně typ
-
     try {
-      $vystup = $this->api->$volanaMetoda(...$volaneParametry);
+      $odpoved = $this->zavolej($data->metoda, ...$data->parametry);
     } catch(Chyba $e) {
       http_response_code(400);
-      $vystup = ['chyba' => $e->getMessage()];
+      $odpoved = new JsPhpApiOdpoved(['chyba' => $e->getMessage()]);
     }
 
     header('Content-Type: application/json');
-    echo json_encode($vystup);
+    echo $odpoved->json();
 
     die();
   }
