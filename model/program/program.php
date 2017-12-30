@@ -52,8 +52,8 @@ class Program {
           "aktivity": '.$this->api->zavolej('aktivity')->json().',
           "linie": '.$this->jsonLinie().',
           "notifikace": '.$this->jsonNotifikace().',
-          "uzivatel_prihlasen": '.json_encode((bool) $this->uzivatel).',
-          "uzivatel_pohlavi": '.json_encode($this->uzivatel ? $this->uzivatel->pohlavi() : null).'
+          "uzivatelPrihlasen": '.json_encode((bool) $this->uzivatel).',
+          "uzivatelPohlavi": '.json_encode($this->uzivatel ? $this->uzivatel->pohlavi() : null).'
         }
       </script>
     ';

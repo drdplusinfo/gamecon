@@ -23,18 +23,18 @@ class ProgramApi implements JsPhpApi {
       'konec'         =>  $a->konec()->formatJs(),
       'organizatori'  =>  array_map(function($o) { return $o->jmenoNick(); }, $a->organizatori()),
       'stitky'        =>  array_map(function($t) { return (string) $t; }, $a->tagy()),
-      'prihlaseno_m'  =>  $a->prihlasenoMuzu(),
-      'prihlaseno_f'  =>  $a->prihlasenoZen(),
-      'otevreno_prihlasovani' => $a->prihlasovatelna(),
+      'prihlasenoMuzu'=>  $a->prihlasenoMuzu(),
+      'prihlasenoZen' =>  $a->prihlasenoZen(),
+      'otevrenoPrihlasovani' => $a->prihlasovatelna(),
       'vDalsiVlne'    =>  $a->vDalsiVlne(),
       'probehnuta'    =>  $a->probehnuta(),
       'organizuje'    =>  $this->uzivatel ? $this->uzivatel->organizuje($a) : null,
       'prihlasen'     =>  $this->uzivatel ? $a->prihlasen($this->uzivatel)  : null,
       'tymova'        =>  (bool) $a->teamova(),
-      'popis_kratky'  =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
-      'kapacita_m'    =>  (int) $r['kapacita_m'],
-      'kapacita_f'    =>  (int) $r['kapacita_f'],
-      'kapacita_u'    =>  (int) $r['kapacita'],
+      'popisKratky'   =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
+      'kapacitaMuzi'  =>  (int) $r['kapacita_m'],
+      'kapacitaZeny'  =>  (int) $r['kapacita_f'],
+      'kapacitaUniverzalni' =>  (int) $r['kapacita'],
     ];
   }
 
