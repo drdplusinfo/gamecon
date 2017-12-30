@@ -33,5 +33,6 @@ define('BABEL_BINARKA', null);
 // nepovinné konstanty
 define('CRON_KEY', '123');
 define('UNIVERZALNI_HESLO', ''); // obejití zadávání hesla pro vývojové prostředí
+define('MIGRACE_DEMO_DATA', false);
 
 error_reporting(E_ALL);

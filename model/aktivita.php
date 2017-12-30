@@ -1437,7 +1437,7 @@ class Aktivita {
   static function zProgramu() {
     return self::zWhere(
       'WHERE a.rok = $1 AND a.zacatek AND ( a.stav IN(1,2,3,4,5) OR a.typ = 10 )',
-      [ROK - 1]
+      [ROK]
     );
   }
 

@@ -221,7 +221,7 @@ class Flee {
    * Prints logging information
    */
   private function log($msg) {
-    echo htmlspecialchars($msg) . "<br>\n";
+    echo $msg . "\n";
     @ob_flush();
     flush();
     usleep(200000);

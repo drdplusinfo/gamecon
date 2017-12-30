@@ -42,7 +42,6 @@ class ProgramApi implements JsPhpApi {
    * Vrátí pole všech aktivit v programu. Formát aktivit viz aktivitaFormat.
    */
   function aktivity() {
-    // TODO aktuální rok
     // TODO listovat tech. aktivity jenom tomu, kdo je může vidět
 
     $aktivity = Aktivita::zProgramu();
@@ -67,17 +66,17 @@ class ProgramApi implements JsPhpApi {
   }
 
   /**
-   * Přihlásí aktuálního uživatele na aktivitu.
+   * Odhlásí aktuálního uživatele z aktivity.
    */
-  function prihlas($aktivitaId) {
-    throw new Chyba('v daném čase už máš jinou aktivitu.');
+  function odhlas($aktivitaId) {
+    (Aktivita::zId($aktivitaId))->odhlas($this->uzivatel);
   }
 
   /**
-   * Jenom metoda s víc parametrama na test.
+   * Přihlásí aktuálního uživatele na aktivitu.
    */
-  function test($foo, $bar, $baz) {
-    return " $foo $bar $baz ";
+  function prihlas($aktivitaId) {
+    (Aktivita::zId($aktivitaId))->prihlas($this->uzivatel);
   }
 
 }
