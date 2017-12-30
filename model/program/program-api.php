@@ -13,7 +13,7 @@ class ProgramApi implements JsPhpApi {
    * Převede aktivitu $a na formát, jak má vypadat v API.
    */
   private function aktivitaFormat($a) {
-    $r = $a->rawDb();
+    $r = $a->rawDb(); // TODO pro údaje načítané přímo z DB řádku, smazat nebo nějak převést
 
     return [
       'id'            =>  (int) $a->id(),
@@ -32,8 +32,6 @@ class ProgramApi implements JsPhpApi {
       'prihlasen'     =>  $this->uzivatel ? $a->prihlasen($this->uzivatel)  : null,
       'tymova'        =>  (bool) $a->teamova(),
       'popis_kratky'  =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
-
-      // TODO údaje načítané přímo z DB řádku, smazat nebo nějak převést
       'kapacita_m'    =>  (int) $r['kapacita_m'],
       'kapacita_f'    =>  (int) $r['kapacita_f'],
       'kapacita_u'    =>  (int) $r['kapacita'],
