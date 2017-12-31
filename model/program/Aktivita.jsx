@@ -8,32 +8,32 @@ function Aktivita(props) {
   const KAPACITA = "kapacita";
 
   function zjistiKapacitu(aktivita) {
-    let {prihlaseno_f, prihlaseno_m, kapacita_f, kapacita_m, kapacita_u} = aktivita;
-    if(kapacita_f + kapacita_m + kapacita_u <= 0) {
+    let {prihlasenoZen, prihlasenoMuzu, kapacitaZeny, kapacitaMuzi, kapacitaUniverzalni} = aktivita;
+    if(kapacitaZeny + kapacitaMuzi + kapacitaUniverzalni <= 0) {
       //aktivita bez omezení
       return null;
     }
-    else if(prihlaseno_f + prihlaseno_m >= kapacita_f + kapacita_m + kapacita_u) {
+    else if(prihlasenoZen + prihlasenoMuzu >= kapacitaZeny + kapacitaMuzi + kapacitaUniverzalni) {
       //beznadějně plno
-      let zeny = prihlaseno_f > 0 ? <span className = {ZENY}>({prihlaseno_f}/{prihlaseno_f})</span> : '';
-      let muzi = prihlaseno_m > 0 ? <span className = {MUZI}>({prihlaseno_m}/{prihlaseno_m})</span> : '';
+      let zeny = prihlasenoZen > 0 ? <span className = {ZENY}>({prihlasenoZen}/{prihlasenoZen})</span> : '';
+      let muzi = prihlasenoMuzu > 0 ? <span className = {MUZI}>({prihlasenoMuzu}/{prihlasenoMuzu})</span> : '';
       return <div className = {KAPACITA}>{zeny}{muzi}</div>;
     }
-    else if(prihlaseno_m >= kapacita_m + kapacita_u) {
+    else if(prihlasenoMuzu >= kapacitaMuzi + kapacitaUniverzalni) {
       //muži zabrali všechny svá i univerzální místa
-      let zeny = kapacita_f > 0 ? <span className = {ZENY}>({prihlaseno_f}/{kapacita_f})</span> : '';
-      let muzi = kapacita_m > 0 ? <span className = {MUZI}>({prihlaseno_m}/{prihlaseno_m})</span> : '';
+      let zeny = kapacitaZeny > 0 ? <span className = {ZENY}>({prihlasenoZen}/{kapacitaZeny})</span> : '';
+      let muzi = kapacitaMuzi > 0 ? <span className = {MUZI}>({prihlasenoMuzu}/{prihlasenoMuzu})</span> : '';
       return <div className = {KAPACITA}>{zeny}{muzi}</div>;
     }
-    else if(prihlaseno_f >= kapacita_f + kapacita_u) {
+    else if(prihlasenoZen >= kapacitaZeny + kapacitaUniverzalni) {
       //ženy zabrali všechny svá i univerzální místa
-      let zeny = kapacita_f > 0 ? <span className = {ZENY}>({prihlaseno_f}/{kapacita_f})</span> : '';
-      let muzi = kapacita_m > 0 ? <span className = {MUZI}>({prihlaseno_m}/{kapacita_m})</span> : '';
+      let zeny = kapacitaZeny > 0 ? <span className = {ZENY}>({prihlasenoZen}/{prihlasenoZen})</span> : '';
+      let muzi = kapacitaMuzi > 0 ? <span className = {MUZI}>({prihlasenoMuzu}/{kapacitaMuzi})</span> : '';
       return <div className = {KAPACITA}>{zeny}{muzi}</div>;
     }
     else {
       //jinak volno, žádné pohlaví nevyžralo limit míst
-      let univerzalni = <span className = {UNIVERZALNI}>({prihlaseno_f+prihlaseno_m}/{kapacita_f+kapacita_m+kapacita_u})</span>
+      let univerzalni = <span className = {UNIVERZALNI}>({prihlasenoZen+prihlasenoMuzu}/{kapacitaZeny+kapacitaMuzi+kapacitaUniverzalni})</span>
       return <div className = {KAPACITA}>{univerzalni}</div>
     }
 

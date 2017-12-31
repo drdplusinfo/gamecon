@@ -116,7 +116,7 @@ class DetailAktivity extends React.Component {
         {this.vykresliStitky()}
         <p>---</p>
         <p>Vypravěč: {aktivita.organizatori.join(', ')}</p>
-        <p>{aktivita.popis_kratky}</p>
+        <p>{aktivita.popisKratky}</p>
         <TlacitkoPrihlasit
           aktivita = {aktivita}
           api = {this.props.api}

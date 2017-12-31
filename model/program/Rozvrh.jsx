@@ -54,8 +54,8 @@ class Rozvrh extends React.Component {
   filtrujVolneAktivity(aktivity) {
     if (this.props.jenVolneAktivity) {
       return aktivity.filter(aktivita => {
-        let kapacita = aktivita.kapacita_f + aktivita.kapacita_m + aktivita.kapacita_u;
-        let prihlaseno = aktivita.prihlaseno_f + aktivita.prihlaseno_m;
+        let kapacita = aktivita.kapacitaZeny + aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni;
+        let prihlaseno = aktivita.prihlasenoZen + aktivita.prihlasenoMuzu;
         return kapacita == 0 ? true : kapacita > prihlaseno;
       })
     }

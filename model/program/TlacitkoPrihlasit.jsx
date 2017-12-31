@@ -11,22 +11,22 @@ class TlacitkoPrihlasit extends React.Component {
 
   aktivitaPlna() {
     let akt = this.props.aktivita;
-    if (akt.kapacita_f + akt.kapacita_m + akt.kapacita_u === 0) {
+    if (akt.kapacitaZeny + akt.kapacitaMuzi + akt.kapacitaUniverzalni === 0) {
       //když je kapacita nula, aktivita je bez omezení
       return false;
     }
 
-    if (akt.prihlaseno_m + akt.prihlaseno_f >= akt.kapacita_f + akt.kapacita_m + akt.kapacita_u) {
+    if (akt.prihlasenoMuzu + akt.prihlasenoZen >= akt.kapacitaZeny + akt.kapacitaMuzi + akt.kapacitaUniverzalni) {
       //beznadějně plno
       return true;
     }
 
     //provizorně testujeme s mužem, TODO pak bude třeba předat pohlaví v props
     let pohlavi = "m";
-    if (pohlavi === "m" && akt.prihlaseno_m >= akt.kapacita_m + akt.kapacita_u) {
+    if (pohlavi === "m" && akt.prihlasenoMuzu >= akt.kapacitaMuzi + akt.kapacitaUniverzalni) {
       return true;
     }
-    if (pohlavi === "f" && akt.prihlaseno_f >= akt.kapacita_f + akt.kapacita_u) {
+    if (pohlavi === "f" && akt.prihlasenoZen >= akt.kapacitaZeny + akt.kapacitaUniverzalni) {
       return true;
     }
 
@@ -36,13 +36,13 @@ class TlacitkoPrihlasit extends React.Component {
   muzeSePrihlasit() {
     let akt = this.props.aktivita;
     //metoda zjišťuje, jestli se tlačítko přihlásit vůbec má zobrazit
-    if (akt.organizuje || !akt.otevreno_prihlasovani || akt.probehnuta) {
+    if (akt.organizuje || !akt.otevrenoPrihlasovani || akt.probehnuta) {
       //return false;
     }
 
-    //TODO mělo by být akt.nahradnictvi_mozne když to tam bude
-    let nahradnictvi_mozne = false;
-    if (this.aktivitaPlna() && !nahradnictvi_mozne) {
+    //TODO mělo by být akt.nahradnictviMozne když to tam bude
+    let nahradnictviMozne = false;
+    if (this.aktivitaPlna() && !nahradnictviMozne) {
       return false;
     }
 
