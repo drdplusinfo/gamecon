@@ -99,6 +99,7 @@ class Rozvrh extends React.Component {
             api = {this.props.api}
             key = {lajna.id}
             nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
+            uzivatelPohlavi = {this.props.data.uzivatelPohlavi}
             zvolTutoAktivitu = {this.props.zvolTutoAktivitu}
           />
         );

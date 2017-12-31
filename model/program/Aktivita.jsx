@@ -49,6 +49,7 @@ function Aktivita(props) {
         aktivita = {aktivita}
         api = {props.api}
         trida = 'tlacitko-prihlasit--aktivita'
+        uzivatelPohlavi = {props.uzivatelPohlavi}
       />
 
     </td>

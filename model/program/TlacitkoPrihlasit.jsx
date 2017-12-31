@@ -21,8 +21,8 @@ class TlacitkoPrihlasit extends React.Component {
       return true;
     }
 
-    //provizorně testujeme s mužem, TODO pak bude třeba předat pohlaví v props
-    let pohlavi = "m";
+    //testujeme kapacitu pro uživatelovo pohlaví
+    let pohlavi = this.props.uzivatelPohlavi;
     if (pohlavi === "m" && akt.prihlasenoMuzu >= akt.kapacitaMuzi + akt.kapacitaUniverzalni) {
       return true;
     }
@@ -51,6 +51,9 @@ class TlacitkoPrihlasit extends React.Component {
 
   odhlas() {
     //nějak odhlaš
+    this.props.api.odhlas(this.props.aktivita.id, function(data) {
+      //odhlášen
+    });
   }
 
   prihlas() {

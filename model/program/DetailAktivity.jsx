@@ -105,7 +105,7 @@ class DetailAktivity extends React.Component {
 
   render() {
     let aktivita = this.props.aktivita;
-    let linie = this.props.linie.find(lajna => lajna.id == aktivita.linie);
+    let linie = this.props.data.linie.find(lajna => lajna.id == aktivita.linie);
 
     return (
       <div className = "detail-aktivity">
@@ -121,6 +121,7 @@ class DetailAktivity extends React.Component {
           aktivita = {aktivita}
           api = {this.props.api}
           trida = 'tlacitko-prihlasit--detail'
+          uzivatelPohlavi = {this.props.data.uzivatelPohlavi}
         />
         <p>---</p>
         <div>

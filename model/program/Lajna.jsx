@@ -69,6 +69,7 @@ function Lajna(props) {
             <Aktivita
               aktivita = {radekPole[i]}
               api = {props.api}
+              uzivatelPohlavi = {props.uzivatelPohlavi}
               zvolTutoAktivitu = {props.zvolTutoAktivitu}
             />
           );
