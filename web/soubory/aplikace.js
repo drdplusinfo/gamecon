@@ -7,9 +7,9 @@ $(function(){
 
 
 //Date countdown
-function Odpocet(){
+var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime(); //TO-DO: Předat jako parametr přes PHP
 
-  var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime(); //TO-DO: Předat jako parametr přes PHP
+function Odpocet(){
 
   function Countdown() {
     var now = new Date().getTime(); // Get todays date and time
@@ -26,6 +26,7 @@ function Odpocet(){
       document.getElementById("odpocetDny").innerHTML = days;
       document.getElementById("odpocetHodiny").innerHTML = hours;
       document.getElementById("odpocetMinuty").innerHTML = minutes;
+      //alert(seconds);
     }
     else {
       document.getElementById("odpocetDny").innerHTML = "0";
@@ -35,5 +36,5 @@ function Odpocet(){
   }
 
   Countdown();
-  setInterval(Countdown(), 5000); // Aktualizuj odpočet každých 5 sekund
+  var intervalID = setInterval(Countdown, 5000); // Aktualizuj odpočet každých 5 sekund
 };
