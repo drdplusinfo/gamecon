@@ -33,9 +33,13 @@ class TlacitkoPrihlasit extends React.Component {
     return false;
   }
 
-  muzeSePrihlasit() {
+  muzeKlikatTlacitko() {
     let akt = this.props.aktivita;
     //metoda zjišťuje, jestli se tlačítko přihlásit vůbec má zobrazit
+    if (akt.prihlasen) {
+      return true;
+    }
+
     if (akt.organizuje || !akt.otevrenoPrihlasovani || akt.probehnuta) {
       //return false;
     }
@@ -50,26 +54,20 @@ class TlacitkoPrihlasit extends React.Component {
   }
 
   odhlas() {
-    //nějak odhlaš
-    this.props.api.odhlas(this.props.aktivita.id, function(data) {
-      //odhlášen
-    });
+    this.props.api.odhlas(this.props.aktivita.id);
   }
 
   prihlas() {
     let akt = this.props.aktivita;
+    //TODO: doplň check na prvního přihlášeného
     if (akt.tymova) {
       //když je týmová a první přihlášený, ukaž modal
       this.setState({tymovyModal: true});
       return;
     }
 
-    this.props.api.prihlas(akt.id, function(data) {
-      //Hurá, přihlášen, co víc může člověk chtít?
-    }, function(chyba) {
-      //TODO: jak zobrazit tuto chybu hezky?
-      alert(chyba);
-    })
+    //reálně přihlaš
+    this.props.api.prihlas(akt.id);
   }
 
   prihlasOdhlas(event) {
@@ -87,7 +85,7 @@ class TlacitkoPrihlasit extends React.Component {
   }
 
   render() {
-    let tlacitko = this.muzeSePrihlasit() ?
+    let tlacitko = this.muzeKlikatTlacitko() ?
      <button onClick = {this.prihlasOdhlas} className = {this.props.trida}>
        {this.props.aktivita.prihlasen ? 'Odhlásit' : 'Přihlásit'}
      </button>

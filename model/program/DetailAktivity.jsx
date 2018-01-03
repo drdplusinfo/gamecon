@@ -12,22 +12,22 @@ class DetailAktivity extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.aktivita.id !== this.props.aktivita.id) {
+    if(nextProps.zvolenaAktivita !== this.props.zvolenaAktivita) {
       this.nactiPopis();
     }
   }
 
   nactiPopis() {
     this.setState({dlouhyPopis: ''})
-    this.props.api.detail(this.props.aktivita.id, (data) => {
+    this.props.api.detail(this.props.zvolenaAktivita, (data) => {
       this.setState({dlouhyPopis: data.popis});
     });
   }
 
   //udělěj element pro štítky každé kategorie(kde nějaké štítky jsou)
   //a element pro ostatní štítky
-  vykresliStitky() {
-    let stitky = this.ziskejStitky();
+  vykresliStitky(aktivita) {
+    let stitky = this.ziskejStitky(aktivita);
     let kategorie = stitky.kategorie.filter(kat => kat.stitky.length > 0);
     kategorie = kategorie.sort((katA, katB) => katA.poradi - katB.poradi);
     kategorie = kategorie.map((kat, index) => {
@@ -43,14 +43,14 @@ class DetailAktivity extends React.Component {
     );
   }
 
-  ziskejStitky() {
+  ziskejStitky(aktivita) {
     let testStitky = [
       "Systém: Kdo z koho", "Systém: Oko za oko", "Herní styl: komedie", "Herní styl: na Buchtíka", "Herní styl: absurdní drama",
       "Žánr: epika", "Žánr: whatever", "Prostředí: Maníkův barák", "Prostředí: My little pony", "Prostředí: julo:pomstitel",
       "další štítek", "pro pokročilé", "pro zkušené", "nechceme nikoho"
     ];
 
-    //TODO: v ostré verzi změnit na stitky = this.props.aktivita.stitky
+    //TODO: v ostré verzi změnit na stitky = aktivita.stitky
     let stitky = testStitky;
     //kategorie by měly jít lehce přidávat a měnit pořadí
     let kategorie = [
@@ -104,7 +104,7 @@ class DetailAktivity extends React.Component {
   }
 
   render() {
-    let aktivita = this.props.aktivita;
+    let aktivita = this.props.data.aktivity.find(akt => akt.id === this.props.zvolenaAktivita);
     let linie = this.props.data.linie.find(lajna => lajna.id == aktivita.linie);
 
     return (
@@ -113,7 +113,7 @@ class DetailAktivity extends React.Component {
         <h2>{aktivita.nazev}</h2>
         <p>Linie: {linie.nazev}</p>
         <p>---</p>
-        {this.vykresliStitky()}
+        {this.vykresliStitky(aktivita)}
         <p>---</p>
         <p>Vypravěč: {aktivita.organizatori.join(', ')}</p>
         <p>{aktivita.popisKratky}</p>
