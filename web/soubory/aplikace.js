@@ -9,9 +9,9 @@ $(function(){
 //Date countdown
 var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime(); //TO-DO: Předat jako parametr přes PHP
 
-function Odpocet(){
+function odpocet(){
 
-  function Countdown() {
+  function countdown() {
     var now = new Date().getTime(); // Get todays date and time
     var distance = countDownDate - now; // Find the distance between now an the count down date
 
@@ -35,6 +35,6 @@ function Odpocet(){
     }
   }
 
-  Countdown();
+  countdown();
   var intervalID = setInterval(Countdown, 5000); // Aktualizuj odpočet každých 5 sekund
 };

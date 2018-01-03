@@ -32,55 +32,101 @@
 </head>
 
 <!-- TO-DO: Toto by se nemělo vázat k celému body, ale k renderingu divu infopruh_odpocet -->
-<body onload="Odpocet()">
+<body onload="odpocet()">
+  <div class="container-fluid">
+    <!--                   MENU                    -->
+    {menu}
 
-<div class="container-fluid">
-  <!--                   MENU                    -->
-  {menu}
-
-  <!--                COVER PHOTO                    -->
-  <div class="coverphoto">
-    <div class="coverphoto_nadpis">Největší festival<br>
-    nepočítačových her
-      <div class="coverphoto_podnadpis">19. - 21. července, Pardubice</div>
+    <!--                COVER PHOTO                    -->
+    <div class="coverPhoto">
+      <div class="coverPhoto_nadpis">Největší festival<br>
+      nepočítačových her
+        <div class="coverPhoto_podnadpis">19. - 21. července, Pardubice</div>
+      </div>
     </div>
-  </div>
 
-  <!--                   INFOPRUH                    -->
-  <div class="row">
-    <div class="col infopruh">
-      <div class="infopruh_zvyrazneni">Do třetí vlny aktivit zbývá:</div>
-      <div class="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
+    <!--                   INFOPRUH                    -->
+    <div class="row">
+      <div class="col infopruh">
+        <div class="infopruh_zvyrazneni">Do třetí vlny aktivit zbývá:</div>
+        <div class="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
+      </div>
     </div>
-  </div>
 
-  <!--                 ZÁKLADNÍ INFO                   -->
-  <div class="row">
-    <div class="col text-center zakladniinfo">
-      <h2>Co čekat od gameconu</h2>
+    <!--                 ZÁKLADNÍ INFO                     -->
+    <div class="row justify-content-center">
+      <div class="col text-center zakladniInfo">
+        <h2>Co čekat od gameconu</h2>
+      </div>
     </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-md-3 col-sm-2 col-xs-0"></div>
-    <div class="col-md-6 col-sm-8 col-xs-12">
-      <div class="row">
+    <div class="row justify-content-center zakladniInfo">
+      <div>
         <div class="col-4 text-center">
-          <div class="zakladniinfo_cislo">4</div>
-          <div class="zakladniinfo_popis">dny zábavy</div>
+          <div class="zakladniInfo_cislo">4</div>
+          <div class="zakladniInfo_popis">dny zábavy</div>
         </div>
+        <div class="zakladniInfo_lomitko"></div>
         <div class="col-4 text-center">
-          <div class="zakladniinfo_cislo">200+</div>
-          <div class="zakladniinfo_popis">aktivit</div>
+          <div class="zakladniInfo_cislo">200+</div>
+          <div class="zakladniInfo_popis">aktivit</div>
         </div>
+        <div class="zakladniInfo_lomitko"></div>
         <div class="col-4 text-center">
-          <div class="zakladniinfo_cislo">800+</div>
-          <div class="zakladniinfo_popis">účastníků</div>
+          <div class="zakladniInfo_cislo">800+</div>
+          <div class="zakladniInfo_popis">účastníků</div>
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-sm-2 col-xs-0"></div>
-  </div>
-</div>
+
+    <!--                    PITCH                       -->
+    <div class="row justify-content-md-center align-items-center">
+      <div class="col-lg-4 col-md-12 pr-5">
+        <div class="box_obal">
+          <img src='soubory/grafika/titulka/deskoherna.jpg' class="pitch_obrazek box_obsah"></img>
+          <div class="box_ohraniceni box-ohraniceni_cervene"></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 h5 pitch_popis">Deskové a karetní hry, RPG a Larpy, akční hry, wargaming, mistrovství světa v Dračím doupěti, pohybové workshopy, koncerta párty. Skvělí účastníci a žážitky, na které se budete těšit zase za rok, to je Gamecon.</div>
+    </div>
+
+    <!--                 ROZŠÍŘENÉ INFO                     -->
+    <div class="row justify-content-md-center align-items-center">
+      <div class="col-lg-3 col-md-12 pr-5 justify-content-center">
+        <div class="text-center box_obal rozsireneInfo_pozadi">
+          <div class="rozsireneInfo_nadpis">Akce pro všechny</div>
+          <div class="rozsireneInfo_cara"></div>
+          <div class="rozsireneInfo_popis">jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si</div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-12 pr-5 justify-content-center">
+        <div class="text-center box_obal rozsireneInfo_pozadi">
+          <div class="rozsireneInfo_nadpis">Festival aktivní zábavy</div>
+          <div class="rozsireneInfo_cara"></div>
+          <div class="rozsireneInfo_popis">na všech aktivitách je potřeba zapojit tělo, mozek či obojí</div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-12 pr-5 justify-content-center">
+        <div class="text-center box_obal rozsireneInfo_pozadi">
+          <div class="rozsireneInfo_nadpis">Volná deskoherna</div>
+          <div class="rozsireneInfo_cara"></div>
+          <div class="rozsireneInfo_popis">stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme</div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="row">
+      <div class="col">something</div>
+    </div>
+
+
+  </div> <!-- Container end -->
 
 
 

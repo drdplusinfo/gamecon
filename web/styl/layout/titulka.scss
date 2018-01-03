@@ -1,4 +1,5 @@
-.coverphoto {
+/* ---------------- COVER PHOTO --------------*/
+.coverPhoto {
   background-image:
     url(soubor('grafika/titulka/cover-photo-overlay.svg')),
     url(soubor('grafika/titulka/cover-photo-1.jpg'));
@@ -9,7 +10,7 @@
   height: 50vw;
 }
 
-.coverphoto_nadpis {
+.coverPhoto_nadpis {
   @extend h1;
   font-size: 4vw;
   color: $white;
@@ -18,7 +19,7 @@
   top: 18vw;
 }
 
-.coverphoto_podnadpis {
+.coverPhoto_podnadpis {
   font-family: "Open Sans";
   font-size: 2vw;
   font-weight: 700;
@@ -26,6 +27,7 @@
   margin-top: 1vw;
 }
 
+/* ---------------- INFOPRUH --------------*/
 .infopruh {
   display: flex;
   justify-content: center;
@@ -38,6 +40,9 @@
   padding: 2px 30px 0px 30px;
   text-align: center;
   font-family: 'Eczar';
+  @include media-breakpoint-down(xs) {
+    padding: 2px 6px 0px 4px;
+  }
 }
 .infopruh_odpocet {
   padding: 0px 15px 0px 0px;
@@ -59,18 +64,74 @@
   }
 }
 
-.zakladniinfo {
-  margin: 80px 0px 40px 0px
+/* ---------------- ZÁKLADNÍ INFO --------------*/
+.zakladniInfo {
+  margin: 80px 0px 40px 0px;
+  color: $black;
+  & > div {
+    max-width: 800px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    margin-top: -80px;
+  }
+  & div,.col-4 {
+    flex-shrink: 1;
+  }
 }
-
-.zakladniinfo_cislo {
+.zakladniInfo_cislo {
   @extend h2;
   color: $red;
 }
-
-.zakladniinfo_popis {
+.zakladniInfo_popis {
   text-transform: uppercase;
-  font-size: $font-size-base * .675;
+  font-size: $font-size-xs;
   font-weight: 600;
   margin-top: -6px;
+}
+.zakladniInfo_lomitko {
+  color: $gray-300;
+  opacity: 0.25;
+  &:after {
+    font-size: 3em;
+    font-weight: 400;
+    content: "/";
+  }
+}
+
+/* ---------------- PITCH -----------------*/
+.pitch_obrazek {
+  width: 100%;
+}
+.pitch_popis {
+  font-family: 'Eczar';
+  font-weight: 600;
+  @include media-breakpoint-down(xs) {
+    text-align: center;
+  }
+}
+
+/* ---------------- ROZŠÍŘENÉ INFO -----------------*/
+.rozsireneInfo_nadpis {
+  @extend h6;
+  font-weight: 600;
+  width: 114px;
+  display: inline-block;
+  padding: 40px 0px 0px 0px;
+}
+.rozsireneInfo_cara {
+  width: 32px;
+  height: 2px;
+  color: $red;
+}
+.rozsireneInfo_popis {
+  color: $gray-300;
+  width: 200px;
+  display: inline-block;
+  padding-bottom: 26px;
+  font-size: $font-size-base * .75;
+}
+
+.rozsireneInfo_pozadi {
+  background-color: $white;
 }
