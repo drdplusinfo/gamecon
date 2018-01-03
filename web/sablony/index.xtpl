@@ -32,7 +32,7 @@
 </head>
 
 <!-- TO-DO: Toto by se nemělo vázat k celému body, ale k renderingu divu infopruh_odpocet -->
-<body onload="odpocet()">
+<body>
   <div class="container-fluid">
     <!--                   MENU                    -->
     {menu}
@@ -41,7 +41,7 @@
     <div class="coverPhoto">
       <div class="coverPhoto_nadpis">Největší festival<br>
       nepočítačových her
-        <div class="coverPhoto_podnadpis">19. - 21. července, Pardubice</div>
+        <div class="coverPhoto_podnadpis">19.–21. července, Pardubice</div>
       </div>
     </div>
 
@@ -51,6 +51,9 @@
         <div class="infopruh_zvyrazneni">Do třetí vlny aktivit zbývá:</div>
         <div class="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
       </div>
+      <script>
+      odpocet();
+      </script>
     </div>
 
     <!--                 ZÁKLADNÍ INFO                     -->
