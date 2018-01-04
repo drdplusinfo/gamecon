@@ -15,6 +15,24 @@
   outline: 2px solid $black;
 }
 
-.box-ohraniceni_cervene {
+.box_ohraniceni-cervene {
   outline-color: $red;
+}
+
+.boxObsah_pl-10px {
+  padding-left: 10px;
+}
+
+.boxObsah_pl-22px {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.sirka-1200 {
+  max-width: 1200px;
+}
+
+.box-250 {
+  background-color: $white;
+  width: 360px;
 }

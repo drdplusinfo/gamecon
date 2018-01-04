@@ -19,7 +19,7 @@
           Aktivity
         </a>
           <div class="dropdown-menu dropdown-menu-large" aria-labelledby="navbarDropdown">
-            <div class="row">
+            <div class="row mt-0">
               <div class="col-md-3">
                 <div class="dropdown-header">
                   <div>Stolní hry</div>

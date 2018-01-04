@@ -17,6 +17,9 @@
   position: relative;
   left: 20vw;
   top: 18vw;
+  @include media-breakpoint-down(xs) {
+    font-size: 6vw;
+  }
 }
 
 .coverPhoto_podnadpis {
@@ -25,6 +28,9 @@
   font-weight: 700;
   color: $red;
   margin-top: 1vw;
+  @include media-breakpoint-down(xs) {
+    font-size: 3vw;
+  }
 }
 
 /* ---------------- INFOPRUH --------------*/
@@ -42,6 +48,7 @@
   font-family: 'Eczar';
   @include media-breakpoint-down(xs) {
     padding: 2px 6px 0px 4px;
+    font-size: 3vw;
   }
 }
 .infopruh_odpocet {
@@ -66,7 +73,7 @@
 
 /* ---------------- ZÁKLADNÍ INFO --------------*/
 .zakladniInfo {
-  margin: 80px 0px 40px 0px;
+  margin: 40px 0px 40px 0px;
   color: $black;
   & > div {
     max-width: 800px;
@@ -80,58 +87,150 @@
   }
 }
 .zakladniInfo_cislo {
-  @extend h2;
+  font-size: $h1-font-size;
+  font-weight: 600;
   color: $red;
+  @include media-breakpoint-down(sm) {
+    font-size: $h2-font-size;
+  }
+  @include media-breakpoint-down(xs) {
+    font-size: $h4-font-size;
+  }
+  @include media-breakpoint-up(sm) {
+    margin-top: 40px;
+  }
 }
 .zakladniInfo_popis {
   text-transform: uppercase;
-  font-size: $font-size-xs;
+  font-size: $font-size-base;
   font-weight: 600;
   margin-top: -6px;
+  @include media-breakpoint-down(sm) {
+    font-size: $font-size-sm;
+  }
+  @include media-breakpoint-down(xs) {
+    font-size: $font-size-xxs;
+  }
 }
 .zakladniInfo_lomitko {
   color: $gray-300;
   opacity: 0.25;
+  font-size: 3em;
+  font-weight: 400;
+  @include media-breakpoint-down(xs) {
+    font-size: 2em;
+  }
+  @include media-breakpoint-up(sm) {
+    margin-top: 40px;
+  }
   &:after {
-    font-size: 3em;
-    font-weight: 400;
     content: "/";
   }
 }
 
 /* ---------------- PITCH -----------------*/
+.pitch_sloupec {
+  @include media-breakpoint-up(lg) {
+    margin-left: -400px;
+  }
+  @include media-breakpoint-down(lg) {
+    margin-left: -200px;
+  }
+  @include media-breakpoint-down(md) {
+    margin-left: 0px;
+  }
+}
+
 .pitch_obrazek {
   width: 100%;
 }
 .pitch_popis {
   font-family: 'Eczar';
   font-weight: 600;
-  @include media-breakpoint-down(xs) {
+  line-height: 1.5;
+  @include media-breakpoint-down(sm) {
     text-align: center;
+    padding: 0px 30px 0px 30px;
   }
 }
 
 /* ---------------- ROZŠÍŘENÉ INFO -----------------*/
 .rozsireneInfo_nadpis {
-  @extend h6;
+  @extend h5;
   font-weight: 600;
-  width: 114px;
   display: inline-block;
-  padding: 40px 0px 0px 0px;
+  padding-top: 40px;
+  @include media-breakpoint-down(sm) {
+    padding-top: 20px;
+  }
 }
 .rozsireneInfo_cara {
-  width: 32px;
+  width: 20px;
   height: 2px;
-  color: $red;
+  background-color: $red;
+  margin-bottom: 14px;
+  margin-top: 6px;
+  left: 45%;
+  position: relative;
 }
 .rozsireneInfo_popis {
+  @extend p;
   color: $gray-300;
-  width: 200px;
+  width: 250px;
   display: inline-block;
-  padding-bottom: 26px;
-  font-size: $font-size-base * .75;
+  padding-bottom: 8px;
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 0px;
+  }
 }
 
-.rozsireneInfo_pozadi {
-  background-color: $white;
+/* --------------------- FOTKY -----------------------*/
+.titulkaFotka {
+  width: 100%;
+}
+.hidden-md-down { //Toto by mělo v bootstrap fungovat a nefunguje :-()
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+.col-md-4_fotka {
+  @include media-breakpoint-up(md) {
+    flex: 0 0 32.333333%;
+  }
+}
+.col-sm-6_fotka {
+  @include media-breakpoint-only(sm) {
+    flex: 0 0 49%;
+  }
+}
+
+/* --------------------- VYBRANÉ AKTIVITY -----------------------*/
+.vybraneAktivity_obrazek {
+  width: 360px;
+  height: 203px;
+}
+.vybraneAktivity_sekce {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $red;
+  text-align: left;
+  padding-top: 15px
+}
+.vybraneAktivity_nadpis {
+  padding-top: 10px;
+}
+.vybraneAktivity_cara {
+  width: 300px;
+  height: 3px;
+  background-color: $gray-100;
+  margin-bottom: 14px;
+  margin-top: 28px;
+  display: inline-block;
+}
+.vybraneAktivity_cas_ikona {
+  width: 16px;
+  opacity: 0.3;
+  padding-bottom: 2px;
+  margin-right: 8px;
 }

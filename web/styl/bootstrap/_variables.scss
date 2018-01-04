@@ -160,8 +160,8 @@ $grid-breakpoints: (
   xs: 0,
   sm: 576px,
   md: 800px,
-  lg: 992px,
-  xl: 1200px
+  lg: 1200px,
+  xl: 1440px
 ) !default;
 
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
@@ -175,8 +175,8 @@ $grid-breakpoints: (
 $container-max-widths: (
   sm: 540px,
   md: 720px,
-  lg: 960px,
-  xl: 1140px
+  lg: 1180px,
+  xl: 1400px
 ) !default;
 
 @include _assert-ascending($container-max-widths, "$container-max-widths");
@@ -227,6 +227,7 @@ $font-size-base:              1rem !default; // Assumes the browser default, typ
 $font-size-lg:                ($font-size-base * 1.25) !default;
 $font-size-sm:                ($font-size-base * .875) !default;
 $font-size-xs:                ($font-size-base * .675) !default;
+$font-size-xxs:               ($font-size-base * .5) !default;
 
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;

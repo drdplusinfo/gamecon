@@ -64,7 +64,7 @@
   font-weight: 700;
   margin-top: 1px;
 }
-.navbar-toggler-icon { background-image: url(soubor('grafika/titulka/hamburger-menu.png'))}
+.navbar-toggler-icon { background-image: url(soubor('grafika/ikony/hamburger-menu.png'))}
 
 /* Speciální položky */
 @include media-breakpoint-up(md) { // Zmizení lomítka na malých obrazovkách

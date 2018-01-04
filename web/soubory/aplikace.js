@@ -1,12 +1,9 @@
+/* -------------- ODKAZY NA NOVOU ZÁLOŽKU ------------------- */
 $(function(){
-
   $('a[href^="http"]').attr('target', '_blank');
-
 });
 
-
-
-//Date countdown
+/* -------------- ODPOČET NA TITULCE ------------------- */
 var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime(); //TO-DO: Předat jako parametr přes PHP
 
 function odpocet(){
@@ -36,5 +33,5 @@ function odpocet(){
   }
 
   countdown();
-  var intervalID = setInterval(Countdown, 5000); // Aktualizuj odpočet každých 5 sekund
+  var intervalID = setInterval(countdown, 5000); // Aktualizuj odpočet každých 5 sekund
 };
