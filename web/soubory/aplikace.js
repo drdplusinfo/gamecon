@@ -35,3 +35,13 @@ function odpocet(){
   countdown();
   var intervalID = setInterval(countdown, 5000); // Aktualizuj odpočet každých 5 sekund
 };
+
+function zmenPozadiNavbar(){
+   if (document.getElementById('hlavniMenu').style.background == "black") {
+     document.getElementById('hlavniMenu').style.background = "linear-gradient(black, rgba(255,255,255,0))";
+   }
+   else {
+     document.getElementById('hlavniMenu').style.background = "black";
+   }
+   return false;
+};

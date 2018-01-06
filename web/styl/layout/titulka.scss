@@ -7,7 +7,7 @@
   background-position: center top;
   background-repeat: repeat, repeat;
   width: 100%;
-  height: 50vw;
+  height: 38vw;
 }
 
 .coverPhoto_nadpis {
@@ -16,9 +16,9 @@
   color: $white;
   position: relative;
   left: 20vw;
-  top: 18vw;
+  top: 12vw;
   @include media-breakpoint-down(xs) {
-    font-size: 6vw;
+    font-size: 5vw;
   }
 }
 
@@ -36,32 +36,41 @@
 /* ---------------- INFOPRUH --------------*/
 .infopruh {
   display: flex;
+  height: 50px;
   justify-content: center;
   align-items: center;
   background-color: $red;
   color: $white;
-  font-weight: 600;
 }
 .infopruh_zvyrazneni {
-  padding: 2px 30px 0px 30px;
+  @extend h5;
+  margin-bottom: 0;
+  padding: 2px 60px 0px 60px;
   text-align: center;
-  font-family: 'Eczar';
+  font-weight: 600;
   @include media-breakpoint-down(xs) {
-    padding: 2px 6px 0px 4px;
-    font-size: 3vw;
+    padding: 2px 10px 0px 4px;
   }
 }
 .infopruh_odpocet {
-  padding: 0px 15px 0px 0px;
+  padding-right: 15px;
   display: flex;
   align-items: center;
   color: $black;
   text-transform: uppercase;
-  font-size: $font-size-sm;
+  @extend p;
+  margin: 0;
+  @include media-breakpoint-down(xs) {
+    font-size: $font-size-xs;
+  }
+  font-weight: 700;
   text-align: center;
 }
 .infopruh_lomitko {
-  color: $gray-300;
+  color: $black;
+  @include media-breakpoint-up(md) {
+    padding: 0px 36px 0px 36px;
+  };
   padding: 0px 15px 0px 15px;
   opacity: 0.25;
   &:after {
@@ -87,15 +96,8 @@
   }
 }
 .zakladniInfo_cislo {
-  font-size: $h1-font-size;
-  font-weight: 600;
+  @extend h1;
   color: $red;
-  @include media-breakpoint-down(sm) {
-    font-size: $h2-font-size;
-  }
-  @include media-breakpoint-down(xs) {
-    font-size: $h4-font-size;
-  }
   @include media-breakpoint-up(sm) {
     margin-top: 40px;
   }
@@ -153,6 +155,12 @@
     padding: 0px 30px 0px 30px;
   }
 }
+.pitch_vlnovka {
+  margin-bottom: 1.5vw;
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
 
 /* ---------------- ROZŠÍŘENÉ INFO -----------------*/
 .rozsireneInfo_nadpis {
@@ -188,11 +196,6 @@
 .titulkaFotka {
   width: 100%;
 }
-.hidden-md-down { //Toto by mělo v bootstrap fungovat a nefunguje :-()
-  @include media-breakpoint-down(sm) {
-    display: none;
-  }
-}
 .col-md-4_fotka {
   @include media-breakpoint-up(md) {
     flex: 0 0 32.333333%;
@@ -205,6 +208,12 @@
 }
 
 /* --------------------- VYBRANÉ AKTIVITY -----------------------*/
+.vybraneAktivity {
+  & a {
+    font-weight: bold;
+  }
+}
+
 .vybraneAktivity_obrazek {
   width: 360px;
   height: 203px;
@@ -233,4 +242,81 @@
   opacity: 0.3;
   padding-bottom: 2px;
   margin-right: 8px;
+}
+
+/* --------------------- CALL TO ACTION -----------------------*/
+.callToAction {
+  background-image: url(soubor('grafika/titulka/cover-photo-1.jpg'));
+  background-size: 100%;
+  height: 240px;
+  flex-flow: column wrap;
+  @include media-breakpoint-down(xs) {
+    height: 160px;
+  }
+}
+
+/* ----------------------- PARTNEŘI -------------------------*/
+.partneri_obrazek {
+  max-width: 80px;
+  max-height: 80px;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+/* ----------------------- PATIČKA -------------------------*/
+.paticka {
+  background-color: $black;
+  padding-bottom: 40px;
+}
+.paticka_mail {
+  font-family: "Open Sans";
+  line-height: 3;
+  border-bottom: 2px solid $white;
+  padding-bottom: 3px;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+.paticka_credits {
+  line-height: 1.2;
+  margin-bottom: 4px;
+  padding: 0;
+}
+.paticka_odkaz {
+  @extend .uppercase;
+  @extend .text-center;
+  @extend .font-size-sm;
+  @extend .font-weight-bold;
+  & a:hover {
+    color: white;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: $font-size-xs;
+  }
+}
+.paticka_odkaz-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paticka_odkaz-facebook {
+  color: $white;
+  & img {
+    margin-top: -2px;
+    margin-right: 6px;
+  }
+}
+.paticka_lomitko {
+  @include media-breakpoint-up(lg) {
+    &:after {
+      color: $gray-300;
+      font-size: 2em;
+      font-weight: 400;
+      content: "/";
+      padding: 0px 24px 0px 24px;
+    }
+  }
 }

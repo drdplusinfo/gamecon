@@ -1,8 +1,8 @@
 <!-- begin: menu -->
-<nav class="navbar navbar-expand-md">
+<nav class="navbar navbar-expand-md" id="hlavniMenu">
   <!-- Brand and toggle get grouped for better mobile display -->
-  <a class="navbar-brand" href="/">gamecon 2018</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand ml-xl-8 ml-lg-7" href="/">gamecon 2018</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="zmenPozadiNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,7 +20,7 @@
         </a>
           <div class="dropdown-menu dropdown-menu-large" aria-labelledby="navbarDropdown">
             <div class="row mt-0">
-              <div class="col-md-3">
+              <div class="dropdown-menu-large_col-md-3">
                 <div class="dropdown-header">
                   <div>Stolní hry</div>
                 </div>
@@ -29,7 +29,7 @@
                 <a class="dropdown-item" href="/">Turnaje</a>
                 <a class="dropdown-item" href="/">Wargaming</a>
               </div>
-              <div class="col-md-4">
+              <div class="dropdown-menu-large_col-md-4">
                 <div class="dropdown-header">
                   Hry na hrdiny
                 </div>
@@ -37,7 +37,7 @@
                 <a class="dropdown-item" href="/">Legendy Klubu dobrodruhů</a>
                 <a class="dropdown-item" href="/">RPG</a>
     					</div>
-              <div class="col-md-4">
+              <div class="dropdown-menu-large_col-md-4">
                 <div class="dropdown-header">
                   <div>Ostatní hry</div>
                 </div>
@@ -71,7 +71,7 @@
     </ul>
     <!-- Přihlašovací menu -->
     <!-- begin:neprihlasen -->
-    <a class="nav-link pl-md-3 pl-0" href="prihlasit">Přihlásit</a>
+    <a class="nav-link pl-md-3 pl-0 mr-xl-8 mr-lg-7" href="prihlasit">Přihlásit</a>
     <!-- end:neprihlasen -->
     <!-- begin:prihlasen -->
     <a class="nav-link" href="prihlasit">Přihlášen</a>

@@ -15,6 +15,25 @@ body {
     overflow-x: hidden;
 }
 
-.row {
+.sirka-1200 { // Používá se pro kontejner
+  max-width: 1200px;
+}
+.row {       // Každý řádek má nad sebou mezeru
   margin-top: 4vw;
+}
+
+.hidden-lg-up {
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+.hidden-lg-down {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+.hidden-md-down { //Funkce hidden by v Bootstrap 4 měla funguvat. Nefunguje.
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }

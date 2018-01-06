@@ -1,8 +1,15 @@
+/* ----------------------- VELIKOSTI -------------------------*/
 h1, .h1 {
   font-family: "Eczar";
   font-size: $h1-font-size;
   font-weight: 700;
   line-height: 120%;
+  @include media-breakpoint-down(sm) {
+    font-size: $h2-font-size;
+  }
+  @include media-breakpoint-down(xs) {
+    font-size: $h4-font-size;
+  }
 }
 
 h2, .h2 {
@@ -21,7 +28,17 @@ h2, .h2 {
 
 h3, .h3 {
   font-family: "Eczar";
+  font-size: $h3-font-size;
   font-weight: 700;
+  @include media-breakpoint-up(xs) {
+    font-size: 4.5vw;
+  };
+  @include media-breakpoint-up(md) {
+    font-size: 3vw;
+  };
+  @include media-breakpoint-up(lg) {
+    font-size: 2.5vw;
+  };
 }
 
 h4, .h4 {
@@ -35,9 +52,12 @@ h4, .h4 {
     font-size: $h4-font-size * .75;
   };
   @include media-breakpoint-up(md) {
-    font-size: $h4-font-size * .875;
+    font-size: $h4-font-size * .75;
   };
   @include media-breakpoint-up(lg) {
+    font-size: $h4-font-size * .875;;
+  };
+  @include media-breakpoint-up(xl) {
     font-size: $h4-font-size;
   };
 }
@@ -79,7 +99,7 @@ h6, .h6 {
 }
 
 p, .p {
-  font-family: "Eczar";
+  font-family: "Open Sans";
   font-size: $font-size-base;
   @include media-breakpoint-up(xs) {
     font-size: $font-size-base * .7;
@@ -95,14 +115,36 @@ p, .p {
   };
 }
 
+.font-size-sm {
+  font-size: $font-size-sm;
+}
+
+.font-size-xs {
+  font-size: $font-size-xs;
+}
+
+/* ----------------------- BARVY -------------------------*/
 .gray-100 {
   color: $gray-100
 }
-
 .gray-200 {
   color: $gray-200
 }
-
 .gray-300 {
   color: $gray-300
+}
+.red {
+  color: $red;
+  stroke: $red;
+  fill: none;
+}
+.white {
+  color: $white;
+  stroke: $white;
+  fill: none;
+}
+
+/* ----------------------- FORMÁTOVÁNÍ -------------------------*/
+.uppercase {
+  text-transform: uppercase;
 }

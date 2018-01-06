@@ -1,4 +1,4 @@
-/* Stylování položek dropdown menu */
+/* ------------------------- POLOŽKY DROPDOWN MENU ----------------------------  */
 .dropdown-item {
   font-size: 15px;
   font-weight: 600;
@@ -31,20 +31,39 @@
   border-radius: 0;
   border-style: none;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 .dropdown-menu-large {
   width: 700px;
   left: -200px;
 }
-
 .dropdown-menu-large .dropdown-item {
   padding: 12px;
   border-style: none;
 }
 
+.dropdown-menu-large_col-md-3 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0px 15px 0px 15px;
+  @include media-breakpoint-up(md) {
+    flex: 0 0 100/11*3%;
+    max-width: 100/11*3%;
+  }
+}
+.dropdown-menu-large_col-md-4 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0px 15px 0px 15px;
+  @include media-breakpoint-up(md) {
+    flex: 0 0 100/11*4%;
+    max-width: 100/11*4%;
+  }
+}
 
-/* Stylování navigačního menu */
+
+/* ------------------------- NAVIGAČNÍ MENU ----------------------------  */
 .navbar {
   background: linear-gradient(black, rgba(255,255,255,0));
   position: absolute;
@@ -60,9 +79,8 @@
 }
 .navbar-slash { // Lomítka mezi položkami menu
   color: $red;
-  font-size: 24px;
-  font-weight: 700;
-  margin-top: 1px;
+  font-size: 30px;
+  margin-top: -4px;
 }
 .navbar-toggler-icon { background-image: url(soubor('grafika/ikony/hamburger-menu.png'))}
 

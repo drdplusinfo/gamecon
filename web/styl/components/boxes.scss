@@ -1,38 +1,58 @@
+/* ---------------- ZÁKLADNÍ -----------------*/
 .box_obal {
   width: 100%;
   height: auto;
   position: relative;
   margin: 0px 0px 26px 10px;
+  @include media-breakpoint-down(xs) {
+    width: 92%;
+  }
 }
-
 .box_ohraniceni {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 2;
   top: 10px;
   left: 10px;
-  outline: 2px solid $black;
+  outline: 3px solid $black;
 }
-
+/* ---------------- MODIFIKÁTORY -----------------*/
+.box_ohraniceni-2px { //Používá se např. pro tlačítko
+  top: 4px;
+  left: 4px;
+  outline-width: 2px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}
 .box_ohraniceni-cervene {
   outline-color: $red;
 }
-
+.box_ohraniceni-bile {
+  outline-color: $white;
+}
 .boxObsah_pl-10px {
   padding-left: 10px;
 }
-
-.boxObsah_pl-22px {
+.boxObsah_pl-30px {
   padding-left: 30px;
   padding-right: 30px;
 }
-
-.sirka-1200 {
-  max-width: 1200px;
+.box-280 {
+  background-color: $white;
+  width: 280px;
 }
-
-.box-250 {
+.box-360 {
   background-color: $white;
   width: 360px;
+}
+
+.box-tlacitko {
+  background-color: $white;
+  width: 160px;
+  padding: 13px 24px 12px 24px;
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: $font-size-xs;
 }
