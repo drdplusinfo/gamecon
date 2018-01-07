@@ -33,10 +33,10 @@
 
 <!-- TO-DO: Toto by se nemělo vázat k celému body, ale k renderingu divu infopruh_odpocet -->
 <body>
-  <div class="container-fluid">
-    <!--                   MENU                    -->
-    {menu}
+  <!--                   MENU                    -->
+  {menu}
 
+  <div class="container-fluid">
     <!--                COVER PHOTO                    -->
     <div class="coverPhoto">
       <div class="coverPhoto_nadpis">Největší festival<br>
@@ -48,7 +48,7 @@
     <!--                   INFOPRUH                    -->
     <div class="row mt-0">
       <div class="col infopruh">
-        <div class="infopruh_zvyrazneni">Do třetí vlny aktivit zbývá:</div>
+        <div class="infopruh_zvyrazneni">Do <span class="tooltip">třetí vlny<span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Další vlny vypustíme v datech X a Y. Více o tomto principu si můžete přečíst v sekci <a href="/jak-to-probiha>">Jak to probíhá?</a></span></span> aktivit zbývá:</div>
         <div class="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
       </div>
       <script>

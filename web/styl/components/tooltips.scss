@@ -1,0 +1,37 @@
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted;
+    & :hover {
+      cursor: default;
+    }
+    & .tooltipText {
+      display: none;
+      @extend .font-size-xs;
+      font-weight: normal;
+      line-height: 1.4;
+      color: $black;
+      text-align: justify;
+      width: 200px;
+      background-color: $white;
+      padding: 10px;
+      border: 1px solid;
+      /* Pozice tooltip textu */
+      position: absolute;
+      top: 20px;
+      left: -60px;
+      z-index: 1;
+        &:hover {
+          cursor: default;
+        }
+        & a {
+          color: $blue;
+        }
+        & a:hover {
+          cursor: pointer;
+        }
+    }
+}
+.tooltip:hover .tooltipText {
+    display: block;
+}

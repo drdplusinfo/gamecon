@@ -15,6 +15,11 @@ body {
     overflow-x: hidden;
 }
 
+#hlavniMenu { //nepodporuje IE11, to-do: fallback v js?
+  position: sticky;
+  top: 0px;
+  margin-bottom: -51px;
+}
 .sirka-1200 { // Používá se pro kontejner
   max-width: 1200px;
 }
@@ -22,6 +27,7 @@ body {
   margin-top: 4vw;
 }
 
+/* ------------- Hidden elementy v bootstrapu (měly by fungovat, nefungují) ------------ */
 .hidden-lg-up {
   @include media-breakpoint-up(lg) {
     display: none;
@@ -32,7 +38,7 @@ body {
     display: none;
   }
 }
-.hidden-md-down { //Funkce hidden by v Bootstrap 4 měla funguvat. Nefunguje.
+.hidden-md-down {
   @include media-breakpoint-down(sm) {
     display: none;
   }
