@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/js-php-api-odpoved.php';
+require_once __DIR__ . '/zmena-dat.php';
 
 /**
  * Třída, která z php kódu vygeneruje js api s odpovídajícími metodami a umí
@@ -33,11 +34,14 @@ class JsPhpApiHandler {
   /**
    * Vrátí JS kód objektu s metodami, které odpovídají metodám vloženého php
    * objektu.
+   * @param string $spravovanaData název JS proměnné, o kterou se stará api a
+   *  jejíž obsah mění pomocí objektů ZmenaDat.
    */
-  function jsApiObjekt() {
+  function jsApiObjekt($spravovanaData = null) {
     return strtr(self::$sablonaApi, [
-      '<vyhrazenaPromenna>' =>  $this->jsPromenna,
-      '<metody>'            =>  $this->jsMetody(),
+      '<vyhrazenaPromenna>'       =>  $this->jsPromenna,
+      '<metody>'                  =>  $this->jsMetody(),
+      '<spravovanaDataPromenna>'  =>  $spravovanaData ?: '',
     ]);
   }
 
@@ -82,7 +86,12 @@ class JsPhpApiHandler {
 
     $vysledek = $this->api->$metoda(...$parametry);
 
-    return new JsPhpApiOdpoved($vysledek);
+    if($vysledek instanceof ZmenaDat)
+      $odpoved = new JsPhpApiOdpoved(null, $vysledek->pole());
+    else
+      $odpoved = new JsPhpApiOdpoved($vysledek);
+
+    return $odpoved;
   }
 
   /**

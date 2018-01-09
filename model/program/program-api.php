@@ -76,7 +76,11 @@ class ProgramApi implements JsPhpApi {
    * Přihlásí aktuálního uživatele na aktivitu.
    */
   function prihlas($aktivitaId) {
-    (Aktivita::zId($aktivitaId))->prihlas($this->uzivatel);
+    $a = Aktivita::zId($aktivitaId);
+    $a->prihlas($this->uzivatel);
+    return new ZmenaDat([
+      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a)
+    ]);
   }
 
 }

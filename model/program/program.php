@@ -49,7 +49,7 @@ class Program {
     return '
       <script>
         var '.$this->jsPromenna.' = {
-          "aktivity": '.$this->api->zavolej('aktivity')->json().',
+          "aktivity": '.$this->api->zavolej('aktivity')->jsonObsah().',
           "linie": '.$this->jsonLinie().',
           "notifikace": '.$this->jsonNotifikace().',
           "uzivatelPrihlasen": '.json_encode((bool) $this->uzivatel).',
@@ -62,7 +62,10 @@ class Program {
   private function jsRender() {
     return $this->cacheSouboru->inlineCekejNaBabel('
       ReactDOM.render(
-        React.createElement(Program, { data: '.$this->jsPromenna.', api: '.$this->api->jsApiObjekt().' }),
+        React.createElement(Program, {
+          data: '.$this->jsPromenna.',
+          api: '.$this->api->jsApiObjekt($this->jsPromenna).'
+        }),
         document.getElementById("'.$this->jsElementId.'")
       )
     ');
