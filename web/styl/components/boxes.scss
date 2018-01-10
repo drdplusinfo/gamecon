@@ -8,6 +8,9 @@
     width: 92%;
   }
 }
+.box_obsah {
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
+}
 .box_ohraniceni {
   position: absolute;
   width: 100%;
@@ -15,6 +18,7 @@
   top: 10px;
   left: 10px;
   outline: 3px solid $black;
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
 }
 /* ---------------- MODIFIKÁTORY -----------------*/
 .box_ohraniceni-2px { //Používá se např. pro tlačítko
@@ -30,11 +34,13 @@
 .box_ohraniceni-bile {
   outline-color: $white;
 }
-.boxObsah_pl-10px {
+.pl-10px {
   padding-left: 10px;
 }
-.boxObsah_pl-30px {
+.pl-30px {
   padding-left: 30px;
+}
+.pr-30px {
   padding-right: 30px;
 }
 .box-280 {

@@ -78,11 +78,12 @@ if($m->bezStranky()) {
     'menu'      => $menu->cele()
   ]);
   // tisk věcí a zdar
-  //if($u && $u->maPravo(P_ADMIN_UVOD))               $t->parse('index.prihlasen.admin'); //nějak to nefungovalo, zakomnetoval jsem
-  //elseif($u && $u->maPravo(P_ADMIN_MUJ_PREHLED))    $t->parse('index.prihlasen.mujPrehled');
+  /* --------------------------- POŘEŠIT AŽ S PŘIHLÁŠENÝM UŽIVATELEM ----------------------------------*/
+  /*if($u && $u->maPravo(P_ADMIN_UVOD))               $t->parse('index.prihlasen.admin'); //nějak to nefungovalo, zakomnetoval jsem
+  elseif($u && $u->maPravo(P_ADMIN_MUJ_PREHLED))    $t->parse('index.prihlasen.mujPrehled');
   if($u && $u->gcPrihlasen() && FINANCE_VIDITELNE)  $t->assign('finance', $u->finance()->stavHr());
   if($u && $u->gcPrihlasen())                       $t->parse('index.prihlasen.gcPrihlasen');
-  elseif($u && REG_GC)                              $t->parse('index.prihlasen.gcNeprihlasen');
+  elseif($u && REG_GC)                              $t->parse('index.prihlasen.gcNeprihlasen');*/
   if(ANALYTICS)                                     $t->parse('index.analytics');
   $t->parse( $u ? 'index.prihlasen' : 'index.neprihlasen' );
   $t->parse('index');

@@ -18,19 +18,20 @@ error_reporting($puvodni ^ E_NOTICE);
 ////////////////////////
 
 define('ROK', 2018);                                  // aktuální rok -- při změně roku viz http://bit.ly/2l5olnb
-define('GC_BEZI_OD',        ROK.'-07-19 07:00:00');   // začátek GameConu (přepnutí stránek do režimu "úpravy na jen na infopultu")
-define('GC_BEZI_DO',        ROK.'-07-22 20:00:00');   // konec GameCou (přepnutí stránek do režimu "gc skončil, úpravy nemožné")
-define('REG_GC_OD',         ROK.'-05-02 20:17:00');   // spuštění možnosti registrace na GameCon
-define('REG_GC_DO',         GC_BEZI_DO);              // ukončení možnosti registrace na GameCon
-define('REG_AKTIVIT_OD',    ROK.'-05-09 20:17:00');   // spuštění možnosti registrace na aktivity, pokud jsou aktivované
-define('REG_AKTIVIT_DO',    GC_BEZI_DO);              // ukončení možnosti registrace na aktivity
+define('GC_BEZI_OD',        ROK.'-01-01 07:00:00');   // začátek GameConu (přepnutí stránek do režimu "úpravy na jen na infopultu")
+define('GC_BEZI_DO',        ROK.'-01-12 20:00:00');   // konec GameCou (přepnutí stránek do režimu "gc skončil, úpravy nemožné")
+define('REG_GC_OD',         ROK.'-01-01 20:17:00');   // spuštění registrace na GameCon
+define('REG_AKTIVIT_OD',    ROK.'-01-01 20:17:00');   // spuštění registrace na první vlnu aktivit (pokud jsou aktivované)
+define('DRUHA_VLNA',        ROK.'-01-01 20:17:00');              // spuštění registrce na druhou vlnu aktivit
+define('TRETI_VLNA',        ROK.'-01-01 20:17:00');              // spuštění registrce na třetí vlnu aktivit
+define('REG_GC_DO',         GC_BEZI_DO);              // ukončení registrace na GameCon
+define('REG_AKTIVIT_DO',    GC_BEZI_DO);              // ukončení možnosti registrace na všechny aktivity
 define('SLEVA_DO',          ROK.'-06-30 23:59:59');   // do kdy se oficiálně počítá platba včas
 define('PROGRAM_OD',        ROK.'-07-19');            // první den programu
 define('PROGRAM_DO',        GC_BEZI_DO);              // poslední den programu
 define('PROGRAM_VIDITELNY', po(REG_GC_OD));           // jestli jsou viditelné linky na program
 define('CENY_VIDITELNE',    PROGRAM_VIDITELNY && pred(GC_BEZI_DO)); // jestli jsou viditelné ceny aktivit
 define('FINANCE_VIDITELNE', po(REG_GC_OD));           // jestli jsou public viditelné finance
-
 
 ///////////////////
 // Židle a práva //
