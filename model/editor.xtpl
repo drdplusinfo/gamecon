@@ -105,7 +105,10 @@ $(function(){
         <input type="text" style="width:25px" name="{fields}[team_min]" value="{team_min}">–<input
                type="text" style="width:25px" name="{fields}[team_max]" value="{team_max}">
         <span class="hinted">(velikost teamu)<div class="hint"> Kolik je minimální až maximální velikost teamu (družiny). Místa jsou jen univerzální.</div></span>
-      </div>
+      </div> 
+      <input style="float:right" type="checkbox" name="{fields}[doporucena]" value="1">
+      <script>if('{doporucena}' == true) $('[name="{fields}[doporucena]"]').attr('checked',true);</script>
+      <div class="hinted" style="float:right;margin-top:2px">doporučena<div class="hint">Jestli je aktivita doporučena, tj. má se zobrazovat na titulce</div></div>  
     </td>
   </tr>
   <tr>
@@ -147,6 +150,14 @@ $(function(){
       <input class="full" type="text" name="{pnTagy}" value="{tagy}">
       <script>{viceScript}</script>
       <script>doplnovatVice($('[name="{pnTagy}"]'), {tagyMoznosti});</script>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      <span class="hinted">Krátký popis<span class="hint">Maximální velikost popisu je 160 znaků</span></span>
+    </th>
+    <td>
+      <textarea rows="3" class="full" type="text" name="{fields}[kratky_popis]">{kratky_popis}</textarea>
     </td>
   </tr>
   <tr>

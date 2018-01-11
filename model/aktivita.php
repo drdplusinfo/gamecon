@@ -125,6 +125,15 @@ class Aktivita {
       return [];
   }
 
+
+  /** Počet hodin do začátku aktivity (float) */
+  function doTitulky() {
+
+    if(count())
+
+    return $pole;
+  }
+
   /** Počet hodin do začátku aktivity (float) */
   function doZacatku() {
     return ($this->zacatek()->getTimestamp() - time()) / 3600;
@@ -321,6 +330,7 @@ class Aktivita {
     }
     $a['bez_slevy'] = (int)!empty($a['bez_slevy']); //checkbox pro "bez_slevy"
     $a['teamova']   = (int)!empty($a['teamova']);   //checkbox pro "teamova"
+    $a['doporucena']   = (int)!empty($a['doporucena']);   //checkbox pro "teamova"
     $a['team_min']  = $a['teamova'] ? (int)$a['team_min'] : null;
     $a['team_max']  = $a['teamova'] ? (int)$a['team_max'] : null;
     // u teamových aktivit se kapacita ignoruje - později se nechá jak je nebo přepíše minimem, pokud jde o novou aktivitu
@@ -437,6 +447,12 @@ class Aktivita {
     if(is_string($this->a['konec']))
       $this->a['konec'] = new DateTimeCz($this->a['konec']);
     return $this->a['konec'];
+  }
+
+  /** Vrací celkovou krátký popis aktivity (max 160 znaků)*/
+  protected function kratkyPopis()
+  {
+    return $this->a['kratky_popis'];
   }
 
   /**
@@ -1484,6 +1500,52 @@ class Aktivita {
       [ROK, $u->id()]
     );
   }
+
+  /**
+   * Vrátí iterátor doporučených aktivit
+   *
+   * @param int $limit počet vrácených aktivit
+   * @param int $zTypu maximální počet aktivit stejného typu
+   * @return type
+   */
+  static function zDoporucenych(int $limit = 6, int $zTypu = 2) {
+    $vyber = (array)self::zWhere('WHERE stav IN (1, 4, 5) AND doporucena = 1 AND typ NOT IN (9, 10, 13)');
+    $zbytek = $limit;
+    $vystupFinal = [];
+    $vystup = [];
+
+    while (count($vyber) > 0 && count($vystupFinal) < $limit) {
+      if (count($vyber) > $zbytek) {
+	$random = array_rand($vyber, $zbytek);
+	foreach ($random as $value) {
+	  $pole[] = $vyber [$value];
+	}
+      } else {
+	$pole = $vyber;
+      }
+
+      foreach ($pole as $value) {
+	if ($value->volno() == 'f' || $value->volno() == 'm' || $value->volno() == 'u') {
+	  $typ = $value->typId();
+
+	  if ((isset ($vystup [$typ]) && count($vystup [$typ]) < $zTypu) || !isset ($vystup [$typ])) {
+	    $vystup [$typ][] = $value;
+	    $vystupFinal[] = $value;
+	    $zbytek--;
+	    $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
+
+	    if (count($vystup [$typ]) == $zTypu){
+	      $vyber = array_filter($vyber, function ($element) use ($typ){ return ($element->typId()  != $typ);});
+	    }
+	  } else {
+	    $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
+	  }
+	}
+      }
+    }
+    return $vystupFinal;  
+  }
+
 
   /**
    * Vrátí iterátor s aktivitami podle zadané where klauzule. Alias tabulky
