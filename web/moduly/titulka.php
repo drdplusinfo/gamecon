@@ -1,53 +1,52 @@
 <?php
 
-function infopruh () {
-  $aktualniDatum = time();
-  $zacatekRoku = strtotime(ROK.'-01'.'-01');
-  $zacatekRegu = strtotime(REG_GC_OD);
-  $prvniVlna = strtotime(REG_AKTIVIT_OD);
-  $druhaVlna = strtotime(DRUHA_VLNA);
-  $tretiVlna = strtotime(TRETI_VLNA);
-  $zacatekGC = strtotime(GC_BEZI_OD);
-  $konecGC = strtotime(GC_BEZI_DO);
-  $text = '';
-  $cas = null;
-  //TO-DO: Check na stránku infopruh v databázi (stránky)
-  if ($zacatekRoku < $aktualniDatum && $aktualniDatum < $zacatekRegu) { // Datum mezi začátkem roku a spuštění registrace
-    $text = 'Do spuštění <span class="tooltip">registrace<span class="tooltipText">Registrace na GameCon probíhá postupně: Jako první se zaregistrujete na festival samotný a od  <b>'.(new DateTimeCz(REG_GC_OD))->formatBlog().'</b> je možné se registrovat na aktivity samotné. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> na gamecon zbývá:';
-    $cas = REG_GC_OD;
-  }
-  elseif ($zacatekRegu < $aktualniDatum && $aktualniDatum < $prvniVlna) { // Datum mezi začátkem spuštěním registrace a první vlnou aktivit
-    $text = 'Do <span class="tooltip">první vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Další vlny vypustíme <b>'.(new DateTimeCz(DRUHA_VLNA))->formatBlog().' a '.(new DateTimeCz(TRETI_VLNA))->formatBlog().'</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:';
-    $cas = REG_AKTIVIT_OD;
-  }
-  elseif ($prvniVlna < $aktualniDatum && $aktualniDatum < $druhaVlna) { // Datum mezi první a druhou vlnou aktivit
-    $text = 'Do <span class="tooltip">druhé vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlnu vypustíme <b>'.(new DateTimeCz(TRETI_VLNA))->formatBlog().'</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:';
-    $cas = DRUHA_VLNA;
-  }
-  elseif ($druhaVlna < $aktualniDatum && $aktualniDatum < $tretiVlna) { // Datum mezi druhou a třetí vlnou aktivit
-    $text = 'Do <span class="tooltip">třetí vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlna je poslední, dále budou přibývat aktivity v programu postupně. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span>aktivit zbývá:';
-    $cas = TRETI_VLNA;
-  }
-  elseif ($tretiVlna < $aktualniDatum && $aktualniDatum < $zacatekGC) { // Datum mezi třetí vlnou aktivit a začátkem GC
-    $text = 'Do začátku gameconu zbývá:';
-    $cas = GC_BEZI_OD;
-  }
-  elseif ($zacatekGC < $aktualniDatum && $aktualniDatum < $konecGC) { // Datum mezi začátkem GC a koncem GC
-    $text = 'GameCon právě probíhá. Ještě stále se můžete zaregistrovat na místě a užít si spoustu her.';
-  }
-  elseif ($konecGC < $aktualniDatum) { // Datum mezi koncem GC a začátkem roku
-    $text = 'GameCon již skončil. Děkujeme všem za atmosféru, kterou jste mu vdechli.';
-  }
-  return array(
-    'text' => $text,
-    'cas' => $cas);
+
+$aktualniDatum = time();
+$zacatekRoku = strtotime(ROK.'-01'.'-01');
+$zacatekRegu = strtotime(REG_GC_OD);
+$prvniVlna = strtotime(REG_AKTIVIT_OD);
+$druhaVlna = strtotime(DRUHA_VLNA);
+$tretiVlna = strtotime(TRETI_VLNA);
+$zacatekGC = strtotime(GC_BEZI_OD);
+$konecGC = strtotime(GC_BEZI_DO);
+$cas = null;
+
+//TO-DO: Check na stránku infopruh v databázi (stránky)
+if ($zacatekRoku < $aktualniDatum && $aktualniDatum < $zacatekRegu) { // Datum mezi začátkem roku a spuštění registrace
+  $t->parse('titulka.predZacatkemRegu');
+  $cas = REG_GC_OD;
+}
+elseif ($zacatekRegu < $aktualniDatum && $aktualniDatum < $prvniVlna) { // Datum mezi začátkem spuštěním registrace a první vlnou aktivit
+  $t->parse('titulka.predPrnvniVlnou');
+  $cas = REG_AKTIVIT_OD;
+}
+elseif ($prvniVlna < $aktualniDatum && $aktualniDatum < $druhaVlna) { // Datum mezi první a druhou vlnou aktivit
+  $t->parse('titulka.predDruhouVlnou');
+  $cas = DRUHA_VLNA;
+}
+elseif ($druhaVlna < $aktualniDatum && $aktualniDatum < $tretiVlna) { // Datum mezi druhou a třetí vlnou aktivit
+  $t->parse('titulka.predTretiVlnou');
+  $cas = TRETI_VLNA;
+}
+elseif ($tretiVlna < $aktualniDatum && $aktualniDatum < $zacatekGC) { // Datum mezi třetí vlnou aktivit a začátkem GC
+  $t->parse('titulka.predZacatkemGC');
+  $cas = GC_BEZI_OD;
+}
+elseif ($zacatekGC < $aktualniDatum && $aktualniDatum < $konecGC) { // Datum mezi začátkem GC a koncem GC
+  $t->parse('titulka.vPrubehuGC');
+}
+elseif ($konecGC < $aktualniDatum) { // Datum mezi koncem GC a začátkem roku
+  $t->parse('titulka.poKonciGC');
 }
 
+
 $t->assign([
-  'menu'    =>  $menu,
-  'a'       =>  $u ? $u->koncA() : '', //koncovka u slovesa (v šabloně užito jako nepřihlášen{a})
-  'infopruh'  => infopruh()["text"],
-  'cas'     =>  infopruh()["cas"]
+  'menu'      =>  $menu,
+  'a'         =>  $u ? $u->koncA() : '', //koncovka u slovesa (v šabloně užito jako nepřihlášen{a})
+  'cas'       =>  $cas,
+  'prvniVlna' => (new DateTimeCz(REG_GC_OD))->formatBlog(),
+  'druhaVlna' => (new DateTimeCz(DRUHA_VLNA))->formatBlog(),
+  'tretiVlna' => (new DateTimeCz(TRETI_VLNA))->formatBlog()
 ]);
 
 /* --------------------------- POŘEŠIT AŽ S PŘIHLÁŠENÝM UŽIVATELEM ----------------------------------*/

@@ -64,8 +64,7 @@ if($m->bezStranky()) {
       'styl/index.scss',
       ...glob('styl/base/*.scss'),
       ...glob('styl/components/*.scss'),
-      ...glob('styl/core/*.scss'),
-      ...glob('styl/layout/*.scss')
+      ...glob('styl/pages/*.scss')
     ),
     'js'        => perfectcache(
       'soubory/aplikace.js'

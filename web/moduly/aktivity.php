@@ -64,10 +64,10 @@ foreach($filtry as $filtr) {
     $t->assign('value', $value);
     $t->assign('nazev', $moznost);
     $t->assign('selected', get($filtr['name']) == $value ? 'selected' : '');
-    $t->parse('aktivity.filtr.moznost');
+    //$t->parse('aktivity.filtr.moznost');
   }
   $t->assign($filtr);
-  $t->parse('aktivity.filtr');
+  //$t->parse('aktivity.filtr');
 }
 
 // Vyfiltrování aktivit
@@ -112,20 +112,20 @@ while($a) {
   ]);
   if( $v = $a->vyberTeamu($u) ) {
     $t->assign('vyber', $v);
-    $t->parse('aktivity.aktivita.tymTermin.vyber');
+    //$t->parse('aktivity.aktivita.tymTermin.vyber');
   }
   if($a->teamova()) {
     if($tym = $a->tym()) {
       $t->assign('tym', $tym);
-      $t->parse('aktivity.aktivita.tymTermin.tym');
+      //$t->parse('aktivity.aktivita.tymTermin.tym');
       if($u && $a->prihlasen($u)) {
-        $t->parse('aktivity.aktivita.tymTermin.vypis');
+        //$t->parse('aktivity.aktivita.tymTermin.vypis');
       }
     }
     $t->assign('orgJmenaTym', implode(orgUrls($a->organizatori())));
-    $t->parse('aktivity.aktivita.tymTermin');
+    //$t->parse('aktivity.aktivita.tymTermin');
   } else {
-    $t->parse('aktivity.aktivita.termin');
+    //$t->parse('aktivity.aktivita.termin');
     $orgUrls = array_merge($orgUrls, orgUrls($a->organizatori()));
   }
 
@@ -141,25 +141,25 @@ while($a) {
         //TODO způsob načtení a zobrazení orgů (per termín, per aktivita, proklik na jejich osobní stránku, ...?)
         //TODO optimalizace načítání popisků (do jiné tabulky, jeden dotaz, pokud bude výkonnostně problém)
       ]);
-      if($a->bezSlevy())                $t->parse('aktivity.aktivita.cena.fixni');
+      /*if($a->bezSlevy())                $t->parse('aktivity.aktivita.cena.fixni');
       elseif($u && $u->gcPrihlasen())   $t->parse('aktivity.aktivita.cena.moje');
-      else                              $t->parse('aktivity.aktivita.cena.obecna');
-      $t->parse('aktivity.aktivita.cena');
+      else                              $t->parse('aktivity.aktivita.cena.obecna');*/
+      //$t->parse('aktivity.aktivita.cena');
     }
     foreach($a->tagy() as $tag) {
       $t->assign('tag', $tag);
-      $t->parse('aktivity.aktivita.tag');
+      //$t->parse('aktivity.aktivita.tag');
     }
     $popis = $a->popis();
-    if(strlen($popis) > 370) $t->parse('aktivity.aktivita.vice');
+    if(strlen($popis) > 370) //$t->parse('aktivity.aktivita.vice');
     if(!$a->teamova()) {
       $t->assign('orgJmena', implode(', ', array_unique($orgUrls)));
-      $t->parse('aktivity.aktivita.organizatori');
+      //$t->parse('aktivity.aktivita.organizatori');
       $orgUrls = [];
     }
     $t->assign('extra', $a->typId() == Typ::DRD ? 'drd' : '');
     $t->assign('popis', $popis);
-    $t->parse('aktivity.aktivita');
+    //$t->parse('aktivity.aktivita');
   }
 
   // bižuterie pro běh cyklu
@@ -182,19 +182,19 @@ if($org = $this->param('org')) {
       'Stránka vypravěč'.($org->pohlavi()=='f'?'ky':'e'))
     ->nazev($org->jmenoNick())
     ->obrazek($org->fotka()); // cíleně null, pokud nemá fotku
-  if($org->oSobe()) $t->parse('aktivity.zahlavi.vypravec.viceLink');
+  if($org->oSobe()) //$t->parse('aktivity.zahlavi.vypravec.viceLink');
   if($org->drdProfil()) {
-    $t->parse('aktivity.zahlavi.vypravec.profilLink');
-    $t->parse('aktivity.zahlavi.vypravec.profil');
+    //$t->parse('aktivity.zahlavi.vypravec.profilLink');
+    //$t->parse('aktivity.zahlavi.vypravec.profil');
   }
-  $t->parse('aktivity.zahlavi.vypravec');
-  $t->parse('aktivity.zahlavi');
+  //$t->parse('aktivity.zahlavi.vypravec');
+  //$t->parse('aktivity.zahlavi');
 }
 
 // záhlaví - typ
 if(isset($typ)) {
   $t->assign('text', $typ->oTypu());
-  $t->parse('aktivity.zahlavi');
+  //$t->parse('aktivity.zahlavi');
   $this->info()
     ->nazev(mb_ucfirst($typ->nazevDlouhy()))
     ->popis($typ->bezNazvu())

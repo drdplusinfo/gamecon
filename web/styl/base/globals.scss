@@ -20,6 +20,9 @@ body {
   top: 0px;
   margin-bottom: -51px;
 }
+.container-fluid { // Základní nastavení kontejneru
+  padding: 0 0 0 0;
+}
 .sirka-1200 { // Používá se pro kontejner
   max-width: 1200px;
 }

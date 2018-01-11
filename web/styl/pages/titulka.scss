@@ -207,43 +207,6 @@
   }
 }
 
-/* --------------------- VYBRANÉ AKTIVITY -----------------------*/
-.vybraneAktivity {
-  & a {
-    font-weight: bold;
-  }
-}
-
-.vybraneAktivity_obrazek {
-  width: 360px;
-  height: 203px;
-}
-.vybraneAktivity_sekce {
-  font-size: $font-size-sm;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: $red;
-  text-align: left;
-  padding-top: 15px
-}
-.vybraneAktivity_nadpis {
-  padding-top: 10px;
-}
-.vybraneAktivity_cara {
-  width: 300px;
-  height: 3px;
-  background-color: $gray-100;
-  margin-bottom: 14px;
-  margin-top: 28px;
-  display: inline-block;
-}
-.vybraneAktivity_cas_ikona {
-  width: 16px;
-  opacity: 0.3;
-  padding-bottom: 2px;
-  margin-right: 8px;
-}
-
 /* --------------------- CALL TO ACTION -----------------------*/
 .callToAction {
   background-image: url(soubor('grafika/titulka/cover-photo-1.jpg'));

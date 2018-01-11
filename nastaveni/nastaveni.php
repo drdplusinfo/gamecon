@@ -18,12 +18,12 @@ error_reporting($puvodni ^ E_NOTICE);
 ////////////////////////
 
 define('ROK', 2018);                                  // aktuální rok -- při změně roku viz http://bit.ly/2l5olnb
-define('GC_BEZI_OD',        ROK.'-01-01 07:00:00');   // začátek GameConu (přepnutí stránek do režimu "úpravy na jen na infopultu")
-define('GC_BEZI_DO',        ROK.'-01-12 20:00:00');   // konec GameCou (přepnutí stránek do režimu "gc skončil, úpravy nemožné")
 define('REG_GC_OD',         ROK.'-01-01 20:17:00');   // spuštění registrace na GameCon
-define('REG_AKTIVIT_OD',    ROK.'-01-01 20:17:00');   // spuštění registrace na první vlnu aktivit (pokud jsou aktivované)
-define('DRUHA_VLNA',        ROK.'-01-01 20:17:00');              // spuštění registrce na druhou vlnu aktivit
-define('TRETI_VLNA',        ROK.'-01-01 20:17:00');              // spuštění registrce na třetí vlnu aktivit
+define('REG_AKTIVIT_OD',    ROK.'-01-02 20:17:00');   // spuštění registrace na první vlnu aktivit (pokud jsou aktivované)
+define('DRUHA_VLNA',        ROK.'-01-03 20:17:00');   // spuštění registrce na druhou vlnu aktivit
+define('TRETI_VLNA',        ROK.'-02-04 20:17:00');   // spuštění registrce na třetí vlnu aktivit
+define('GC_BEZI_OD',        ROK.'-02-05 07:00:00');   // začátek GameConu (přepnutí stránek do režimu "úpravy na jen na infopultu")
+define('GC_BEZI_DO',        ROK.'-02-05 20:00:00');   // konec GameCou (přepnutí stránek do režimu "gc skončil, úpravy nemožné")
 define('REG_GC_DO',         GC_BEZI_DO);              // ukončení registrace na GameCon
 define('REG_AKTIVIT_DO',    GC_BEZI_DO);              // ukončení možnosti registrace na všechny aktivity
 define('SLEVA_DO',          ROK.'-06-30 23:59:59');   // do kdy se oficiálně počítá platba včas

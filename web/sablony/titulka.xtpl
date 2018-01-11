@@ -11,7 +11,29 @@
   <!--                   INFOPRUH                    -->
   <div class="row mt-0">
     <div class="col infopruh">
-      <div class="infopruh_zvyrazneni">{infopruh}</div>
+      <div class="infopruh_zvyrazneni">
+        <!-- begin: predZacatkemRegu -->
+        Do spuštění <span class="tooltip">registrace<span class="tooltipText">Registrace na GameCon probíhá postupně: Jako první se zaregistrujete na festival samotný a od  <b>{prvniVlna}</b> je možné se registrovat na aktivity samotné. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> na gamecon zbývá:
+        <!-- end: predZacatkemRegu -->
+        <!-- begin: predPrnvniVlnou -->
+        Do <span class="tooltip">první vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Další vlny vypustíme <b>{druhaVlna} a {tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+        <!-- end: predPrnvniVlnou -->
+        <!-- begin: predDruhouVlnou -->
+        Do <span class="tooltip">druhé vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlnu vypustíme <b>{tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+        <!-- end: predDruhouVlnou -->
+        <!-- begin: predTretiVlnou -->
+        Do <span class="tooltip">třetí vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlna je poslední, dále budou přibývat aktivity v programu postupně. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+        <!-- end: predTretiVlnou -->
+        <!-- begin: predZacatkemGC -->
+        Do začátku gameconu zbývá:
+        <!-- end: predZacatkemGC -->
+        <!-- begin: vPrubehuGC -->
+        GameCon právě probíhá. Ještě stále se můžete zaregistrovat na místě a užít si spoustu her.
+        <!-- end: vPrubehuGC -->
+        <!-- begin: poKonciGC -->
+        GameCon již skončil. Děkujeme všem za atmosféru, kterou jste mu vdechli.
+        <!-- end: poKonciGC -->
+      </div>
       <div class="infopruh_odpocet" id="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
     </div>
   </div>
@@ -116,7 +138,7 @@
 </div> <!-- konec kontejneru -->
 
 <!--               VYBRANÉ AKTIVITY                      -->
-<div class="container vybraneAktivity sirka-1200">
+<div class="container aktivity sirka-1200">
   <div class="row">
     <div class="col-12 text-center h2">Na co se můžete těšit</div>
   </div>
@@ -127,17 +149,17 @@
   <div class="row justify-content-center align-items-center">
     <div class="pr-4 justify-content-center">
       <div class="box_obal box-360">
-        <img class="vybraneAktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
         <div class="box_obsah pl-30px pr-30px">
-          <div class="vybraneAktivity_sekce">larpy</div>
-          <div class="h4 vybraneAktivity_nadpis">Love in the age of debasement</div>
-          <div class="p pt-2 gray-300">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="aktivity_sekce">larpy</div>
+          <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
           <div class="text-center">
-            <div class="vybraneAktivity_cara"></div>
+            <div class="aktivity_cara"></div>
           </div>
-          <div class="vybraneAktivity_cas">
-            <div class="h5 gray-300 font-weight-normal">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="vybraneAktivity_cas_ikona">
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
               sobota – 19:30
             </div>
           </div>
@@ -148,17 +170,17 @@
 
     <div class="pr-4 justify-content-center">
       <div class="box_obal box-360">
-        <img class="vybraneAktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
         <div class="box_obsah pl-30px pr-30px">
-          <div class="vybraneAktivity_sekce">epické hry</div>
-          <div class="h4 vybraneAktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
-          <div class="p pt-2 gray-300">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="aktivity_sekce">epické hry</div>
+          <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
           <div class="text-center">
-            <div class="vybraneAktivity_cara"></div>
+            <div class="aktivity_cara"></div>
           </div>
-          <div class="vybraneAktivity_cas">
-            <div class="h5 gray-300 font-weight-normal">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="vybraneAktivity_cas_ikona">
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
               sobota – 19:30
             </div>
           </div>
@@ -169,17 +191,17 @@
 
     <div class="pr-4 justify-content-center hidden-md-down">
       <div class="box_obal box-360">
-        <img class="vybraneAktivity_obrazek" src="soubory/systemove/aktivity/3-2-1-postreh.jpg"></img>
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-2-1-postreh.jpg"></img>
         <div class="box_obsah pl-30px pr-30px">
-          <div class="vybraneAktivity_sekce">wargaming</div>
-          <div class="h4 vybraneAktivity_nadpis">Warmachine: steam-powered combat</div>
-          <div class="p pt-2 gray-300">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="aktivity_sekce">wargaming</div>
+          <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
           <div class="text-center">
-            <div class="vybraneAktivity_cara"></div>
+            <div class="aktivity_cara"></div>
           </div>
-          <div class="vybraneAktivity_cas">
-            <div class="h5 gray-300 font-weight-normal">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="vybraneAktivity_cas_ikona">
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
               sobota – 19:30
             </div>
           </div>
@@ -190,17 +212,17 @@
 
     <div class="pr-4 justify-content-center hidden-md-down">
       <div class="box_obal box-360">
-        <img class="vybraneAktivity_obrazek" src="soubory/systemove/aktivity/3-osady.jpg"></img>
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-osady.jpg"></img>
         <div class="box_obsah pl-30px pr-30px">
-          <div class="vybraneAktivity_sekce">akční hry</div>
-          <div class="h4 vybraneAktivity_nadpis">Naučte se žonglovat s ohnivými tyčemi</div>
-          <div class="p pt-2 gray-300">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="aktivity_sekce">akční hry</div>
+          <div class="h4 aktivity_nadpis">Naučte se žonglovat s ohnivými tyčemi</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
           <div class="text-center">
-            <div class="vybraneAktivity_cara"></div>
+            <div class="aktivity_cara"></div>
           </div>
-          <div class="vybraneAktivity_cas">
-            <div class="h5 gray-300 font-weight-normal">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="vybraneAktivity_cas_ikona">
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
               sobota – 19:30
             </div>
           </div>
@@ -211,17 +233,17 @@
 
     <div class="pr-4 justify-content-center hidden-lg-down hidden-md-down">
       <div class="box_obal box-360">
-        <img class="vybraneAktivity_obrazek" src="soubory/systemove/aktivity/5-vlcat.jpg"></img>
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/5-vlcat.jpg"></img>
         <div class="box_obsah pl-30px pr-30px">
-          <div class="vybraneAktivity_sekce">epické deskovky</div>
-          <div class="h4 vybraneAktivity_nadpis">Mice and Mystics: desková hra</div>
-          <div class="p pt-2 gray-300">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="aktivity_sekce">epické deskovky</div>
+          <div class="h4 aktivity_nadpis">Mice and Mystics: desková hra</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
           <div class="text-center">
-            <div class="vybraneAktivity_cara"></div>
+            <div class="aktivity_cara"></div>
           </div>
-          <div class="vybraneAktivity_cas">
-            <div class="h5 gray-300 font-weight-normal">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="vybraneAktivity_cas_ikona">
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
               sobota – 19:30
             </div>
           </div>
@@ -232,17 +254,17 @@
 
     <div class="pr-4 justify-content-center hidden-lg-down hidden-md-down">
       <div class="box_obal box-360">
-        <img class="vybraneAktivity_obrazek" src="soubory/systemove/aktivity/adepti-slunce.jpg"></img>
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/adepti-slunce.jpg"></img>
         <div class="box_obsah pl-30px pr-30px">
-          <div class="vybraneAktivity_sekce">přednáška</div>
-          <div class="h4 vybraneAktivity_nadpis">Prince Harry: Jak malovat figurky</div>
-          <div class="p pt-2 gray-300">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="aktivity_sekce">přednáška</div>
+          <div class="h4 aktivity_nadpis">Prince Harry: Jak malovat figurky</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
           <div class="text-center">
-            <div class="vybraneAktivity_cara"></div>
+            <div class="aktivity_cara"></div>
           </div>
-          <div class="vybraneAktivity_cas">
-            <div class="h5 gray-300 font-weight-normal">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="vybraneAktivity_cas_ikona">
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
               sobota – 19:30
             </div>
           </div>
