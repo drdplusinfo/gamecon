@@ -4,9 +4,13 @@ $(function(){
 });
 
 /* -------------- ODPOČET NA TITULCE ------------------- */
-var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime(); //TO-DO: Předat jako parametr přes PHP
-
-function odpocet(){
+function odpocet(cas){
+  if (cas) {
+    var countDownDate = new Date(cas).getTime();
+  }
+  else {
+    document.getElementById("infopruh_odpocet").style.display = "none";
+  }
 
   function countdown() {
     var now = new Date().getTime(); // Get todays date and time

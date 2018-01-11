@@ -1,4 +1,366 @@
 <!-- begin:titulka -->
+<div class="container-fluid">
+  <!--                COVER PHOTO                    -->
+  <div class="coverPhoto">
+    <div class="coverPhoto_nadpis">Největší festival<br>
+    nepočítačových her
+      <div class="coverPhoto_podnadpis">19.–21. července, Pardubice</div>
+    </div>
+  </div>
+
+  <!--                   INFOPRUH                    -->
+  <div class="row mt-0">
+    <div class="col infopruh">
+      <div class="infopruh_zvyrazneni">
+        <!-- begin: predZacatkemRegu -->
+        Do spuštění <span class="tooltip">registrace<span class="tooltipText">Registrace na GameCon probíhá postupně: Jako první se zaregistrujete na festival samotný a od  <b>{prvniVlna}</b> je možné se registrovat na aktivity samotné. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> na gamecon zbývá:
+        <!-- end: predZacatkemRegu -->
+        <!-- begin: predPrnvniVlnou -->
+        Do <span class="tooltip">první vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Další vlny vypustíme <b>{druhaVlna} a {tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+        <!-- end: predPrnvniVlnou -->
+        <!-- begin: predDruhouVlnou -->
+        Do <span class="tooltip">druhé vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlnu vypustíme <b>{tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+        <!-- end: predDruhouVlnou -->
+        <!-- begin: predTretiVlnou -->
+        Do <span class="tooltip">třetí vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlna je poslední, dále budou přibývat aktivity v programu postupně. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+        <!-- end: predTretiVlnou -->
+        <!-- begin: predZacatkemGC -->
+        Do začátku gameconu zbývá:
+        <!-- end: predZacatkemGC -->
+        <!-- begin: vPrubehuGC -->
+        GameCon právě probíhá. Ještě stále se můžete zaregistrovat na místě a užít si spoustu her.
+        <!-- end: vPrubehuGC -->
+        <!-- begin: poKonciGC -->
+        GameCon již skončil. Děkujeme všem za atmosféru, kterou jste mu vdechli.
+        <!-- end: poKonciGC -->
+      </div>
+      <div class="infopruh_odpocet" id="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
+    </div>
+  </div>
+  <script>
+  odpocet('{cas}');
+  </script>
+
+
+  <!--                 ZÁKLADNÍ INFO                     -->
+  <div class="row justify-content-center">
+    <div class="col text-center zakladniInfo">
+      <h2>Co čekat od gameconu</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center zakladniInfo">
+    <div> <!-- Omezení šířky obsahu, viz css -->
+      <div class="col-4 text-center">
+        <div class="zakladniInfo_cislo">4</div>
+        <div class="zakladniInfo_popis">dny zábavy</div>
+      </div>
+      <div class="zakladniInfo_lomitko"></div>
+      <div class="col-4 text-center">
+        <div class="zakladniInfo_cislo">200+</div>
+        <div class="zakladniInfo_popis">aktivit</div>
+      </div>
+      <div class="zakladniInfo_lomitko"></div>
+      <div class="col-4 text-center">
+        <div class="zakladniInfo_cislo">800+</div>
+        <div class="zakladniInfo_popis">účastníků</div>
+      </div>
+    </div>
+  </div>
+
+  <!--                    PITCH                       -->
+  <div class="row justify-content-center align-items-center">
+    <div class="col-lg-4 col-md-5 col-sm-10 col-xs-12 pitch_sloupec">
+      <div class="box_obal">
+        <img src='soubory/grafika/titulka/deskoherna.jpg' class="pitch_obrazek box_obsah"></img>
+        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 h4 pl-md-6 pitch_popis">
+      <div class="pitch_vlnovka">
+        <svg class="red" width="32px" height="16px" viewBox="0 0 600 100" xml:space="preserve">
+          <polyline points="0,100 100,0 200,100 300,0 400,100 500,0 600,100 " stroke-linejoin="miter" stroke-linecap="round" stroke-width="50"></polyline>
+        </svg>
+      </div>
+      Deskové a karetní hry, RPG a Larpy, akční hry, wargaming, mistrovství světa v Dračím doupěti, pohybové workshopy, koncert a párty. Skvělí účastníci a žážitky, na které se budete těšit zase za rok, to je Gamecon.
+    </div>
+  </div>
+
+  <!--                 ROZŠÍŘENÉ INFO                     -->
+  <div class="row justify-content-center align-items-center">
+    <div class="pr-5 justify-content-center sirka-1200">
+      <div class="text-center box_obal box-280">
+        <div class="box_obsah pl-10px">
+          <div class="rozsireneInfo_nadpis">Akce<br> pro všechny</div>
+          <div class="rozsireneInfo_cara"></div>
+          <div class="rozsireneInfo_popis">jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si</div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pr-5 justify-content-center sirka-1200">
+      <div class="text-center box_obal box-280">
+          <div class="box_obsah pl-10px">
+          <div class="rozsireneInfo_nadpis">Festival<br> aktivní zábavy</div>
+          <div class="rozsireneInfo_cara"></div>
+          <div class="rozsireneInfo_popis">na všech aktivitách je potřeba zapojit tělo, mozek či obojí</div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pr-5 justify-content-center sirka-1200">
+      <div class="text-center box_obal box-280">
+        <div class="box_obsah pl-10px">
+          <div class="rozsireneInfo_nadpis">Volná<br> deskoherna</div>
+          <div class="rozsireneInfo_cara"></div>
+          <div class="rozsireneInfo_popis">stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme</div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--                     FOTKY                         -->
+  <div class="row">
+    <div class="col-12 text-center h5 font-weight-bold">Jsme nadšenci, co milují hry</div>
+  </div>
+  <div class="row justify-content-between no-gutters mt-2 mb-2">
+    <div class="col-md-4_fotka hidden-md-down">
+      <img src="soubory/grafika/titulka/fotky/gamecon_2017-276.jpg" class="titulkaFotka">
+    </div>
+    <div class="col-md-4_fotka col-sm-6_fotka col-xs-12 pb-3">
+      <img src="soubory/grafika/titulka/fotky/gamecon_2016-104.jpg" class="titulkaFotka">
+    </div>
+    <div class="col-md-4_fotka col-sm-6_fotka col-xs-12">
+      <img src="soubory/grafika/titulka/fotky/gamecon_2017-258.jpg" class="titulkaFotka">
+    </div>
+  </div>
+
+</div> <!-- konec kontejneru -->
+
+<!--               VYBRANÉ AKTIVITY                      -->
+<div class="container aktivity sirka-1200">
+  <div class="row">
+    <div class="col-12 text-center h2">Na co se můžete těšit</div>
+  </div>
+  <div class="row mt-0">
+    <div class="col-12 text-center p gray-300">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
+  </div>
+
+  <div class="row justify-content-center align-items-center">
+    <div class="pr-4 justify-content-center">
+      <div class="box_obal box-360">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_sekce">larpy</div>
+          <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-4 justify-content-center">
+      <div class="box_obal box-360">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_sekce">epické hry</div>
+          <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-4 justify-content-center hidden-md-down">
+      <div class="box_obal box-360">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-2-1-postreh.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_sekce">wargaming</div>
+          <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-4 justify-content-center hidden-md-down">
+      <div class="box_obal box-360">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-osady.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_sekce">akční hry</div>
+          <div class="h4 aktivity_nadpis">Naučte se žonglovat s ohnivými tyčemi</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-4 justify-content-center hidden-lg-down hidden-md-down">
+      <div class="box_obal box-360">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/5-vlcat.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_sekce">epické deskovky</div>
+          <div class="h4 aktivity_nadpis">Mice and Mystics: desková hra</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr-4 justify-content-center hidden-lg-down hidden-md-down">
+      <div class="box_obal box-360">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/adepti-slunce.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_sekce">přednáška</div>
+          <div class="h4 aktivity_nadpis">Prince Harry: Jak malovat figurky</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- konec řádku -->
+
+  <div class="row mt-4 align-items-center justify-content-center">
+      <a href="/program" class="href text-uppercase text-center font-weight-bold">
+        <span class="p pr-2 font-size-sm">prohlédnout celý program</span>
+      </a>
+      <svg class="red" width="16px" height="16px" viewBox="0 0 50 80" xml:space="preserve">
+        <polyline stroke-width="14" stroke-linecap="round" stroke-linejoin="round" points="0,0 35,38 0,75"/>
+      </svg>
+  </div>
+</div> <!-- konec kontejneru -->
+
+<!--                 CALL TO ACTION                     -->
+<div class="container-fluid">
+  <div class="row no-gutters callToAction justify-content-center align-items-center">
+      <div class="h3 white">Na nic nečekej a přihlaš se na Gamecon</div>
+        <a href="/prihlaska">
+          <div class="box_obal box-tlacitko">
+          <div class="box_obsah">Jdu do toho!</div>
+          <div class="box_ohraniceni box_ohraniceni-bile box_ohraniceni-2px"></div>
+        </a>
+      </div>
+  </div>
+</div> <!-- konec kontejneru -->
+
+<!--                    SPONZOŘI                         -->
+<div class="container sirka-1200">
+  <div class="row mt-5 justify-content-center">
+    <div class="h1">Děkujeme našim partnerům</div>
+  </div>
+  <div class="row mt-md-2 mt-0 justify-content-center align-items-center">
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-1.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-2.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-3.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-4.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-1.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-2.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-3.svg">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-4 mt-4 mt-md-5">
+      <div class="row mt-0 justify-content-center align-items-center">
+        <a href="http://seznam.cz">
+          <img class="partneri_obrazek" src="soubory/obsah/partneri/logo-4.svg">
+        </a>
+      </div>
+    </div>
+  </div>
+</div> <!-- konec konterjneru -->
 
 <!-- begin:info -->
 <!-- end:info -->

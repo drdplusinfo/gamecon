@@ -1,0 +1,80 @@
+.aktivity {
+  & a {
+    font-weight: bold;
+  }
+}
+.aktivity_obrazek {
+  width: 360px;
+  height: 203px;
+}
+.aktivity_sekce {
+  font-size: $font-size-base * .75;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: $red;
+  text-align: left;
+  padding-top: 32px;
+  padding-bottom: 20px;
+}
+.aktivity_vypravec {
+  @extend .aktivity_sekce;
+  color: $gray-300;
+}
+.aktivity_nadpis {
+}
+.aktivity_popis {
+  font-size: $font-size-base * .8;
+  color: $gray-300;
+  line-height: 1.6;
+}
+.aktivity_info {
+  font-size: $font-size-base * .8;
+  color: $gray-300;
+  line-height: 1.6;
+  padding-bottom: 12px;
+}
+.aktivity_cara {
+  width: 300px;
+  height: 3px;
+  background-color: $gray-100;
+  margin-bottom: 6px;
+  margin-top: 16px;
+  display: inline-block;
+}
+.aktivity_ikona_cas {
+  width: 16px;
+  opacity: 0.3;
+  padding-bottom: 2px;
+  margin-right: 8px;
+}
+.aktivity_ikona_sipka_dolu{
+  background: url(soubor('grafika/ikony/sipka_dolu.png')) no-repeat scroll left top;
+  width: 13px;
+  padding-top: 8px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+
+*, *:before, *:after {box-sizing:  border-box !important;}
+
+
+.row {
+ -moz-column-width: 18em;
+ -webkit-column-width: 18em;
+ -moz-column-gap: 1em;
+ -webkit-column-gap:1em;
+
+}
+
+.item {
+ display: inline-block;
+ padding:  .25rem;
+ width:  100%;
+}
+
+.well {
+ position:relative;
+ display: block;
+}

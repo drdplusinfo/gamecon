@@ -36,11 +36,12 @@ class Menu {
     $t->assign(['ogameconu' => $this->polozkyDropdown('ogameconu'), 'prakticke' => $this->polozkyDropdown('prakticke'), 'aktivity' => $this->polozkyDropdown('Aktivity') ]
     );
 
-    if(po(REG_GC_OD) && $u && $u->gcPrihlasen()) {
+    /* --------------------------- POŘEŠIT AŽ S PŘIHLÁŠENÝM UŽIVATELEM ----------------------------------*/
+    /*if(po(REG_GC_OD) && $u && $u->gcPrihlasen()) {
       $t->parse('menu.prihlasen');
     } else {
       $t->parse('menu.neprihlasen');
-    }
+    }*/
     $t->parse('menu');
     return $t->text('menu');
   }
