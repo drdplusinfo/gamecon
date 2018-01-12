@@ -1517,8 +1517,8 @@ class Aktivita {
     while (count($vyber) > 0 && count($vystupFinal) < $limit) {
       if (count($vyber) > $zbytek) {
 	$random = array_rand($vyber, $zbytek);
-	foreach ($random as $value) {
-	  $pole[] = $vyber [$value];
+	foreach ($random as $hodnota) {
+	  $pole[] = $vyber [$hodnota];
 	}
       } else {
 	$pole = $vyber;
@@ -1540,7 +1540,9 @@ class Aktivita {
 	  } else {
 	    $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
 	  }
-	}
+	} else {
+	  $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
+	}	
       }
     }
     return $vystupFinal;  
