@@ -10,7 +10,6 @@
 }
 .box_obsah {
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
-  height: calc(100% + 10px);
 }
 .box_ohraniceni {
   position: absolute;
@@ -22,6 +21,12 @@
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
 }
 /* ---------------- MODIFIKÁTORY -----------------*/
+.box_obal_aktivita {
+  @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
+    left: -14px !important;
+    margin-left: 10px;
+  }
+}
 .box_ohraniceni-2px { //Používá se např. pro tlačítko
   top: 4px;
   left: 4px;
@@ -51,8 +56,10 @@
 .box-360 {
   background-color: $white;
   width: 360px;
+  @include media-breakpoint-down(xs) {
+    width: 340px; // ošetření kvůli mansonry
+  }
 }
-
 .box-tlacitko {
   background-color: $white;
   width: 160px;

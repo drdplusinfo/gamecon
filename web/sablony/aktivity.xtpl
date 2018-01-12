@@ -1,11 +1,12 @@
 <!-- begin:aktivity -->
 <div class="container sirka-1200 mt-7 ">
-  <div class="masonry">
-    <div class="box_obal box-360">
+  <h1>Masonry CSS with javascript</h1>
+  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 360, "gutter": 40 }'>
+    <div class="grid-item box-360 box_obal">
       <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
       <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
-        <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
+        <div class="aktivity_vypravec">Petr "Sirien" Mazák</div>
+        <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
         <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
         <div class="text-center">
           <div class="aktivity_cara"></div>
@@ -20,7 +21,7 @@
       </div>
     </div>
 
-    <div class="box_obal box-360">
+    <div class="grid-item box-360 box_obal">
       <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
       <div class="box_obsah pl-30px pr-30px">
         <div class="aktivity_vypravec">Martin "Don Juan" Rašek</div>
@@ -40,11 +41,11 @@
       </div>
     </div>
 
-    <div class="box_obal box-360">
-      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-2-1-postreh.jpg"></img>
+    <div class="grid-item box-360 box_obal">
+      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
       <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Petr "Sirien" Mazák</div>
-        <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
+        <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
+        <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
         <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
         <div class="text-center">
           <div class="aktivity_cara"></div>
@@ -59,66 +60,48 @@
       </div>
     </div>
 
-
-  </div> <!-- konec masonry divu -->
-</div> <!--  konec kontejneru -->
-
-
-<div class="container">
-  <h1>Masonry CSS with Bootstrap</h1>
-<div class="row">
-    <div class="item">
-      <div class="well">
-        1 blah blah blah
+    <div class="grid-item box-360 box_obal">
+      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
+      <div class="box_obsah pl-30px pr-30px">
+        <div class="aktivity_vypravec">Martin "Don Juan" Rašek</div>
+        <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
+        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+        <div class="text-center">
+          <div class="aktivity_ikona_sipka_dolu"></div>
+          <div class="aktivity_cara"></div>
+        </div>
+        <div class="aktivity_cas">
+          <div class="aktivity_info">
+            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+            sobota – 19:30
+          </div>
+        </div>
+        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
       </div>
     </div>
- 	<div class="item">
-        <div class="well">
-        2 blah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah
+
+    <div class="grid-item box-360 box_obal">
+      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
+      <div class="box_obsah pl-30px pr-30px">
+        <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
+        <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
+        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+        <div class="text-center">
+          <div class="aktivity_cara"></div>
         </div>
-    </div>
-    <div class="item">
-        <div class="well">
-        3 blah blah blah blah blah blah blah blah h
+        <div class="aktivity_cas">
+          <div class="aktivity_info">
+            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+            sobota – 19:30
+          </div>
         </div>
+        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+      </div>
     </div>
-    <div class="item">
-        <div class="well">
-        blah blah blah blah
-        </div>
-    </div>
-    <div class="item">
-        <div class="well">
-          blah blah blah. The container inside the item must be position:relative
-        </div>
-    </div>
- 	<div class="item">
-        <div class="well">
-        blah blah blah blah blah blah blah blah blah blah blah blahblah blah blah blah blah blah
-        </div>
-    </div>
-    <div class="item">
-        <div class="well">
-        blah blah blah blah blah blah blah blah h
-        </div>
-    </div>
-    <div class="item">
-        <div class="well">
-        blah blah blah blah
-        </div>
-    </div>
-    <div class="item">
-        <div class="well">
-        blah blah blah blah blah blah blah blah blah blah blah blah
-        </div>
-    </div>
-    <div class="item">
-        <div class="well">
-          blah blah blah. The container inside the item must be position:relative
-        </div>
-    </div>
-</div>
-</div>
+    
+
+  </div> <!-- konec masonry -->
+</div> <!-- konec kontejneru -->
 
 
 

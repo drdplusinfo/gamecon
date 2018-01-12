@@ -143,136 +143,31 @@
     <div class="col-12 text-center h2">Na co se můžete těšit</div>
   </div>
   <div class="row mt-0">
-    <div class="col-12 text-center p gray-300">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
+    <div class="col-12 text-center p gray-300 mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
   </div>
 
-  <div class="row justify-content-center align-items-center">
-    <div class="pr-4 justify-content-center">
-      <div class="box_obal box-360">
-        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivity_sekce">larpy</div>
-          <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
-          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-          <div class="text-center">
-            <div class="aktivity_cara"></div>
-          </div>
-          <div class="aktivity_cas">
-            <div class="aktivity_info">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-              sobota – 19:30
-            </div>
-          </div>
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 360, "gutter": 40 }'>
+    <!-- begin: aktivita -->
+    <div class="grid-item box_obal_aktivita box-360">
+      <img class="aktivity_obrazek" src="{obrazek}"></img>
+      <div class="box_obsah pl-30px pr-30px">
+        <div class="aktivity_sekce">{linie}</div>
+        <div class="h4 aktivity_nadpis">{nazev}</div>
+        <div class="aktivity_popis">{kratkyPopis}</div>
+        <div class="text-center">
+          <div class="aktivity_cara"></div>
         </div>
+        <div class="aktivity_cas">
+          <div class="aktivity_info">
+            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+            {cas}
+          </div>
+        </div>
+        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
       </div>
     </div>
-
-    <div class="pr-4 justify-content-center">
-      <div class="box_obal box-360">
-        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivity_sekce">epické hry</div>
-          <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
-          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-          <div class="text-center">
-            <div class="aktivity_cara"></div>
-          </div>
-          <div class="aktivity_cas">
-            <div class="aktivity_info">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-              sobota – 19:30
-            </div>
-          </div>
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pr-4 justify-content-center hidden-md-down">
-      <div class="box_obal box-360">
-        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-2-1-postreh.jpg"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivity_sekce">wargaming</div>
-          <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
-          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-          <div class="text-center">
-            <div class="aktivity_cara"></div>
-          </div>
-          <div class="aktivity_cas">
-            <div class="aktivity_info">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-              sobota – 19:30
-            </div>
-          </div>
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pr-4 justify-content-center hidden-md-down">
-      <div class="box_obal box-360">
-        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/3-osady.jpg"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivity_sekce">akční hry</div>
-          <div class="h4 aktivity_nadpis">Naučte se žonglovat s ohnivými tyčemi</div>
-          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-          <div class="text-center">
-            <div class="aktivity_cara"></div>
-          </div>
-          <div class="aktivity_cas">
-            <div class="aktivity_info">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-              sobota – 19:30
-            </div>
-          </div>
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pr-4 justify-content-center hidden-lg-down hidden-md-down">
-      <div class="box_obal box-360">
-        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/5-vlcat.jpg"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivity_sekce">epické deskovky</div>
-          <div class="h4 aktivity_nadpis">Mice and Mystics: desková hra</div>
-          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-          <div class="text-center">
-            <div class="aktivity_cara"></div>
-          </div>
-          <div class="aktivity_cas">
-            <div class="aktivity_info">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-              sobota – 19:30
-            </div>
-          </div>
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pr-4 justify-content-center hidden-lg-down hidden-md-down">
-      <div class="box_obal box-360">
-        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/adepti-slunce.jpg"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivity_sekce">přednáška</div>
-          <div class="h4 aktivity_nadpis">Prince Harry: Jak malovat figurky</div>
-          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-          <div class="text-center">
-            <div class="aktivity_cara"></div>
-          </div>
-          <div class="aktivity_cas">
-            <div class="aktivity_info">
-              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-              sobota – 19:30
-            </div>
-          </div>
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-        </div>
-      </div>
-    </div>
-  </div> <!-- konec řádku -->
+    <!-- end: aktivita -->
+  </div>
 
   <div class="row mt-4 align-items-center justify-content-center">
       <a href="/program" class="href text-uppercase text-center font-weight-bold">

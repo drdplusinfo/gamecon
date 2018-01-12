@@ -67,7 +67,8 @@ if($m->bezStranky()) {
       ...glob('styl/pages/*.scss')
     ),
     'js'        => perfectcache(
-      'soubory/aplikace.js'
+      'soubory/aplikace.js',
+      'soubory/masonry.pkgd.min.js'
     ),
     'jsVyjimkovac'  => Vyjimkovac::js(URL_WEBU.'/ajax-vyjimkovac'),
     'chyba'     => Chyba::vyzvedniHtml(),

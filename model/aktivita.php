@@ -450,7 +450,7 @@ class Aktivita {
   }
 
   /** Vrací celkovou krátký popis aktivity (max 160 znaků)*/
-  protected function kratkyPopis()
+  function kratkyPopis()
   {
     return $this->a['kratky_popis'];
   }
@@ -1508,12 +1508,13 @@ class Aktivita {
    * @param int $zTypu maximální počet aktivit stejného typu
    * @return type
    */
-  static function zDoporucenych(int $limit = 6, int $zTypu = 2) {
-    $vyber = (array)self::zWhere('WHERE stav IN (1, 4, 5) AND doporucena = 1 AND typ NOT IN (9, 10, 13)');
+   static function zDoporucenych(int $limit = 6, int $zTypu = 2) {
+    $vyber = (array)self::zWhere('WHERE a.id_akce IN (2454,2455,2456,2457,2458,2400)');
     $zbytek = $limit;
-    $vystupFinal = [];
+    $vystupFinal = $vyber;
     $vystup = [];
 
+/*
     while (count($vyber) > 0 && count($vystupFinal) < $limit) {
       if (count($vyber) > $zbytek) {
 	$random = array_rand($vyber, $zbytek);
@@ -1542,12 +1543,12 @@ class Aktivita {
 	  }
 	} else {
 	  $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
-	}	
+	}
       }
     }
-    return $vystupFinal;  
+*/
+    return $vystupFinal;
   }
-
 
   /**
    * Vrátí iterátor s aktivitami podle zadané where klauzule. Alias tabulky

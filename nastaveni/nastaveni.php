@@ -17,7 +17,7 @@ error_reporting($puvodni ^ E_NOTICE);
 // Základní nastavení //
 ////////////////////////
 
-define('ROK', 2018);                                  // aktuální rok -- při změně roku viz http://bit.ly/2l5olnb
+define('ROK', 2017);                                  // aktuální rok -- při změně roku viz http://bit.ly/2l5olnb
 define('REG_GC_OD',         ROK.'-01-01 20:17:00');   // spuštění registrace na GameCon
 define('REG_AKTIVIT_OD',    ROK.'-01-02 20:17:00');   // spuštění registrace na první vlnu aktivit (pokud jsou aktivované)
 define('DRUHA_VLNA',        ROK.'-01-03 20:17:00');   // spuštění registrce na druhou vlnu aktivit

@@ -1,6 +1,6 @@
 <?php
 
-
+/* ------------------------------ INFOPRUH ------------------------------*/
 $aktualniDatum = time();
 $zacatekRoku = strtotime(ROK.'-01'.'-01');
 $zacatekRegu = strtotime(REG_GC_OD);
@@ -39,6 +39,27 @@ elseif ($konecGC < $aktualniDatum) { // Datum mezi koncem GC a začátkem roku
   $t->parse('titulka.poKonciGC');
 }
 
+/* ------------------------------ DOPORUČENÉ AKTIVITY ------------------------------*/
+$poleAktivit = Aktivita::zDoporucenych();
+echo '<h1>'.count($poleAktivit).'</h1>';
+
+foreach ($poleAktivit as $value) {
+  $cas = substr($value->denCas(), 0, strpos($value->denCas(), "–"));
+  $t->assign([
+    'obrazek' => $value->obrazek(),
+    'linie'   => $value->typ()->nazev(),
+    'nazev'   => $value->nazev(),
+    'kratkyPopis'   => $value->kratkyPopis(),
+    'cas'     => $cas
+  ]);
+  $t->parse('titulka.aktivita');
+}
+
+
+
+
+
+/* ------------------------------ PROMĚNNÉ DO ŠABLONY ------------------------------*/
 
 $t->assign([
   'menu'      =>  $menu,
@@ -49,7 +70,7 @@ $t->assign([
   'tretiVlna' => (new DateTimeCz(TRETI_VLNA))->formatBlog()
 ]);
 
-/* --------------------------- POŘEŠIT AŽ S PŘIHLÁŠENÝM UŽIVATELEM ----------------------------------*/
+/* --------------------------- STARÉ: POŘEŠIT AŽ S PŘIHLÁŠENÝM UŽIVATELEM ----------------------------------*/
 /*
 if($u && $u->gcPrihlasen() && REG_GC)   $t->parse('titulka.prihlasen');
 elseif($u && REG_GC)                    $t->parse('titulka.neprihlasen');
