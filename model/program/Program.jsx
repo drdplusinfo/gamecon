@@ -12,7 +12,6 @@ class Program extends React.Component {
     // zobrazujeme všechny, nejenom volné aktivity
     // zvolenaAktivita je číslo - id zvolenej aktivity
     this.state = {
-      data: this.props.data,
       linie: linie,
       zvolenyDen: 4,
       zvolenaAktivita: null,
@@ -24,7 +23,6 @@ class Program extends React.Component {
     this.prihlas = this.prihlas.bind(this);
     this.prepniVolneAktivity = this.prepniVolneAktivity.bind(this);
     this.ziskejStitky = this.ziskejStitky.bind(this);
-    this.zmenAktivitu = this.zmenAktivitu.bind(this);
     this.zmenLinie = this.zmenLinie.bind(this);
     this.zmenStitky = this.zmenStitky.bind(this);
     this.zvolTentoDen = this.zvolTentoDen.bind(this);
@@ -33,31 +31,15 @@ class Program extends React.Component {
 
   odhlas(idAktivity) {
     this.props.api.odhlas(idAktivity, (data) => {
-      //odhlášen, změň stav
-      console.log("odhlášen");
-      this.zmenAktivitu(idAktivity, "prihlasen", false);
-
-      let aktivita = this.state.data.aktivity.find(akt => akt.id === idAktivity);
-      if (this.state.data.uzivatelPohlavi === "f") {
-        this.zmenAktivitu(idAktivity, "prihlasenoZen", aktivita.prihlasenoZen - 1);
-      } else if (this.state.data.uzivatelPohlavi === "m") {
-        this.zmenAktivitu(idAktivity, "prihlasenoMuzu", aktivita.prihlasenoMuzu - 1);
-      }
+      //odhlášen, aktualizuj UI
+      this.forceUpdate();
     });
   }
 
   prihlas(idAktivity) {
     this.props.api.prihlas(idAktivity, (data) => {
-      //přihlášen, změň stav
-      console.log("přihlášen");
-      this.zmenAktivitu(idAktivity, "prihlasen", true);
-
-      let aktivita = this.state.data.aktivity.find(akt => akt.id === idAktivity);
-      if (this.state.data.uzivatelPohlavi === "f") {
-        this.zmenAktivitu(idAktivity, "prihlasenoZen", aktivita.prihlasenoZen + 1);
-      } else if (this.state.data.uzivatelPohlavi === "m") {
-        this.zmenAktivitu(idAktivity, "prihlasenoMuzu", aktivita.prihlasenoMuzu + 1);
-      }
+      //přihlášen, aktualizuj UI
+      this.forceUpdate();
     }, (chyba) => {
       //TODO: jak zobrazit tuto chybu hezky?
       alert(chyba);
@@ -91,17 +73,6 @@ class Program extends React.Component {
       }
     })
     return stitkyObj;
-  }
-
-  zmenAktivitu(idAktivity, klic, hodnota) {
-    let noveAktivity = this.state.data.aktivity.map(aktivita => {
-      if (aktivita.id === idAktivity) {
-        return Object.assign({}, aktivita, {[klic]: hodnota});
-      }
-      return aktivita;
-    });
-    let noveData = Object.assign({}, this.state.data, {aktivity: noveAktivity});
-    this.setState({data: noveData});
   }
 
   zmenLinie(linie) {
@@ -148,7 +119,7 @@ class Program extends React.Component {
         />
         <Rozvrh
           api = {api}
-          data = {this.state.data}
+          data = {this.props.data}
           jenVolneAktivity = {this.state.jenVolneAktivity}
           linie = {this.state.linie}
           stitky = {this.state.stitky}
@@ -158,7 +129,7 @@ class Program extends React.Component {
         {this.state.zvolenaAktivita &&
           <DetailAktivity
             api = {api}
-            data = {this.state.data}
+            data = {this.props.data}
             zvolenaAktivita = {this.state.zvolenaAktivita}
             zvolTutoAktivitu = {this.zvolTutoAktivitu}
           />

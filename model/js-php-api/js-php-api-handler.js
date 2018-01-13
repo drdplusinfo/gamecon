@@ -20,7 +20,7 @@ function (spravovanaData) {
 
     if (isObject(novaHodnota)) {
       // u objektů se pouze nové atributy přidají / nahradí do původního objektu
-      for (atribut in novaHodnota) {
+      for (let atribut in novaHodnota) {
         staraHodnota[atribut] = novaHodnota[atribut]
       }
     } else {
@@ -34,7 +34,7 @@ function (spravovanaData) {
 
   var zpracujOdpoved = function (odpoved, callback) {
     if (spravovanaData && odpoved.zmenaDat) {
-      for (klic in odpoved.zmenaDat) {
+      for (let klic in odpoved.zmenaDat) {
         zmenData(spravovanaData, klic, odpoved.zmenaDat[klic])
       }
     }
