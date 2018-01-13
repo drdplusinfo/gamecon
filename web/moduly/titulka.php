@@ -9,28 +9,28 @@ $druhaVlna = strtotime(DRUHA_VLNA);
 $tretiVlna = strtotime(TRETI_VLNA);
 $zacatekGC = strtotime(GC_BEZI_OD);
 $konecGC = strtotime(GC_BEZI_DO);
-$cas = null;
+$casOdpoctu = null;
 
 //TO-DO: Check na stránku infopruh v databázi (stránky)
 if ($zacatekRoku < $aktualniDatum && $aktualniDatum < $zacatekRegu) { // Datum mezi začátkem roku a spuštění registrace
   $t->parse('titulka.predZacatkemRegu');
-  $cas = REG_GC_OD;
+  $casOdpoctu = REG_GC_OD;
 }
 elseif ($zacatekRegu < $aktualniDatum && $aktualniDatum < $prvniVlna) { // Datum mezi začátkem spuštěním registrace a první vlnou aktivit
   $t->parse('titulka.predPrnvniVlnou');
-  $cas = REG_AKTIVIT_OD;
+  $casOdpoctu = REG_AKTIVIT_OD;
 }
 elseif ($prvniVlna < $aktualniDatum && $aktualniDatum < $druhaVlna) { // Datum mezi první a druhou vlnou aktivit
   $t->parse('titulka.predDruhouVlnou');
-  $cas = DRUHA_VLNA;
+  $casOdpoctu = DRUHA_VLNA;
 }
 elseif ($druhaVlna < $aktualniDatum && $aktualniDatum < $tretiVlna) { // Datum mezi druhou a třetí vlnou aktivit
   $t->parse('titulka.predTretiVlnou');
-  $cas = TRETI_VLNA;
+  $casOdpoctu = TRETI_VLNA;
 }
 elseif ($tretiVlna < $aktualniDatum && $aktualniDatum < $zacatekGC) { // Datum mezi třetí vlnou aktivit a začátkem GC
   $t->parse('titulka.predZacatkemGC');
-  $cas = GC_BEZI_OD;
+  $casOdpoctu = GC_BEZI_OD;
 }
 elseif ($zacatekGC < $aktualniDatum && $aktualniDatum < $konecGC) { // Datum mezi začátkem GC a koncem GC
   $t->parse('titulka.vPrubehuGC');
@@ -44,13 +44,13 @@ $poleAktivit = Aktivita::zDoporucenych();
 echo '<h1>'.count($poleAktivit).'</h1>';
 
 foreach ($poleAktivit as $value) {
-  $cas = substr($value->denCas(), 0, strpos($value->denCas(), "–"));
+  $casAktivity = substr($value->denCas(), 0, strpos($value->denCas(), "–"));
   $t->assign([
     'obrazek' => $value->obrazek(),
     'linie'   => $value->typ()->nazev(),
     'nazev'   => $value->nazev(),
     'kratkyPopis'   => $value->kratkyPopis(),
-    'cas'     => $cas
+    'cas'     => $casAktivity
   ]);
   $t->parse('titulka.aktivita');
 }
@@ -64,7 +64,7 @@ foreach ($poleAktivit as $value) {
 $t->assign([
   'menu'      =>  $menu,
   'a'         =>  $u ? $u->koncA() : '', //koncovka u slovesa (v šabloně užito jako nepřihlášen{a})
-  'cas'       =>  $cas,
+  'cas'       =>  $casOdpoctu,
   'prvniVlna' => (new DateTimeCz(REG_GC_OD))->formatBlog(),
   'druhaVlna' => (new DateTimeCz(DRUHA_VLNA))->formatBlog(),
   'tretiVlna' => (new DateTimeCz(TRETI_VLNA))->formatBlog()

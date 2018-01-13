@@ -69,9 +69,9 @@
         </div>
       </li>
     </ul>
+    <a class="nav-link pl-md-3 pl-0 mr-xl-8 mr-lg-7" href="prihlasit">Přihlásit</a>
     <!-- Přihlašovací menu -->
     <!-- begin:neprihlasen -->
-    <a class="nav-link pl-md-3 pl-0 mr-xl-8 mr-lg-7" href="prihlasit">Přihlásit</a>
     <!-- end:neprihlasen -->
     <!-- begin:prihlasen -->
     <a class="nav-link" href="prihlasit">Přihlášen</a>
