@@ -108,7 +108,13 @@ $(function(){
       </div> 
       <input style="float:right" type="checkbox" name="{fields}[doporucena]" value="1">
       <script>if('{doporucena}' == true) $('[name="{fields}[doporucena]"]').attr('checked',true);</script>
-      <div class="hinted" style="float:right;margin-top:2px">doporučena<div class="hint">Jestli je aktivita doporučena, tj. má se zobrazovat na titulce</div></div>  
+      <div class="hinted" style="float:right;margin-top:2px">doporučena<div class="hint">Zaškrtni, pokud aktivita splňuje tyto parametry:
+	<ul><li> obrázek aktivity je přibližně ve formátu 16:9</li>
+	  <li>obrázek aktivity je kvalitní (ostrý, dobré barvy)</li>
+	  <li>obrázek aktivity zobrazuje nějaký detail (detail figurky, charakteru, ...)</li>
+	  <li>krátký popis aktivity je kvalitní a lákavý</li>
+	  <li>chceš, aby se tato aktivita vykreslovala na titulce</li>
+	</ul></div></div>  
     </td>
   </tr>
   <tr>

@@ -449,9 +449,8 @@ class Aktivita {
     return $this->a['konec'];
   }
 
-  /** Vrací celkovou krátký popis aktivity (max 160 znaků)*/
-  function kratkyPopis()
-  {
+  /** Vrací krátký popis aktivity (max 160 znaků)*/
+  function kratkyPopis() {
     return $this->a['kratky_popis'];
   }
 
@@ -1502,19 +1501,18 @@ class Aktivita {
   }
 
   /**
-   * Vrátí iterátor doporučených aktivit
+   * Vrátí pole doporučených aktivit
    *
    * @param int $limit počet vrácených aktivit
    * @param int $zTypu maximální počet aktivit stejného typu
-   * @return type
+   * @return array - pole doporučených aktiit
    */
    static function zDoporucenych(int $limit = 6, int $zTypu = 2) {
-    $vyber = (array)self::zWhere('WHERE a.id_akce IN (2454,2455,2456,2457,2458,2400)');
+    $vyber = (array)self::zWhere('WHERE a.rok = $1 AND stav IN (1, 4, 5) AND doporucena = 1 AND typ NOT IN (9, 10, 13)', [ROK]);
     $zbytek = $limit;
-    $vystupFinal = $vyber;
+    $vystupFinal = [];
     $vystup = [];
 
-/*
     while (count($vyber) > 0 && count($vystupFinal) < $limit) {
       if (count($vyber) > $zbytek) {
 	$random = array_rand($vyber, $zbytek);
@@ -1524,6 +1522,8 @@ class Aktivita {
       } else {
 	$pole = $vyber;
       }
+
+      shuffle($pole);
 
       foreach ($pole as $value) {
 	if ($value->volno() == 'f' || $value->volno() == 'm' || $value->volno() == 'u') {
@@ -1546,7 +1546,7 @@ class Aktivita {
 	}
       }
     }
-*/
+
     return $vystupFinal;
   }
 
