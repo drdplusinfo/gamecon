@@ -1509,44 +1509,61 @@ class Aktivita {
    */
    static function zDoporucenych(int $limit = 6, int $zTypu = 2) {
     $vyber = (array)self::zWhere('WHERE a.rok = $1 AND stav IN (1, 4, 5) AND doporucena = 1 AND typ NOT IN (9, 10, 13)', [ROK]);
-    $zbytek = $limit;
+    shuffle($vyber);
     $vystupFinal = [];
     $vystup = [];
 
     while (count($vyber) > 0 && count($vystupFinal) < $limit) {
-      if (count($vyber) > $zbytek) {
-	$random = array_rand($vyber, $zbytek);
-	foreach ($random as $hodnota) {
-	  $pole[] = $vyber [$hodnota];
-	}
-      } else {
-	$pole = $vyber;
-      }
+      foreach ($vyber as $value) {
+	$typ = $value->typId();
 
-      shuffle($pole);
-
-      foreach ($pole as $value) {
 	if ($value->volno() == 'f' || $value->volno() == 'm' || $value->volno() == 'u') {
+	  if ((isset ($vystup [$typ]) && count($vystup [$typ]) < $zTypu) || !isset ($vystup [$typ])) {
+	    $vystup [$typ][] = $value;
+	    $vystupFinal[] = $value; 
+	  } 
+	} else {
+	  $plneAktivity[] = $value;
+	}
+
+	$vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
+
+	if (isset ($vystup [$typ]) && count($vystup [$typ]) == $zTypu) {
+	  $vyber = array_filter($vyber, function ($element) use ($typ){ return ($element->typId()  != $typ);});
+	  if (isset ($plneAktivity)) {
+	    $plneAktivity = array_filter($plneAktivity, function ($element) use ($typ){ return ($element->typId()  != $typ);});
+	  }
+	}
+
+	if (count($vystupFinal) == $limit) {
+	  break;
+	}
+      }
+    }
+
+    if (isset ($plneAktivity)) {
+      while (count($plneAktivity) > 0 && count($vystupFinal) < $limit) {
+	foreach ($plneAktivity as $value) {
 	  $typ = $value->typId();
 
 	  if ((isset ($vystup [$typ]) && count($vystup [$typ]) < $zTypu) || !isset ($vystup [$typ])) {
 	    $vystup [$typ][] = $value;
 	    $vystupFinal[] = $value;
-	    $zbytek--;
-	    $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
-
-	    if (count($vystup [$typ]) == $zTypu){
-	      $vyber = array_filter($vyber, function ($element) use ($typ){ return ($element->typId()  != $typ);});
-	    }
-	  } else {
-	    $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
 	  }
-	} else {
-	  $vyber = array_filter($vyber, function ($element) use ($value){ return ($element  != $value);});
+
+	  $plneAktivity = array_filter($plneAktivity, function ($element) use ($value){ return ($element  != $value);});
+
+	  if (isset ($vystup [$typ]) && count($vystup [$typ]) == $zTypu) {
+	    $plneAktivity = array_filter($plneAktivity, function ($element) use ($typ){ return ($element->typId()  != $typ);});
+	  }
+
+	  if (count($vystupFinal) == $limit) {
+	    break;
+	  }
 	}
       }
     }
-
+    
     return $vystupFinal;
   }
 
