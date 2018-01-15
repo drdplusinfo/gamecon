@@ -58,7 +58,7 @@ if($m->bezStranky()) {
     'base'      => URL_WEBU.'/',
     'admin'     => URL_ADMIN,
     'obsah'     => $m->vystup(),  // TODO nastavování titulku stránky //Manik: Tohle je co přesně? Musí to tu  být?
-    'sponzori'  => Modul::zNazvu('sponzori')->spust()->vystup(),
+    'partneri'  => Modul::zNazvu('partneri')->spust()->vystup(),
     'css'       => perfectcache(
       'styl/bootstrap/bootstrap.scss',
       'styl/index.scss',

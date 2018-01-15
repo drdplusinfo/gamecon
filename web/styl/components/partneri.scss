@@ -1,0 +1,18 @@
+.partner_obrazek {
+  max-width: 70px;
+  max-height: 70px;
+  opacity: 0.9;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.hlavniPartner_obrazek {
+  max-width: 120px;
+  max-height: 120px;
+  &:hover {
+    opacity: 0.6;
+    //max-width: 140px;
+    //max-height: 140px;
+  }
+}

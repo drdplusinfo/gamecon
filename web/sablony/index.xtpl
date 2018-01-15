@@ -31,12 +31,12 @@
   <!-- end: analytics -->
 </head>
 
-<!-- TO-DO: Toto by se nemělo vázat k celému body, ale k renderingu divu infopruh_odpocet -->
 <body>
-  <!--                   MENU                    -->
   {menu}
 
   {obsah}
+
+  {partneri}
   <!--                    PATIČKA                         -->
 
   <div class="container-fluid">
