@@ -9,7 +9,7 @@
   }
 }
 .box_obsah {
-  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
+  @extend .drop-shadow;
 }
 .box_ohraniceni {
   position: absolute;
@@ -19,6 +19,7 @@
   left: 10px;
   outline: 3px solid $black;
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
+  z-index: -1;
 }
 /* ---------------- MODIFIKÁTORY -----------------*/
 .box_obal_aktivita {

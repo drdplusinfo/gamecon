@@ -3,10 +3,48 @@
     font-weight: bold;
   }
 }
+.aktivity_nadpis {
+  @extend h2;
+  display: flex;
+  align-items: center;
+}
+.aktivity_nadpis_kruh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @extend .drop-shadow;
+  width: 57px;
+  height: 57px;
+  margin-right: 20px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, $purple-dark, $purple-light);
+}
+.aktivity_nadpis_ikona {
+  width: 39px;
+  height: 39px;
+}
+.aktivity_zakladniInfo {
+  @extend h5;
+  line-height: 1.5;
+  margin: 36px 60px 0px 0px;
+  font-weight: 600;
+}
 .aktivity_obrazek {
   width: 100%;
   height: 203px;
-
+}
+.aktivity_vlajecky {
+  position: absolute;
+  top: 30px;
+}
+.aktivity_vlajecka {
+  display: inline-block;
+  color: $white;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  padding: 5px 10px 5px 20px;
+  background-color: $black;
+  margin-top: 5px;
 }
 .aktivity_sekce {
   font-size: $font-size-base * .75;
@@ -25,6 +63,7 @@
 .aktivity_nadpis {
 }
 .aktivity_popis {
+  text-align: left;
   font-size: $font-size-base * .8;
   color: $gray-300;
   line-height: 1.6;
@@ -56,26 +95,10 @@
   margin-top: 20px;
   display: inline-block;
 }
-
-
-*, *:before, *:after {box-sizing:  border-box !important;}
-
-
-.row {
- -moz-column-width: 18em;
- -webkit-column-width: 18em;
- -moz-column-gap: 1em;
- -webkit-column-gap:1em;
-
-}
-
-.item {
- display: inline-block;
- padding:  .25rem;
- width:  100%;
-}
-
-.well {
- position:relative;
- display: block;
+.aktivity_ikona_sipka_nahoru{
+  background: url(soubor('grafika/ikony/sipka_nahoru.png')) no-repeat scroll left top;
+  width: 13px;
+  padding-top: 8px;
+  margin-top: 20px;
+  display: inline-block;
 }

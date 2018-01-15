@@ -41,7 +41,6 @@ elseif ($konecGC < $aktualniDatum) { // Datum mezi koncem GC a začátkem roku
 
 /* ------------------------------ DOPORUČENÉ AKTIVITY ------------------------------*/
 $poleAktivit = Aktivita::zDoporucenych();
-echo '<h1>'.count($poleAktivit).'</h1>';
 
 foreach ($poleAktivit as $value) {
   $casAktivity = substr($value->denCas(), 0, strpos($value->denCas(), "–"));
