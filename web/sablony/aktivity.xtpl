@@ -1,107 +1,178 @@
 <!-- begin:aktivity -->
 <div class="container sirka-1200 mt-7 ">
-  <h1>Masonry CSS with javascript</h1>
-  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 360, "gutter": 40 }'>
-    <div class="grid-item box-360 box_obal">
-      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
-      <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Petr "Sirien" Mazák</div>
-        <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
-        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-        <div class="text-center">
-          <div class="aktivity_cara"></div>
+  <div class="row">
+    <div class="col-xl-8">
+      <div class="aktivity_nadpis">
+        <div class="aktivity_nadpis_kruh">
+          <img src="soubory/grafika/ikony/linie/epic.svg" class="aktivity_nadpis_ikona">
         </div>
-        <div class="aktivity_cas">
-          <div class="aktivity_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-            sobota – 19:30
-          </div>
-        </div>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        Epické deskovky
+      </div>
+      <div class="aktivity_zakladniInfo">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce commodo dictum metus, ac luctus ante ultrices et. Sed non lobortis metus. Ut placerat egestas elit, accumsan rutrum dui.Praesent mollis purus vel mauris maximus iaculis. Donec aliquet justo quis ante dignissim luctus tincidunt bibendum odio sed aliquam eros.
       </div>
     </div>
+    <div class="col-xl-4">
+      <img src="soubory/grafika/aktivity/epic/Rectangle 1026.png" alt="">
+    </div>
+  </div>
+</div>  <!-- konec kontejneru -->
 
-    <div class="grid-item box-360 box_obal">
-      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
-      <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Martin "Don Juan" Rašek</div>
-        <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
-        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-        <div class="text-center">
-          <div class="aktivity_ikona_sipka_dolu"></div>
-          <div class="aktivity_cara"></div>
+<div class="pozadi-prechod">
+  <div class="container sirka-1200 mt-7">
+    <div class="grid"> <!-- Masonry -->
+      <div class="grid-item box-360 box_obal">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_vypravec">Petr "Sirien" Mazák</div>
+          <div class="h4 aktivity_nadpis">Warmachine: steam-powered combat</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="clickable" onclick="displayToggleMasonry('warmachine');">
+              <div id="warmachine_sipka_dolu" class="aktivity_ikona_sipka_dolu"></div>
+              <div id="warmachine_sipka_nahoru" class="aktivity_ikona_sipka_nahoru" style="display: none;"></div>
+            </div>
+            <div id="warmachine_popis" class="aktivity_popis" style="display: none;">
+              <div class="aktivity_cara"></div>
+              <div>
+                Určitě jste už viděli nějakou fireshow, kde vystupující pomocí zapálených řetězů vytvářeli různé kruhové vzory. Líbilo se vám to? Chtěli jste se to naučit, ale nevěděli jak začít? Nyní máte příležitost!
+              </div>
+              <div>
+                O co tedy jde? Točení s poi je moderní koníček, který má své kořeny v civilizaci divokých novozélandských Maorů. Poikaření v současné době provozují lidé po celém světě pro zábavu, zlepšení koordinace a také profesionálové jako živnost. Řadí se do žonglování, ale s ničím se nehází - míčky jsou přivázané na provazy, kterými performer točí kolem sebe, čímž vytváří kruhy různých tvarů a rozměrů. Ukážeme si základní manipulaci s poi, naučíte se zajímavé triky a vyzkoušíte si různé typy (od tréninkových poi přes ledkové až po ohnivé - včetně bezpečnostní instruktáže). Pokud jste v točení s poi pokročilí, můžete přijít také - ukážeme vám partnerské triky a dáme pár tipů k choreografii. Poi je zábava pro každého - doražte a poznáte. ;-)
+              </div>
+            </div>
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni"></div>
         </div>
-        <div class="aktivity_cas">
-          <div class="aktivity_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-            sobota – 19:30
+      </div>
+
+      <div class="grid-item box-360 box_obal">
+        <div>
+          <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
+          <div class="aktivity_vlajecky">
+            <div class="aktivity_vlajecka">pro nováčky</div><br>
+            <div class="aktivity_vlajecka">western</div><br>
           </div>
         </div>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-      </div>
-    </div>
-
-    <div class="grid-item box-360 box_obal">
-      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
-      <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
-        <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
-        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-        <div class="text-center">
-          <div class="aktivity_cara"></div>
-        </div>
-        <div class="aktivity_cas">
-          <div class="aktivity_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-            sobota – 19:30
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_vypravec">Martin "Don Juan" Rašek</div>
+          <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="clickable" onclick="displayToggleMasonry('2025');">
+              <div id="2025_sipka_dolu" class="aktivity_ikona_sipka_dolu"></div>
+              <div id="2025_sipka_nahoru" class="aktivity_ikona_sipka_nahoru" style="display: none;"></div>
+            </div>
+            <div id="2025_popis" class="aktivity_popis" style="display: none;">
+              <div class="aktivity_cara"></div>
+              <div>
+                Určitě jste už viděli nějakou fireshow, kde vystupující pomocí zapálených řetězů vytvářeli různé kruhové vzory. Líbilo se vám to? Chtěli jste se to naučit, ale nevěděli jak začít? Nyní máte příležitost!
+              </div>
+              <div>
+                O co tedy jde? Točení s poi je moderní koníček, který má své kořeny v civilizaci divokých novozélandských Maorů. Poikaření v současné době provozují lidé po celém světě pro zábavu, zlepšení koordinace a také profesionálové jako živnost. Řadí se do žonglování, ale s ničím se nehází - míčky jsou přivázané na provazy, kterými performer točí kolem sebe, čímž vytváří kruhy různých tvarů a rozměrů. Ukážeme si základní manipulaci s poi, naučíte se zajímavé triky a vyzkoušíte si různé typy (od tréninkových poi přes ledkové až po ohnivé - včetně bezpečnostní instruktáže). Pokud jste v točení s poi pokročilí, můžete přijít také - ukážeme vám partnerské triky a dáme pár tipů k choreografii. Poi je zábava pro každého - doražte a poznáte. ;-)
+              </div>
+            </div>
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
           </div>
         </div>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        <div class="box_ohraniceni"></div>
       </div>
-    </div>
 
-    <div class="grid-item box-360 box_obal">
-      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
-      <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Martin "Don Juan" Rašek</div>
-        <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
-        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-        <div class="text-center">
-          <div class="aktivity_ikona_sipka_dolu"></div>
-          <div class="aktivity_cara"></div>
-        </div>
-        <div class="aktivity_cas">
-          <div class="aktivity_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-            sobota – 19:30
+      <div class="grid-item box-360 box_obal">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
+          <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="clickable" onclick="displayToggleMasonry('love-in-the-age-of-debasement');">
+              <div id="love-in-the-age-of-debasement_sipka_dolu" class="aktivity_ikona_sipka_dolu"></div>
+              <div id="love-in-the-age-of-debasement_sipka_nahoru" class="aktivity_ikona_sipka_nahoru" style="display: none;"></div>
+            </div>
+            <div id="love-in-the-age-of-debasement_popis" class="aktivity_popis" style="display: none;">
+              <div class="aktivity_cara"></div>
+              <div>
+                Určitě jste už viděli nějakou fireshow, kde vystupující pomocí zapálených řetězů vytvářeli různé kruhové vzory. Líbilo se vám to? Chtěli jste se to naučit, ale nevěděli jak začít? Nyní máte příležitost!
+              </div>
+              <div>
+                O co tedy jde? Točení s poi je moderní koníček, který má své kořeny v civilizaci divokých novozélandských Maorů. Poikaření v současné době provozují lidé po celém světě pro zábavu, zlepšení koordinace a také profesionálové jako živnost. Řadí se do žonglování, ale s ničím se nehází - míčky jsou přivázané na provazy, kterými performer točí kolem sebe, čímž vytváří kruhy různých tvarů a rozměrů. Ukážeme si základní manipulaci s poi, naučíte se zajímavé triky a vyzkoušíte si různé typy (od tréninkových poi přes ledkové až po ohnivé - včetně bezpečnostní instruktáže). Pokud jste v točení s poi pokročilí, můžete přijít také - ukážeme vám partnerské triky a dáme pár tipů k choreografii. Poi je zábava pro každého - doražte a poznáte. ;-)
+              </div>
+            </div>
+            <div class="aktivity_cara"></div>
           </div>
-        </div>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-      </div>
-    </div>
-
-    <div class="grid-item box-360 box_obal">
-      <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
-      <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
-        <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
-        <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
-        <div class="text-center">
-          <div class="aktivity_cara"></div>
-        </div>
-        <div class="aktivity_cas">
-          <div class="aktivity_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
-            sobota – 19:30
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
           </div>
+          <div class="box_ohraniceni"></div>
         </div>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
       </div>
-    </div>
-    
 
-  </div> <!-- konec masonry -->
-</div> <!-- konec kontejneru -->
+      <div class="grid-item box-360 box_obal">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/2025.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_vypravec">Martin "Don Juan" Rašek</div>
+          <div class="h4 aktivity_nadpis">Bloodrage: Soumrak bohů pro pokročilé</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+
+      <div class="grid-item box-360 box_obal">
+        <img class="aktivity_obrazek" src="soubory/systemove/aktivity/12-zapletek.jpg"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivity_vypravec">Michal "Manik" Havelka</div>
+          <div class="h4 aktivity_nadpis">Love in the age of debasement</div>
+          <div class="aktivity_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <div class="text-center">
+            <div class="aktivity_cara"></div>
+          </div>
+          <div class="aktivity_cas">
+            <div class="aktivity_info">
+              <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+              sobota – 19:30
+            </div>
+          </div>
+          <div class="box_ohraniceni"></div>
+        </div>
+      </div>
+
+
+    </div> <!-- konec masonry -->
+  </div> <!-- konec kontejneru -->
+</div>
+
+<script>
+var $grid = $('.grid').masonry({
+  columnWidth: 360,
+  itemSelector: '.grid-item',
+  gutter: 40
+});
+</script>
 
 
 

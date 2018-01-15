@@ -49,3 +49,14 @@ function zmenPozadiNavbar(){
    }
    return false;
 };
+
+/* -------------- PŘEPÍNAČ ZOBRAZENÍ V PŘÍPADĚ MASONRY ------------------- */
+function displayToggleMasonry(aktivita) {
+  $('#'+aktivita+'_popis').slideToggle(200);
+  setTimeout(function(){
+    $grid.masonry('layout');
+}, 200);
+  $('#'+aktivita+'_sipka_dolu').toggle();
+  $('#'+aktivita+'_sipka_nahoru').toggle();
+  return false;
+}
