@@ -3,10 +3,39 @@
     font-weight: bold;
   }
 }
-.aktivity_nadpis {
+.aktivity_zahlavi {
+  margin: 36px 60px 0px 0px;
+  @include media-breakpoint-down(xl) {
+    margin: 36px 20px 0px 0px;
+  }
+  @include media-breakpoint-down(lg) {
+    margin: 36px 60px 0px 60px;
+  }
+  @include media-breakpoint-down(sm) {
+    margin: 36px 10px 0px 10px;
+  }
+}
+.aktivity_nadpis_ikona {
+  width: 39px;
+  height: 39px;
+}
+.aktivity_hlavniNadpis {
+  @extend .aktivita_nadpis;
+  padding-top: 4vw;
+  margin-bottom: 20px;
+  @include media-breakpoint-down(lg) {
+    padding-top: 0;
+  };
+}
+.aktivity_podnadpis {
   @extend h2;
-  display: flex;
-  align-items: center;
+  padding-top: 4vw;
+}
+.aktivity_zakladniInfo {
+  @extend h5;
+  line-height: 1.5;
+  font-weight: 600;
+  padding-right: 20px;
 }
 .aktivity_nadpis_kruh {
   display: flex;
@@ -19,25 +48,20 @@
   border-radius: 50%;
   background: linear-gradient(45deg, $purple-dark, $purple-light);
 }
-.aktivity_nadpis_ikona {
-  width: 39px;
-  height: 39px;
+.aktivita_nadpis {
+  @extend h2;
+  display: flex;
+  align-items: center;
 }
-.aktivity_zakladniInfo {
-  @extend h5;
-  line-height: 1.5;
-  margin: 36px 60px 0px 0px;
-  font-weight: 600;
-}
-.aktivity_obrazek {
+.aktivita_obrazek {
   width: 100%;
   height: 203px;
 }
-.aktivity_vlajecky {
+.aktivita_vlajecky {
   position: absolute;
   top: 30px;
 }
-.aktivity_vlajecka {
+.aktivita_vlajecka {
   display: inline-block;
   color: $white;
   font-size: $font-size-xs;
@@ -46,7 +70,7 @@
   background-color: $black;
   margin-top: 5px;
 }
-.aktivity_sekce {
+.aktivita_sekce {
   font-size: $font-size-base * .75;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -56,25 +80,60 @@
   padding-top: 32px;
   padding-bottom: 20px;
 }
-.aktivity_vypravec {
-  @extend .aktivity_sekce;
+.aktivita_vypravec {
+  @extend .aktivita_sekce;
   color: $gray-300;
+  & a {
+    color: $gray-300;
+  }
 }
-.aktivity_nadpis {
+.aktivita_nadpis {
 }
-.aktivity_popis {
+.aktivita_popis {
   text-align: left;
   font-size: $font-size-base * .8;
   color: $gray-300;
   line-height: 1.6;
+  & p {
+    text-align: left;
+    font-size: $font-size-base * .8;
+    color: $gray-300;
+    line-height: 1.6;
+  }
+  & p:last-child {
+    margin-bottom: 0;
+  }
 }
-.aktivity_info {
+.aktivita_info {
+  overflow: hidden;
+  width: 100%;
   font-size: $font-size-base * .8;
   color: $gray-300;
   line-height: 1.6;
   padding-bottom: 12px;
+  & table {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
 }
-.aktivity_cara {
+.aktivita_info-leva {
+  text-align: left;
+  float: left;
+}
+.aktivita_info-prava {
+  text-align: right;
+  float: right;
+}
+.aktivita_tabulka_bunka-cas {
+  width: 38px;
+}
+.aktivita_tabulka_bunka-cena {
+  text-align: left;
+  width: 44px;
+}
+.aktivita_cara {
   width: 300px;
   height: 3px;
   background-color: $gray-100;
@@ -82,20 +141,28 @@
   margin-top: 16px;
   display: inline-block;
 }
-.aktivity_ikona_cas {
-  width: 16px;
-  opacity: 0.3;
+.aktivita_ikona_cas {
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
   padding-bottom: 2px;
-  margin-right: 8px;
+  text-align: right;
 }
-.aktivity_ikona_sipka_dolu{
+.aktivita_ikona_cena {
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  padding-bottom: 2px;
+  text-align: right;
+}
+.aktivita_ikona_sipka_dolu{
   background: url(soubor('grafika/ikony/sipka_dolu.png')) no-repeat scroll left top;
   width: 13px;
   padding-top: 8px;
   margin-top: 20px;
   display: inline-block;
 }
-.aktivity_ikona_sipka_nahoru{
+.aktivita_ikona_sipka_nahoru{
   background: url(soubor('grafika/ikony/sipka_nahoru.png')) no-repeat scroll left top;
   width: 13px;
   padding-top: 8px;

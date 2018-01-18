@@ -50,12 +50,29 @@ function zmenPozadiNavbar(){
    return false;
 };
 
-/* -------------- PŘEPÍNAČ ZOBRAZENÍ V PŘÍPADĚ MASONRY ------------------- */
-function displayToggleMasonry(aktivita) {
+/* -------------- MASONRY ------------------- */
+function displayMasonry() { //spočítej masonry a zobraz
+  var $grid = $('.grid').masonry({
+    columnWidth: 360,
+    itemSelector: '.grid-item',
+    gutter: 40,
+    fitWidth: true
+  });
+  return $grid;
+}
+
+function displayToggleMasonry(aktivita) { //zobraz popis u aktivity a přepočítej celé masonry
+  var $grid = displayMasonry();
   $('#'+aktivita+'_popis').slideToggle(200);
-  setTimeout(function(){
-    $grid.masonry('layout');
-}, 200);
+    setTimeout(function(){
+      $grid.masonry('layout');
+    }, 50);
+    setTimeout(function(){
+      $grid.masonry('layout');
+    }, 100);
+    setTimeout(function(){
+      $grid.masonry('layout');
+    }, 200);
   $('#'+aktivita+'_sipka_dolu').toggle();
   $('#'+aktivita+'_sipka_nahoru').toggle();
   return false;

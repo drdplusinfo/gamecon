@@ -1,11 +1,5 @@
 <?php
 
-$this->bezDekorace(true);
-
-Aktivita::prihlasovatkoZpracuj($u);
-Aktivita::vyberTeamuZpracuj($u);
-Tym::vypisZpracuj($u);
-
 /**
  * Pomocná fce pro vykreslení seznamu linků na základě organizátorů
  */
@@ -29,57 +23,6 @@ if(array_keys($_GET) == ['req', 'typ'] && $_GET['typ']) {
   back($_GET['typ']);
 }
 
-// převedení url parametrů do GET, aby se sjednotilo načítání filtrů
-if($this->param('typ')) $_GET['typ'] = $_GET['req']; // TODO inteligentnější načítání z názvu typu
-if($this->param('org')) $_GET['org'] = $_GET['req']; // TODO inteligentnější načítání z názvu typu
-
-// Nabídka filtrů
-$filtry = [];
-$filtry[] = [
-  'nazev'     =>  'Typ',
-  'name'      =>  'typ',
-  'moznosti'  =>  Menu::linieSeznam(),
-];
-$roky = [
-  'nazev'     =>  'Rok',
-  'name'      =>  'rok',
-  'moznosti'  =>  [],
-];
-for($i = ROK; $i >= 2009; $i--) {
-  $roky['moznosti'][$i] = $i;
-}
-$filtry[] = $roky;
-$filtry[] = [
-  'nazev' =>  'Obsazenost',
-  'name'  =>  'jenVolne',
-  'moznosti'  =>  [
-    '1'  =>  'jen volné',
-    ''  =>  '(jakákoli)',
-  ]
-];
-
-// Zobrazení filtrovacího boxu
-foreach($filtry as $filtr) {
-  foreach($filtr['moznosti'] as $value => $moznost) {
-    $t->assign('value', $value);
-    $t->assign('nazev', $moznost);
-    $t->assign('selected', get($filtr['name']) == $value ? 'selected' : '');
-    //$t->parse('aktivity.filtr.moznost');
-  }
-  $t->assign($filtr);
-  //$t->parse('aktivity.filtr');
-}
-
-// Vyfiltrování aktivit
-$filtr = [];
-$filtr['rok'] = get('rok') ?: ROK;
-if($this->param('typ')) $filtr['typ'] = $this->param('typ')->id();
-elseif(get('typ') && ($typ = Typ::zUrl(get('typ')))) $filtr['typ'] = $typ->id();
-if($this->param('org')) $filtr['organizator'] = $this->param('org')->id();
-if(get('jenVolne')) $filtr['jenVolne'] = true;
-$filtr['jenViditelne'] = true;
-$aktivity = Aktivita::zFiltru($filtr, ['nazev_akce', 'patri_pod', 'zacatek']);
-
 // Statické stránky
 // TODO hack
 // TODO nejasné načítání typu
@@ -89,6 +32,14 @@ if(isset($typ) && $typ && in_array($typ->url(), $prefixy))
   $stranky = Stranka::zUrlPrefixu($typ->url());
 usort($stranky, function($a, $b){ return $a->poradi() - $b->poradi(); });
 $t->parseEach($stranky, 'stranka', 'aktivity.stranka');
+
+// Vyfiltrování aktivit
+$filtr = [];
+$filtr['rok'] = ROK;
+if($this->param('typ')) $filtr['typ'] = $this->param('typ')->id();
+elseif(get('typ') && ($typ = Typ::zUrl(get('typ')))) $filtr['typ'] = $typ->id();
+$filtr['jenViditelne'] = true;
+$aktivity = Aktivita::zFiltru($filtr, ['nazev_akce', 'patri_pod', 'zacatek']);
 
 // Zobrazení aktivit
 $a = reset($aktivity);
@@ -106,27 +57,19 @@ while($a) {
   // vlastnosti per termín
   $t->assign([
     'a'             =>  $a,
-    'prihlasovatko' =>  $a->prihlasovatko($u),
+    'prihlasovatko' =>  $a->prihlasovatko($u), //Manik: Zjistit, co to přesně dělá
     //TODO ne/přihlašovatelnost odlišená vzhledem (třídou?) termínu aktivity
     //TODO ajax na zobrazení bubliny ne/úspěšného přihlášení
   ]);
-  if( $v = $a->vyberTeamu($u) ) {
-    $t->assign('vyber', $v);
-    //$t->parse('aktivity.aktivita.tymTermin.vyber');
-  }
   if($a->teamova()) {
-    if($tym = $a->tym()) {
-      $t->assign('tym', $tym);
-      //$t->parse('aktivity.aktivita.tymTermin.tym');
-      if($u && $a->prihlasen($u)) {
-        //$t->parse('aktivity.aktivita.tymTermin.vypis');
-      }
-    }
-    $t->assign('orgJmenaTym', implode(orgUrls($a->organizatori())));
-    //$t->parse('aktivity.aktivita.tymTermin');
+    $t->parse('aktivity.aktivita.neprihlasovatko');
   } else {
-    //$t->parse('aktivity.aktivita.termin');
-    $orgUrls = array_merge($orgUrls, orgUrls($a->organizatori()));
+    $t->parse('aktivity.aktivita.prihlasovatko');
+    $t->assign([
+      'den'     => $a->zacatek()->format('l'),
+      'cas'     => $a->zacatek()->format('G:i')
+    ]);
+    $t->parse('aktivity.aktivita.termin');
   }
 
   // vlastnosti per skupina (hack)
@@ -153,13 +96,16 @@ while($a) {
     $popis = $a->popis();
     if(strlen($popis) > 370) //$t->parse('aktivity.aktivita.vice');
     if(!$a->teamova()) {
+      $orgUrls = array_merge($orgUrls, orgUrls($a->organizatori()));
       $t->assign('orgJmena', implode(', ', array_unique($orgUrls)));
-      //$t->parse('aktivity.aktivita.organizatori');
+      $t->parse('aktivity.aktivita.organizatori');
       $orgUrls = [];
     }
-    $t->assign('extra', $a->typId() == Typ::DRD ? 'drd' : '');
-    $t->assign('popis', $popis);
-    //$t->parse('aktivity.aktivita');
+    $t->assign([
+      'extra'   => $a->typId() == Typ::DRD ? 'drd' : '',
+      'popis'   => $popis
+      ]);
+    $t->parse('aktivity.aktivita');
   }
 
   // bižuterie pro běh cyklu
@@ -193,10 +139,17 @@ if($org = $this->param('org')) {
 
 // záhlaví - typ
 if(isset($typ)) {
-  $t->assign('text', $typ->oTypu());
-  //$t->parse('aktivity.zahlavi');
-  $this->info()
+  $t->assign([
+    'oLinii'        => $typ->oTypu(),
+    'hlavniNadpis'          => ucfirst($typ->nazev()),
+    'ikona'         => $typ->ikona(),
+    'ilustracni_obrazek' => $typ->obrazek()
+  ]);
+  $t->parse('aktivity.zahlavi');
+  // Manik: Co je kufa tohle?
+  /*$this->info()
     ->nazev(mb_ucfirst($typ->nazevDlouhy()))
     ->popis($typ->bezNazvu())
     ->obrazek(null);
+  */
 }

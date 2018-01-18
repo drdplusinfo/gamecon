@@ -24,8 +24,8 @@
                 <div class="dropdown-header">
                   <div>Stolní hry</div>
                 </div>
-                <a class="dropdown-item" href="/">Deskoherna</a>
-                <a class="dropdown-item" href="/">Epické deskovky</a>
+                <a class="dropdown-item" href="deskoherna">Deskoherna</a>
+                <a class="dropdown-item" href="epic">Epické deskovky</a>
                 <a class="dropdown-item" href="/">Turnaje</a>
                 <a class="dropdown-item" href="/">Wargaming</a>
               </div>

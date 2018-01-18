@@ -1,3 +1,7 @@
 .grid-item {
   margin-bottom: 30px;
 }
+
+.grid { //centrování všech položek uvnitř masonry
+  margin: 0 auto;
+}

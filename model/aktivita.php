@@ -86,14 +86,14 @@ class Aktivita {
       return null;
     else if(!($this->cenaZaklad() > 0))
       return 'zdarma';
-    else if($this->a['bez_slevy'])
+    else
       return round($this->cenaZaklad()).'&thinsp;Kč';
-    else if($u && $u->gcPrihlasen())
+    /*else if($u && $u->gcPrihlasen())
       return round($this->cenaZaklad()*$u->finance()->slevaAktivity()).'&thinsp;Kč';
     else if(SLEVA_AKTIVNI)
       return round($this->cenaZaklad()*0.8).'&thinsp;Kč / '.round($this->cenaZaklad()*0.6).'&thinsp;Kč';
     else
-      return round($this->cenaZaklad()*1.0).'&thinsp;Kč / '.round($this->cenaZaklad()*0.8).'&thinsp;Kč';
+      return round($this->cenaZaklad()*1.0).'&thinsp;Kč / '.round($this->cenaZaklad()*0.8).'&thinsp;Kč';*/
   }
 
   /** Základní cena aktivity */
@@ -109,10 +109,10 @@ class Aktivita {
       return 0.0;
   }
 
-  /** Vrací datum ve stylu Pátek 14:00-18:00 */
+  /** Vrací datum v podobě objektu DateTime */
   function denCas() {
     if($z = $this->zacatek())
-      return $z->format('l G:i').'–'.$this->konec()->format('G:i');
+      return $z->format('l G:i').'–'.$this->konec()->format('G:i'); //prozatím zakomentováno, kdo ví, co se tím všechno rozbije
     else
       return '';
   }
@@ -1520,8 +1520,8 @@ class Aktivita {
 	if ($value->volno() == 'f' || $value->volno() == 'm' || $value->volno() == 'u') {
 	  if ((isset ($vystup [$typ]) && count($vystup [$typ]) < $zTypu) || !isset ($vystup [$typ])) {
 	    $vystup [$typ][] = $value;
-	    $vystupFinal[] = $value; 
-	  } 
+	    $vystupFinal[] = $value;
+	  }
 	} else {
 	  $plneAktivity[] = $value;
 	}
@@ -1563,7 +1563,7 @@ class Aktivita {
 	}
       }
     }
-    
+
     return $vystupFinal;
   }
 

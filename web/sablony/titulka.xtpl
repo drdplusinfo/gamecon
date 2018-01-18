@@ -146,20 +146,20 @@
     <div class="col-12 text-center p gray-300 mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
   </div>
 
-  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 360, "gutter": 40 }'>
+  <div class="grid">
     <!-- begin: aktivita -->
     <div class="grid-item box_obal_aktivita box-360">
-      <img class="aktivity_obrazek" src="{obrazek}"></img>
+      <img class="aktivita_obrazek" src="{obrazek}"></img>
       <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivity_sekce">{linie}</div>
-        <div class="h4 aktivity_nadpis">{nazev}</div>
-        <div class="aktivity_popis">{kratkyPopis}</div>
+        <div class="aktivita_sekce">{linie}</div>
+        <div class="h4 aktivita_nadpis">{nazev}</div>
+        <div class="aktivita_popis">{kratkyPopis}</div>
         <div class="text-center">
-          <div class="aktivity_cara"></div>
+          <div class="aktivita_cara"></div>
         </div>
-        <div class="aktivity_cas">
-          <div class="aktivity_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivity_ikona_cas">
+        <div class="aktivita_cas">
+          <div class="aktivita_info">
+            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivita_ikona_cas">
             {cas}
           </div>
         </div>
@@ -168,6 +168,9 @@
     </div>
     <!-- end: aktivita -->
   </div>
+  <script>
+  displayMasonry();
+  </script>
 
   <div class="row mt-4 align-items-center justify-content-center">
       <a href="/program" class="href text-uppercase text-center font-weight-bold">

@@ -22,6 +22,11 @@ class Typ extends DbObject {
     )));
   }
 
+  function ikona()
+  {
+    return 'soubory/obsah/linie/ikony/'.$this->r['id_typu'].'.svg';
+  }
+
   function nazev() {
     return $this->r['typ_1pmn'];
   }
@@ -30,6 +35,10 @@ class Typ extends DbObject {
   function nazevDlouhy() {
     preg_match('@<h1>([^<]+)</h1>@', $this->oTypu(), $m);
     return $m[1];
+  }
+
+  function obrazek() { //TO-DO: Mělo by checkovat, jestli je tam png nebo jpg a podle toho vracet
+    return 'soubory/obsah/linie/ilustracni_obrazky/'.$this->r['id_typu'].'.jpg';
   }
 
   function oTypu() {
