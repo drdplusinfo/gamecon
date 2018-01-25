@@ -9,89 +9,161 @@
   </div>
 
   <!--                   INFOPRUH                    -->
-  <div class="row mt-0">
-    <div class="col infopruh">
+  <div class="row mt-0 infopruh">
+    <!-- begin: uzkyOdpocet -->
+    <div class="col-1 hidden-lg-down"></div>
+    <div class="col-lg-4 col-md-12">
+    <!-- end: uzkyOdpocet -->
+    <!-- begin: sirokyOdpocet -->
+    <div class="col">
+    <!-- end: sirokyOdpocet -->
       <div class="infopruh_zvyrazneni">
         <!-- begin: predZacatkemRegu -->
-        Do spuštění <span class="tooltip">registrace<span class="tooltipText">Registrace na GameCon probíhá postupně: Jako první se zaregistrujete na festival samotný a od  <b>{prvniVlna}</b> je možné se registrovat na aktivity samotné. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> na gamecon zbývá:
+          Do spuštění <span class="tooltip">registrace<span class="tooltipText">Registrace na GameCon probíhá postupně: Jako první se zaregistrujete na festival samotný a od  <b>{prvniVlna}</b> je možné se registrovat na aktivity samotné. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> na gamecon zbývá:
         <!-- end: predZacatkemRegu -->
-        <!-- begin: predPrnvniVlnou -->
-        Do <span class="tooltip">první vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Další vlny vypustíme <b>{druhaVlna} a {tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
-        <!-- end: predPrnvniVlnou -->
-        <!-- begin: predDruhouVlnou -->
-        Do <span class="tooltip">druhé vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlnu vypustíme <b>{tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
-        <!-- end: predDruhouVlnou -->
+        <!-- begin: predPrvniVlnou -->
+          Do první <span class="tooltip">vlny aktivit <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Další vlny vypustíme <b>{druhaVlna} a {tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> zbývá:
+        <!-- end: predPrvniVlnou -->
+        <!-- begin: predDruhouVlnouOdpocet -->
+          Do druhé <span class="tooltip">vlny aktivit <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlnu vypustíme <b>{tretiVlna}</b>. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> zbývá:
+        <!-- end: predDruhouVlnouOdpocet -->
         <!-- begin: predTretiVlnou -->
-        Do <span class="tooltip">třetí vlny <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlna je poslední, dále budou přibývat aktivity v programu postupně. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> aktivit zbývá:
+          Do třetí <span class="tooltip">vlny aktivit <span class="tooltipText">Registraci na aktivity vypouštíme postupně - po vlnách. Třetí vlna je poslední, dále budou přibývat aktivity v programu postupně. Více se dozvíte v sekci <a href="/jak-to-probiha">Jak to probíhá?</a></span></span> zbývá:
         <!-- end: predTretiVlnou -->
         <!-- begin: predZacatkemGC -->
-        Do začátku gameconu zbývá:
+          Do začátku gameconu zbývá:
         <!-- end: predZacatkemGC -->
         <!-- begin: vPrubehuGC -->
-        GameCon právě probíhá. Ještě stále se můžete zaregistrovat na místě a užít si spoustu her.
+          GameCon právě probíhá. Ještě stále se můžete zaregistrovat na místě a užít si spoustu her.
         <!-- end: vPrubehuGC -->
         <!-- begin: poKonciGC -->
-        GameCon již skončil. Děkujeme všem za atmosféru, kterou jste mu vdechli.
+          GameCon již skončil. Děkujeme všem za atmosféru, kterou jste mu vdechli.
         <!-- end: poKonciGC -->
+        <span class="infopruh_odpocet ml-3" id="infopruh_odpocet">
+          <span id="odpocetDny"></span><span class="infopruh_casovaJednotka">dní</span>
+          <span id="odpocetHodiny"></span><span class="infopruh_casovaJednotka">hodin</span>
+          <span id="odpocetMinuty"></span><span class="infopruh_casovaJednotka">minut</span>
+          <span id="odpocetSekundy" class="hidden-xl-down"></span><span class="infopruh_casovaJednotka hidden-xl-down">sekund</span>
+        </span>
       </div>
-      <div class="infopruh_odpocet" id="infopruh_odpocet"><span id="odpocetDny"></span>&nbsp;dní <div class="infopruh_lomitko"></div> <span id="odpocetHodiny"></span>&nbsp;hodin <div class="infopruh_lomitko"></div><span id="odpocetMinuty"></span>&nbsp;minut</div>
     </div>
+    <!-- begin: uzkyVlny -->
+      <div class="col-7 hidden-lg-down infopruh_zvyrazneni">
+        <!-- begin: predZacatkemReguVlny -->
+          <span class="infopruh_udalost-cekajici">{prvniVlna}První vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{druhaVlna} Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{tretiVlna} Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
+        <!-- end: predZacatkemReguVlny -->
+        <!-- begin: predPrvniVlnouVlny -->
+          <span class="infopruh_udalost-cekajici">{prvniVlna}První vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{druhaVlna} Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{tretiVlna} Třetí vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
+        <!-- end: predPrvniVlnouVlny -->
+        <!-- begin: predDruhouVlnouVlny -->
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{druhaVlna} Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{tretiVlna} Třetí vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
+        <!-- end: predDruhouVlnouVlny -->
+        <!-- begin: predTretiVlnouVlny -->
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta"> Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{tretiVlna} Třetí vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
+        <!-- end: predTretiVlnouVlny -->
+        <!-- begin: predZacatkemGCVlny -->
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta"> Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta"> Třetí vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
+        <!-- end: predZacatkemGCVlny -->
+        <!-- begin: vPrubehuGCVlny -->
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta"> Druhá vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta"> Třetí vlna aktivit</span>
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
+          <span class="infopruh_udalost-probehnuta"> GAMECON!</span>
+        <!-- end: vPrubehuGCVlny -->
+      </div>
+    <!-- end: uzkyVlny -->
   </div>
   <script>
-  odpocet('{cas}');
+  odpocet('{casOdpoctu}');
   </script>
 
+  <!--                 ZÁKLADNÍ INFO NOVÉ                     -->
 
-  <!--                 ZÁKLADNÍ INFO                     -->
-  <div class="row justify-content-center">
-    <div class="col text-center zakladniInfo">
-      <h2>Co čekat od gameconu</h2>
+<div class="row">
+  <div class="col-1 hidden-lg-down"></div>
+  <div class="col-lg-4 col-12">
+    <div class="row">
+      <div class="col-12 text-center zakladniInfo">
+        <h2>Co čekat od gameconu</h2>
+      </div>
     </div>
-  </div>
-  <div class="row justify-content-center zakladniInfo">
-    <div> <!-- Omezení šířky obsahu, viz css -->
+    <div class="row mt-0">
       <div class="col-4 text-center">
         <div class="zakladniInfo_cislo">4</div>
         <div class="zakladniInfo_popis">dny zábavy</div>
       </div>
-      <div class="zakladniInfo_lomitko"></div>
       <div class="col-4 text-center">
         <div class="zakladniInfo_cislo">200+</div>
         <div class="zakladniInfo_popis">aktivit</div>
       </div>
-      <div class="zakladniInfo_lomitko"></div>
       <div class="col-4 text-center">
         <div class="zakladniInfo_cislo">800+</div>
         <div class="zakladniInfo_popis">účastníků</div>
       </div>
     </div>
-  </div>
-
-  <!--                    PITCH                       -->
-  <div class="row justify-content-center align-items-center">
-    <div class="col-lg-4 col-md-5 col-sm-10 col-xs-12 pitch_sloupec">
-      <div class="box_obal">
-        <img src='soubory/grafika/titulka/deskoherna.jpg' class="pitch_obrazek box_obsah"></img>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+    <div class="row">
+      <div class="col-md-2 hidden-lg-up"></div>
+      <div class="col-lg-12 col-md-8 col-sm-12 pitch_popis">
+        Deskové a karetní hry, RPG a Larpy, akční hry, wargaming, mistrovství světa v Dračím doupěti, pohybové workshopy, koncert a párty. Skvělí účastníci a žážitky, na které se budete těšit zase za rok, to je Gamecon.
       </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 h4 pl-md-6 pitch_popis">
-      <div class="pitch_vlnovka">
-        <svg class="red" width="32px" height="16px" viewBox="0 0 600 100" xml:space="preserve">
-          <polyline points="0,100 100,0 200,100 300,0 400,100 500,0 600,100 " stroke-linejoin="miter" stroke-linecap="round" stroke-width="50"></polyline>
-        </svg>
-      </div>
-      Deskové a karetní hry, RPG a Larpy, akční hry, wargaming, mistrovství světa v Dračím doupěti, pohybové workshopy, koncert a párty. Skvělí účastníci a žážitky, na které se budete těšit zase za rok, to je Gamecon.
+      <div class="col-md-2 hidden-lg-up"></div>
     </div>
   </div>
+  <div class="col-lg-7 hidden-lg-down">
+    oprásky
+  </div>
+</div>
 
   <!--                 ROZŠÍŘENÉ INFO                     -->
   <div class="row justify-content-center align-items-center">
     <div class="pr-5 justify-content-center sirka-1200">
       <div class="text-center box_obal box-280">
         <div class="box_obsah pl-10px">
-          <div class="rozsireneInfo_nadpis">Akce<br> pro všechny</div>
-          <div class="rozsireneInfo_cara"></div>
+            <img src="soubory/grafika/ikony/titulka/akce_pro_vsechny.svg" class="rozsireneInfo_obrazek"><br>
+          <div class="rozsireneInfo_nadpis">Akce pro všechny</div>
           <div class="rozsireneInfo_popis">jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si</div>
           <div class="box_ohraniceni"></div>
         </div>
@@ -100,8 +172,8 @@
     <div class="pr-5 justify-content-center sirka-1200">
       <div class="text-center box_obal box-280">
           <div class="box_obsah pl-10px">
-          <div class="rozsireneInfo_nadpis">Festival<br> aktivní zábavy</div>
-          <div class="rozsireneInfo_cara"></div>
+            <img src="soubory/grafika/ikony/titulka/festival_aktivni_zabavy.svg" class="rozsireneInfo_obrazek"><br>
+          <div class="rozsireneInfo_nadpis">Festival aktivní zábavy</div>
           <div class="rozsireneInfo_popis">na všech aktivitách je potřeba zapojit tělo, mozek či obojí</div>
           <div class="box_ohraniceni"></div>
         </div>
@@ -110,8 +182,8 @@
     <div class="pr-5 justify-content-center sirka-1200">
       <div class="text-center box_obal box-280">
         <div class="box_obsah pl-10px">
-          <div class="rozsireneInfo_nadpis">Volná<br> deskoherna</div>
-          <div class="rozsireneInfo_cara"></div>
+          <img src="soubory/grafika/ikony/titulka/volna_deskoherna.svg" class="rozsireneInfo_obrazek"><br>
+          <div class="rozsireneInfo_nadpis">Volná deskoherna</div>
           <div class="rozsireneInfo_popis">stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme</div>
           <div class="box_ohraniceni"></div>
         </div>
@@ -138,60 +210,75 @@
 </div> <!-- konec kontejneru -->
 
 <!--               VYBRANÉ AKTIVITY                      -->
-<div class="container aktivity sirka-1200">
-  <div class="row">
-    <div class="col-12 text-center h2">Na co se můžete těšit</div>
-  </div>
-  <div class="row mt-0">
-    <div class="col-12 text-center p gray-300 mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
-  </div>
-
-  <div class="grid">
-    <!-- begin: aktivita -->
-    <div class="grid-item box_obal_aktivita box-360">
-      <img class="aktivita_obrazek" src="{obrazek}"></img>
-      <div class="box_obsah pl-30px pr-30px">
-        <div class="aktivita_sekce">{linie}</div>
-        <div class="h4 aktivita_nadpis">{nazev}</div>
-        <div class="aktivita_popis">{kratkyPopis}</div>
-        <div class="text-center">
-          <div class="aktivita_cara"></div>
-        </div>
-        <div class="aktivita_cas">
-          <div class="aktivita_info">
-            <img src="soubory/grafika/ikony/circular-clock.svg" class="aktivita_ikona_cas">
-            {cas}
-          </div>
-        </div>
-        <div class="box_ohraniceni box_ohraniceni-cervene"></div>
-      </div>
+<div class="pozadi-prechod">
+  <div class="container aktivity sirka-1200">
+    <div class="row mt-0 pt-7">
+      <div class="col-12 text-center h2 white">Na co se můžete těšit</div>
     </div>
-    <!-- end: aktivita -->
-  </div>
-  <script>
-  displayMasonry();
-  </script>
+    <div class="row mt-0">
+      <div class="col-12 text-center p white mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
+    </div>
 
-  <div class="row mt-4 align-items-center justify-content-center">
-      <a href="/program" class="href text-uppercase text-center font-weight-bold">
+    <div class="grid">
+      <!-- begin: aktivita -->
+      <div class="grid-item box_obal_aktivita box-360">
+        <img class="aktivita_obrazek" src="{obrazek}"></img>
+        <div class="box_obsah pl-30px pr-30px">
+          <div class="aktivita_sekce">{linie}</div>
+          <div class="h4 aktivita_nadpis">{nazev}</div>
+          <div class="aktivita_popis">{kratkyPopis}</div>
+          <!-- begin: info -->
+          <div class="text-center">
+            <div class="aktivita_cara"></div>
+          </div>
+          <div class="aktivita_info">
+            <div class="aktivita_info-leva">
+              <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
+              <table class="aktivita_tabulka-cas">
+                <!-- begin:termin -->
+                <tr>
+                  <td class="aktivita_tabulka_bunka-cena">{den}</td>
+                  <td><b>{casAktivity}</b></td>
+                </tr>
+                <!-- end:termin -->
+              </table>
+            </div>
+            <div class="aktivita_info-prava">
+            </div>
+          </div>
+          <!-- end: info -->
+          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
+        </div>
+      </div>
+      <!-- end: aktivita -->
+    </div>
+    <script>
+    displayMasonry();
+    </script>
+
+    <div class="row pb-6 align-items-center justify-content-center">
+      <a href="/program" class="href text-uppercase text-center font-weight-bold white">
         <span class="p pr-2 font-size-sm">prohlédnout celý program</span>
       </a>
       <svg class="red" width="16px" height="16px" viewBox="0 0 50 80" xml:space="preserve">
         <polyline stroke-width="14" stroke-linecap="round" stroke-linejoin="round" points="0,0 35,38 0,75"/>
       </svg>
-  </div>
-</div> <!-- konec kontejneru -->
+    </div>
+  </div> <!-- konec kontejneru -->
+</div> <!-- konec přechodu pozadí -->
 
 <!--                 CALL TO ACTION                     -->
-<div class="container-fluid">
-  <div class="row no-gutters callToAction justify-content-center align-items-center">
-      <div class="h3 white">Na nic nečekej a přihlaš se na Gamecon</div>
-        <a href="/prihlaska">
-          <div class="box_obal box-tlacitko">
-          <div class="box_obsah">Jdu do toho!</div>
-          <div class="box_ohraniceni box_ohraniceni-bile box_ohraniceni-2px"></div>
-        </a>
+<div class="container-fluid callToAction">
+  <div class="row mt-0 pt-5 no-gutters justify-content-center align-items-center">
+    <div class="h3 white">Na nic nečekej a přihlaš se na Gamecon</div>
+  </div>
+  <div class="row mt-5 no-gutters justify-content-center">
+    <a href="/prihlaska">
+      <div class="box_obal box-tlacitko">
+        <div class="box_obsah">Jdu do toho!</div>
+        <div class="box_ohraniceni box_ohraniceni-bile box_ohraniceni-2px"></div>
       </div>
+    </a>
   </div>
 </div> <!-- konec kontejneru -->
 

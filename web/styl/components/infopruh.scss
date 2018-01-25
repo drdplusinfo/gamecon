@@ -1,0 +1,64 @@
+.infopruh {
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size-md;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-align: center;
+  background-color: $black;
+  color: $white;
+  @include media-breakpoint-down(xs) {
+    font-size: $font-size-xxs;
+    padding: 2px 10px 0px 4px;
+  }
+}
+.infopruh_odpocet {
+  font-size: $font-size-sm;
+  align-items: center;
+  text-align: center;
+  padding-right: 15px;
+  margin: 0;
+  @include media-breakpoint-down(xs) {
+    font-size: $font-size-xxs;
+  }
+}
+.infopruh_casovaJednotka {
+  padding-left: 4px;
+  padding-right: 10px;
+}
+.infopruh_udalost-cekajici {
+
+}
+.infopruh_udalost-probehnuta {
+  color: $gray-300;
+}
+.infopruh_sipka-aktivni {
+  height: 10px;
+  width: 10px;
+  margin: 0px 3px;
+  display: inline-block;
+  & .cls-1 {
+    fill: $red;
+  }
+}
+.infopruh_sipka-probehnuta {
+  height: 10px;
+  width: 10px;
+  margin: 0px 3px;
+  display: inline-block;
+  @include .infopruh_sipka-aktivni;
+  & path {
+    fill: $gray-300;
+  }
+}
+.infopruh_zatrzitko {
+  height: 10px;
+  width: 10px;
+  margin: 0px 3px;
+  display: inline-block;
+  & .cls-1 {
+    fill: $gray-300;
+  }
+}

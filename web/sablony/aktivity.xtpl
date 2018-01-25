@@ -32,14 +32,29 @@
       <!-- begin: aktivita -->
       <div class="grid-item box-360 box_obal">
         <img class="aktivita_obrazek" src="{a.obrazek}"></img>
+        <div class="aktivita_vlajecky">
+          <!-- begin: vlajecka -->
+          <div class="aktivita_vlajecka">
+            {tagVlajecka}
+          </div><br>
+          <!-- end: vlajecka -->
+          <div class="aktivita_vlajecka">
+          hráči: {a.obsazenost}
+          </div>
+        </div>
         <div class="box_obsah pl-30px pr-30px">
           <div class="aktivita_vypravec">
-          <!-- begin: organizatori -->
-          {orgJmena}
-          <!-- end: organizatori -->
           </div>
           <div class="h4 aktivita_nadpis">{a.nazev}</div>
-          <div class="aktivita_popis">Nacházíš se v útulné kavárně ve městě. Možná v New Yorku, možná ve Stockholmu nebo v Pardubicích. Tikot hodin protne tvá druhá polovička. Jste na rande?</div>
+          <!-- begin: organizatori -->
+          <div class="aktivita_vypravec">Vypravěč: <span>{orgJmena}</span></div>
+          <!-- end: organizatori -->
+          <div class="aktivita_tagy">
+            <!-- begin: tag -->
+            <div class="aktivita_tag">{tag}</div>
+            <!-- end: tag -->
+          </div>
+          <div class="aktivita_popis">{a.kratkyPopis}</div>
           <div class="text-center">
             <div class="clickable" onclick="displayToggleMasonry('{a.id}');">
               <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
@@ -51,19 +66,13 @@
             </div>
             <div class="aktivita_cara"></div>
           </div>
-          <!-- begin: prihlasovatko -->
-            <!-- tady bude box s přihlášením -->
-          <!-- end: prihlasovatko -->
-          <!-- begin: neprihlasovatko -->
-            <!-- tady bude box s přesměrováním na program -->
-          <!-- end: neprihlasovatko -->
           <div class="aktivita_info">
             <div class="aktivita_info-leva">
               <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
               <table class="aktivita_tabulka-cas">
                 <!-- begin:termin -->
                 <tr>
-                  <td class="aktivita_tabulka_bunka-cena">{den}:</td>
+                  <td class="aktivita_tabulka_bunka-cena">{den}</td>
                   <td><b>{cas}</b></td>
                 </tr>
                 <!-- end:termin -->

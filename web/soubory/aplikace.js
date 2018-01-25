@@ -27,32 +27,24 @@ function odpocet(cas){
       document.getElementById("odpocetDny").innerHTML = days;
       document.getElementById("odpocetHodiny").innerHTML = hours;
       document.getElementById("odpocetMinuty").innerHTML = minutes;
-      //alert(seconds);
+      document.getElementById("odpocetSekundy").innerHTML = seconds;
     }
     else {
       document.getElementById("odpocetDny").innerHTML = "0";
       document.getElementById("odpocetHodiny").innerHTML = "0";
       document.getElementById("odpocetMinuty").innerHTML = "0";
+      document.getElementById("odpocetSekundy").innerHTML = "0";
     }
   }
 
   countdown();
-  var intervalID = setInterval(countdown, 5000); // Aktualizuj odpočet každých 5 sekund
+  var intervalID = setInterval(countdown, 1000); // Aktualizuj odpočet každých 5 sekund
 };
 
-function zmenPozadiNavbar(){
-   if (document.getElementById('hlavniMenu').style.background == "black") {
-     document.getElementById('hlavniMenu').style.background = "linear-gradient(black, rgba(255,255,255,0))";
-   }
-   else {
-     document.getElementById('hlavniMenu').style.background = "black";
-   }
-   return false;
-};
 
 /* -------------- MASONRY ------------------- */
 function displayMasonry() { //spočítej masonry a zobraz
-  var $grid = $('.grid').masonry({
+  $grid = $('.grid').masonry({
     columnWidth: 360,
     itemSelector: '.grid-item',
     gutter: 40,
@@ -64,16 +56,57 @@ function displayMasonry() { //spočítej masonry a zobraz
 function displayToggleMasonry(aktivita) { //zobraz popis u aktivity a přepočítej celé masonry
   var $grid = displayMasonry();
   $('#'+aktivita+'_popis').slideToggle(200);
-    setTimeout(function(){
-      $grid.masonry('layout');
-    }, 50);
-    setTimeout(function(){
-      $grid.masonry('layout');
-    }, 100);
-    setTimeout(function(){
-      $grid.masonry('layout');
-    }, 200);
+  setTimeout(function(){
+    $grid.masonry('layout');
+  }, 50);
+  setTimeout(function(){
+    $grid.masonry('layout');
+  }, 100);
+  setTimeout(function(){
+    $grid.masonry('layout');
+  }, 200);
   $('#'+aktivita+'_sipka_dolu').toggle();
   $('#'+aktivita+'_sipka_nahoru').toggle();
   return false;
 }
+
+/* -------------- SVG ZA INLINE SVG ------------------- */
+/*
+ * Převede všechny SVG obrázky na inline SVG
+ */
+ window.onload = function () {
+   jQuery('img').filter(function() {
+     return this.src.match(/.*\.svg$/);
+   }).each(function(){
+     var $img = jQuery(this);
+     var imgID = $img.attr('id');
+     var imgClass = $img.attr('class');
+     var imgURL = $img.attr('src');
+
+     jQuery.get(imgURL, function(data) {
+       // Get the SVG tag, ignore the rest
+       var $svg = jQuery(data).find('svg');
+
+       // Add replaced image's ID to the new SVG
+       if(typeof imgID !== 'undefined') {
+         $svg = $svg.attr('id', imgID);
+       }
+       // Add replaced image's classes to the new SVG
+       if(typeof imgClass !== 'undefined') {
+         $svg = $svg.attr('class', imgClass+' replaced-svg');
+       }
+
+       // Remove any invalid XML tags as per http://validator.w3.org
+       $svg = $svg.removeAttr('xmlns:a');
+
+       // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+       if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+         $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+       }
+
+       // Replace image with new SVG
+       $img.replaceWith($svg);
+
+     }, 'xml');
+   });
+ }

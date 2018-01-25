@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="{base}">
-  <link rel="shortcut icon" href="styl/favicon.ico">
+  <link rel="shortcut icon" href="soubory/grafika/ikony/favicon.ico">
   <link rel="stylesheet" type="text/css" href="{css}" media="screen,projection">
   <!-- Includes for bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

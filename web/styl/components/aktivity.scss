@@ -48,6 +48,9 @@
   border-radius: 50%;
   background: linear-gradient(45deg, $purple-dark, $purple-light);
 }
+.aktivita_tagy {
+  padding-bottom: 8px;
+}
 .aktivita_nadpis {
   @extend h2;
   display: flex;
@@ -71,7 +74,7 @@
   margin-top: 5px;
 }
 .aktivita_sekce {
-  font-size: $font-size-base * .75;
+  font-size: $font-size-sm;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -80,20 +83,32 @@
   padding-top: 32px;
   padding-bottom: 20px;
 }
+.aktivita_nadpis {
+  margin-top: 32px;
+}
 .aktivita_vypravec {
-  @extend .aktivita_sekce;
-  color: $gray-300;
-  & a {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-align: left;
+  padding-bottom: 8px;
+  & span {
     color: $gray-300;
+    font-weight: normal;
   }
 }
-.aktivita_nadpis {
+.aktivita_tag {
+  font-size: $font-size-xs;
+  font-weight: 700;
+  display: inline-block;
+  background-color: $gray-50;
+  padding: 4px;
 }
 .aktivita_popis {
   text-align: left;
   font-size: $font-size-base * .8;
   color: $gray-300;
   line-height: 1.6;
+  padding-bottom: 16px;
   & p {
     text-align: left;
     font-size: $font-size-base * .8;
@@ -107,11 +122,11 @@
 .aktivita_info {
   overflow: hidden;
   width: 100%;
-  font-size: $font-size-base * .8;
-  color: $gray-300;
-  line-height: 1.6;
   padding-bottom: 12px;
   & table {
+    font-size: $font-size-base * .8;
+    color: $gray-300;
+    line-height: 1.6;
     display: inline-block;
     padding: 0;
     margin: 0;
@@ -131,14 +146,13 @@
 }
 .aktivita_tabulka_bunka-cena {
   text-align: left;
-  width: 44px;
+  width: 50px;
 }
 .aktivita_cara {
   width: 300px;
   height: 3px;
   background-color: $gray-100;
   margin-bottom: 6px;
-  margin-top: 16px;
   display: inline-block;
 }
 .aktivita_ikona_cas {
@@ -159,13 +173,11 @@
   background: url(soubor('grafika/ikony/sipka_dolu.png')) no-repeat scroll left top;
   width: 13px;
   padding-top: 8px;
-  margin-top: 20px;
   display: inline-block;
 }
 .aktivita_ikona_sipka_nahoru{
   background: url(soubor('grafika/ikony/sipka_nahoru.png')) no-repeat scroll left top;
   width: 13px;
   padding-top: 8px;
-  margin-top: 20px;
   display: inline-block;
 }

@@ -10,11 +10,15 @@
 
 // stylelint-disable
 $white:    #fff !default;
+$gray-50: #e6e6e6 !default;
 $gray-100: #dcdcdc !default;
 $gray-200: #c4c4c4 !default;
 $gray-300: #878787 !default;
+$gray-400: #ababab !default;
+$gray-800: #383838 !default;
 $black:    #2e2e2e !default;
-$red:     #fd7162 !default;
+$red:     #fc4349 !default;
+$blue:    #202435 !default;
 // Fialová u prvků
 $purple-dark: #c41d72 !default;
 $purple-light: #f8348c !default;
@@ -22,11 +26,9 @@ $purple-light: #f8348c !default;
 $purple-background-light: #fe0072 !default;
 $blue-background: #3f3886 !default;
 // Nepoužívané
-$gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
 $gray-600: #868e96 !default;
 $gray-700: #495057 !default;
-$gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 
 
@@ -43,7 +45,6 @@ $grays: map-merge((
   "900": $gray-900
 ), $grays);
 
-$blue:    #007bff !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
@@ -234,7 +235,8 @@ $font-family-base:            $font-family-sans-serif !default;
 
 $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
 $font-size-lg:                ($font-size-base * 1.25) !default;
-$font-size-sm:                ($font-size-base * .875) !default;
+$font-size-md:                ($font-size-base * .875) !default;
+$font-size-sm:                ($font-size-base * .75) !default;
 $font-size-xs:                ($font-size-base * .675) !default;
 $font-size-xxs:               ($font-size-base * .5) !default;
 
@@ -380,7 +382,7 @@ $input-height-border:                   $input-btn-border-width * 2 !default;
 $input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
 $input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;
 
-$input-height-inner-sm:                 ($font-size-sm * $input-btn-line-height-sm) + ($input-btn-padding-y-sm * 2) !default;
+$input-height-inner-sm:                 ($font-size-md * $input-btn-line-height-sm) + ($input-btn-padding-y-sm * 2) !default;
 $input-height-sm:                       calc(#{$input-height-inner-sm} + #{$input-height-border}) !default;
 
 $input-height-inner-lg:                 ($font-size-lg * $input-btn-line-height-lg) + ($input-btn-padding-y-lg * 2) !default;

@@ -1,0 +1,118 @@
+#hlavniMenu { //nepodporuje IE11, to-do: fallback v js?
+  position: sticky;
+  top: 0px;
+}
+
+/* ------------------------- POLOŽKY DROPDOWN MENU ----------------------------  */
+.dropdown-item {
+  background-color: $gray-800;
+  color: $gray-400;
+  font-size: $font-size-sm;
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  border-style: none;
+  &:hover {
+    background-color: $red;
+    background-clip: border-box;
+    color: $white;
+    & path {
+      fill: $white;
+    }
+  }
+}
+.dropdown_obrazek {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+  & path {
+    fill: $gray-400;
+  }
+}
+.dropdown-header {
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: $white;
+  padding: 12px 0px 12px 32px;
+}
+.dropdown-menu {
+  background-color: $gray-800;
+  min-width: 220px;
+  border-radius: 0;
+  border-style: none;
+  padding: 12px 0px;
+  margin: 0;
+}
+.dropdown-toggle:after { //nastavení polohy šipečky
+  vertical-align: middle;
+}
+.dropdown-menu-large {
+  background-color: $gray-800;
+  width: 800px;
+  left: -300px;
+  padding: 12px 0px;
+}
+.dropdown-menu-large_col-md-3 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0px 15px 0px 15px;
+  @include media-breakpoint-up(md) {
+    flex: 0 0 100/11*3%;
+    max-width: 100/11*3%;
+  }
+}
+.dropdown-menu-large_col-md-4 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0px 15px 0px 15px;
+  @include media-breakpoint-up(md) {
+    flex: 0 0 100/12*4%;
+    max-width: 100/12*4%;
+  }
+}
+
+
+/* ------------------------- NAVIGAČNÍ MENU ----------------------------  */
+.navbar {
+  background: $black;
+  position: absolute;
+  width: 100vw;
+  z-index: 2;
+  padding: 0.4rem 1rem;
+}
+.navbar-brand {
+  color: $white;
+  text-transform: uppercase;
+  font-size: $font-size-md;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  &:hover {
+    color: $red;
+  }
+}
+.nav-link {
+  color: $white;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  margin: 0 10px;
+  &:hover { color: $red; }
+}
+.navbar-slash { // Lomítka mezi položkami menu
+  color: $red;
+  font-size: 30px;
+  margin-top: -4px;
+}
+.navbar-toggler-icon { background-image: url(soubor('grafika/ikony/titulka/hamburger-menu.png'))}
+
+/* Speciální položky */
+@include media-breakpoint-up(md) { // Zmizení lomítka na malých obrazovkách
+  .navbar-slash::after { content: "/" }
+  li.dropdown:hover > .dropdown-menu { display: block; }
+}
+
+.dropdown-toggle::after { // Nastavení barvy šipečky u dropdown navigátoru
+  padding-top: 3px;
+  color: $white;
+}

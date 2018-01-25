@@ -33,8 +33,11 @@ class Menu {
   function cele() {
     $a = $this->url ? $this->url->cast(0) : null;
     $t = new XTemplate('sablony/menu.xtpl');
-    $t->assign(['ogameconu' => $this->polozkyDropdown('ogameconu'), 'prakticke' => $this->polozkyDropdown('prakticke'), 'aktivity' => $this->polozkyDropdown('Aktivity') ]
-    );
+    $linie = self::linieSeznam();
+    $t->assign([
+      'ogameconu' => $this->polozkyDropdown('ogameconu'),
+      'prakticke' => $this->polozkyDropdown('prakticke'),
+    ]);
 
     /* --------------------------- POŘEŠIT AŽ S PŘIHLÁŠENÝM UŽIVATELEM ----------------------------------*/
     /*if(po(REG_GC_OD) && $u && $u->gcPrihlasen()) {
@@ -42,7 +45,9 @@ class Menu {
     } else {
       $t->parse('menu.neprihlasen');
     }*/
+    $this->polozkyMegaDropdown($linie,$t);
     $t->parse('menu');
+
     return $t->text('menu');
   }
 
@@ -58,7 +63,7 @@ class Menu {
     return self::$linie;
   }
 
-  /** Seznam stránek s prokliky (html) */
+  /** Seznam položek do dropdown menu s prokliky (html) */
   function polozkyDropdown($submenu) {
     $o = '';
     switch ($submenu) {
@@ -72,15 +77,33 @@ class Menu {
       $o .= '<a class="dropdown-item" href="'.$a.'">'.$l.'</a>';
     };
     break;
-    case 'Aktivity':
-      //if(PROGRAM_VIDITELNY && !isset($linie['program']))  $linie = ['program' => 'Program'] + $linie; //Nějaký pohrobek (Manik)
-    $linie = self::linieSeznam();
-    foreach($linie as $a => $l) {
-      $o .= '<a class="dropdown-item" href="'.$a.'">'.$l.'</a>';
-    };
-    break;
 }
     return $o;
+  }
+
+  /** Seznam položek do mega dropdown menu (linií) s prokliky */
+  function polozkyMegaDropdown($linie,$t) {
+    $stolniHry = ['deskoherna', 'epic', 'wargaming', 'turnaje'];
+    $hryNaHrdiny = ['drd', 'legendy', 'rpg'];
+    $ostatniHry = ['larpy', 'prednasky', 'doprovodny-program', 'bonusy'];
+    $hlavniLinie = [
+      'stolniHry'   => 'stolní hry',
+      'hryNaHrdiny' => 'hry na hrdiny',
+      'ostatniHry'  => 'ostatní hry',
+    ];
+    foreach($hlavniLinie as $hlavniLinieKlic => $hlavniLinieNazev) { //cyklus pro parsing hlavních (nadřízených) linií
+      foreach($linie as $linieUrl => $linieNazev) { //cyklus pro parsing normálních linií
+        if(in_array($linieUrl, ${$hlavniLinieKlic})) {
+          $t->assign([
+            'nazev' => $linieNazev,
+            'url'   => $linieUrl,
+          ]);
+          $t->parse('menu.hlavniLinie.linie');
+        }
+      }
+      $t->assign('hlavniLinie', $hlavniLinieNazev);
+      $t->parse('menu.hlavniLinie');
+    }
   }
 
 }

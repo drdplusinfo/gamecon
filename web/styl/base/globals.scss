@@ -1,8 +1,3 @@
-#hlavniMenu { //nepodporuje IE11, to-do: fallback v js?
-  position: sticky;
-  top: 0px;
-  margin-bottom: -51px;
-}
 .container-fluid { // Základní nastavení kontejneru
   padding: 0 0 0 0;
 }
@@ -22,6 +17,11 @@
 /* ------------- Hidden elementy v bootstrapu (měly by fungovat, nefungují) ------------ */
 .hidden-lg-up {
   @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+.hidden-xl-down {
+  @include media-breakpoint-down(lg) {
     display: none;
   }
 }

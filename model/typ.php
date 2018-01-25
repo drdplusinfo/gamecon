@@ -24,7 +24,7 @@ class Typ extends DbObject {
 
   function ikona()
   {
-    return 'soubory/obsah/linie/ikony/'.$this->r['id_typu'].'.svg';
+    return 'soubory/grafika/ikony/linie/'.$this->url().'.svg';
   }
 
   function nazev() {
@@ -38,7 +38,7 @@ class Typ extends DbObject {
   }
 
   function obrazek() { //TO-DO: Mělo by checkovat, jestli je tam png nebo jpg a podle toho vracet
-    return 'soubory/obsah/linie/ilustracni_obrazky/'.$this->r['id_typu'].'.jpg';
+    return 'soubory/obsah/linie/ilustracni_obrazky/'.$this->nazev().'.jpg';
   }
 
   function oTypu() {

@@ -1,7 +1,7 @@
 <!-- begin: menu -->
 <nav class="navbar navbar-expand-md" id="hlavniMenu">
   <!-- Brand and toggle get grouped for better mobile display -->
-  <a class="navbar-brand ml-xl-8 ml-lg-7" href="/">gamecon 2018</a>
+  <a class="navbar-brand ml-xl-8 ml-lg-7" href="">gamecon 2018</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="zmenPozadiNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -11,46 +11,31 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="prihlasit">Program</a>
+        <a class="nav-link" href="program">Program</a>
       </li>
-      <div class="navbar-slash mr-3 ml-3"></div>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-hover="dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Aktivity
         </a>
           <div class="dropdown-menu dropdown-menu-large" aria-labelledby="navbarDropdown">
             <div class="row mt-0">
-              <div class="dropdown-menu-large_col-md-3">
-                <div class="dropdown-header">
-                  <div>Stolní hry</div>
-                </div>
-                <a class="dropdown-item" href="deskoherna">Deskoherna</a>
-                <a class="dropdown-item" href="epic">Epické deskovky</a>
-                <a class="dropdown-item" href="/">Turnaje</a>
-                <a class="dropdown-item" href="/">Wargaming</a>
-              </div>
+              <!-- begin: hlavniLinie -->
               <div class="dropdown-menu-large_col-md-4">
-                <div class="dropdown-header">
-                  Hry na hrdiny
+                <div class="dropdown-header uppercase">
+                  <div>{hlavniLinie}</div>
                 </div>
-                <a class="dropdown-item" href="/">Mistrovství v DrD</a>
-                <a class="dropdown-item" href="/">Legendy Klubu dobrodruhů</a>
-                <a class="dropdown-item" href="/">RPG</a>
-    					</div>
-              <div class="dropdown-menu-large_col-md-4">
-                <div class="dropdown-header">
-                  <div>Ostatní hry</div>
-                </div>
-                <a class="dropdown-item" href="/">Larpy</a>
-                <a class="dropdown-item" href="/">Akční a bonusové hry</a>
-                <a class="dropdown-item" href="/">Přednášky a workshopy</a>
-                <a class="dropdown-item" href="/">Doprovodný program</a>
+                <!-- begin: linie -->
+                <a class="dropdown-item" href="{url}">
+                  <img src="soubory/grafika/ikony/linie/{url}.svg" class="dropdown_obrazek">
+                  {nazev}
+                </a>
+                <!-- end: linie -->
               </div>
+              <!-- end: hlavniLinie -->
             </div>
           </div>
 
       </li>
-      <div class="navbar-slash mr-3 ml-3"></div>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-hover="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           O gameconu
@@ -59,7 +44,6 @@
           {ogameconu}
         </div>
       </li>
-      <div class="navbar-slash mr-3 ml-3"></div>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-hover="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Informace

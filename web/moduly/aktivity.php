@@ -23,7 +23,7 @@ if(array_keys($_GET) == ['req', 'typ'] && $_GET['typ']) {
   back($_GET['typ']);
 }
 
-// Statické stránky
+// Statické stránky (tj. obsah vztahující ke konkrétní linii, např. "Jak si vybrat RPG hru")
 // TODO hack
 // TODO nejasné načítání typu
 $stranky = [];
@@ -31,7 +31,7 @@ $prefixy = ['drd', 'legendy', 'rpg'];
 if(isset($typ) && $typ && in_array($typ->url(), $prefixy))
   $stranky = Stranka::zUrlPrefixu($typ->url());
 usort($stranky, function($a, $b){ return $a->poradi() - $b->poradi(); });
-$t->parseEach($stranky, 'stranka', 'aktivity.stranka');
+//$t->parseEach($stranky, 'stranka', 'aktivity.stranka');
 
 // Vyfiltrování aktivit
 $filtr = [];
@@ -41,7 +41,24 @@ elseif(get('typ') && ($typ = Typ::zUrl(get('typ')))) $filtr['typ'] = $typ->id();
 $filtr['jenViditelne'] = true;
 $aktivity = Aktivita::zFiltru($filtr, ['nazev_akce', 'patri_pod', 'zacatek']);
 
-// Zobrazení aktivit
+/* ----------------------------- ZOBRAZENÍ SEKCE O LINII ----------------------------- */
+if(isset($typ)) {
+  $t->assign([
+    'oLinii'        => $typ->oTypu(),
+    'hlavniNadpis'          => ucfirst($typ->nazev()),
+    'ikona'         => $typ->ikona(),
+    'ilustracni_obrazek' => $typ->obrazek()
+  ]);
+  $t->parse('aktivity.zahlavi');
+  // Manik: Co je kufa tohle?
+  /*$this->info()
+    ->nazev(mb_ucfirst($typ->nazevDlouhy()))
+    ->popis($typ->bezNazvu())
+    ->obrazek(null);
+  */
+}
+
+/* ----------------------------- ZOBRAZENÍ AKTIVIT ----------------------------- */
 $a = reset($aktivity);
 $dalsi = next($aktivity);
 $orgUrls = [];
@@ -58,19 +75,12 @@ while($a) {
   $t->assign([
     'a'             =>  $a,
     'prihlasovatko' =>  $a->prihlasovatko($u), //Manik: Zjistit, co to přesně dělá
+    'den'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
+    'cas'     => $a->zacatek() ? $a->zacatek()->format('H:i') : ''
     //TODO ne/přihlašovatelnost odlišená vzhledem (třídou?) termínu aktivity
     //TODO ajax na zobrazení bubliny ne/úspěšného přihlášení
   ]);
-  if($a->teamova()) {
-    $t->parse('aktivity.aktivita.neprihlasovatko');
-  } else {
-    $t->parse('aktivity.aktivita.prihlasovatko');
-    $t->assign([
-      'den'     => $a->zacatek()->format('l'),
-      'cas'     => $a->zacatek()->format('G:i')
-    ]);
-    $t->parse('aktivity.aktivita.termin');
-  }
+  $t->parse('aktivity.aktivita.termin');
 
   // vlastnosti per skupina (hack)
   if(!$dalsi || !$dalsi->patriPod() || $dalsi->patriPod() != $a->patriPod()) {
@@ -88,13 +98,20 @@ while($a) {
       elseif($u && $u->gcPrihlasen())   $t->parse('aktivity.aktivita.cena.moje');
       else                              $t->parse('aktivity.aktivita.cena.obecna');*/
       //$t->parse('aktivity.aktivita.cena');
+      //TODO Manik: Jakmile Honza dodělá funkci cena, toto je potřeba upravit
     }
     foreach($a->tagy() as $tag) {
-      $t->assign('tag', $tag);
-      //$t->parse('aktivity.aktivita.tag');
+      $vlajeckoveTagy = ['i pro nováčky','deluxe','pro pokročilé']; //které štítky(tagy) se mají zobrazit ve vlaječce (a nemají se zobrazit ve standardních štítcích)
+      if (in_array($tag, $vlajeckoveTagy)) {
+        $t->assign('tagVlajecka', $tag);
+        $t->parse('aktivity.aktivita.vlajecka');
+      }
+      else {
+        $t->assign('tag', $tag);
+        $t->parse('aktivity.aktivita.tag');
+      }
     }
     $popis = $a->popis();
-    if(strlen($popis) > 370) //$t->parse('aktivity.aktivita.vice');
     if(!$a->teamova()) {
       $orgUrls = array_merge($orgUrls, orgUrls($a->organizatori()));
       $t->assign('orgJmena', implode(', ', array_unique($orgUrls)));
@@ -102,7 +119,6 @@ while($a) {
       $orgUrls = [];
     }
     $t->assign([
-      'extra'   => $a->typId() == Typ::DRD ? 'drd' : '',
       'popis'   => $popis
       ]);
     $t->parse('aktivity.aktivita');
@@ -114,7 +130,8 @@ while($a) {
 
 }
 
-// záhlaví - vypravěč
+/* ----------------------------- ZOBRAZENÍ VYPRAVĚČE ----------------------------- */
+//Manik: Asi se bude vypouštět
 if($org = $this->param('org')) {
   $t->assign([
     'jmeno'   =>  $org->jmenoNick(),
@@ -135,21 +152,4 @@ if($org = $this->param('org')) {
   }
   //$t->parse('aktivity.zahlavi.vypravec');
   //$t->parse('aktivity.zahlavi');
-}
-
-// záhlaví - typ
-if(isset($typ)) {
-  $t->assign([
-    'oLinii'        => $typ->oTypu(),
-    'hlavniNadpis'          => ucfirst($typ->nazev()),
-    'ikona'         => $typ->ikona(),
-    'ilustracni_obrazek' => $typ->obrazek()
-  ]);
-  $t->parse('aktivity.zahlavi');
-  // Manik: Co je kufa tohle?
-  /*$this->info()
-    ->nazev(mb_ucfirst($typ->nazevDlouhy()))
-    ->popis($typ->bezNazvu())
-    ->obrazek(null);
-  */
 }
