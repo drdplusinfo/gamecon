@@ -75,8 +75,8 @@ while($a) {
   $t->assign([
     'a'             =>  $a,
     'prihlasovatko' =>  $a->prihlasovatko($u), //Manik: Zjistit, co to přesně dělá
-    'den'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
-    'cas'     => $a->zacatek() ? $a->zacatek()->format('H:i') : ''
+    'denAktivity'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
+    'casAktivity'     => $a->zacatek() ? $a->zacatek()->format('H:i') : ''
     //TODO ne/přihlašovatelnost odlišená vzhledem (třídou?) termínu aktivity
     //TODO ajax na zobrazení bubliny ne/úspěšného přihlášení
   ]);

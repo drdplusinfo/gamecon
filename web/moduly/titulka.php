@@ -65,17 +65,31 @@ elseif ($konecGC < $aktualniDatum) { // Datum mezi koncem GC a začátkem roku
 /* ------------------------------ PROMĚNNÉ DO INFOPRUHU ------------------------------*/
 $t->assign('casOdpoctu',$casOdpoctu);
 
+/* ------------------------------ ROZŠÍŘENÉ INFO ------------------------------*/
+$poleRozsireneInfo = [
+  ['Akce pro všechny', 'jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si', 'akce_pro_vsechny.svg'],
+  ['Festival aktivní zábavy', 'na všech aktivitách je potřeba zapojit tělo, mozek či obojí', 'festival_aktivni_zabavy.svg'],
+  ['Volná deskoherna', 'stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme', 'volna_deskoherna.svg'],
+];
+foreach($poleRozsireneInfo as $polozka) {
+  $t->assign([
+    'nadpisRozsireneInfo' => $polozka[0],
+    'popisRozsireneInfo' => $polozka[1],
+    'ikonaRozsireneInfo' => $polozka[2],
+  ]);
+  $t->parse('titulka.polozkaRozsireneInfo');
+}
 
 /* ------------------------------ DOPORUČENÉ AKTIVITY ------------------------------*/
 $poleAktivit = Aktivita::zDoporucenych();
 
 foreach ($poleAktivit as $a) {
   $t->assign([
-    'obrazek' => $a->obrazek(),
-    'linie'   => $a->typ()->nazev(),
-    'nazev'   => $a->nazev(),
-    'kratkyPopis'   => $a->kratkyPopis(),
-    'den'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
+    'obrazekAktivity' => $a->obrazek(),
+    'linieAktivity'   => $a->typ()->nazev(),
+    'nazevAktivity'   => $a->nazev(),
+    'kratkyPopisAktivity'   => $a->kratkyPopis(),
+    'denAktivity'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
     'casAktivity'     => $a->zacatek() ? $a->zacatek()->format('H:i') : '',
   ]);
   if($a->zacatek()) {

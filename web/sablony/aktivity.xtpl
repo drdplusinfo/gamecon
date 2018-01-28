@@ -29,66 +29,68 @@
 
     </div>
     <div class="grid"> <!-- Masonry -->
+
       <!-- begin: aktivita -->
       <div class="grid-item box-360 box_obal">
-        <img class="aktivita_obrazek" src="{a.obrazek}"></img>
-        <div class="aktivita_vlajecky">
-          <!-- begin: vlajecka -->
-          <div class="aktivita_vlajecka">
-            {tagVlajecka}
-          </div><br>
-          <!-- end: vlajecka -->
-          <div class="aktivita_vlajecka">
-          hráči: {a.obsazenost}
+        <div class="box_ohraniceni">
+          <div class="aktivita_vlajecky">
+           <!-- begin: vlajecka -->
+           <div class="aktivita_vlajecka">
+             {tagVlajecka}
+           </div><br>
+           <!-- end: vlajecka -->
+           <div class="aktivita_vlajecka">
+           hráči: {a.obsazenost}
+           </div>
           </div>
-        </div>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivita_vypravec">
-          </div>
-          <div class="h4 aktivita_nadpis">{a.nazev}</div>
-          <!-- begin: organizatori -->
-          <div class="aktivita_vypravec">Vypravěč: <span>{orgJmena}</span></div>
-          <!-- end: organizatori -->
-          <div class="aktivita_tagy">
-            <!-- begin: tag -->
-            <div class="aktivita_tag">{tag}</div>
-            <!-- end: tag -->
-          </div>
-          <div class="aktivita_popis">{a.kratkyPopis}</div>
-          <div class="text-center">
-            <div class="clickable" onclick="displayToggleMasonry('{a.id}');">
-              <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
-              <div id="{a.id}_sipka_nahoru" class="aktivita_ikona_sipka_nahoru" style="display: none;"></div>
+          <img class="aktivita_obrazek" src="{a.obrazek}"></img>
+          <div class="box_obsah">
+            <div class="pl-30px pr-30px">
+              <div class="h4 aktivita_nadpis">{a.nazev}</div>
+              <!-- begin: organizatori -->
+              <div class="aktivita_vypravec">Vypravěč: <span>{orgJmena}</span></div>
+              <!-- end: organizatori -->
+              <div class="aktivita_tagy">
+                <!-- begin: tag -->
+                <div class="aktivita_tag">{tag}</div>
+                <!-- end: tag -->
+              </div>
+              <div class="aktivita_popis">{a.kratkyPopis}</div>
+              <div class="text-center">
+                <div class="clickable" onclick="displayToggleMasonry('{a.id}');">
+                  <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
+                  <div id="{a.id}_sipka_nahoru" class="aktivita_ikona_sipka_nahoru" style="display: none;"></div>
+                </div>
+                <div id="{a.id}_popis" class="aktivita_popis" style="display: none;">
+                  <div class="aktivita_cara"></div>
+                  {a.popis}
+                </div>
+                <div class="aktivita_cara"></div>
+              </div>
+              <div class="aktivita_info">
+                <div class="aktivita_info-leva">
+                  <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
+                  <table class="aktivita_tabulka-cas">
+                    <!-- begin:termin -->
+                    <tr>
+                      <td class="aktivita_tabulka_bunka-cena">{denAktivity}</td>
+                      <td><b>{casAktivity}</b></td>
+                    </tr>
+                    <!-- end:termin -->
+                  </table>
+                </div>
+                <div class="aktivita_info-prava">
+                  <img src="soubory/grafika/ikony/cena.svg" class="aktivita_ikona_cena">
+                  <table>
+                    <tr>
+                      <td class="aktivita_tabulka_bunka-cena">cena:</td>
+                      <td><b>{a.cena}</b></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             </div>
-            <div id="{a.id}_popis" class="aktivita_popis" style="display: none;">
-              <div class="aktivita_cara"></div>
-              {a.popis}
-            </div>
-            <div class="aktivita_cara"></div>
           </div>
-          <div class="aktivita_info">
-            <div class="aktivita_info-leva">
-              <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
-              <table class="aktivita_tabulka-cas">
-                <!-- begin:termin -->
-                <tr>
-                  <td class="aktivita_tabulka_bunka-cena">{den}</td>
-                  <td><b>{cas}</b></td>
-                </tr>
-                <!-- end:termin -->
-              </table>
-            </div>
-            <div class="aktivita_info-prava">
-              <img src="soubory/grafika/ikony/cena.svg" class="aktivita_ikona_cena">
-              <table>
-                <tr>
-                  <td class="aktivita_tabulka_bunka-cena">cena:</td>
-                  <td><b>{a.cena}</b></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="box_ohraniceni"></div>
         </div>
       </div>
       <!-- end: aktivita -->

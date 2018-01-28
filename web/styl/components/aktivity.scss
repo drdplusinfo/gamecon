@@ -53,16 +53,24 @@
 }
 .aktivita_nadpis {
   @extend h2;
+  margin-top: 32px;
   display: flex;
   align-items: center;
 }
+.aktivita_nadpis-titulka {
+  @extend .aktivita_nadpis;
+  margin-top: 16px;
+}
 .aktivita_obrazek {
+  left: -10px;
   width: 100%;
   height: 203px;
+  margin: -12px 0 0 -10px;
 }
 .aktivita_vlajecky {
   position: absolute;
   top: 30px;
+  margin-left:-10px;
 }
 .aktivita_vlajecka {
   display: inline-block;
@@ -81,10 +89,6 @@
   color: $red;
   text-align: left;
   padding-top: 32px;
-  padding-bottom: 20px;
-}
-.aktivita_nadpis {
-  margin-top: 32px;
 }
 .aktivita_vypravec {
   font-size: $font-size-sm;

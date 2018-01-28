@@ -159,36 +159,19 @@
 
   <!--                 ROZŠÍŘENÉ INFO                     -->
   <div class="row justify-content-center align-items-center">
+    <!-- begin:polozkaRozsireneInfo -->
     <div class="pr-5 justify-content-center sirka-1200">
       <div class="text-center box_obal box-280">
-        <div class="box_obsah pl-10px">
-            <img src="soubory/grafika/ikony/titulka/akce_pro_vsechny.svg" class="rozsireneInfo_obrazek"><br>
-          <div class="rozsireneInfo_nadpis">Akce pro všechny</div>
-          <div class="rozsireneInfo_popis">jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si</div>
-          <div class="box_ohraniceni"></div>
+        <div class="box_ohraniceni">
+          <div class="box_obsah box_obsah-5px">
+            <img src="soubory/grafika/ikony/titulka/{ikonaRozsireneInfo}" class="rozsireneInfo_obrazek"><br>
+            <div class="rozsireneInfo_nadpis">{nadpisRozsireneInfo}</div>
+            <div class="rozsireneInfo_popis">{popisRozsireneInfo}</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="pr-5 justify-content-center sirka-1200">
-      <div class="text-center box_obal box-280">
-          <div class="box_obsah pl-10px">
-            <img src="soubory/grafika/ikony/titulka/festival_aktivni_zabavy.svg" class="rozsireneInfo_obrazek"><br>
-          <div class="rozsireneInfo_nadpis">Festival aktivní zábavy</div>
-          <div class="rozsireneInfo_popis">na všech aktivitách je potřeba zapojit tělo, mozek či obojí</div>
-          <div class="box_ohraniceni"></div>
-        </div>
-      </div>
-    </div>
-    <div class="pr-5 justify-content-center sirka-1200">
-      <div class="text-center box_obal box-280">
-        <div class="box_obsah pl-10px">
-          <img src="soubory/grafika/ikony/titulka/volna_deskoherna.svg" class="rozsireneInfo_obrazek"><br>
-          <div class="rozsireneInfo_nadpis">Volná deskoherna</div>
-          <div class="rozsireneInfo_popis">stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme</div>
-          <div class="box_ohraniceni"></div>
-        </div>
-      </div>
-    </div>
+    <!-- end:polozkaRozsireneInfo -->
   </div>
 
   <!--                     FOTKY                         -->
@@ -216,41 +199,44 @@
       <div class="col-12 text-center h2 white">Na co se můžete těšit</div>
     </div>
     <div class="row mt-0">
-      <div class="col-12 text-center p white mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program">programu</a>.</div>
+      <div class="col-12 text-center p white mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program" class="white">programu</a>.</div>
     </div>
 
     <div class="grid">
+
       <!-- begin: aktivita -->
-      <div class="grid-item box_obal_aktivita box-360">
-        <img class="aktivita_obrazek" src="{obrazek}"></img>
-        <div class="box_obsah pl-30px pr-30px">
-          <div class="aktivita_sekce">{linie}</div>
-          <div class="h4 aktivita_nadpis">{nazev}</div>
-          <div class="aktivita_popis">{kratkyPopis}</div>
-          <!-- begin: info -->
-          <div class="text-center">
-            <div class="aktivita_cara"></div>
-          </div>
-          <div class="aktivita_info">
-            <div class="aktivita_info-leva">
-              <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
-              <table class="aktivita_tabulka-cas">
-                <!-- begin:termin -->
-                <tr>
-                  <td class="aktivita_tabulka_bunka-cena">{den}</td>
-                  <td><b>{casAktivity}</b></td>
-                </tr>
-                <!-- end:termin -->
-              </table>
+      <div class="grid-item box-360 box_obal">
+        <div class="box_ohraniceni">
+          <img class="aktivita_obrazek" src="{obrazekAktivity}"></img>
+          <div class="box_obsah">
+            <div class="pl-30px pr-30px">
+              <div class="aktivita_sekce">{linieAktivity}</div>
+              <div class="h4 aktivita_nadpis-titulka">{nazevAktivity}</div>
+              <div class="aktivita_popis">{kratkyPopisAktivity}</div>
+              <div class="text-center">
+                <div class="aktivita_cara"></div>
+              </div>
+              <!-- begin:info -->
+              <div class="aktivita_info">
+                <div class="aktivita_info-leva">
+                  <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
+                  <table class="aktivita_tabulka-cas">
+                    <!-- begin:termin -->
+                    <tr>
+                      <td class="aktivita_tabulka_bunka-cena">{denAktivity}</td>
+                      <td><b>{casAktivity}</b></td>
+                    </tr>
+                    <!-- end:termin -->
+                  </table>
+                </div>
+              </div>
+              <!-- end:info -->
             </div>
-            <div class="aktivita_info-prava">
-            </div>
           </div>
-          <!-- end: info -->
-          <div class="box_ohraniceni box_ohraniceni-cervene"></div>
         </div>
       </div>
       <!-- end: aktivita -->
+
     </div>
     <script>
     displayMasonry();
@@ -274,9 +260,10 @@
   </div>
   <div class="row mt-5 no-gutters justify-content-center">
     <a href="/prihlaska">
-      <div class="box_obal box-tlacitko">
-        <div class="box_obsah">Jdu do toho!</div>
-        <div class="box_ohraniceni box_ohraniceni-bile box_ohraniceni-2px"></div>
+      <div class="box_ohraniceni box_ohraniceni-bile box_ohraniceni-tlacitko">
+        <div class="box_obal box-tlacitko">
+          <div class="box_obsah">Jdu do toho!</div>
+        </div>
       </div>
     </a>
   </div>
