@@ -17,7 +17,7 @@ $program->zpracujAjax();
       alert('něco se stalo');
     }
   </script>
-  <?php $program->zaregistrujJsObserver('mojeNotifikace') ?>
+  <?php /* $program->zaregistrujJsObserver('mojeNotifikace') */ /* TODO uvést do provozu */ ?>
   <?=$program->htmlHlavicky()?>
 </head>
 <body style="margin-top: 4em;">

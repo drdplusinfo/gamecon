@@ -11,7 +11,9 @@ class JsPhpApiHandler {
 
   private
     $api,
-    $jsPromenna;
+    $jsPromenna,
+    $maZakladniData = false,
+    $metody = [];
 
   private static
     $sablonaApi,
@@ -24,24 +26,32 @@ class JsPhpApiHandler {
     $hashTridy = substr(md5(get_class($api)), 0, 10);
     $this->jsPromenna = 'cJsPhpApiHandler_' . $hashTridy;
 
-    $this->metody = [];
     $reflection = new ReflectionClass($this->api);
     foreach($reflection->getMethods(ReflectionMethod::IS_PUBLIC) as $metoda) {
+      $nazev = $metoda->getName();
+      if($nazev == '__construct') continue;
+      if($nazev == 'zakladniData') {
+        $this->maZakladniData = true;
+        continue;
+      }
       $this->metody[$metoda->getName()] = $metoda;
     }
   }
 
   /**
    * Vrátí JS kód objektu s metodami, které odpovídají metodám vloženého php
-   * objektu.
-   * @param string $spravovanaData název JS proměnné, o kterou se stará api a
-   *  jejíž obsah mění pomocí objektů ZmenaDat.
+   * objektu plus případně datům z metody zakladniData.
    */
-  function jsApiObjekt($spravovanaData = null) {
+  function jsApiObjekt() {
+    $zakladniData = 'null';
+    if($this->maZakladniData) {
+      $zakladniData = json_encode($this->api->zakladniData(), JSON_UNESCAPED_UNICODE);
+    }
+
     return strtr(self::$sablonaApi, [
-      '<vyhrazenaPromenna>'       =>  $this->jsPromenna,
-      '<metody>'                  =>  $this->jsMetody(),
-      '<spravovanaDataPromenna>'  =>  $spravovanaData ?: '',
+      '<vyhrazenaPromenna>' =>  $this->jsPromenna,
+      '<metody>'            =>  $this->jsMetody(),
+      '<zakladniData>'      =>  $zakladniData,
     ]);
   }
 
@@ -59,7 +69,7 @@ class JsPhpApiHandler {
       ]);
     }, $this->metody);
 
-    return '{' . implode(',', $metody) . "\n}";
+    return implode(',', $metody);
   }
 
   private function nactiSablony() {

@@ -41,7 +41,7 @@ class ProgramApi implements JsPhpApi {
   /**
    * Vrátí pole všech aktivit v programu. Formát aktivit viz aktivitaFormat.
    */
-  function aktivity() {
+  private function aktivity() {
     // TODO listovat tech. aktivity jenom tomu, kdo je může vidět
 
     $aktivity = Aktivita::zProgramu();
@@ -56,8 +56,7 @@ class ProgramApi implements JsPhpApi {
    * Vrátí detail aktivity.
    */
   function detail($aktivitaId) {
-    $necoSpocitat = 'něco spočítat zde.';
-
+    // TODO upravit načtení detailu na změnu (doplnění) základních dat
     return [
       'popis'     =>  rand(0,1) ? 'Moc dobrá aktivita. Doporučuji.' : 'Sračka.',
       'mistnost'  =>  ['nazev' => 'Holobyt na AB/B/2 v kukani.', 'dvere' => 123],
@@ -66,10 +65,27 @@ class ProgramApi implements JsPhpApi {
   }
 
   /**
+   * Vrátí pole všech existujících programových linií.
+   */
+  private function linie() {
+    return dbQuery('
+      SELECT
+        t.id_typu as "id",
+        t.typ_1pmn as "nazev",
+        t.poradi
+      FROM akce_typy t
+    ')->fetch_all(MYSQLI_ASSOC);
+  }
+
+  /**
    * Odhlásí aktuálního uživatele z aktivity.
    */
   function odhlas($aktivitaId) {
-    (Aktivita::zId($aktivitaId))->odhlas($this->uzivatel);
+    $a = Aktivita::zId($aktivitaId);
+    $a->odhlas($this->uzivatel);
+    return new ZmenaDat([
+      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a)
+    ]);
   }
 
   /**
@@ -81,6 +97,19 @@ class ProgramApi implements JsPhpApi {
     return new ZmenaDat([
       "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a)
     ]);
+  }
+
+  /**
+   * Vrátí základní datovou strukturu pro react komponentu.
+   */
+  function zakladniData() {
+    return [
+      'aktivity'          =>  $this->aktivity(),
+      'linie'             =>  $this->linie(),
+      'notifikace'        =>  [], // TODO
+      'uzivatelPrihlasen' =>  (bool) $this->uzivatel,
+      'uzivatelPohlavi'   =>  $this->uzivatel ? $this->uzivatel->pohlavi() : null,
+    ];
   }
 
 }

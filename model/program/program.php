@@ -15,6 +15,7 @@ class Program {
   function __construct(?Uzivatel $uzivatel) {
     $this->uzivatel = $uzivatel;
 
+    // TODO cache v okamžiku dokončení přesunout mimo program a předávat parametrem
     $this->cacheSouboru = new PerfectCache(CACHE . '/sestavene', URL_CACHE . '/sestavene');
     $this->cacheSouboru->nastav('reactVProhlizeci', REACT_V_PROHLIZECI);
     $this->cacheSouboru->nastav('babelBinarka', BABEL_BINARKA);
@@ -39,55 +40,22 @@ class Program {
   }
 
   function htmlObsah() {
+    // TODO vyhodit atribut data
     return
       '<div id="'.$this->jsElementId.'"></div>' .
-      $this->jsData() .
-      $this->jsRender();
-  }
-
-  private function jsData() {
-    return '
-      <script>
-        var '.$this->jsPromenna.' = {
-          "aktivity": '.$this->api->zavolej('aktivity')->jsonObsah().',
-          "linie": '.$this->jsonLinie().',
-          "notifikace": '.$this->jsonNotifikace().',
-          "uzivatelPrihlasen": '.json_encode((bool) $this->uzivatel).',
-          "uzivatelPohlavi": '.json_encode($this->uzivatel ? $this->uzivatel->pohlavi() : null).'
-        }
-      </script>
-    ';
-  }
-
-  private function jsRender() {
-    return $this->cacheSouboru->inlineCekejNaBabel('
-      ReactDOM.render(
-        React.createElement(Program, {
-          data: '.$this->jsPromenna.',
-          api: '.$this->api->jsApiObjekt($this->jsPromenna).'
-        }),
-        document.getElementById("'.$this->jsElementId.'")
-      )
-    ');
-  }
-
-  private function jsonLinie() {
-    $q = dbQuery('
-      SELECT
-        t.id_typu as "id",
-        t.typ_1pmn as "nazev",
-        t.poradi
-      FROM akce_typy t
-    ');
-
-    return json_encode($q->fetch_all(MYSQLI_ASSOC), JSON_UNESCAPED_UNICODE);
-  }
-
-  private function jsonNotifikace() {
-    return '[' . implode(',', $this->jsObserveri) . ']';
+      $this->cacheSouboru->inlineCekejNaBabel('
+        ReactDOM.render(
+          React.createElement(Program, {
+            api: '.$this->api->jsApiObjekt().'
+          }),
+          document.getElementById("'.$this->jsElementId.'")
+        )
+      ');
   }
 
   function zaregistrujJsObserver($nazevFunkce) {
+    throw new Exception('neimplementováno');
+    // TODO zprovoznit podporu pro toto v api
     $this->jsObserveri[] = $nazevFunkce;
   }
 

@@ -5,7 +5,8 @@ class Program extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.data);
+    this.props.data = this.props.api.zakladniData
+    //console.log(this.props.data);
     let linie = this.uklidLinie(this.props.data.linie);
 
     // na začátku je zvolený den čtvrtek - 4

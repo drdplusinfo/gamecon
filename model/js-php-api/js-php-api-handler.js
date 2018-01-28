@@ -1,8 +1,16 @@
-function (spravovanaData) {
+function () {
 
   var omluva = 'Omlouváme se, nastala chyba při komunikaci se serverem.'
 
   var vyhrazenaPromenna = '<vyhrazenaPromenna>'
+
+  var zakladniData = <zakladniData>
+
+  var apiObjekt = {
+    zakladniData: zakladniData,
+    zmenaZakladnichDat: function () {},
+    <metody>
+  }
 
   // jestli je to json objekt
   function isObject (item) {
@@ -33,12 +41,13 @@ function (spravovanaData) {
   }
 
   var zpracujOdpoved = function (odpoved, callback) {
-    if (spravovanaData && odpoved.zmenaDat) {
+    if (zakladniData && odpoved.zmenaDat) {
       for (let klic in odpoved.zmenaDat) {
-        zmenData(spravovanaData, klic, odpoved.zmenaDat[klic])
+        zmenData(zakladniData, klic, odpoved.zmenaDat[klic])
       }
     }
 
+    apiObjekt.zmenaZakladnichDat()
     callback(odpoved.obsah)
   }
 
@@ -58,7 +67,7 @@ function (spravovanaData) {
         zpracujOdpoved(JSON.parse(this.responseText), callback)
       } else if (this.status == 400) {
         if (typeof callbackChyba == 'function') {
-          callbackChyba(JSON.parse(this.responseText).chyba)
+          callbackChyba(JSON.parse(this.responseText).obsah.chyba)
         } else {
           alert(omluva)
           throw 'Neošetřená chyba v ' + url
@@ -71,6 +80,6 @@ function (spravovanaData) {
     xhr.send(data)
   }
 
-  return <metody>
+  return apiObjekt
 
-} (<spravovanaDataPromenna>)
+} ()
