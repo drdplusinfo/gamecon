@@ -3,7 +3,8 @@ class TlacitkoPrihlasit extends React.Component {
     super();
 
     this.state = {
-      tymovyModal: false
+      tymovyModal: false,
+      drdModal: false
     };
     this.prihlasOdhlas = this.prihlasOdhlas.bind(this);
     this.zavriModal = this.zavriModal.bind(this);
@@ -61,13 +62,18 @@ class TlacitkoPrihlasit extends React.Component {
     let akt = this.props.aktivita;
     //TODO: doplň check na prvního přihlášeného
     if (akt.tymova) {
+      if (akt.nazev.includes('Čtvrtfinále')) {
+        this.setState({drdModal: true});
+      }
+      else {
       //když je týmová a první přihlášený, ukaž modal
       this.setState({tymovyModal: true});
       return;
+      //reálně přihlaš
+      this.props.api.prihlas(akt.id);
+      }
     }
-
-    //reálně přihlaš
-    this.props.api.prihlas(akt.id);
+  return;
   }
 
   prihlasOdhlas(event) {
@@ -81,7 +87,7 @@ class TlacitkoPrihlasit extends React.Component {
   }
 
   zavriModal() {
-    this.setState({tymovyModal: false});
+    this.setState({tymovyModal: false, drdModal: false});
   }
 
   render() {
@@ -101,7 +107,12 @@ class TlacitkoPrihlasit extends React.Component {
              zavriModal = {this.zavriModal}
              zobrazen = {this.state.tymovyModal}
            />
-         }
+        }
+        <DrdModal
+          aktivita = {this.props.aktivita}
+          zavriModal = {this.zavriModal}
+          zobrazen = {this.state.drdModal}
+        />
        </div>
     );
   }
