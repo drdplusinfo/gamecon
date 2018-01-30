@@ -3,6 +3,8 @@ class Program extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(this.props.api.zakladniData);
+
     this.zapniUpdateUIPriZmeneDat();
     
     this.data = this.props.api.zakladniData;
@@ -47,7 +49,7 @@ class Program extends React.Component {
         }
       })
     });
-    let stitky = stitky.map(stitek => {
+    stitky = stitky.map(stitek => {
       return {
         nazev: stitek,
         zvoleny: false
