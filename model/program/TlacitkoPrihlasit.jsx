@@ -100,10 +100,8 @@ class TlacitkoPrihlasit extends React.Component {
     }
 
     if (this.aktivitaJePrazdnaATymova(aktivita)) {
-     //když je týmová a první přihlášený, ukaž modal
-     //TODO: doplň check na prvního přihlášeného
-     this.setState({tymovyModal: true});
-     return;
+      this.setState({tymovyModal: true});
+      return;
     }
 
     //reálně přihlaš
@@ -172,5 +170,4 @@ class TlacitkoPrihlasit extends React.Component {
       </div>
     );
   }
-
 }

@@ -1,20 +1,18 @@
 //začátek programu je v 8:00, předpoklámáme konec o půlnoci;
-const ZACATEK_PROGRAMU = 8;
-
 class Program extends React.Component {
 
   constructor(props) {
     super(props);
-    this.props.data = this.props.api.zakladniData
-    console.log(this.props.data);
-    let linie = this.uklidLinie(this.props.data.linie);
+    this.zapniUpdateUIPriZmeneDat();
+    
+    this.props.data = this.props.api.zakladniData;
 
-    // na začátku je zvolený den čtvrtek - 4
+    let linie = this.uklidLinie(this.props.data.linie);
     // zobrazujeme všechny, nejenom volné aktivity
     // zvolenaAktivita je číslo - id zvolenej aktivity
     this.state = {
       linie: linie,
-      zvolenyDen: 4,
+      zvolenyDen: KONSTANTY.DNY_V_TYDNU.CTVRTEK,
       zvolenaAktivita: null,
       stitky: this.ziskejStitky(),
       jenVolneAktivity: false
@@ -33,14 +31,12 @@ class Program extends React.Component {
   odhlas(idAktivity) {
     this.props.api.odhlas(idAktivity, (data) => {
       //odhlášen, aktualizuj UI
-      this.forceUpdate();
     });
   }
 
   prihlas(idAktivity) {
     this.props.api.prihlas(idAktivity, (data) => {
       //přihlášen, aktualizuj UI
-      this.forceUpdate();
     }, (chyba) => {
       //TODO: jak zobrazit tuto chybu hezky?
       alert(chyba);
@@ -57,8 +53,12 @@ class Program extends React.Component {
     return upraveneLinie.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
   }
 
+  zapniUpdateUIPriZmeneDat() {
+    this.props.api.zmenaZakladnichDat = this.forceUpdate.bind(this);
+  }
+
   ziskejStitky() {
-    //Projdi pole aktivit, vytáhni všechny štítky a přiřaď je do pole ziskejStitky
+    //Projdi pole aktivit, vytáhni všechny štítky a přiřaď je do pole stitky
     let stitky = []
     this.props.data.aktivity.forEach(aktivita => {
       aktivita.stitky.forEach(stitek => {

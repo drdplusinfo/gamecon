@@ -84,7 +84,7 @@ class Rozvrh extends React.Component {
             <tr>
               <th className = 'tabulka-linie'>{lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}</th>
               {index == 0 &&
-              <td className = 'tabulka-zadne-aktivity' colSpan = {24-ZACATEK_PROGRAMU} rowSpan = {linie.length}>
+              <td className = 'tabulka-zadne-aktivity' colSpan = {24-KONSTANTY.ZACATEK_PROGRAMU} rowSpan = {linie.length}>
                 Pro zvolené filtry je tady hovno
               </td>}
             </tr>
@@ -109,7 +109,7 @@ class Rozvrh extends React.Component {
 
   vytvorHlavicku() {
     let hlavicka = [<th className = "tabulka-hlavicka-nazvu"></th>];
-    for (let hodina = ZACATEK_PROGRAMU; hodina <= 23; hodina++) {
+    for (let hodina = KONSTANTY.ZACATEK_PROGRAMU; hodina <= 23; hodina++) {
       hlavicka.push(<th className = "tabulka-hlavicka-cas">{hodina}</th>);
     }
     return hlavicka;

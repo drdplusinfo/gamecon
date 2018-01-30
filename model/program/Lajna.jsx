@@ -4,12 +4,12 @@ function Lajna(props) {
     /* Pro tuto linii vytvoří 2d pole aktivit, které přesně koresponduje pozdějšímu
     zobrazení aktivit v rozvrhu*/
     let pole = []
-    pole.push(new Array(24 - ZACATEK_PROGRAMU).fill(null));
+    pole.push(new Array(24 - KONSTANTY.ZACATEK_PROGRAMU).fill(null));
 
     props.aktivity.forEach(aktivita => {
       //pro každou aktivitu zjistíme jak je dlouhá(kolik hodinových slotů) a kdy začíná
       let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 3600000;
-      let zacatekIndex = new Date(aktivita.zacatek).getHours() - ZACATEK_PROGRAMU;
+      let zacatekIndex = new Date(aktivita.zacatek).getHours() - KONSTANTY.ZACATEK_PROGRAMU;
       /* kdyz je zacatekIndex záporný, je to tím, že začátek aktivity je jakoby už v dalším dni,
       po 23 hodině následuje 0 hodina, toto musíme vykompenzovat */
       if(zacatekIndex < 0) {
@@ -34,7 +34,7 @@ function Lajna(props) {
 
       //jestli jsme nenašli volný řádek, znamená to, že si musíme udělat nový
       if(volnyRadek == -1) {
-        pole.push(new Array(24 - ZACATEK_PROGRAMU).fill(null));
+        pole.push(new Array(24 - KONSTANTY.ZACATEK_PROGRAMU).fill(null));
         volnyRadek = pole.length - 1;
       }
 
