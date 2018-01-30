@@ -28,8 +28,8 @@ function ZvolTypy(props) {
     props.zmenStitky(upraveneStitky);
   }
 
-  function prepniVolneAktivity() {
-    props.prepniVolneAktivity();
+  function prepniZobrazeniVolnychAktivit() {
+    props.prepniZobrazeniVolnychAktivit();
   }
 
   function vytvorTlacitkaLinii() {
@@ -58,9 +58,9 @@ function ZvolTypy(props) {
   }
 
   function vytvorTlacitkoVolneAktivity() {
-    let className = props.jenVolneAktivity ? VOLNE_AKTIVITY_ZVOLENO : VOLNE_AKTIVITY_NEZVOLENO;
+    let className = props.zobrazJenVolneAktivity ? VOLNE_AKTIVITY_ZVOLENO : VOLNE_AKTIVITY_NEZVOLENO;
     return (
-      <button onClick = {prepniVolneAktivity} className = {className}>
+      <button onClick = {prepniZobrazeniVolnychAktivit} className = {className}>
         volné aktivity
       </button>
     )

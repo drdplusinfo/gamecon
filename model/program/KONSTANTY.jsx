@@ -1,5 +1,7 @@
 const KONSTANTY = {
+  //začátek programu je v 8:00, předpokládáme konec o půlnoci;
   ZACATEK_PROGRAMU: 8,
+  
   DNY_V_TYDNU: {
     NEDELE: 0,
     PONDELI: 1,

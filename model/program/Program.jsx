@@ -1,54 +1,34 @@
-//začátek programu je v 8:00, předpoklámáme konec o půlnoci;
 class Program extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.zapniUpdateUIPriZmeneDat();
     
-    this.props.data = this.props.api.zakladniData;
+    this.data = this.props.api.zakladniData;
 
-    let linie = this.uklidLinie(this.props.data.linie);
-    // zobrazujeme všechny, nejenom volné aktivity
-    // zvolenaAktivita je číslo - id zvolenej aktivity
+    // zvolenaAktivita je id zvolené aktivity
     this.state = {
-      linie: linie,
+      linie: this.uklidLinie(this.data.linie),
       zvolenyDen: KONSTANTY.DNY_V_TYDNU.CTVRTEK,
       zvolenaAktivita: null,
       stitky: this.ziskejStitky(),
-      jenVolneAktivity: false
+      zobrazJenVolneAktivity: false
     };
 
-    this.odhlas = this.odhlas.bind(this);
-    this.prihlas = this.prihlas.bind(this);
-    this.prepniVolneAktivity = this.prepniVolneAktivity.bind(this);
-    this.ziskejStitky = this.ziskejStitky.bind(this);
+    this.prepniZobrazeniVolnychAktivit = this.prepniZobrazeniVolnychAktivit.bind(this);
     this.zmenLinie = this.zmenLinie.bind(this);
     this.zmenStitky = this.zmenStitky.bind(this);
     this.zvolTentoDen = this.zvolTentoDen.bind(this);
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this);
   }
 
-  odhlas(idAktivity) {
-    this.props.api.odhlas(idAktivity, (data) => {
-      //odhlášen, aktualizuj UI
-    });
-  }
-
-  prihlas(idAktivity) {
-    this.props.api.prihlas(idAktivity, (data) => {
-      //přihlášen, aktualizuj UI
-    }, (chyba) => {
-      //TODO: jak zobrazit tuto chybu hezky?
-      alert(chyba);
-    });
-  }
-
-  prepniVolneAktivity() {
-    this.setState({jenVolneAktivity: !this.state.jenVolneAktivity});
+  prepniZobrazeniVolnychAktivit() {
+    this.setState({zobrazJenVolneAktivity: !this.state.zobrazJenVolneAktivity});
   }
 
   uklidLinie(linie) {
-    // seřaď linie podle pořadí a dej jim vlajku zvolená
+    // seřaď linie podle pořadí a nastav je jako zvolené
     let upraveneLinie = linie.map(lajna => Object.assign({}, lajna, {zvolena: true}));
     return upraveneLinie.sort((lajnaA, lajnaB) => lajnaA.poradi - lajnaB.poradi);
   }
@@ -58,22 +38,22 @@ class Program extends React.Component {
   }
 
   ziskejStitky() {
-    //Projdi pole aktivit, vytáhni všechny štítky a přiřaď je do pole stitky
-    let stitky = []
-    this.props.data.aktivity.forEach(aktivita => {
+    //Projdi pole aktivit, vytáhni všechny štítky a nastav je jako nezvolené
+    let stitky = [];
+    this.data.aktivity.forEach(aktivita => {
       aktivita.stitky.forEach(stitek => {
         if (!(stitky.includes(stitek))) {
           stitky.push(stitek);
         }
       })
-    })
-    let stitkyObj = stitky.map(stitek => {
+    });
+    let stitky = stitky.map(stitek => {
       return {
         nazev: stitek,
         zvoleny: false
       }
-    })
-    return stitkyObj;
+    });
+    return stitky;
   }
 
   zmenLinie(linie) {
@@ -94,19 +74,14 @@ class Program extends React.Component {
   }
 
   render() {
-    let api = {
-      detail: this.props.api.detail,
-      odhlas: this.odhlas,
-      prihlas: this.prihlas
-    }
     return (
       <div>
         <Header />
         <ZvolTypy
-          jenVolneAktivity = {this.state.jenVolneAktivity}
+          zobrazJenVolneAktivity = {this.state.zobrazJenVolneAktivity}
           linie = {this.state.linie}
           stitky = {this.state.stitky}
-          prepniVolneAktivity = {this.prepniVolneAktivity}
+          prepniZobrazeniVolnychAktivit = {this.prepniZobrazeniVolnychAktivit}
           zmenLinie = {this.zmenLinie}
           zmenStitky = {this.zmenStitky}
         />
@@ -119,9 +94,9 @@ class Program extends React.Component {
           zvolTentoDen = {this.zvolTentoDen}
         />
         <Rozvrh
-          api = {api}
-          data = {this.props.data}
-          jenVolneAktivity = {this.state.jenVolneAktivity}
+          api = {this.props.api}
+          data = {this.data}
+          zobrazJenVolneAktivity = {this.state.zobrazJenVolneAktivity}
           linie = {this.state.linie}
           stitky = {this.state.stitky}
           zvolenyDen = {this.state.zvolenyDen}
@@ -129,8 +104,8 @@ class Program extends React.Component {
         />
         {this.state.zvolenaAktivita &&
           <DetailAktivity
-            api = {api}
-            data = {this.props.data}
+            api = {this.props.api}
+            data = {this.data}
             zvolenaAktivita = {this.state.zvolenaAktivita}
             zvolTutoAktivitu = {this.zvolTutoAktivitu}
           />

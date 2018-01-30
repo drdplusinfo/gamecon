@@ -52,7 +52,7 @@ class Rozvrh extends React.Component {
   }
 
   filtrujVolneAktivity(aktivity) {
-    if (this.props.jenVolneAktivity) {
+    if (this.props.zobrazJenVolneAktivity) {
       return aktivity.filter(aktivita => {
         let kapacita = aktivita.kapacitaZeny + aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni;
         let prihlaseno = aktivita.prihlasenoZen + aktivita.prihlasenoMuzu;

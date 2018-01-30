@@ -90,7 +90,7 @@ class TlacitkoPrihlasit extends React.Component {
   } 
 
   odhlasZAktivity(aktivita) {
-    this.props.api.odhlas(aktivita.id);
+    this.props.api.odhlas(aktivita.id, (data) => {});
   }
 
   prihlasNaAktivitu(aktivita) {
@@ -105,7 +105,11 @@ class TlacitkoPrihlasit extends React.Component {
     }
 
     //reálně přihlaš
-    this.props.api.prihlas(aktivita.id);
+    this.props.api.prihlas(aktivita.id, 
+      (data) => {}, 
+      (error) => {
+        console.log(error);
+    });
   }
 
   prihlasOdhlas(event) {
