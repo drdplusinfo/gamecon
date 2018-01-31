@@ -44,10 +44,10 @@ $aktivity = Aktivita::zFiltru($filtr, ['nazev_akce', 'patri_pod', 'zacatek']);
 /* ----------------------------- ZOBRAZENÍ SEKCE O LINII ----------------------------- */
 if(isset($typ)) {
   $t->assign([
-    'oLinii'        => $typ->oTypu(),
-    'hlavniNadpis'          => ucfirst($typ->nazev()),
-    'ikona'         => $typ->ikona(),
-    'ilustracni_obrazek' => $typ->obrazek()
+    'oLinii'              => $typ->oTypu(),
+    'hlavniNadpis'        => ucfirst($typ->nazev()),
+    'ikona'               => $typ->ikona(),
+    'ilustracni_obrazek'  => $typ->obrazek()
   ]);
   $t->parse('aktivity.zahlavi');
   // Manik: Co je kufa tohle?
@@ -62,6 +62,7 @@ if(isset($typ)) {
 $a = reset($aktivity);
 $dalsi = next($aktivity);
 $orgUrls = [];
+$vypsanyDenAktivity = null;
 while($a) {
 
   //TODO hack přeskočení drd a lkd druhých kol
@@ -72,18 +73,36 @@ while($a) {
   }
 
   // vlastnosti per termín
+  // Podmínka: Pokud je den stejný, vypiš pouze čas
+  if($vypsanyDenAktivity == $a->zacatek()->format('l')) {
+    $t->assign([
+      'casAktivity' => $a->zacatek()->format('H:i'),
+    ]);
+    $t->parse('aktivity.aktivita.terminCas');
+    // Podmínka: Pokud je čas poslední ze dne, uzavři řádek
+    if($dalsi->zacatek()->format('l') != $a->zacatek()->format('l')) {
+      $t->parse('aktivity.aktivita.terminDenUzavreni');
+    }
+  }
+  // Podmínka: Pokud je den jiný, vypiš nový řádek. Na něm den a čas
+  elseif($a->zacatek()) {
+    $vypsanyDenAktivity = $a->zacatek()->format('l');
+    $t->assign([
+      'denAktivity' => $a->zacatek()->format('l').': ',
+      'casAktivity' => $a->zacatek()->format('H:i'),
+    ]);
+    $t->parse('aktivity.aktivita.terminDen');
+    $t->parse('aktivity.aktivita.terminCas');
+  }
   $t->assign([
-    'a'             =>  $a,
-    'prihlasovatko' =>  $a->prihlasovatko($u), //Manik: Zjistit, co to přesně dělá
-    'denAktivity'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
-    'casAktivity'     => $a->zacatek() ? $a->zacatek()->format('H:i') : ''
+    'a'               =>  $a,
+    'prihlasovatko'   =>  $a->prihlasovatko($u),
     //TODO ne/přihlašovatelnost odlišená vzhledem (třídou?) termínu aktivity
-    //TODO ajax na zobrazení bubliny ne/úspěšného přihlášení
   ]);
-  $t->parse('aktivity.aktivita.termin');
 
   // vlastnosti per skupina (hack)
   if(!$dalsi || !$dalsi->patriPod() || $dalsi->patriPod() != $a->patriPod()) {
+    $vypsanyDenAktivity = null; //vyresetuj výpis dne pro další aktivitu
     if(CENY_VIDITELNE && $a->cena()) {
       $do = new DateTime(SLEVA_DO);
       $t->assign([
@@ -101,7 +120,8 @@ while($a) {
       //TODO Manik: Jakmile Honza dodělá funkci cena, toto je potřeba upravit
     }
     foreach($a->tagy() as $tag) {
-      $vlajeckoveTagy = ['i pro nováčky','deluxe','pro pokročilé']; //které štítky(tagy) se mají zobrazit ve vlaječce (a nemají se zobrazit ve standardních štítcích)
+      //které štítky(tagy) se mají zobrazit ve vlaječce (a nemají se zobrazit ve standardních štítcích)
+      $vlajeckoveTagy = ['i pro nováčky', 'deluxe', 'pro pokročilé'];
       if (in_array($tag, $vlajeckoveTagy)) {
         $t->assign('tagVlajecka', $tag);
         $t->parse('aktivity.aktivita.vlajecka');

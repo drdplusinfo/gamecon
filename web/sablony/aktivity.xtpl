@@ -71,13 +71,17 @@
                 <div class="aktivita_info-leva">
                   <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
                   <table class="aktivita_tabulka-cas">
-                    <!-- begin:termin -->
-                    <tr>
-                      <td class="aktivita_tabulka_bunka-cena">{denAktivity}</td>
-                      <td><b>{casAktivity}</b></td>
-                    </tr>
-                    <!-- end:termin -->
-                  </table>
+                      <!-- begin: terminDen -->
+                      <tr>
+                        <td class="aktivita_tabulka_bunka-cena">{denAktivity}</td>
+                      <!-- end: terminDen -->
+                      <!-- begin: terminCas -->
+                        <b> {casAktivity}</b>
+                      <!-- end: terminCas -->
+                      <!-- begin: terminDenUzavreni -->
+                      </tr>
+                      <!-- end: terminDenUzavreni -->
+                </table>
                 </div>
                 <div class="aktivita_info-prava">
                   <img src="soubory/grafika/ikony/cena.svg" class="aktivita_ikona_cena">
