@@ -6,7 +6,28 @@ function Lajna(props) {
     let pole = []
     pole.push(new Array(24 - KONSTANTY.ZACATEK_PROGRAMU).fill(null));
 
+    let sdruzene = {}
+
     props.aktivity.forEach(aktivita => {
+      // sdružené aktivity jeden čas překonvertovat na jednu aktivitu
+      // obsahující uvnitř navíc pole všech sdružených aktivit v daný čas
+      if (aktivita.sdruzit) {
+        let cas = aktivita.zacatek + ' ' + aktivita.konec
+        if (!sdruzene[cas]) {
+          // v daném čase ještě žádná sdružená aktivita není:
+          // vytvořit pole sdružených aktivit do aktuální aktivity a přidat
+          // do něj sebe samu
+          aktivita.sdruzene = []
+          aktivita.sdruzene.push(aktivita)
+          sdruzene[cas] = aktivita.sdruzene
+        } else {
+          // v daném čase už sdružená aktivita je:
+          // jen přidat aktuální aktivitu do sdružených v daný čas a nevypisovat
+          sdruzene[cas].push(aktivita)
+          return
+        }
+      }
+
       //pro každou aktivitu zjistíme jak je dlouhá(kolik hodinových slotů) a kdy začíná
       let delka = (new Date(aktivita.konec) - new Date(aktivita.zacatek)) / 3600000;
       let zacatekIndex = new Date(aktivita.zacatek).getHours() - KONSTANTY.ZACATEK_PROGRAMU;
@@ -21,7 +42,7 @@ function Lajna(props) {
       //hledáme volný řádek, ve kterém v čase, který by chtěla zabrat tato aktivita, ještě není jiná aktivita
       pole.forEach((radek, index) => {
         let volno = true;
-        for(let i = zacatekIndex; i<zacatekIndex + delka; i++){
+        for(let i = zacatekIndex; i < zacatekIndex + delka; i++) {
           if(radek[i]){
             volno = false;
             break;
@@ -41,7 +62,7 @@ function Lajna(props) {
       //už víme, kde je volný řádek(našli jsme ho nebo vytvořili nový)
       //a tak tam můžeme vložit aktivitu
       pole[volnyRadek][zacatekIndex] = aktivita;
-      for(let i = zacatekIndex + 1; i<zacatekIndex + delka; i++) {
+      for(let i = zacatekIndex + 1; i < zacatekIndex + delka; i++) {
         pole[volnyRadek][i] = 'obsazeno';
       }
 
