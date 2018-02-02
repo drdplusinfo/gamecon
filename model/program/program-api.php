@@ -35,7 +35,7 @@ class ProgramApi implements JsPhpApi {
       'kapacitaMuzi'  =>  (int) $r['kapacita_m'],
       'kapacitaZeny'  =>  (int) $r['kapacita_f'],
       'kapacitaUniverzalni' =>  (int) $r['kapacita'],
-      'sdruzit'       =>  $a->nazev() == 'Mistrovství v DrD - Čtvrtfinále', // TODO test data
+      'sdruzit'       =>  $a->typId() == Typ::DRD && $a->teamova(), // základní kola DrD
     ];
   }
 
