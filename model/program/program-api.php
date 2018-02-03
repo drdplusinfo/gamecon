@@ -30,12 +30,12 @@ class ProgramApi implements JsPhpApi {
       'probehnuta'    =>  $a->probehnuta(),
       'organizuje'    =>  $this->uzivatel ? $this->uzivatel->organizuje($a) : null,
       'prihlasen'     =>  $this->uzivatel ? $a->prihlasen($this->uzivatel)  : null,
-      'tymova'        =>  (bool) $a->teamova(),
+      'tymova'        =>  (bool) $a->tymova(),
       'popisKratky'   =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
       'kapacitaMuzi'  =>  (int) $r['kapacita_m'],
       'kapacitaZeny'  =>  (int) $r['kapacita_f'],
       'kapacitaUniverzalni' =>  (int) $r['kapacita'],
-      'sdruzit'       =>  $a->typId() == Typ::DRD && $a->teamova(), // základní kola DrD
+      'sdruzit'       =>  $a->typId() == Typ::DRD && $a->tymova(), // základní kola DrD
     ];
   }
 
