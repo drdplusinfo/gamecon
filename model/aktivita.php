@@ -430,7 +430,7 @@ class Aktivita {
   }
 
   protected function kolekce() {
-    return $this->kolekce->getArrayCopy();
+    return $this->kolekce;
   }
 
   /** Vrátí DateTime objekt konce aktivity */
@@ -1029,6 +1029,21 @@ class Aktivita {
     }
   }
 
+  function tym() {
+    if($this->tymova() && $this->prihlaseno() > 0 && !$this->a['zamcel'])
+      return new Tym($this, $this->a);
+    else
+      return null;
+  }
+
+  function tymMaxKapacita() {
+    return $this->a['team_max'];
+  }
+
+  function tymMinKapacita() {
+    return $this->a['team_min'];
+  }
+
   /**
    * Je aktivita týmová?
    */
@@ -1036,11 +1051,17 @@ class Aktivita {
     return $this->a['teamova'];
   }
 
-  function tym() {
-    if($this->tymova() && $this->prihlaseno() > 0 && !$this->a['zamcel'])
-      return new Tym($this, $this->a);
-    else
+  /**
+   * @return DateTimeCz|null jestli a do kdy je týmová aktivita zamčená
+   */
+  function tymZamcenyDo() {
+    if($this->a['zamcel_cas']) {
+      $dt = new DateTimeCz($this->a['zamcel_cas']);
+      $dt->add('PT' . self::HAJENI . 'H');
+      return $dt;
+    } else {
       return null;
+    }
   }
 
   function typ() {
@@ -1404,12 +1425,12 @@ class Aktivita {
   }
 
   /**
-   * Pokusí se vyčíst aktivitu z dodaného ID. Vrátí aktivitu nebo null
+   * Pokusí se vyčíst aktivitu z dodaného ID.
+   * @return self|null
    */
-  static function zId($id)
-  {
+  static function zId($id) {
     if((int)$id)
-      return self::zWhere('WHERE a.id_akce='.(int)$id)->current();
+      return current(self::zWhere('WHERE a.id_akce='.(int)$id));
     else
       return null;
   }
@@ -1517,17 +1538,19 @@ class Aktivita {
       $order
     ", $args);
 
-    $kolekce = new ArrayIterator();
+    $kolekce = []; // pomocný sdílený seznam aktivit pro přednačítání
+
     while($r = mysqli_fetch_assoc($o)) {
       $r['url_akce'] = $r['url_temp'];
       $aktivita = new self($r);
-      $aktivita->kolekce = $kolekce;
       $aktivita->typ = $r['typ'];
       $aktivita->lokace = $r['lokace'];
-      $kolekce[$r['id_akce']] = $aktivita;
+
+      $aktivita->kolekce = &$kolekce;
+      $aktivita->kolekce[$r['id_akce']] = $aktivita;
     }
 
-    return $kolekce;
+    return array_values($kolekce);
   }
 
 }

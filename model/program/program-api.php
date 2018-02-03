@@ -30,7 +30,7 @@ class ProgramApi implements JsPhpApi {
       'probehnuta'    =>  $a->probehnuta(),
       'organizuje'    =>  $this->uzivatel ? $this->uzivatel->organizuje($a) : null,
       'prihlasen'     =>  $this->uzivatel ? $a->prihlasen($this->uzivatel)  : null,
-      'tymova'        =>  (bool) $a->tymova(),
+      'tymovaData'    =>  $this->tymovaDataFormat($a),
       'popisKratky'   =>  rand(0, 99) >= 10 ? 'Naprosto skvělá záležitost. To chceš.' : 'Sračka.', // TODO test data
       'kapacitaMuzi'  =>  (int) $r['kapacita_m'],
       'kapacitaZeny'  =>  (int) $r['kapacita_f'],
@@ -44,13 +44,8 @@ class ProgramApi implements JsPhpApi {
    */
   private function aktivity() {
     // TODO listovat tech. aktivity jenom tomu, kdo je může vidět
-
     $aktivity = Aktivita::zProgramu();
-
-    return array_map(
-      [$this, 'aktivitaFormat'],
-      array_values($aktivity->getArrayCopy())
-    );
+    return array_map([$this, 'aktivitaFormat'], $aktivity);
   }
 
   /**
@@ -98,6 +93,51 @@ class ProgramApi implements JsPhpApi {
     return new ZmenaDat([
       "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a)
     ]);
+  }
+
+  /**
+   * Vrátí strukturu s detaily o týmové aktivitě nebo null, pokud aktivita
+   * týmová není.
+   */
+  private function tymovaDataFormat($a, $detail = false) {
+    if(!$a->tymova()) return null;
+
+    $tym = $a->tym();
+    $zamcenaDo = $a->tymZamcenyDo();
+    $hraci = null;
+    $dalsiKola = null;
+
+    if($detail) {
+      $dalsiKola = [];
+      $dalsiKolo = [$a];
+      while($dalsiKolo = current($dalsiKolo)->deti()) {
+        $dalsiKola[] = array_map(function($varianta) {
+          return [
+            'id'    =>  $varianta->id(),
+            'nazev' =>  $varianta->nazev() . ': ' . $varianta->denCas(),
+          ];
+        }, $dalsiKolo);
+      }
+
+      if($tym && $this->uzivatel && $a->prihlasen($this->uzivatel)) {
+        $hraci = [];
+        foreach($tym->clenove() as $hrac) {
+          // TODO měl by se zde vypisovat i aktuální uživatel, nebo ne?
+          if($hrac->id() != $this->uzivatel->id()) {
+            $hraci[] = $hrac->jmenoNick();
+          }
+        }
+      }
+    }
+
+    return [
+      'nazevTymu'   =>  $tym ? $tym->nazev() : null,
+      'maxKapacita' =>  (int) $a->tymMaxKapacita(),
+      'minKapacita' =>  (int) $a->tymMinKapacita(),
+      'hraci'       =>  $hraci,
+      'vyberKol'    =>  $dalsiKola,
+      'zamcenaDo'   =>  $zamcenaDo ? $zamcenaDo->formatJs() : null,
+    ];
   }
 
   /**
