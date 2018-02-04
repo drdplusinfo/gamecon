@@ -49,18 +49,6 @@ class ProgramApi implements JsPhpApi {
   }
 
   /**
-   * Vrátí detail aktivity.
-   */
-  function detail($aktivitaId) {
-    // TODO upravit načtení detailu na změnu (doplnění) základních dat
-    return [
-      'popis'     =>  rand(0,1) ? 'Moc dobrá aktivita. Doporučuji.' : 'Sračka.',
-      'mistnost'  =>  ['nazev' => 'Holobyt na AB/B/2 v kukani.', 'dvere' => 123],
-      'hraci'     =>  ['Pepa', 'Jarin'],
-    ];
-  }
-
-  /**
    * Vrátí pole všech existujících programových linií.
    */
   private function linie() {
@@ -71,6 +59,16 @@ class ProgramApi implements JsPhpApi {
         t.poradi
       FROM akce_typy t
     ')->fetch_all(MYSQLI_ASSOC);
+  }
+
+  /**
+   * Doplní do základních dat dlouhý popisek aktivity.
+   */
+  function nactiDetail($aktivitaId) {
+    $a = Aktivita::zId($aktivitaId);
+    return new ZmenaDat([
+      "aktivity[id=$aktivitaId].popisDlouhy" => $a->popis(),
+    ]);
   }
 
   /**
