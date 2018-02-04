@@ -42,8 +42,20 @@ class Tym {
     return $this->clenove;
   }
 
-  private function kapacita() {
-    return $this->r['kapacita']; // u týmovek nepodporujeme rozdělení ž/m
+  function kapacita(...$params) {
+    if(!$params) {
+      return $this->r['kapacita']; // u týmovek nepodporujeme rozdělení ž/m
+    } else {
+      $kapacita = (int) $params[0];
+      if($kapacita > $this->maxKapacita())      throw new Exception('Nelze zvýšit kapacitu nad maximum.');
+      if($kapacita < $this->minKapacita())      throw new Exception('Nelze snížit kapacitu pod minimum.');
+      if($kapacita < count($this->clenove()))   throw new Exception('Nelze snížit kapacitu pod aktuální počet přihlášených.');
+      dbUpdate(
+        'akce_seznam',
+        ['kapacita' => $kapacita],
+        ['id_akce' => $this->a->id()]
+      );
+    }
   }
 
   private function maxKapacita() {

@@ -126,6 +126,25 @@ class ProgramApi implements JsPhpApi {
   }
 
   /**
+   * Nastaví kapacitu v rámci limitů daných min a max kapacitou týmu.
+   *
+   * Nelze snížit pod počet přihlášených hráčů. Uživatel musí být na aktivitu
+   * přihlášen.
+   */
+  function nastavKapacituTymu($aktivitaId, $kapacita) {
+    $a = Aktivita::zId($aktivitaId);
+
+    if(!$a->prihlasen($this->uzivatel))
+      throw new Exception('Je nutné být přihlášen na danou aktivitu.');
+
+    $a->tym()->kapacita($kapacita);
+
+    return new ZmenaDat([
+      "aktivity[id=$aktivitaId].kapacitaUniverzalni" => (int) $kapacita,
+    ]);
+  }
+
+  /**
    * Odhlásí aktuálního uživatele z aktivity.
    */
   function odhlas($aktivitaId) {
