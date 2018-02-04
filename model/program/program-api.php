@@ -106,6 +106,26 @@ class ProgramApi implements JsPhpApi {
   }
 
   /**
+   * Vrátí pole uživatelů, kteří odpovídají vyhledávanému výrazu.
+   */
+  function najdiHrace($castJmena) {
+    if(!$this->uzivatel)
+      throw new Exception('Uživatel musí být přihlášen.');
+
+    return array_map(function($u) {
+      return [
+        'id'    =>  $u->id(),
+        'jmeno' =>  $u->jmenoNick(),
+      ];
+    }, Uzivatel::zHledani($castJmena, [
+      'mail'  =>  false,
+      'id'    =>  false,
+      'min'   =>  3,
+      'limit' =>  5,
+    ]));
+  }
+
+  /**
    * Odhlásí aktuálního uživatele z aktivity.
    */
   function odhlas($aktivitaId) {

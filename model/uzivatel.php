@@ -733,20 +733,30 @@ class Uzivatel {
    */
   static function zHledani($dotaz, $opt = []) {
     $opt = opt($opt, [
-      'mail'  =>  false,
-      'min'   =>  3, // minimum znaků
+      'mail'  =>  false,  // hledat dle mailu
+      'id'    =>  true,   // hledat dle ID
+      'min'   =>  3,      // minimum znaků
+      'limit' =>  20,     // maximum výsledků
     ]);
+
     if(strlen($dotaz) < $opt['min']) return [];
-    $q = dbQv($dotaz);
-    $l = dbQv($dotaz.'%'); // pro LIKE dotazy
-    return self::zWhere("
-      WHERE u.id_uzivatele = $q
-      OR login_uzivatele LIKE $l
-      OR jmeno_uzivatele LIKE $l
-      OR prijmeni_uzivatele LIKE $l
-      ".( $opt['mail'] ? " OR email1_uzivatele LIKE $l " : "" )."
-      OR CONCAT(jmeno_uzivatele,' ',prijmeni_uzivatele) LIKE $l
-    ", null, 'LIMIT 20');
+
+    $podminky = [
+      'login_uzivatele LIKE $0',
+      'jmeno_uzivatele LIKE $0',
+      'prijmeni_uzivatele LIKE $0',
+      'CONCAT(jmeno_uzivatele, " ", prijmeni_uzivatele) LIKE $0',
+    ];
+    if($opt['mail'])  $podminky[] = 'email1_uzivatele LIKE $0';
+    if($opt['id'])    $podminky[] = 'u.id_uzivatele = $1';
+
+    $limit = min((int) $opt['limit'], 20);
+
+    return self::zWhere(
+      'WHERE ' . implode(' OR ', $podminky),
+      [$dotaz.'%', $dotaz],
+      'LIMIT ' . $limit
+    );
   }
 
   static function zId($id) {
