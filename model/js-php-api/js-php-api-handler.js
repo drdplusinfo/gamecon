@@ -33,10 +33,7 @@ function () {
       }
     } else {
       // u primitivních typů se hodnota přímo nahradí novou hodnotou
-      // to ale znamená najít "rodičovský" objekt dané staré hodnoty a v něm
-      // upravit požadovaný atribut
-      alert('TODO')
-      throw 'TODO'
+      eval('data.' + jsSelektor + ' = novaHodnota')
     }
   }
 
@@ -48,7 +45,9 @@ function () {
     }
 
     apiObjekt.zmenaZakladnichDat()
-    callback(odpoved.obsah)
+    if (typeof callback == 'function') {
+      callback(odpoved.obsah)
+    }
   }
 
   var zavolej = function (nazev, parametry, callback, callbackChyba) {
