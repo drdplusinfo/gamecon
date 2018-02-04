@@ -72,6 +72,40 @@ class ProgramApi implements JsPhpApi {
   }
 
   /**
+   * Doplní do základních dat kompletní informace o týmu.
+   *
+   * Lze zavolat pouze, pokud je uživatel na danou aktivitu přihlášen.
+   */
+  function nactiDetailTymu($aktivitaId) {
+    $a = Aktivita::zId($aktivitaId);
+
+    if(!$a->prihlasen($this->uzivatel))
+      throw new Chyba('Nejsi přihlášen na danou aktivitu.');
+    if(!$a->tymova())
+      throw new Exception('Aktivita není týmová.');
+
+    $dalsiKola = [];
+    $dalsiKolo = [$a];
+    while($dalsiKolo = current($dalsiKolo)->deti()) {
+      $dalsiKola[] = array_map(function($varianta) {
+        return [
+          'id'    =>  $varianta->id(),
+          'nazev' =>  $varianta->nazev() . ': ' . $varianta->denCas(),
+        ];
+      }, $dalsiKolo);
+    }
+
+    $hraci = array_map(function($hrac) {
+      return $hrac->jmenoNick();
+    }, $a->prihlaseni());
+
+    return new ZmenaDat([
+      "aktivity[id=$aktivitaId].tymovaData.hraci"     =>  $hraci,
+      "aktivity[id=$aktivitaId].tymovaData.vyberKol"  =>  $dalsiKola,
+    ]);
+  }
+
+  /**
    * Odhlásí aktuálního uživatele z aktivity.
    */
   function odhlas($aktivitaId) {
@@ -102,38 +136,13 @@ class ProgramApi implements JsPhpApi {
 
     $tym = $a->tym();
     $zamcenaDo = $a->tymZamcenyDo();
-    $hraci = null;
-    $dalsiKola = null;
-
-    if($detail) {
-      $dalsiKola = [];
-      $dalsiKolo = [$a];
-      while($dalsiKolo = current($dalsiKolo)->deti()) {
-        $dalsiKola[] = array_map(function($varianta) {
-          return [
-            'id'    =>  $varianta->id(),
-            'nazev' =>  $varianta->nazev() . ': ' . $varianta->denCas(),
-          ];
-        }, $dalsiKolo);
-      }
-
-      if($tym && $this->uzivatel && $a->prihlasen($this->uzivatel)) {
-        $hraci = [];
-        foreach($tym->clenove() as $hrac) {
-          // TODO měl by se zde vypisovat i aktuální uživatel, nebo ne?
-          if($hrac->id() != $this->uzivatel->id()) {
-            $hraci[] = $hrac->jmenoNick();
-          }
-        }
-      }
-    }
 
     return [
       'nazevTymu'   =>  $tym ? $tym->nazev() : null,
       'maxKapacita' =>  (int) $a->tymMaxKapacita(),
       'minKapacita' =>  (int) $a->tymMinKapacita(),
-      'hraci'       =>  $hraci,
-      'vyberKol'    =>  $dalsiKola,
+      'hraci'       =>  null,
+      'vyberKol'    =>  null,
       'zamcenaDo'   =>  $zamcenaDo ? $zamcenaDo->formatJs() : null,
     ];
   }

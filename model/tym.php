@@ -33,7 +33,10 @@ class Tym {
     return array_search($this->a->id(), self::$aktivityId[$typ]) + 1;
   }
 
-  function clenove() {
+  /**
+   * @return Uzivatel[]
+   */
+  private function clenove() {
     if(!isset($this->clenove))
       $this->clenove = $this->a->prihlaseni();
     return $this->clenove;
