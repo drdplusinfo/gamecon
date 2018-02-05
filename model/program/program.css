@@ -4,8 +4,10 @@ body { font-family: sans-serif; }
   right: 0;
   top: 0;
   height: 100%;
+  width: 30%;
   z-index: 1;
   background-color: #eee;
+  overflow-y: scroll;
 }
 
 /*Modaly*/
