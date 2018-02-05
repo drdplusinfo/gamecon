@@ -13,4 +13,8 @@ class ZmenaDat {
     return $this->pole;
   }
 
+  function pridej(self $dalsiZmena) {
+    $this->pole = array_merge($this->pole, $dalsiZmena->pole);
+  }
+
 }

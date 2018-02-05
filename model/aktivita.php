@@ -815,9 +815,10 @@ class Aktivita {
     return $this->a['prihlaseni'];
   }
 
-  /** Počet přihlášených */
-  protected function prihlaseno()
-  {
+  /**
+   * @return int počet přihlášených
+   */
+  function prihlaseno() {
     if($p = $this->prihlaseniRaw())
       return substr_count($p, ',') - 1;
     else

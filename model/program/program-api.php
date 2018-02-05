@@ -160,10 +160,38 @@ class ProgramApi implements JsPhpApi {
    */
   function prihlas($aktivitaId) {
     $a = Aktivita::zId($aktivitaId);
+    if($a->tymova() && $a->prihlaseno() == 0) {
+      throw new Exception('Na aktivitu je nutné se přihlásit jako týmlídr.');
+    }
     $a->prihlas($this->uzivatel);
     return new ZmenaDat([
-      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a)
+      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a),
     ]);
+  }
+
+  /**
+   * Přihlásí uživatele jako týmlídra aktivity a aktivitu zamkne, aby mohl
+   * následně zadat tým.
+   *
+   * Při přihlšení automaticky načte data z `nactiDetailTymu`.
+   */
+  function prihlasTymlidra($aktivitaId) {
+    $a = Aktivita::zId($aktivitaId);
+    if(!$a->tymova()) throw new Exception('Aktivita musí být týmová.');
+    if($a->prihlaseno() > 0) throw new Chyba('Aktivita už je zabraná.');
+
+    $a->prihlas($this->uzivatel);
+    $zmenaDatPrihlaseni = new ZmenaDat([
+      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a),
+    ]);
+
+    $zmenaDatPridanyDetail = $this->nactiDetailTymu($aktivitaId);
+
+    $zmenaDatCelkova = new ZmenaDat([]);
+    $zmenaDatCelkova->pridej($zmenaDatPrihlaseni);
+    $zmenaDatCelkova->pridej($zmenaDatPridanyDetail);
+
+    return $zmenaDatCelkova;
   }
 
   /**
