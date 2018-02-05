@@ -33,11 +33,8 @@ function ZvolTypy(props) {
   }
 
   function vytvorTlacitkaLinii() {
-    //vyfiltruj záporné pořadí
-    let linie = props.linie.filter(lajna => lajna.poradi>0);
-
     //Udělej tlačítko pro každou linii a vrať pole tlačítek
-    return linie.map(lajna => {
+    return props.linie.map(lajna => {
       let className = lajna.zvolena ? LINIE_ZVOLENA : LINIE_NEZVOLENA;
       return (
         <button onClick = {() => prepniLajnu(lajna)} className = {className}>

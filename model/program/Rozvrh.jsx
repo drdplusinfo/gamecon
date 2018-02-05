@@ -1,18 +1,10 @@
 class Rozvrh extends React.Component {
 
   filtrujAktivity(aktivity) {
-    let vyfiltrovane = this.filtrujOrganizacni(aktivity);
-    vyfiltrovane = this.filtrujPodleDne(vyfiltrovane);
+    let vyfiltrovane = this.filtrujPodleDne(aktivity);
     vyfiltrovane = this.filtrujPodleLinie(vyfiltrovane);
     vyfiltrovane = this.filtrujPodleStitku(vyfiltrovane);
     return this.filtrujVolneAktivity(vyfiltrovane);
-  }
-
-  filtrujOrganizacni(aktivity) {
-    //TODO: sem přijde nějaký test, který nechá jen organizační aktivity, na kterých
-    //se přihlášený uživatel účastní
-    // momentálně vyfiltruje všechny organizační
-    return aktivity.filter(aktivita => aktivita.linie != 10);
   }
 
   filtrujPodleDne(aktivity) {
@@ -56,45 +48,45 @@ class Rozvrh extends React.Component {
       return aktivity.filter(aktivita => {
         let kapacita = aktivita.kapacitaZeny + aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni;
         let prihlaseno = aktivita.prihlasenoZen + aktivita.prihlasenoMuzu;
-        return kapacita == 0 ? true : kapacita > prihlaseno;
+        return kapacita === 0 ? true : kapacita > prihlaseno;
       })
     }
     return aktivity;
-  }
-
-  filtrujLinie(linie){
-    //TODO: tady bude nějaký test, který vyfiltruje/nechá "Organizační výpomoc", jestli je uživatel
-    //přihlášen na nějaké tahání beden
-    return linie.filter(lajna => lajna.poradi > 0);
   }
 
   najdiAktivityKLinii(aktivity, lajna) {
     return aktivity.filter(aktivita => aktivita.linie == lajna.id);
   }
 
-  vytvorLinie(aktivity, linie) {
-    let vyfiltrovaneLinie = this.filtrujLinie(linie);
+  vytvorPrazdnouTabulku(linie) {
+    function bocniHlavickaSJmenemLinie(lajna) {
+      return <th className = 'tabulka-linie'>{lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}</th>;
+    } 
 
-    //když jsou aktivity prázné, napiš hlášku - demo
-    //TODO: probrat jestli to vůbec dělat takto
-    if(aktivity.length === 0) {
-      return (
-        <tbody className = 'tabulka-linie'>
-          {vyfiltrovaneLinie.map((lajna, index) =>
+    const informacniHlaskaVeVelkeBunce = 
+      <td className = 'tabulka-zadne-aktivity' colSpan = {24-KONSTANTY.ZACATEK_PROGRAMU} rowSpan = {linie.length}>
+        Pro zvolené filtry tady nejsou žádné aktivity
+      </td>;
+
+    return (
+      <tbody className = 'tabulka-linie'>
+          {linie.map((lajna, index) =>
             <tr>
-              <th className = 'tabulka-linie'>{lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}</th>
-              {index == 0 &&
-              <td className = 'tabulka-zadne-aktivity' colSpan = {24-KONSTANTY.ZACATEK_PROGRAMU} rowSpan = {linie.length}>
-                Pro zvolené filtry je tady hovno
-              </td>}
+              {bocniHlavickaSJmenemLinie(lajna)}
+              {index === 0 && informacniHlaskaVeVelkeBunce}
             </tr>
           )}
-        </tbody>
-      );
+      </tbody>
+    );
+  }
+
+  vytvorLinie(aktivity, linie) {
+    if(aktivity.length === 0) {
+      return this.vytvorPrazdnouTabulku(linie);
     } else {
-      return vyfiltrovaneLinie.map(lajna => {
+      return linie.map(lajna => {
         return (
-          <Lajna
+          <ProgramovaLinie
             aktivity = {this.najdiAktivityKLinii(aktivity, lajna)}
             api = {this.props.api}
             key = {lajna.id}

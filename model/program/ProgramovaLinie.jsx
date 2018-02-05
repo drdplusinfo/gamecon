@@ -1,4 +1,4 @@
-function Lajna(props) {
+function ProgramovaLinie(props) {
 
   function vytvorPoleAktivit() {
     /* Pro tuto linii vytvoří 2d pole aktivit, které přesně koresponduje pozdějšímu
