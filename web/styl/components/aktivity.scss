@@ -1,7 +1,35 @@
+/* ------------ AKTIVITY OBECNĚ -------------------- */
 .aktivity {
   & a {
     font-weight: bold;
   }
+}
+.aktivity_hlavniNadpis {
+  @extend .aktivita_nadpis;
+  padding-top: 4vw;
+  margin-bottom: 20px;
+  @include media-breakpoint-down(lg) {
+    padding-top: 0;
+  };
+}
+.aktivity_nadpis_ikona {
+  width: 39px;
+  height: 39px;
+}
+.aktivity_nadpis_kruh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @extend .drop-shadow;
+  width: 57px;
+  height: 57px;
+  margin-right: 20px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, $purple-dark, $purple-light);
+}
+.aktivity_podnadpis {
+  @extend h2;
+  padding-top: 4vw;
 }
 .aktivity_zahlavi {
   margin: 36px 60px 0px 0px;
@@ -15,41 +43,81 @@
     margin: 36px 10px 0px 10px;
   }
 }
-.aktivity_nadpis_ikona {
-  width: 39px;
-  height: 39px;
-}
-.aktivity_hlavniNadpis {
-  @extend .aktivita_nadpis;
-  padding-top: 4vw;
-  margin-bottom: 20px;
-  @include media-breakpoint-down(lg) {
-    padding-top: 0;
-  };
-}
-.aktivity_podnadpis {
-  @extend h2;
-  padding-top: 4vw;
-}
 .aktivity_zakladniInfo {
   @extend h5;
   line-height: 1.5;
   font-weight: 600;
   padding-right: 20px;
 }
-.aktivity_nadpis_kruh {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @extend .drop-shadow;
-  width: 57px;
-  height: 57px;
-  margin-right: 20px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, $purple-dark, $purple-light);
+
+/* ------------ KONKRÉTNÍ AKTIVITA -------------------- */
+.aktivita_cara {
+  width: 300px;
+  height: 3px;
+  background-color: $gray-100;
+  margin-bottom: 6px;
+  display: inline-block;
 }
-.aktivita_tagy {
-  padding-bottom: 8px;
+.aktivita_info {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 12px;
+  & table {
+    font-size: $font-size-base * .8;
+    color: $gray-300;
+    line-height: 1.6;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    & td {
+      padding: 0;
+    }
+  }
+}
+.aktivita_info-leva {
+  text-align: left;
+  float: left;
+}
+.aktivita_info-prava {
+  text-align: right;
+  float: right;
+}
+.aktivita_info_ikona_cas {
+  display: inline-block;
+  vertical-align: top;
+  width: 24px;
+  padding-bottom: 2px;
+  text-align: right;
+}
+.aktivita_info_ikona_cena {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  text-align: right;
+}
+.aktivita_info_tabulka_bunka-cas {
+  width: 38px;
+}
+.aktivita_info_tabulka_bunka-cena {
+  width: 40px;
+  text-align: left;
+  vertical-align: middle;
+}
+.aktivita_info_tabulka_bunka-ikona {
+  padding: 4px 0px 0px 0px;
+}
+.aktivita_ikona_sipka_dolu{
+  background: url(soubor('grafika/ikony/sipka_dolu.png')) no-repeat scroll left top;
+  width: 13px;
+  padding-top: 8px;
+  display: inline-block;
+}
+.aktivita_ikona_sipka_nahoru{
+  background: url(soubor('grafika/ikony/sipka_nahoru.png')) no-repeat scroll left top;
+  width: 13px;
+  padding-top: 8px;
+  display: inline-block;
 }
 .aktivita_nadpis {
   @extend h2;
@@ -62,10 +130,44 @@
   margin-top: 16px;
 }
 .aktivita_obrazek {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   left: -10px;
   width: 100%;
   height: 203px;
   margin: -12px 0 0 -10px;
+  &:hover .aktivita-obrazek-prekryv {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+.aktivita-obrazek-prekryv {
+  width: 100%;
+  height: 100%;
+  background-image: url(soubor('grafika/titulka/cover-photo-overlay.svg'));
+  background-size: 3px 3px, cover;
+  background-position: center top;
+  background-repeat: repeat, repeat;
+  opacity: 0;
+}
+.aktivita_sekce {
+  font-size: $font-size-sm;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: $red;
+  text-align: left;
+  padding-top: 32px;
+}
+.aktivita_tagy {
+  padding-bottom: 8px;
+}
+.aktivita_tag {
+  font-size: $font-size-xs;
+  font-weight: 700;
+  display: inline-block;
+  background-color: $gray-50;
+  padding: 4px;
 }
 .aktivita_vlajecky {
   position: absolute;
@@ -81,15 +183,6 @@
   background-color: $black;
   margin-top: 5px;
 }
-.aktivita_sekce {
-  font-size: $font-size-sm;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: $red;
-  text-align: left;
-  padding-top: 32px;
-}
 .aktivita_vypravec {
   font-size: $font-size-sm;
   font-weight: 600;
@@ -99,89 +192,4 @@
     color: $gray-300;
     font-weight: normal;
   }
-}
-.aktivita_tag {
-  font-size: $font-size-xs;
-  font-weight: 700;
-  display: inline-block;
-  background-color: $gray-50;
-  padding: 4px;
-}
-.aktivita_popis {
-  text-align: left;
-  font-size: $font-size-base * .8;
-  color: $gray-300;
-  line-height: 1.6;
-  padding-bottom: 16px;
-  & p {
-    text-align: left;
-    font-size: $font-size-base * .8;
-    color: $gray-300;
-    line-height: 1.6;
-  }
-  & p:last-child {
-    margin-bottom: 0;
-  }
-}
-.aktivita_info {
-  overflow: hidden;
-  width: 100%;
-  padding-bottom: 12px;
-  & table {
-    font-size: $font-size-base * .8;
-    color: $gray-300;
-    line-height: 1.6;
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    border: 0;
-  }
-}
-.aktivita_info-leva {
-  text-align: left;
-  float: left;
-}
-.aktivita_info-prava {
-  text-align: right;
-  float: right;
-}
-.aktivita_tabulka_bunka-cas {
-  width: 38px;
-}
-.aktivita_tabulka_bunka-cena {
-  text-align: left;
-  width: 50px;
-}
-.aktivita_cara {
-  width: 300px;
-  height: 3px;
-  background-color: $gray-100;
-  margin-bottom: 6px;
-  display: inline-block;
-}
-.aktivita_ikona_cas {
-  display: inline-block;
-  vertical-align: top;
-  width: 24px;
-  padding-bottom: 2px;
-  text-align: right;
-}
-.aktivita_ikona_cena {
-  display: inline-block;
-  vertical-align: top;
-  width: 24px;
-  padding-bottom: 2px;
-  text-align: right;
-}
-.aktivita_ikona_sipka_dolu{
-  background: url(soubor('grafika/ikony/sipka_dolu.png')) no-repeat scroll left top;
-  width: 13px;
-  padding-top: 8px;
-  display: inline-block;
-}
-.aktivita_ikona_sipka_nahoru{
-  background: url(soubor('grafika/ikony/sipka_nahoru.png')) no-repeat scroll left top;
-  width: 13px;
-  padding-top: 8px;
-  display: inline-block;
 }

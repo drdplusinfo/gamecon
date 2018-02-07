@@ -61,8 +61,8 @@ if(isset($typ)) {
 /* ----------------------------- ZOBRAZENÍ AKTIVIT ----------------------------- */
 $a = reset($aktivity);
 $dalsi = next($aktivity);
+$casyAktivitVeSkupine = [];
 $orgUrls = [];
-$vypsanyDenAktivity = null;
 while($a) {
 
   //TODO hack přeskočení drd a lkd druhých kol
@@ -73,27 +73,9 @@ while($a) {
   }
 
   // vlastnosti per termín
-  // Podmínka: Pokud je den stejný, vypiš pouze čas
-  if($vypsanyDenAktivity == $a->zacatek()->format('l')) {
-    $t->assign([
-      'casAktivity' => $a->zacatek()->format('H:i'),
-    ]);
-    $t->parse('aktivity.aktivita.terminCas');
-    // Podmínka: Pokud je čas poslední ze dne, uzavři řádek
-    if($dalsi->zacatek()->format('l') != $a->zacatek()->format('l')) {
-      $t->parse('aktivity.aktivita.terminDenUzavreni');
-    }
-  }
-  // Podmínka: Pokud je den jiný, vypiš nový řádek. Na něm den a čas
-  elseif($a->zacatek()) {
-    $vypsanyDenAktivity = $a->zacatek()->format('l');
-    $t->assign([
-      'denAktivity' => $a->zacatek()->format('l').': ',
-      'casAktivity' => $a->zacatek()->format('H:i'),
-    ]);
-    $t->parse('aktivity.aktivita.terminDen');
-    $t->parse('aktivity.aktivita.terminCas');
-  }
+  $casyAktivitVeSkupine[$a->zacatek()->format('l')][] = $a->zacatek()->format('H:i');
+
+
   $t->assign([
     'a'               =>  $a,
     'prihlasovatko'   =>  $a->prihlasovatko($u),
@@ -102,7 +84,6 @@ while($a) {
 
   // vlastnosti per skupina (hack)
   if(!$dalsi || !$dalsi->patriPod() || $dalsi->patriPod() != $a->patriPod()) {
-    $vypsanyDenAktivity = null; //vyresetuj výpis dne pro další aktivitu
     if(CENY_VIDITELNE && $a->cena()) {
       $do = new DateTime(SLEVA_DO);
       $t->assign([
@@ -131,6 +112,14 @@ while($a) {
         $t->parse('aktivity.aktivita.tag');
       }
     }
+    foreach($casyAktivitVeSkupine as $den => $poleSCasy) {
+      $poleSCasy = implode (', ', $poleSCasy);
+      $t->assign([
+        'denAktivity'             => $den,
+        'casyAktivityVJednomDni'  => $poleSCasy,
+      ]);
+      $t->parse('aktivity.aktivita.termin');
+    }
     $popis = $a->popis();
     if(!$a->teamova()) {
       $orgUrls = array_merge($orgUrls, orgUrls($a->organizatori()));
@@ -142,6 +131,7 @@ while($a) {
       'popis'   => $popis
       ]);
     $t->parse('aktivity.aktivita');
+    $casyAktivitVeSkupine = [];
   }
 
   // bižuterie pro běh cyklu

@@ -207,7 +207,9 @@
       <!-- begin: aktivita -->
       <div class="grid-item box-360 box_obal">
         <div class="box_ohraniceni">
-          <img class="aktivita_obrazek" src="{obrazekAktivity}"></img>
+          <div class="aktivita_obrazek-obal">
+            <img class="aktivita_obrazek" src="{obrazekAktivity}"></img>
+          </div>
           <div class="box_obsah">
             <div class="pl-30px pr-30px">
               <div class="aktivita_sekce">{linieAktivity}</div>
@@ -219,11 +221,11 @@
               <!-- begin:info -->
               <div class="aktivita_info">
                 <div class="aktivita_info-leva">
-                  <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
-                  <table class="aktivita_tabulka-cas">
+                  <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_info_ikona_cas">
+                  <table class="aktivita_info_tabulka-cas">
                     <!-- begin:termin -->
                     <tr>
-                      <td class="aktivita_tabulka_bunka-cena">{denAktivity}</td>
+                      <td class="aktivita_info_tabulka_bunka-cena">{denAktivity}</td>
                       <td><b>{casAktivity}</b></td>
                     </tr>
                     <!-- end:termin -->

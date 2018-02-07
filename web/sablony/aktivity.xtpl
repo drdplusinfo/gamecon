@@ -43,7 +43,14 @@
            hráči: {a.obsazenost}
            </div>
           </div>
-          <img class="aktivita_obrazek" src="{a.obrazek}"></img>
+          <div class="aktivita_obrazek" style="background-image: url({a.obrazek})">
+            <div class="aktivita-obrazek-prekryv row mt-0 justify-content-center">
+                <div class="box_obal box-tlacitko">
+                  <div class="box_obsah">Přihlásit se přes PROGRAM</div>
+                </div>
+            </div>
+            </img>
+          </div>
           <div class="box_obsah">
             <div class="pl-30px pr-30px">
               <div class="h4 aktivita_nadpis">{a.nazev}</div>
@@ -69,26 +76,29 @@
               </div>
               <div class="aktivita_info">
                 <div class="aktivita_info-leva">
-                  <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_ikona_cas">
-                  <table class="aktivita_tabulka-cas">
-                      <!-- begin: terminDen -->
-                      <tr>
-                        <td class="aktivita_tabulka_bunka-cena">{denAktivity}</td>
-                      <!-- end: terminDen -->
-                      <!-- begin: terminCas -->
-                        <b> {casAktivity}</b>
-                      <!-- end: terminCas -->
-                      <!-- begin: terminDenUzavreni -->
-                      </tr>
-                      <!-- end: terminDenUzavreni -->
+                  <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_info_ikona_cas">
+                  <table class="aktivita_info_tabulka-cas">
+                    <!-- begin: termin -->
+                    <tr>
+                      <td>{denAktivity}:</td>
+                      <td><b>{casyAktivityVJednomDni}</b></td>
+                    </tr>
+                    <!-- end: termin -->
                 </table>
                 </div>
                 <div class="aktivita_info-prava">
-                  <img src="soubory/grafika/ikony/cena.svg" class="aktivita_ikona_cena">
                   <table>
                     <tr>
-                      <td class="aktivita_tabulka_bunka-cena">cena:</td>
+                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
+                      <td class="aktivita_info_tabulka_bunka-cena">
+                        <span>cena:</span></td>
                       <td><b>{a.cena}</b></td>
+                    </tr>
+                    <tr>
+                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
+                      <td class="aktivita_info_tabulka_bunka-cena">
+                        délka:</td>
+                      <td><b>{a.delka} hod</b></td>
                     </tr>
                   </table>
                 </div>
