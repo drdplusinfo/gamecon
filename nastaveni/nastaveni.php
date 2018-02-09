@@ -121,6 +121,7 @@ $GLOBALS['HLASKY']=[
   'zamcena'=>'Aktivitu už někdo zabral',
 ];
 $GLOBALS['HLASKY_SUBST']=[
+  'chybaClenaTymu'=>'Nepodařilo se přihlásit tým. Při přihlášování uživatele %1 (id %2) se u něj objevila chyba: %3',
   'zapomenuteHeslo'=>
 'Ahoj,
 

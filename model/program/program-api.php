@@ -85,14 +85,13 @@ class ProgramApi implements JsPhpApi {
       throw new Exception('Aktivita není týmová.');
 
     $dalsiKola = [];
-    $dalsiKolo = [$a];
-    while($dalsiKolo = current($dalsiKolo)->deti()) {
+    foreach($a->dalsiKola() as $varianty) {
       $dalsiKola[] = array_map(function($varianta) {
         return [
           'id'    =>  $varianta->id(),
           'nazev' =>  $varianta->nazev() . ': ' . $varianta->denCas(),
         ];
-      }, $dalsiKolo);
+      }, $varianty);
     }
 
     $hraci = array_map(function($hrac) {
@@ -150,9 +149,7 @@ class ProgramApi implements JsPhpApi {
   function odhlas($aktivitaId) {
     $a = Aktivita::zId($aktivitaId);
     $a->odhlas($this->uzivatel);
-    return new ZmenaDat([
-      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a)
-    ]);
+    return $this->zmenaAktivity($a);
   }
 
   /**
@@ -164,9 +161,27 @@ class ProgramApi implements JsPhpApi {
       throw new Exception('Na aktivitu je nutné se přihlásit jako týmlídr.');
     }
     $a->prihlas($this->uzivatel);
-    return new ZmenaDat([
-      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a),
-    ]);
+    return $this->zmenaAktivity($a);
+  }
+
+  /**
+   * Přihlásí vybrané uživatele jako další členy týmu, pokud je to možné.
+   * @param int[] $tym ids uživatelů, kteří se mají přihlásit
+   */
+  function prihlasTym($aktivitaId, $clenoveIds, $nazev, $kapacita, $dalsiKolaIds) {
+    $a = Aktivita::zId($aktivitaId);
+    $clenove = Uzivatel::zIds($clenoveIds);
+    $dalsiKola = []; // načítání po jednom - workaround, aby bylo zachováno pořadí z pole ids
+    foreach($dalsiKolaIds as $id) {
+      $dalsiKola[] = Aktivita::zId($id);
+    }
+
+    if(!$a->prihlasen($this->uzivatel))
+      throw new Exception('Je nutné být přihlášen na danou aktivitu.');
+
+    $a->prihlasTym($clenove, $nazev, $kapacita, $dalsiKola);
+
+    return $this->zmenaAktivity($a);
   }
 
   /**
@@ -181,9 +196,7 @@ class ProgramApi implements JsPhpApi {
     if($a->prihlaseno() > 0) throw new Chyba('Aktivita už je zabraná.');
 
     $a->prihlas($this->uzivatel);
-    $zmenaDatPrihlaseni = new ZmenaDat([
-      "aktivity[id=$aktivitaId]" => $this->aktivitaFormat($a),
-    ]);
+    $zmenaDatPrihlaseni = $this->zmenaAktivity($a);
 
     $zmenaDatPridanyDetail = $this->nactiDetailTymu($aktivitaId);
 
@@ -225,6 +238,27 @@ class ProgramApi implements JsPhpApi {
       'uzivatelPrihlasen' =>  (bool) $this->uzivatel,
       'uzivatelPohlavi'   =>  $this->uzivatel ? $this->uzivatel->pohlavi() : null,
     ];
+  }
+
+  /**
+   * @return ZmenaDat aktualizace dat aktivity příp. všech jejích potomků.
+   */
+  private function zmenaAktivity(Aktivita $a) {
+    $zmeneneAktivity = [$a];
+    foreach($a->dalsiKola() as $varianty) {
+      foreach($varianty as $varianta) {
+        $zmeneneAktivity[] = $varianta;
+      }
+    }
+
+    $zmeny = [];
+    foreach($zmeneneAktivity as $zmenenaAktivita) {
+      $id = $zmenenaAktivita->id();
+      $novaData = $this->aktivitaFormat($zmenenaAktivita);
+      $zmeny["aktivity[id=$id]"] = $novaData;
+    }
+
+    return new ZmenaDat($zmeny);
   }
 
 }

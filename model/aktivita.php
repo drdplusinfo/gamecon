@@ -102,6 +102,20 @@ class Aktivita {
     return $this->a['cena'];
   }
 
+  /**
+   * @return array Vrací pole dalších kol této aktivity. Každé další kolo je
+   *  samo polem, v kterém jsou jednotlivé aktivity (varianty) z kterých se dá
+   *  v daném kole vybírat.
+   */
+  function dalsiKola() {
+    $dalsiKola = [];
+    $dalsiKolo = [$this];
+    while($dalsiKolo = current($dalsiKolo)->deti()) {
+      $dalsiKola[] = $dalsiKolo;
+    }
+    return $dalsiKola;
+  }
+
   /** Délka aktivity v hodinách (float) */
   function delka() {
     if($zacatek = $this->zacatek())
@@ -421,6 +435,28 @@ class Aktivita {
         ' WHERE id_akce='.$this->id()); //update původní aktivity
       dbInsert('akce_seznam',$akt);
     }
+  }
+
+  /**
+   * @param self[] $aktivity
+   * @return bool jestli zadané aktivity jsou platným výběrem dalších kol
+   *  stávající aktivity
+   */
+  protected function jsouDalsiKola($aktivity) {
+    $dalsiKola = $this->dalsiKola();
+
+    if(count($aktivity) != count($dalsiKola)) return false;
+
+    foreach($this->dalsiKola() as $i => $varianty) {
+      $idsVariant = [];
+      foreach($varianty as $varianta) $idsVariant[] = $varianta->id();
+
+      $idVybraneVarianty = $aktivity[$i]->id();
+
+      if(!in_array($idVybraneVarianty, $idsVariant)) return false;
+    }
+
+    return true;
   }
 
   /** Vrací celkovou kapacitu aktivity */
@@ -944,6 +980,74 @@ class Aktivita {
     dbQuery('INSERT INTO akce_prihlaseni(id_akce,id_uzivatele) VALUES ('.$this->id().','.implode('),('.$this->id().',',$uids).')');
   }
 
+  /**
+   * Přihlásí na aktivitu vybrané uživatele jako tým vč. přihlášení na vybraná
+   * navazující kola a úpravy počtu míst v týmu.
+   * @param Uzivatel[] $uzivatele
+   * @param string $nazevTymu
+   * @param int $pocetMist požadovaný počet míst v týmu
+   * @param self[] $dalsiKola
+   */
+  function prihlasTym($uzivatele, $nazevTymu = null, $pocetMist = null, $dalsiKola = []) {
+    if(!$this->tymova()) throw new Exception('Nelze přihlásit tým na netýmovou aktivitu.');
+    if(!$this->a['zamcel']) throw new Exception('Pro přihlášení týmu musí být aktivita zamčená.');
+    if(!$this->jsouDalsiKola($dalsiKola)) throw new Exception('Nepovolený výběr dalších kol.');
+
+    $lidr = Uzivatel::zId($this->a['zamcel']);
+    $chybnyClen = null; // nastavíme v případě, že u daného člena týmu nastala při přihlášení chyba
+
+    dbBegin();
+    try {
+      // přihlášení týmlídra na zvolená další kola (pokud jsou)
+      // nutno jít od konce, jinak vazby na potomky můžou vyvolat chyby kvůli
+      // duplicitním pokusům o přihlášení
+      foreach(array_reverse($dalsiKola) as $kolo) {
+        $kolo->prihlas($lidr, self::STAV);
+      }
+
+      // přihlášení členů týmu
+      foreach($uzivatele as $clen) {
+        try {
+          $this->prihlas($clen, self::ZAMEK);
+        } catch(Exception $e) {
+          $chybnyClen = $clen;
+          throw $e;
+        }
+      }
+
+      // doplňující úpravy aktivity
+      dbUpdate('akce_seznam', [
+        'zamcel'      =>  null,
+        'zamcel_cas'  =>  null,
+        'team_nazev'  =>  $nazevTymu ?: null,
+      ], [
+        'id_akce'     =>  $this->id(),
+      ]);
+
+      // tým je nyní přihlášen - dodatečné změny na už přihlášeném týmu
+      $this->refresh();
+      $this->tym()->kapacita($pocetMist);
+      $this->a['kapacita'] = $pocetMist; // TODO workaround pro aktualizaci dat
+    } catch(Exception $e) {
+      dbRollback();
+      if($chybnyClen)
+        throw new Chyba(hlaska('chybaClenaTymu', $chybnyClen->jmenoNick(), $chybnyClen->id(), $e->getMessage()));
+      else
+        throw $e;
+    }
+    dbCommit();
+
+    // maily přihlášeným
+    $mail = new GcMail(hlaskaMail('prihlaseniTeamMail',
+      $lidr, $lidr->jmenoNick(), $this->nazev(), $this->denCas()
+    ));
+    $mail->predmet('Přihláška na ' . $this->nazev());
+    foreach($uzivatele as $clen) {
+      $mail->adresat($clen->mail());
+      $mail->odeslat();
+    }
+  }
+
   /** Nastaví aktivitu jako "připravena pro aktivaci" */
   function priprav() {
     dbUpdate('akce_seznam', ['stav' => self::PRIPRAVENA], ['id_akce' => $this->id()]);
@@ -1221,145 +1325,6 @@ class Aktivita {
   }
 
   /**
-   * Vrátí formulář pro výběr teamu na aktivitu. Pokud není zadán uživatel,
-   * vrací nějakou false ekvivalentní hodnotu.
-   * @todo ideálně převést na nějaké statické metody týmu nebo samostatnou třídu
-   */
-  function vyberTeamu(Uzivatel $u = null) {
-    if(!$u || $this->a['zamcel'] != $u->id() || !$this->prihlasovatelna()) return null;
-
-    $t = new XTemplate(__DIR__ . '/tym-formular.xtpl');
-
-    // obecné proměnné šablony
-    $zbyva = strtotime($this->a['zamcel_cas']) + self::HAJENI * 60 * 60 - time();
-    $t->assign([
-      'zbyva'       =>  floor($zbyva / 3600) . ' hodin ' . floor($zbyva % 3600 / 60) . ' minut',
-      'postname'    =>  self::TEAMKLIC,
-      'prihlasenyUzivatelId' => $u->id(),
-      'aktivitaId'  =>  $this->id(),
-    ]);
-
-    // výběr instancí, pokud to aktivita vyžaduje
-    if($this->a['dite']) {
-
-      // načtení "kol" (podle hloubky zanoření v grafu instancí)
-      $urovne[] = [$this];
-      do {
-        $dalsi = [];
-        foreach(end($urovne) as $a) {
-          if($a->a['dite'])
-            $dalsi = array_merge($dalsi, explode(',', $a->a['dite']));
-        }
-        if($dalsi)
-          $urovne[] = self::zIds($dalsi);
-      } while($dalsi);
-      unset($urovne[0]); // aktuální aktivitu už má přihlášenu - ignorovat
-
-      // vybírací formy dle "kol"
-      foreach($urovne as $i => $uroven) {
-        $t->assign('postnameKolo', self::KOLA . '[' . $i . ']');
-        foreach($uroven as $varianta) {
-          $t->assign([
-            'koloId' => $varianta->id(),
-            'nazev' => $varianta->nazev() . ': ' . $varianta->denCas(),
-          ]);
-          $t->parse('formular.kola.uroven.varianta');
-        }
-        $t->parse('formular.kola.uroven');
-      }
-      $t->parse('formular.kola');
-
-    }
-
-    // políčka pro výběr míst
-    for($i = 0; $i < $this->kapacita() - 1; $i++) {
-      $t->assign('postnameMisto', self::TEAMKLIC . '[' . $i . ']');
-      if($i >= $this->a['team_min'] - 1) // -1 za týmlídra
-        $t->parse('formular.misto.odebrat');
-      $t->parse('formular.misto');
-    }
-
-    // název (povinný pro DrD)
-    if($this->a['typ'] == Typ::DRD)   $t->parse('formular.nazevPovinny');
-    else                              $t->parse('formular.nazevVolitelny');
-
-    // výpis celého formuláře
-    $t->parse('formular');
-    return $t->text('formular');
-  }
-
-  /**
-   * Zpracuje data formuláře pro výběr teamu a vrátí případné chyby jako json.
-   * Ukončuje skript.
-   * @todo kontrola, jestli nezamčel moc míst
-   */
-  static function vyberTeamuZpracuj(Uzivatel $leader = null) {
-    if( !$leader || !($t = post(self::TEAMKLIC)) ) return;
-    $chyby = [];
-    $prihlaseni = []; // pro rollback
-    $prihlaseniLeadera = []; // pro rollback kol u leadera
-    $chybny = null; // pro uživatele jehož jméno se zobrazí v rámci chyby
-    try
-    {
-      dbBegin();
-      $a = Aktivita::zId(post(self::TEAMKLIC.'Aktivita'));
-      if($leader->id() != $a->a['zamcel']) throw new Exception('Nejsi teamleader.');
-      // přihlášení teamleadera na zvolená další kola (pokud jsou)
-      $kola = post(self::KOLA) ?: [];
-      foreach($kola as $koloId) {
-        $kolo = self::zId($koloId);
-        $kolo->prihlas($leader, self::STAV);
-        $prihlaseniLeadera[] = $kolo;
-      }
-      // načtení zvolených členů teamu
-      $up = post(self::TEAMKLIC);
-      $zamceno = 0;
-      foreach($up as $i=>$uid) {
-        if($uid==-1 || !$uid)
-          unset($up[$i]);
-        if($uid==-1)
-          $zamceno++;
-      }
-      // kontrola a pokus o přihlášení jednotlivých členů
-      $clenove = Uzivatel::zIds($up);
-      if(count($clenove) != count($up)) throw new Exception('Zadáno neplatné id uživatele.');
-      foreach($clenove as $clen) {
-        $chybny = $clen;
-        $a->prihlas($clen, self::ZAMEK);
-        $prihlaseni[] = $clen;
-      }
-      // maily přihlášeným
-      $mail = new GcMail(hlaskaMail('prihlaseniTeamMail',
-        $leader, $leader->jmenoNick(), $a->nazev(), $a->denCas()
-      )); // TODO link na stránku aktivity
-      $mail->predmet('Přihláška na '.$a->nazev()); // TODO korektní pády atd
-      foreach($clenove as $clen) {
-        $mail->adresat($clen->mail());
-        $mail->odeslat();
-      }
-      // hotovo, odemčít aktivitu, snížit počet míst a nastavit název týmu
-      dbUpdate('akce_seznam', [
-        'kapacita'    =>  $a->a['kapacita'] - $zamceno,
-        'zamcel'      =>  null,
-        'zamcel_cas'  =>  null,
-        'team_nazev'  =>  post(self::TEAMKLIC.'Nazev') ?: null,
-      ], ['id_akce' => $a->id()]);
-    }
-    catch(Exception $e)
-    {
-      dbRollback();
-      // zobrazení
-      if($chybny)
-        $chyby[] = 'Nelze, uživateli '.$chybny->jmenoNick().'('.$chybny->id().')'." se při přihlašování objevila chyba:\n• ".$e->getMessage();
-      else
-        $chyby[] = $e->getMessage();
-    }
-    if(empty($chyby)) dbCommit();
-    echo json_encode(['chyby'=>$chyby]);
-    die();
-  }
-
-  /**
    * Má aktivita vyplněnou prezenci?
    * (aktivity s 0 lidmi jsou považovány za nevyplněné vždycky)
    */
@@ -1441,6 +1406,7 @@ class Aktivita {
    * @todo sanitizace před veřejným použitím a podpora řetězce, nejen pole
    */
   static function zIds($ids) {
+    if(empty($ids)) return [];
     if(!is_array($ids)) $ids = explode(',', $ids);
     return self::zWhere('WHERE a.id_akce IN('.dbQa($ids).')');
   }
