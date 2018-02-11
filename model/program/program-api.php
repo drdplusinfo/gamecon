@@ -3,17 +3,34 @@
 class ProgramApi implements JsPhpApi {
 
   private
+    $nastaveni = [
+      'technicke' =>  false,  // jestli jdou vidět i skryté technické aktivity
+      'zpetne'    =>  false,  // TODO jestli jde přihlašovat i na proběhnuté aktivity
+    ],
+    $parametryPrihlasovani = 0, // ḱonfigurační flagy pro metody související s přihlašováním
     $uzivatel; // uživatel, který s API komunikuje (null, pokud nepřihlášen)
 
-  function __construct(?Uzivatel $uzivatel) {
+  function __construct(Uzivatel $uzivatel = null, $nastaveni = []) {
     $this->uzivatel = $uzivatel;
+    $this->nastaveni = opt($nastaveni, $this->nastaveni);
+
+    if($this->nastaveni['technicke'])
+      $this->parametryPrihlasovani |= Aktivita::TECHNICKE;
   }
 
   /**
-   * Převede aktivitu $a na formát, jak má vypadat v API.
+   * Převede aktivitu $a na formát, jak má vypadat v API, případně vrátí null,
+   * pokud se aktivita nemá zobrazit.
    */
   private function aktivitaFormat($a) {
     $r = $a->rawDb(); // TODO pro údaje načítané přímo z DB řádku, smazat nebo nějak převést
+
+    // odstranit technické aktivity, na které uživatel není přihlášen
+    // (pokud není zapnuto zobrazování všech včetně technických)
+    if(
+      !$this->nastaveni['technicke'] &&
+      !$a->viditelnaPro($this->uzivatel)
+    ) return null;
 
     return [
       'id'            =>  (int) $a->id(),
@@ -25,7 +42,7 @@ class ProgramApi implements JsPhpApi {
       'stitky'        =>  array_map(function($t) { return (string) $t; }, $a->tagy()),
       'prihlasenoMuzu'=>  $a->prihlasenoMuzu(),
       'prihlasenoZen' =>  $a->prihlasenoZen(),
-      'otevrenoPrihlasovani' => $a->prihlasovatelna(),
+      'otevrenoPrihlasovani' => $a->prihlasovatelna($this->parametryPrihlasovani),
       'vDalsiVlne'    =>  $a->vDalsiVlne(),
       'probehnuta'    =>  $a->probehnuta(),
       'organizuje'    =>  $this->uzivatel ? $this->uzivatel->organizuje($a) : null,
@@ -43,9 +60,8 @@ class ProgramApi implements JsPhpApi {
    * Vrátí pole všech aktivit v programu. Formát aktivit viz aktivitaFormat.
    */
   private function aktivity() {
-    // TODO listovat tech. aktivity jenom tomu, kdo je může vidět
     $aktivity = Aktivita::zProgramu();
-    return array_map([$this, 'aktivitaFormat'], $aktivity);
+    return array_values(array_filter(array_map([$this, 'aktivitaFormat'], $aktivity)));
   }
 
   /**
@@ -160,7 +176,7 @@ class ProgramApi implements JsPhpApi {
     if($a->tymova() && $a->prihlaseno() == 0) {
       throw new Exception('Na aktivitu je nutné se přihlásit jako týmlídr.');
     }
-    $a->prihlas($this->uzivatel);
+    $a->prihlas($this->uzivatel, $this->parametryPrihlasovani);
     return $this->zmenaAktivity($a);
   }
 

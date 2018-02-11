@@ -9,12 +9,9 @@ class Program {
     $cacheSouboru,
     $jsElementId = 'cProgramElement', // TODO v případě použití více instancí řešit příslušnost k instancím
     $jsPromenna = 'cProgramPromenna',
-    $jsObserveri = [],
-    $uzivatel;
+    $jsObserveri = [];
 
-  function __construct(?Uzivatel $uzivatel) {
-    $this->uzivatel = $uzivatel;
-
+  function __construct(Uzivatel $uzivatel = null, $nastaveni = []) {
     // TODO cache v okamžiku dokončení přesunout mimo program a předávat parametrem
     $this->cacheSouboru = new PerfectCache(CACHE . '/sestavene', URL_CACHE . '/sestavene');
     $this->cacheSouboru->nastav('reactVProhlizeci', REACT_V_PROHLIZECI);
@@ -26,7 +23,7 @@ class Program {
     // pomocí lessu
     $this->cacheSouboru->pridejCss(__DIR__ . '/program.css');
 
-    $this->api = new JsPhpApiHandler(new ProgramApi($this->uzivatel));
+    $this->api = new JsPhpApiHandler(new ProgramApi($uzivatel, $nastaveni));
   }
 
   /**

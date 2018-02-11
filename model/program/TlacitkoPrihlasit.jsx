@@ -50,17 +50,16 @@ class TlacitkoPrihlasit extends React.Component {
   maBytTlacitkoZobrazene() {
     const aktivita = this.props.aktivita;
 
+    if (this.proUzivateleJeAktivitaNepristupna(aktivita)) {
+      return false;
+    }
+
     if (this.muzeSeOdhlasit(aktivita)) {
       return true;
     }
 
     if (this.muzeSeOdhlasitJakoNahradnik(aktivita)) {
       return true;
-    }
-
-    if (this.proUzivateleJeAktivitaNepristupna(aktivita)) {
-      //Vykomentováno kvůli testování. TODO: opravit v plné verzi
-      //return false;
     }
 
     if (this.aktivitaJePlna(aktivita)) {
