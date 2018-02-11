@@ -7,9 +7,7 @@ class Program {
   private
     $api,
     $cacheSouboru,
-    $jsElementId = 'cProgramElement', // TODO v případě použití více instancí řešit příslušnost k instancím
-    $jsPromenna = 'cProgramPromenna',
-    $jsObserveri = [];
+    $jsElementId = 'cProgramElement'; // TODO v případě použití více instancí řešit příslušnost k instancím
 
   function __construct(Uzivatel $uzivatel = null, $nastaveni = []) {
     // TODO cache v okamžiku dokončení přesunout mimo program a předávat parametrem
@@ -50,10 +48,8 @@ class Program {
       ');
   }
 
-  function zaregistrujJsObserver($nazevFunkce) {
-    throw new Exception('neimplementováno');
-    // TODO zprovoznit podporu pro toto v api
-    $this->jsObserveri[] = $nazevFunkce;
+  function pridejJsObserver($nazevFunkce) {
+    $this->api->pridejJsObserver($nazevFunkce);
   }
 
   function zpracujAjax() {

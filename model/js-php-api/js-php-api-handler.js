@@ -6,6 +6,8 @@ function () {
 
   var zakladniData = <zakladniData>
 
+  var observeri = [<observeri>]
+
   var apiObjekt = {
     zakladniData: zakladniData,
     zmenaZakladnichDat: function () {},
@@ -45,6 +47,7 @@ function () {
     }
 
     apiObjekt.zmenaZakladnichDat()
+    observeri.forEach(function(observer) { observer() })
     if (typeof callback == 'function') {
       callback(odpoved.obsah)
     }

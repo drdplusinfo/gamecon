@@ -12,6 +12,7 @@ class JsPhpApiHandler {
   private
     $api,
     $jsPromenna,
+    $jsObserveri = [],
     $maZakladniData = false,
     $metody = [];
 
@@ -52,6 +53,7 @@ class JsPhpApiHandler {
       '<vyhrazenaPromenna>' =>  $this->jsPromenna,
       '<metody>'            =>  $this->jsMetody(),
       '<zakladniData>'      =>  $zakladniData,
+      '<observeri>'         =>  implode(',', $this->jsObserveri),
     ]);
   }
 
@@ -80,6 +82,14 @@ class JsPhpApiHandler {
     if(!isset(self::$sablonaMetody)) {
       self::$sablonaMetody = "\n" . trim(file_get_contents(__DIR__ . '/js-php-api-handler-metoda.js'));
     }
+  }
+
+  /**
+   * Přidá JS funkci s vybraným názvem do seznamu funkcí, které api automaticky
+   * zavolá po úspěšném zpracování nějakého api volání (zaregistruje observer).
+   */
+  function pridejJsObserver($nazevFunkce) {
+    $this->jsObserveri[] = $nazevFunkce;
   }
 
   /**

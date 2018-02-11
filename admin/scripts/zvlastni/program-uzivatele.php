@@ -5,11 +5,16 @@ if(!$uPracovni) {
   return;
 }
 
+if(post('ajaxZustatek')) {
+  echo $uPracovni->finance()->stavHr();
+  return;
+}
+
 // TODO měnění počtu lidí v družinách i kde nejsem přihlášen - možná zatím ne, ale info bude pičovat, že neumí / nechce hledat člověka přihlášeného v družině
 // TODO 'zpetne' - zpětné měnění účasti na aktivitách
 
 $program = new Program($uPracovni, ['technicke' => true]);
-
+$program->pridejJsObserver('aktualizujZustatek');
 $program->zpracujAjax();
 
 ?>
@@ -19,6 +24,19 @@ $program->zpracujAjax();
   <meta charset="utf-8">
   <title>Program uživatele</title>
   <?=$program->htmlHlavicky()?>
+  <script>
+    function aktualizujZustatek() {
+      var data = new FormData()
+      data.append('ajaxZustatek', true)
+      var xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function () {
+        if (this.readyState != 4 || this.status != 200) return
+        document.getElementById('stavUctu').innerHTML = this.responseText
+      }
+      xhr.open('POST', window.location.href)
+      xhr.send(data)
+    }
+  </script>
   <style>
     .detailUzivatele {
       text-align: left;
@@ -44,8 +62,7 @@ $program->zpracujAjax();
   <div class="detailUzivatele">
     <input type="button" value="Zavřít" onclick="window.location = '<?=URL_ADMIN?>/uvod'" class="zavrit">
     <div><?=$uPracovni->jmenoNick()?></div>
-    <div id="stavUctu">TODO stav účtu</div>
-    <!-- TODO: stav se musí dynamicky načítat při změně přihlášení, na což je potřeba rozchodit callbacky v programu -->
+    <div id="stavUctu"><?=$uPracovni->finance()->stavHr()?></div>
   </div>
 
   <?=$program->htmlObsah()?>
