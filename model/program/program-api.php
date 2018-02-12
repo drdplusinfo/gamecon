@@ -16,6 +16,8 @@ class ProgramApi implements JsPhpApi {
 
     if($this->nastaveni['technicke'])
       $this->parametryPrihlasovani |= Aktivita::TECHNICKE;
+    if($this->nastaveni['zpetne'])
+      $this->parametryPrihlasovani |= Aktivita::ZPETNE;
   }
 
   /**

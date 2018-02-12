@@ -11,9 +11,11 @@ if(post('ajaxZustatek')) {
 }
 
 // TODO měnění počtu lidí v družinách i kde nejsem přihlášen - možná zatím ne, ale info bude pičovat, že neumí / nechce hledat člověka přihlášeného v družině
-// TODO 'zpetne' - zpětné měnění účasti na aktivitách
 
-$program = new Program($uPracovni, ['technicke' => true]);
+$program = new Program($uPracovni, [
+  'technicke' =>  true,
+  'zpetne'    =>  $uPracovni->maPravo(P_ZMENA_HISTORIE),
+]);
 $program->pridejJsObserver('aktualizujZustatek');
 $program->zpracujAjax();
 

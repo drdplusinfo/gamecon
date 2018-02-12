@@ -85,7 +85,7 @@ class TlacitkoPrihlasit extends React.Component {
   }
 
   proUzivateleJeAktivitaNepristupna(aktivita) {
-    return aktivita.organizuje || aktivita.probehnuta || !aktivita.otevrenoPrihlasovani;
+    return aktivita.organizuje || !aktivita.otevrenoPrihlasovani;
   } 
 
   odhlasZAktivity(aktivita) {

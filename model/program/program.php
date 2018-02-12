@@ -35,7 +35,6 @@ class Program {
   }
 
   function htmlObsah() {
-    // TODO vyhodit atribut data
     return
       '<div id="'.$this->jsElementId.'"></div>' .
       $this->cacheSouboru->inlineCekejNaBabel('
