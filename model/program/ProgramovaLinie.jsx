@@ -3,28 +3,28 @@ function ProgramovaLinie(props) {
   function vytvorPoleAktivit() {
     /* Pro tuto linii vytvoří 2d pole aktivit, které přesně koresponduje pozdějšímu
     zobrazení aktivit v rozvrhu*/
-    let pole = []
+    let pole = [];
     pole.push(new Array(24 - KONSTANTY.ZACATEK_PROGRAMU).fill(null));
 
-    let sdruzene = {}
+    let sdruzene = {};
 
     props.aktivity.forEach(aktivita => {
       // sdružené aktivity jeden čas překonvertovat na jednu aktivitu
       // obsahující uvnitř navíc pole všech sdružených aktivit v daný čas
       if (aktivita.sdruzit) {
-        let cas = aktivita.zacatek + ' ' + aktivita.konec
+        let cas = aktivita.zacatek + ' ' + aktivita.konec;
         if (!sdruzene[cas]) {
           // v daném čase ještě žádná sdružená aktivita není:
           // vytvořit pole sdružených aktivit do aktuální aktivity a přidat
           // do něj sebe samu
-          aktivita.sdruzene = []
-          aktivita.sdruzene.push(aktivita)
-          sdruzene[cas] = aktivita.sdruzene
+          aktivita.sdruzene = [];
+          aktivita.sdruzene.push(aktivita);
+          sdruzene[cas] = aktivita.sdruzene;
         } else {
           // v daném čase už sdružená aktivita je:
           // jen přidat aktuální aktivitu do sdružených v daný čas a nevypisovat
-          sdruzene[cas].push(aktivita)
-          return
+          sdruzene[cas].push(aktivita);
+          return;
         }
       }
 
