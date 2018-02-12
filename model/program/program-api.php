@@ -5,7 +5,7 @@ class ProgramApi implements JsPhpApi {
   private
     $nastaveni = [
       'technicke' =>  false,  // jestli jdou vidět i skryté technické aktivity
-      'zpetne'    =>  false,  // TODO jestli jde přihlašovat i na proběhnuté aktivity
+      'zpetne'    =>  false,  // jestli jde přihlašovat i na proběhnuté aktivity
     ],
     $parametryPrihlasovani = 0, // ḱonfigurační flagy pro metody související s přihlašováním
     $uzivatel; // uživatel, který s API komunikuje (null, pokud nepřihlášen)
@@ -252,7 +252,6 @@ class ProgramApi implements JsPhpApi {
     return [
       'aktivity'          =>  $this->aktivity(),
       'linie'             =>  $this->linie(),
-      'notifikace'        =>  [], // TODO
       'uzivatelPrihlasen' =>  (bool) $this->uzivatel,
       'uzivatelPohlavi'   =>  $this->uzivatel ? $this->uzivatel->pohlavi() : null,
     ];
