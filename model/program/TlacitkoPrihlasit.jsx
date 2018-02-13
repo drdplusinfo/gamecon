@@ -51,7 +51,7 @@ class TlacitkoPrihlasit extends React.Component {
     const aktivita = this.props.aktivita;
 
     if (this.aktivitaSeMaKolapsovat(aktivita)) {
-      return this.aktivitaSeMaKolapsovat(aktivita);
+      return true;
     }
 
     if (this.proUzivateleJeAktivitaNepristupna(aktivita)) {

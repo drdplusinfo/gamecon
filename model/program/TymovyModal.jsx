@@ -9,7 +9,15 @@ class TymovyModal extends React.Component {
     //aktivních míst
     //TODO: toto vše se vezme z dat aktivity, tzn. z props
     let tym = "Kačičky", hraci = ["Pepa", "Honza", "Fedor", "Vasilij"], momentalneMax = 4;
-    let kapacitaMin = 1, kapacitaMax = 5, rezervaceVyprsi = Date.now() + 72*3600000;
+    let kapacitaMin = 1, kapacitaMax = 5, rezervaceVyprsi = null
+
+    if (!this.props.aktivita.zamcenaDo) {
+      rezervaceVyprsi = Date.now() + 72*3600000
+    }
+    else {
+      rezervaceVyprsi = this.props.aktivita.zamcenaDo
+    }
+
 
     this.kapacitaMin = kapacitaMin;
     this.kapacitaMax = kapacitaMax;
