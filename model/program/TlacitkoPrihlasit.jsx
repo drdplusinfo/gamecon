@@ -4,7 +4,7 @@ class TlacitkoPrihlasit extends React.Component {
 
     this.state = {
       tymovyModal: false,
-      drdModal: false
+      kolapsovanyModal: false
     };
     this.prihlasOdhlas = this.prihlasOdhlas.bind(this);
     this.zavriModal = this.zavriModal.bind(this);
@@ -40,15 +40,19 @@ class TlacitkoPrihlasit extends React.Component {
   }
 
   aktivitaJePrazdnaATymova(aktivita) {
-    return aktivita.tymova  // TODO: v ostré verzi přidat && aktivita.prihlasenoZen + aktivita.prihlasenoMuzu === 0;
+    return aktivita.tymova;  // TODO: v ostré verzi přidat && aktivita.prihlasenoZen + aktivita.prihlasenoMuzu === 0;
   }
 
-  aktivitaJeZkolapsovanyDracak(aktivita) {
-    return aktivita.nazev.includes('Čtvrtfinále');
+  aktivitaSeMaKolapsovat(aktivita) {
+    return aktivita.sdruzit;
   }
 
   maBytTlacitkoZobrazene() {
     const aktivita = this.props.aktivita;
+
+    if (this.aktivitaSeMaKolapsovat(aktivita)) {
+      return this.aktivitaSeMaKolapsovat(aktivita);
+    }
 
     if (this.proUzivateleJeAktivitaNepristupna(aktivita)) {
       return false;
@@ -64,9 +68,9 @@ class TlacitkoPrihlasit extends React.Component {
 
     if (this.aktivitaJePlna(aktivita)) {
       return this.muzeSePrihlasitJakoNahradnik();
-    } 
+    }
 
-    return true;     
+    return true;
   }
 
   muzeSeOdhlasit(aktivita) {
@@ -86,15 +90,15 @@ class TlacitkoPrihlasit extends React.Component {
 
   proUzivateleJeAktivitaNepristupna(aktivita) {
     return aktivita.organizuje || !aktivita.otevrenoPrihlasovani;
-  } 
+  }
 
   odhlasZAktivity(aktivita) {
     this.props.api.odhlas(aktivita.id, (data) => {});
   }
 
   prihlasNaAktivitu(aktivita) {
-    if (this.aktivitaJeZkolapsovanyDracak(aktivita)) {
-      this.setState({drdModal: true});
+    if (this.aktivitaSeMaKolapsovat(aktivita)) {
+      this.setState({kolapsovanyModal: true});
       return;
     }
 
@@ -104,8 +108,8 @@ class TlacitkoPrihlasit extends React.Component {
     }
 
     //reálně přihlaš
-    this.props.api.prihlas(aktivita.id, 
-      (data) => {}, 
+    this.props.api.prihlas(aktivita.id,
+      (data) => {},
       (error) => {
         console.log(error);
     });
@@ -147,12 +151,12 @@ class TlacitkoPrihlasit extends React.Component {
         </button>
       );
     }
-    
-    return null;   
+
+    return null;
   }
 
   zavriModal() {
-    this.setState({tymovyModal: false, drdModal: false});
+    this.setState({tymovyModal: false, kolapsovanyModal: false});
   }
 
   render() {
@@ -165,10 +169,12 @@ class TlacitkoPrihlasit extends React.Component {
           zavriModal = {this.zavriModal}
           zobrazen = {this.state.tymovyModal}
         />
-        <DrdModal
+        <KolapsovanyModal
           aktivita = {this.props.aktivita}
+          api = {this.props.api}
           zavriModal = {this.zavriModal}
-          zobrazen = {this.state.drdModal}
+          zobrazen = {this.state.kolapsovanyModal}
+          uzivatelPohlavi = {this.props.uzivatelPohlavi}
         />
       </div>
     );

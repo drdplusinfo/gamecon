@@ -4,20 +4,20 @@ class DetailAktivity extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.zvolenaAktivita !== this.props.zvolenaAktivita) {
+    if(nextProps.idZvoleneAktivity !== this.props.idZvoleneAktivity) {
       this.nactiDetail();
     }
   }
 
   nactiDetail() {
-    this.props.api.nactiDetail(this.props.zvolenaAktivita);
+    this.props.api.nactiDetail(this.props.idZvoleneAktivity);
   }
 
   //udělěj element pro štítky každé kategorie(kde nějaké štítky jsou)
   //a element pro ostatní štítky
   vykresliStitky(aktivita) {
     let kategorizovaneStitky = this.priradStitkyAktivityDoKategorii(aktivita);
-    
+
     let naplneneKategorie = kategorizovaneStitky.kategorie.filter(kat => kat.stitky.length > 0);
     let serazeneKategorie = naplneneKategorie.sort((katA, katB) => katA.poradi - katB.poradi);
 
@@ -78,11 +78,11 @@ class DetailAktivity extends React.Component {
       kategorie.forEach(kat => {
         let regex = new RegExp(kat.nazev + ': (.*)');
         let match = stitek.match(regex);
-        
+
         if(match) {
           let castZaDvouteckou = match[1];
           kat.stitky.push(castZaDvouteckou);
-          patriDoKategorie = true; 
+          patriDoKategorie = true;
         }
       });
 
@@ -103,30 +103,36 @@ class DetailAktivity extends React.Component {
 
   zobrazDlouhyPopisNeboLoader(aktivita) {
     if (aktivita.popisDlouhy) {
-      return <p dangerouslySetInnerHTML = {{__html: aktivita.popisDlouhy}}></p> 
+      return <p dangerouslySetInnerHTML = {{__html: aktivita.popisDlouhy}}></p>
     } else {
       return <Loader />;
     }
   }
 
+  zobrazVypravece(aktivita) {
+    if (!aktivita.sdruzit) {
+      return <p>Vypravěč: {aktivita.organizatori.join(', ')}</p>
+    }
+  }
+
   render() {
-    let aktivita = this.props.data.aktivity.find(akt => akt.id === this.props.zvolenaAktivita);
+    let aktivita = this.props.data.aktivity.find(akt => akt.id === this.props.idZvoleneAktivity);
     let linie = this.props.data.linie.find(lajna => lajna.id == aktivita.linie);
 
     return (
       <div className = "detail-aktivity">
         {this.vytvorZaviraciTlacitko()}
-        
+
         <h2>{aktivita.nazev}</h2>
         <p>Linie: {linie.nazev}</p>
 
         <p>---</p>
-        
+
         {this.vykresliStitky(aktivita)}
-        
+
         <p>---</p>
-        
-        <p>Vypravěč: {aktivita.organizatori.join(', ')}</p>
+
+        {this.zobrazVypravece(aktivita)}
         <p>{aktivita.popisKratky}</p>
 
         <TlacitkoPrihlasit
@@ -135,12 +141,12 @@ class DetailAktivity extends React.Component {
           trida = 'tlacitko-prihlasit--detail'
           uzivatelPohlavi = {this.props.data.uzivatelPohlavi}
         />
-        
+
         <p>---</p>
-        
+
         <div>
           {this.zobrazDlouhyPopisNeboLoader(aktivita)}
-        </div>        
+        </div>
       </div>
     );
   }

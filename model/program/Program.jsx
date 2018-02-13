@@ -6,14 +6,13 @@ class Program extends React.Component {
     console.log(this.props.api.zakladniData);
 
     this.zapniUpdateUIPriZmeneDat();
-    
+
     this.data = this.props.api.zakladniData;
 
-    // zvolenaAktivita je id zvolené aktivity
     this.state = {
       linie: this.uklidLinie(this.data.linie),
       zvolenyDen: KONSTANTY.DNY_V_TYDNU.CTVRTEK,
-      zvolenaAktivita: null,
+      idZvoleneAktivity: null,
       stitky: this.ziskejStitky(),
       zobrazJenVolneAktivity: false
     };
@@ -72,7 +71,7 @@ class Program extends React.Component {
 
   zvolTutoAktivitu(aktivita) {
     console.log(aktivita);
-    this.setState({zvolenaAktivita: aktivita.id});
+    this.setState({idZvoleneAktivity: aktivita.id});
   }
 
   render() {
@@ -104,11 +103,11 @@ class Program extends React.Component {
           zvolenyDen = {this.state.zvolenyDen}
           zvolTutoAktivitu = {this.zvolTutoAktivitu}
         />
-        {this.state.zvolenaAktivita &&
+        {this.state.idZvoleneAktivity &&
           <DetailAktivity
             api = {this.props.api}
             data = {this.data}
-            zvolenaAktivita = {this.state.zvolenaAktivita}
+            idZvoleneAktivity = {this.state.idZvoleneAktivity}
             zvolTutoAktivitu = {this.zvolTutoAktivitu}
           />
         }
