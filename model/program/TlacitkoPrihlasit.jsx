@@ -40,7 +40,7 @@ class TlacitkoPrihlasit extends React.Component {
   }
 
   aktivitaJePrazdnaATymova(aktivita) {
-    return aktivita.tymova;  // TODO: v ostré verzi přidat && aktivita.prihlasenoZen + aktivita.prihlasenoMuzu === 0;
+    return aktivita.tymovaData;  // TODO: v ostré verzi přidat && aktivita.prihlasenoZen + aktivita.prihlasenoMuzu === 0;
   }
 
   aktivitaSeMaKolapsovat(aktivita) {

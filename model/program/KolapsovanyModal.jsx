@@ -31,7 +31,7 @@ class KolapsovanyModal extends React.Component {
         </tr>
       );
     });
-    return <table>+{radekSdruzeneAktivity}+</table>;
+    return <table>{radekSdruzeneAktivity}</table>;
   }
 
   zavriModal() {
@@ -39,7 +39,7 @@ class KolapsovanyModal extends React.Component {
   }
 
   render() {
-    /* drd modal je "neviditelný" když není zobrazen. Protože nechceme, aby byl při
+    /* Modal je "neviditelný" když není zobrazen. Protože nechceme, aby byl při
     zavření zničen, chceme, aby si držel data */
     if (!this.props.zobrazen) {
       return null;

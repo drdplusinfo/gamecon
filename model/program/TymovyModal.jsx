@@ -23,6 +23,7 @@ class TymovyModal extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.prihlasit = this.prihlasit.bind(this);
     this.prihlasitPozdeji = this.prihlasitPozdeji.bind(this);
+    this.zavriModal = this.zavriModal.bind(this);
     this.zmenTym = this.zmenTym.bind(this);
     this.zmenHrace = this.zmenHrace.bind(this);
   }
@@ -47,8 +48,12 @@ class TymovyModal extends React.Component {
   }
 
   prihlasitPozdeji() {
-    //TODO zavolej api
-    this.props.zavriModal();
+    if (this.props.aktivita.prihlasen) {
+      this.props.zavriModal();
+    }
+    else {
+      this.props.api.prihlasTymlidra(this.props.aktivita.id);
+    }
   }
 
   vytvorVyberHracu() {
@@ -94,6 +99,10 @@ class TymovyModal extends React.Component {
     );
   }
 
+  zavriModal() {
+    this.props.zavriModal();
+  }
+
   zmenHrace(index, noveJmeno) {
     let hraci = this.state.hraci.slice();
     hraci[index] = noveJmeno;
@@ -113,6 +122,7 @@ class TymovyModal extends React.Component {
     return (
       <div className = "tymovy-modal" onClick = {this.handleClick}>
         <div className = "tymovy-modal--vnitrek">
+          <div className = "modal-tlacitko_zavrit" onClick = {this.zavriModal}>Zavřít</div>
           <h2>Týmová aktivita</h2>
           <p>Aktivita je týmová a máš právo sestavit si tým (družinu). Po odeslání
           budou automaticky přihlášeni a informováni e-mailem.</p>
