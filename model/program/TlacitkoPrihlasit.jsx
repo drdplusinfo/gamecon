@@ -1,10 +1,9 @@
 class TlacitkoPrihlasit extends React.Component {
-  constructor() {
-    super();
+  constructor () {
+    super()
 
     this.state = {
       tymovyModal: false,
-      kolapsovanyModal: false
     };
     this.prihlasOdhlas = this.prihlasOdhlas.bind(this);
     this.zavriModal = this.zavriModal.bind(this);
@@ -50,10 +49,6 @@ class TlacitkoPrihlasit extends React.Component {
   maBytTlacitkoZobrazene() {
     const aktivita = this.props.aktivita;
 
-    if (this.aktivitaSeMaKolapsovat(aktivita)) {
-      return true;
-    }
-
     if (this.proUzivateleJeAktivitaNepristupna(aktivita)) {
       return false;
     }
@@ -67,56 +62,51 @@ class TlacitkoPrihlasit extends React.Component {
     }
 
     if (this.aktivitaJePlna(aktivita)) {
-      return this.muzeSePrihlasitJakoNahradnik();
+      return this.muzeSePrihlasitJakoNahradnik()
     }
 
-    return true;
+    return true
   }
 
-  muzeSeOdhlasit(aktivita) {
-    return aktivita.prihlasen;
+  muzeSeOdhlasit (aktivita) {
+    return aktivita.prihlasen
   }
 
-  muzeSeOdhlasitJakoNahradnik(aktivita) {
-    //TODO zkontrolovat
-    return aktivita.prihlasenJakoNahradnik;
+  muzeSeOdhlasitJakoNahradnik (aktivita) {
+    // TODO zkontrolovat
+    return aktivita.prihlasenJakoNahradnik
   }
 
-  muzeSePrihlasitJakoNahradnik(aktivita) {
-    //TODO mělo by být aktivita.nahradnictviMozne když to bude v datech
-    let nahradnictviMozne = false;
-    return nahradnictviMozne;
+  muzeSePrihlasitJakoNahradnik (aktivita) {
+    // TODO mělo by být aktivita.nahradnictviMozne když to bude v datech
+    let nahradnictviMozne = false
+    return nahradnictviMozne
   }
 
-  proUzivateleJeAktivitaNepristupna(aktivita) {
-    return aktivita.organizuje || !aktivita.otevrenoPrihlasovani;
+  proUzivateleJeAktivitaNepristupna (aktivita) {
+    return aktivita.organizuje || !aktivita.otevrenoPrihlasovani
   }
 
-  odhlasZAktivity(aktivita) {
-    this.props.api.odhlas(aktivita.id, (data) => {});
+  odhlasZAktivity (aktivita) {
+    this.props.api.odhlas(aktivita.id, (data) => {})
   }
 
-  prihlasNaAktivitu(aktivita) {
-    if (this.aktivitaSeMaKolapsovat(aktivita)) {
-      this.setState({kolapsovanyModal: true});
-      return;
-    }
-
+  prihlasNaAktivitu (aktivita) {
     if (this.aktivitaJePrazdnaATymova(aktivita)) {
-      this.setState({tymovyModal: true});
-      return;
+      this.setState({tymovyModal: true})
+      return
     }
 
-    //reálně přihlaš
+    // reálně přihlaš
     this.props.api.prihlas(aktivita.id,
       (data) => {},
       (error) => {
-        console.log(error);
-    });
+        console.log(error)
+      })
   }
 
-  prihlasOdhlas(event) {
-    event.stopPropagation();
+  prihlasOdhlas (event) {
+    event.stopPropagation()
 
     if (this.props.aktivita.prihlasen) {
       this.odhlasZAktivity(this.props.aktivita);
@@ -149,10 +139,10 @@ class TlacitkoPrihlasit extends React.Component {
         <button onClick = {this.prihlasOdhlas} className = {this.props.trida}>
           {this.urciTextTlacitka()}
         </button>
-      );
+      )
     }
 
-    return null;
+    return null
   }
 
   zavriModal() {
@@ -168,13 +158,6 @@ class TlacitkoPrihlasit extends React.Component {
           api = {this.props.api}
           zavriModal = {this.zavriModal}
           zobrazen = {this.state.tymovyModal}
-        />
-        <KolapsovanyModal
-          aktivita = {this.props.aktivita}
-          api = {this.props.api}
-          zavriModal = {this.zavriModal}
-          zobrazen = {this.state.kolapsovanyModal}
-          uzivatelPohlavi = {this.props.uzivatelPohlavi}
         />
       </div>
     );
