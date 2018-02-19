@@ -87,6 +87,7 @@ class Rozvrh extends React.Component {
       return linie.map(lajna => {
         return (
           <ProgramovaLinie
+            aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
             aktivity = {this.najdiAktivityKLinii(aktivity, lajna)}
             api = {this.props.api}
             key = {lajna.id}

@@ -23,8 +23,9 @@ class KolapsovanyModal extends React.Component {
           <td><a href='/drd/prihlaseni/panove-jeskyne' target='_blank'>PJ</a></td>
           <td><TlacitkoPrihlasovaci
             aktivita={aktivitaNesdruzena}
+            aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
             api={this.props.api}
-            spustenoPrihlasovani={this.props.spustenoPrihlasovani}
+            data={this.props.data}
             trida='tlacitko-prihlasit_modal'
             uzivatelPohlavi={this.props.uzivatelPohlavi}
            /></td>

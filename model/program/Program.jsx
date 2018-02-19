@@ -17,11 +17,25 @@ class Program extends React.Component {
       zobrazJenVolneAktivity: false
     }
 
+    this.aktivitaJePlnaProPohlaviUzivatele = this.aktivitaJePlnaProPohlaviUzivatele.bind(this)
     this.prepniZobrazeniVolnychAktivit = this.prepniZobrazeniVolnychAktivit.bind(this)
     this.zmenLinie = this.zmenLinie.bind(this)
     this.zmenStitky = this.zmenStitky.bind(this)
     this.zvolTentoDen = this.zvolTentoDen.bind(this)
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this)
+  }
+
+  aktivitaJePlnaProPohlaviUzivatele (aktivita, pohlavi) {
+    if (aktivita.prihlasenoMuzu + aktivita.prihlasenoZen >= aktivita.kapacitaMuzi + aktivita.kapacitaZeny + aktivita.kapacitaUniverzalni) {
+      return true
+    }
+    if (pohlavi === 'm' && aktivita.prihlasenoMuzu >= aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni) {
+      return true
+    }
+    if (pohlavi === 'f' && aktivita.prihlasenoZen >= aktivita.kapacitaZeny + aktivita.kapacitaUniverzalni) {
+      return true
+    }
+    return false
   }
 
   prepniZobrazeniVolnychAktivit () {
@@ -95,6 +109,7 @@ class Program extends React.Component {
           zvolTentoDen={this.zvolTentoDen}
         />
         <Rozvrh
+          aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
           api={this.props.api}
           data={this.data}
           zobrazJenVolneAktivity={this.state.zobrazJenVolneAktivity}
@@ -109,6 +124,7 @@ class Program extends React.Component {
             data={this.data}
             idZvoleneAktivity={this.state.idZvoleneAktivity}
             zvolTutoAktivitu={this.zvolTutoAktivitu}
+            aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
           />
         }
       </div>

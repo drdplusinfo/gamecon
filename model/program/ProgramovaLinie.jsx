@@ -89,6 +89,7 @@ function ProgramovaLinie(props) {
           radekTabulky.push(
             <Aktivita
               aktivita = {radekPole[i]}
+              aktivitaJePlnaProPohlaviUzivatele={props.aktivitaJePlnaProPohlaviUzivatele}
               api = {props.api}
               data = {props.data}
               zvolTutoAktivitu = {props.zvolTutoAktivitu}

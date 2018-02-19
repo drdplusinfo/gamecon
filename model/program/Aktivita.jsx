@@ -2,22 +2,8 @@ class Aktivita extends React.Component {
   constructor (props) {
     super(props)
 
+    this.aktivitaJePlnaProPohlaviUzivatele = this.props.aktivitaJePlnaProPohlaviUzivatele
     this.aktivita = this.props.aktivita
-    this.aktivitaJePlnaProPohlaviUzivatele = this.aktivitaJePlnaProPohlaviUzivatele.bind(this)
-  }
-
-  aktivitaJePlnaProPohlaviUzivatele (aktivita, pohlavi) {
-    console.log('zavolal jsem metodu aktivitaJePlnaProPohlaviUzivatele')
-    if (aktivita.prihlasenoMuzu + aktivita.prihlasenoZen >= aktivita.kapacitaMuzi + aktivita.kapacitaZeny + aktivita.kapacitaUniverzalni) {
-      return true
-    }
-    if (pohlavi === 'm' && aktivita.prihlasenoMuzu >= aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni) {
-      return true
-    }
-    if (pohlavi === 'f' && aktivita.prihlasenoZen >= aktivita.kapacitaZeny + aktivita.kapacitaUniverzalni) {
-      return true
-    }
-    return false
   }
 
   urciTriduBunky () {
@@ -60,7 +46,7 @@ class Aktivita extends React.Component {
           aktivita={this.aktivita}
           api={this.props.api}
           data={this.props.data}
-          aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
+          aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
         />
       </td>
     )
