@@ -15,14 +15,14 @@ class Aktivita extends React.Component {
     this.typ = null
   }
 
-  aktivitaJePlnaProPohlaviUzivatele(aktivita, pohlavi) {
-    if (pohlavi === "m" && aktivita.prihlasenoMuzu >= aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni) {
-      return true;
+  aktivitaJePlnaProPohlaviUzivatele (aktivita, pohlavi) {
+    if (pohlavi === 'm' && aktivita.prihlasenoMuzu >= aktivita.kapacitaMuzi + aktivita.kapacitaUniverzalni) {
+      return true
     }
-    if (pohlavi === "f" && aktivita.prihlasenoZen >= aktivita.kapacitaZeny + aktivita.kapacitaUniverzalni) {
-      return true;
+    if (pohlavi === 'f' && aktivita.prihlasenoZen >= aktivita.kapacitaZeny + aktivita.kapacitaUniverzalni) {
+      return true
     }
-    return false;
+    return false
   }
 
   TlacitkoDleSdruzenostiAktivity () {
@@ -40,7 +40,7 @@ class Aktivita extends React.Component {
       )
     } else {
       return (
-        <TlacitkaAktivity
+        <TlacitkoPrihlasit
           aktivita={this.aktivita}
           api={this.props.api}
           tridaTlacitka='tlacitko_nesdruzene'
@@ -54,21 +54,31 @@ class Aktivita extends React.Component {
 
   urciTriduBunky () {
     if (this.aktivita.organizuje) {
-      this.state.trida = 'organizuje' // uživatel je vypravěč
-    } else if (!this.aktivita.otevrenoPrihlasovani) {
-      this.state.trida = 'prihlaseniNemozne' // na aktivitu se nedá přihlásit
+      return 'organizuje' // uživatel je vypravěč
     } else {
-      if (!this.aktivita.prihlasen) {
-        if (!this.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.uzivatelPohlavi)) { // je
-          this.state.trida = 'neprihlasen'
+      if (this.aktivita.prihlasen) {
+        return 'prihlasen'
+      } else {
+        if (this.aktivita.prihlasenJakoNahradnik) {
+          return 'nahradnik'
         } else {
-          this.state.trida = 'prihlaseniNemozne'
+          if (this.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.uzivatelPohlavi)) {
+            return 'prihlaseniNemozne'
+          } else {
+            if (this.aktivita.vDalsiVlne) {
+              return 'vDalsiVlne'
+            } else {
+              if (this.aktivita.otevrenoPrihlasovani) {
+                return 'neprihlasen'
+              } else {
+                return 'prihlaseniNemozne'
+              }
+            }
           }
         }
       }
     }
   }
-  // TODO Manik: Toto bude potřeba dodělat dle tabulky, dále pak podminky k tlačítkům
 
   zavriModal () {
     this.setState({tymovyModal: false, kolapsovanyModal: false})
@@ -80,7 +90,7 @@ class Aktivita extends React.Component {
 
   render () {
     return (
-      <td colSpan={this.aktivita.delka} className={this.state.trida} onClick={() => this.props.zvolTutoAktivitu(this.aktivita)}>
+      <td colSpan={this.aktivita.delka} className={this.urciTriduBunky()} onClick={() => this.props.zvolTutoAktivitu(this.aktivita)}>
         <span>{this.aktivita.nazev}</span>
         <br />
         <ZobrazeniKapacity

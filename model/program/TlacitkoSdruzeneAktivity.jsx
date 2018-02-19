@@ -10,7 +10,8 @@ class TlacitkoSdruzeneAktivity extends React.Component {
     this.props.zavriModal()
   }
 
-  zobrazKolapsovanyModal () {
+  zobrazKolapsovanyModal (event) {
+    event.stopPropagation()
     this.props.zobrazKolapsovanyModal()
   }
 
@@ -24,7 +25,7 @@ class TlacitkoSdruzeneAktivity extends React.Component {
           aktivita={this.props.aktivita}
           api={this.props.api}
           uzivatelPohlavi={this.props.uzivatelPohlavi}
-          zobrazen={this.props.kolapsovanyModal}
+          zobrazen={this.props.zobrazenKolapsovanyModal}
           zavriModal={this.zavriModal}
         />
       </div>
