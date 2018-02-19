@@ -5,7 +5,6 @@ class KolapsovanyModal extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.vypisSdruzeneAktivity = this.vypisSdruzeneAktivity.bind(this)
     this.zavriModal = this.zavriModal.bind(this)
-    console.log(this.props.zobrazen)
   }
 
   handleClick (event) {
@@ -16,16 +15,16 @@ class KolapsovanyModal extends React.Component {
   vypisSdruzeneAktivity () {
     let radekSdruzeneAktivity = this.props.aktivita.sdruzene.map((aktivita, index) => {
       let aktivitaNesdruzena = Object.assign({}, aktivita, {sdruzit: false})
-      console.log(aktivitaNesdruzena.organizatori)
       return (
         <tr>
           <td>{index}</td>
           <td>{aktivitaNesdruzena.tymovaData.nazevTymu}</td>
           <td>{aktivitaNesdruzena.organizatori}</td>
           <td><a href='/drd/prihlaseni/panove-jeskyne' target='_blank'>PJ</a></td>
-          <td><TlacitkoPrihlasit
+          <td><TlacitkoPrihlasovaci
             aktivita={aktivitaNesdruzena}
             api={this.props.api}
+            spustenoPrihlasovani={this.props.spustenoPrihlasovani}
             trida='tlacitko-prihlasit_modal'
             uzivatelPohlavi={this.props.uzivatelPohlavi}
            /></td>

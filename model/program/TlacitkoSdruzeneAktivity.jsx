@@ -24,7 +24,7 @@ class TlacitkoSdruzeneAktivity extends React.Component {
         <KolapsovanyModal
           aktivita={this.props.aktivita}
           api={this.props.api}
-          uzivatelPohlavi={this.props.uzivatelPohlavi}
+          data={this.props.data}
           zobrazen={this.props.zobrazenKolapsovanyModal}
           zavriModal={this.zavriModal}
         />

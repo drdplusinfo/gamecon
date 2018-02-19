@@ -135,9 +135,11 @@ class DetailAktivity extends React.Component {
         {this.zobrazVypravece(aktivita)}
         <p>{aktivita.popisKratky}</p>
 
-        <TlacitkoPrihlasit
+        <TlacitkoPrihlasovaci
           aktivita = {aktivita}
+          aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
           api = {this.props.api}
+          data = {this.props.data}
           trida = 'tlacitko-prihlasit--detail'
           uzivatelPohlavi = {this.props.data.uzivatelPohlavi}
         />

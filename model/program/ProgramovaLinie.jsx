@@ -90,7 +90,7 @@ function ProgramovaLinie(props) {
             <Aktivita
               aktivita = {radekPole[i]}
               api = {props.api}
-              uzivatelPohlavi = {props.uzivatelPohlavi}
+              data = {props.data}
               zvolTutoAktivitu = {props.zvolTutoAktivitu}
             />
           );

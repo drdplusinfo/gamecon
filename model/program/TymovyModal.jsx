@@ -2,12 +2,12 @@ class TymovyModal extends React.Component {
   constructor(props) {
     super(props);
 
-    //jestli už hráč vyplňoval tým a klikl přihlásit později, v datech aktivity
-    //by mělo být nějaké info - jméno týmu, vypnění hráči
-    //jestli ne, bude jméno týmu prázdný string a hráči prázdné pole
-    //každopádně by tam taky mělo být minimum a maximum hráčů a kolik je momentálně
-    //aktivních míst
-    //TODO: toto vše se vezme z dat aktivity, tzn. z props
+    // jestli už hráč vyplňoval tým a klikl přihlásit později, v datech aktivity
+    // by mělo být nějaké info - jméno týmu, vypnění hráči
+    // jestli ne, bude jméno týmu prázdný string a hráči prázdné pole
+    // každopádně by tam taky mělo být minimum a maximum hráčů a kolik je momentálně
+    // aktivních míst
+    // TODO: toto vše se vezme z dat aktivity, tzn. z props
     let tym = "Kačičky", hraci = ["Pepa", "Honza", "Fedor", "Vasilij"], momentalneMax = 4;
     let kapacitaMin = 1, kapacitaMax = 5, rezervaceVyprsi = null
 

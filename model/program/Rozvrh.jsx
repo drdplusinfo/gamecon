@@ -61,9 +61,9 @@ class Rozvrh extends React.Component {
   vytvorPrazdnouTabulku(linie) {
     function bocniHlavickaSJmenemLinie(lajna) {
       return <th className = 'tabulka-linie'>{lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}</th>;
-    } 
+    }
 
-    const informacniHlaskaVeVelkeBunce = 
+    const informacniHlaskaVeVelkeBunce =
       <td className = 'tabulka-zadne-aktivity' colSpan = {24-KONSTANTY.ZACATEK_PROGRAMU} rowSpan = {linie.length}>
         Pro zvolené filtry tady nejsou žádné aktivity
       </td>;
@@ -91,7 +91,7 @@ class Rozvrh extends React.Component {
             api = {this.props.api}
             key = {lajna.id}
             nazev = {lajna.nazev[0].toUpperCase() + lajna.nazev.slice(1)}
-            uzivatelPohlavi = {this.props.data.uzivatelPohlavi}
+            data = {this.props.data}
             zvolTutoAktivitu = {this.props.zvolTutoAktivitu}
           />
         );

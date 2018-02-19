@@ -55,6 +55,8 @@ class ProgramApi implements JsPhpApi {
       'kapacitaZeny'  =>  (int) $r['kapacita_f'],
       'kapacitaUniverzalni' =>  (int) $r['kapacita'],
       'sdruzit'       =>  $a->typId() == Typ::DRD && $a->tymova(), // základní kola DrD
+      'nahradnictviMozne'   =>  true, // TODO Změnit na reálná data
+      'prihlasenJakoNahradnik'  => false, // TODO Změnit na reálná data
     ];
   }
 
@@ -254,6 +256,7 @@ class ProgramApi implements JsPhpApi {
       'linie'             =>  $this->linie(),
       'uzivatelPrihlasen' =>  (bool) $this->uzivatel,
       'uzivatelPohlavi'   =>  $this->uzivatel ? $this->uzivatel->pohlavi() : null,
+      'spustenoPrihlasovani'  => true, // TODO Změnit na reálná data
     ];
   }
 
