@@ -2,45 +2,39 @@ class TymovyModal extends React.Component {
   constructor (props) {
     super(props)
 
-    // jestli už hráč vyplňoval tým a klikl přihlásit později, v datech aktivity
-    // by mělo být nějaké info - jméno týmu, vypnění hráči
-    // jestli ne, bude jméno týmu prázdný string a hráči prázdné pole
-    // každopádně by tam taky mělo být minimum a maximum hráčů a kolik je momentálně
-    // aktivních míst
-
+    // Definice proměnných v modalu
     this.aktivita = this.props.aktivita
-
-    let tym = "Kačičky", hraci = ["Pepa", "Honza", "Fedor", "Vasilij"], momentalneMax = 4
-    let kapacitaMin = 1, kapacitaMax = 5, rezervaceVyprsi = null
-
-    if (!this.props.aktivita.zamcenaDo) {
-      rezervaceVyprsi = Date.now() + 72*3600000
+    if (this.aktivita.tymovaData) {
+      var nazevTymu = this.aktivita.tymovaData.nazevTymu
+      var hraci = this.aktivita.tymovaData.hraci
+      this.kapacitaMin = this.aktivita.tymovaData.minKapacita
+      this.kapacitaMax = this.aktivita.tymovaData.maxKapacita
+      var momentalneMax = 4
+      if (!this.aktivita.zamcenaDo) {
+        this.rezervaceVyprsi = Date.now() + 72 * 3600000
+      } else {
+        this.rezervaceVyprsi = this.props.aktivita.zamcenaDo
+      }
     }
-    else {
-      rezervaceVyprsi = this.props.aktivita.zamcenaDo
-    }
 
-
-    this.kapacitaMin = kapacitaMin;
-    this.kapacitaMax = kapacitaMax;
-    this.rezervaceVyprsi = rezervaceVyprsi;
+    // Stavy modalu
     this.state = {
-      tym: tym,
+      nazevTymu: nazevTymu,
       hraci: hraci,
       momentalneMax: momentalneMax
     }
 
-    this.handleClick = this.handleClick.bind(this);
-    this.prihlasit = this.prihlasit.bind(this);
-    this.prihlasitPozdeji = this.prihlasitPozdeji.bind(this);
-    this.zavriModal = this.zavriModal.bind(this);
-    this.zmenTym = this.zmenTym.bind(this);
-    this.zmenHrace = this.zmenHrace.bind(this);
+    // Bindování funkcí
+    this.handleClick = this.handleClick.bind(this)
+    this.prihlasit = this.prihlasit.bind(this)
+    this.prihlasitPozdeji = this.prihlasitPozdeji.bind(this)
+    this.zavriModal = this.zavriModal.bind(this)
+    this.zmenNazevTymu = this.zmenNazevTymu.bind(this)
+    this.zmenHrace = this.zmenHrace.bind(this)
   }
 
-  handleClick(event) {
-    //nechceme, aby event vybublal a dělal bordel
-    event.stopPropagation();
+  handleClick (event) {
+    event.stopPropagation()
   }
 
   odeberInputHrace(i) {
@@ -119,8 +113,8 @@ class TymovyModal extends React.Component {
     this.setState({hraci: hraci});
   }
 
-  zmenTym(event) {
-    this.setState({tym: event.target.value});
+  zmenNazevTymu(event) {
+    this.setState({nazevTymu: event.target.value});
   }
 
   render() {
@@ -142,7 +136,7 @@ class TymovyModal extends React.Component {
           <p>Na vyplnění zbývá</p>
           <Casovac rezervaceVyprsi={this.rezervaceVyprsi}/>
           <input
-            onChange={this.zmenTym}
+            onChange={this.zmenNazevTymu}
             placeholder='jméno týmu'
             type='text'
             value={this.state.tym} />
