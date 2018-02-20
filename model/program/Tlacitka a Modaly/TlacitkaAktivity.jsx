@@ -11,6 +11,7 @@ class TlacitkaAktivity extends React.Component {
     this.TlacitkoDleSdruzenostiAktivity = this.TlacitkoDleSdruzenostiAktivity.bind(this)
     this.zavriModal = this.zavriModal.bind(this)
     this.zobrazKolapsovanyModal = this.zobrazKolapsovanyModal.bind(this)
+    this.zobrazTymovyModal = this.zobrazTymovyModal.bind(this)
   }
 
   TlacitkoDleSdruzenostiAktivity () {
@@ -29,25 +30,27 @@ class TlacitkaAktivity extends React.Component {
       )
     } else {
       return (
-        <TlacitkoPrihlasovaci
-          aktivita={this.aktivita}
-          aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
-          api={this.props.api}
-          data={this.props.data}
-          tridaTlacitka='tlacitko_prihlasit'
-          zavriModal={this.zavriModal}
-          zobrazenTymovyModal={this.state.tymovyModal}
-          zobrazTymovyModal={this.zobrazTymovyModal}
-        />
-        /*<TlacitkoTymove
-          aktivita={this.aktivita}
-          aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
-          api={this.props.api}
-          tridaTlacitka='tlacitko_tym'
-          zavriModal={this.zavriModal}
-          zobrazenTymovyModal={this.state.tymovyModal}
-          zobrazTymovyModal={this.zobrazTymovyModal}
-        />*/
+        <div>
+          <TlacitkoPrihlasovaci
+            aktivita={this.aktivita}
+            aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
+            api={this.props.api}
+            data={this.props.data}
+            tridaTlacitka='tlacitko_prihlasit'
+            zavriModal={this.zavriModal}
+            zobrazenTymovyModal={this.state.tymovyModal}
+            zobrazTymovyModal={this.zobrazTymovyModal}
+          />
+          <TlacitkoTymove
+            aktivita={this.aktivita}
+            aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
+            api={this.props.api}
+            tridaTlacitka='tlacitko_tym'
+            zavriModal={this.zavriModal}
+            zobrazenTymovyModal={this.state.tymovyModal}
+            zobrazTymovyModal={this.zobrazTymovyModal}
+          />
+        </div>
       )
     }
   }

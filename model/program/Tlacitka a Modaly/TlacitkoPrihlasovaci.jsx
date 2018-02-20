@@ -38,38 +38,29 @@ class TlacitkoPrihlasovaci extends React.Component {
 
   povahaTlacitka () {
     if (!this.props.data.spustenoPrihlasovani) {
-      console.log('0')
       return null
     }
     if (!this.props.data.uzivatelPrihlasen) {
-      console.log('1')
       return {text: 'Přihlásit', metoda: this.uzivatelSeMusiRegistrovatNaGC}
     }
     if (this.aktivita.organizuje) {
-      console.log('2')
       return null
     }
     if (!this.aktivita.otevrenoPrihlasovani) {
-      console.log('3')
       return null
     }
     if (this.aktivita.prihlasen) {
-      console.log('4')
       return {text: 'Odhlásit', metoda: this.odhlas}
     }
     if (!this.props.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.data.uzivatelPohlavi)) {
-      console.log('5')
       return {text: 'Přihlásit', metoda: this.prihlas}
     }
     if (this.aktivita.prihlasenJakoNahradnik) {
-      console.log('6')
       return {text: 'Odhlásit jako náhradník', metoda: this.prihlasNahradnika}
     }
     if (this.aktivita.nahradnictviMozne) {
-      console.log('7')
       return {text: 'Přihlásit jako náhradník', metoda: this.odhlasNahradnika}
     }
-    console.log('8')
     return null
   }
 
