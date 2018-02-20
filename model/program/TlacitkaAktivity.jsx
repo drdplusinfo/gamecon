@@ -25,6 +25,8 @@ class TlacitkaAktivity extends React.Component {
           tridaTlacitka='tlacitko_sdruzene'
           zobrazenKolapsovanyModal={this.state.kolapsovanyModal}
           zobrazKolapsovanyModal={this.zobrazKolapsovanyModal}
+          zobrazenTymovyModal={this.state.tymovyModal}
+          zobrazTymovyModal={this.zobrazTymovyModal}
           zavriModal={this.zavriModal}
         />
       )

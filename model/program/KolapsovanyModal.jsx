@@ -28,6 +28,9 @@ class KolapsovanyModal extends React.Component {
             data={this.props.data}
             trida='tlacitko-prihlasit_modal'
             uzivatelPohlavi={this.props.uzivatelPohlavi}
+            zavriModal={this.props.zavriModal}
+            zobrazenTymovyModal={this.props.zobrazenTymovyModal}
+            zobrazTymovyModal={this.props.zobrazTymovyModal}
            /></td>
         </tr>
       )
@@ -42,7 +45,7 @@ class KolapsovanyModal extends React.Component {
   render () {
     /* Modal je 'neviditelný' když není zobrazen. Protože nechceme, aby byl při
     zavření zničen, chceme, aby si držel data */
-    if (!this.props.zobrazen) {
+    if (!this.props.zobrazenKolapsovanyModal) {
       return null
     }
     return (

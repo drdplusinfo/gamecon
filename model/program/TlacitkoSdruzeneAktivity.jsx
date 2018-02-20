@@ -2,12 +2,7 @@ class TlacitkoSdruzeneAktivity extends React.Component {
   constructor (props) {
     super(props)
 
-    this.zavriModal = this.zavriModal.bind(this)
     this.zobrazKolapsovanyModal = this.zobrazKolapsovanyModal.bind(this)
-  }
-
-  zavriModal () {
-    this.props.zavriModal()
   }
 
   zobrazKolapsovanyModal (event) {
@@ -26,8 +21,10 @@ class TlacitkoSdruzeneAktivity extends React.Component {
           aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
           api={this.props.api}
           data={this.props.data}
-          zobrazen={this.props.zobrazenKolapsovanyModal}
-          zavriModal={this.zavriModal}
+          zobrazenKolapsovanyModal={this.props.zobrazenKolapsovanyModal}
+          zobrazenTymovyModal={this.props.zobrazenTymovyModal}
+          zobrazTymovyModal={this.props.zobrazTymovyModal}
+          zavriModal={this.props.zavriModal}
         />
       </div>
     )

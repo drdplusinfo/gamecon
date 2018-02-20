@@ -1,14 +1,16 @@
 class TymovyModal extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     // jestli už hráč vyplňoval tým a klikl přihlásit později, v datech aktivity
     // by mělo být nějaké info - jméno týmu, vypnění hráči
     // jestli ne, bude jméno týmu prázdný string a hráči prázdné pole
     // každopádně by tam taky mělo být minimum a maximum hráčů a kolik je momentálně
     // aktivních míst
-    // TODO: toto vše se vezme z dat aktivity, tzn. z props
-    let tym = "Kačičky", hraci = ["Pepa", "Honza", "Fedor", "Vasilij"], momentalneMax = 4;
+
+    this.aktivita = this.props.aktivita
+
+    let tym = "Kačičky", hraci = ["Pepa", "Honza", "Fedor", "Vasilij"], momentalneMax = 4
     let kapacitaMin = 1, kapacitaMax = 5, rezervaceVyprsi = null
 
     if (!this.props.aktivita.zamcenaDo) {
@@ -124,30 +126,31 @@ class TymovyModal extends React.Component {
   render() {
     /* týmový modal je "neviditelný" když není zobrazen. Protože nechceme, aby byl při
     zavření zničen, chceme, aby si držel data */
-    if (!this.props.zobrazen) {
+    if (!this.props.zobrazenTymovyModal) {
       return null;
     }
+    console.log(this.aktivita.tymovaData)
     return (
-      <div className = "tymovy-modal" onClick = {this.handleClick}>
-        <div className = "tymovy-modal--vnitrek">
-          <div className = "modal-tlacitko_zavrit" onClick = {this.zavriModal}>Zavřít</div>
+      <div className='tymovy-modal' onClick={this.handleClick}>
+        <div className='tymovy-modal--vnitrek'>
+          <div className='modal-tlacitko_zavrit' onClick={this.zavriModal}>Zavřít</div>
           <h2>Týmová aktivita</h2>
           <p>Aktivita je týmová a máš právo sestavit si tým (družinu). Po odeslání
           budou automaticky přihlášeni a informováni e-mailem.</p>
           <p>Políčka, která necháš prázdná se otevřou pro přihlášení komukoli. Ta,
           která odebereš, se znepřístupní</p>
           <p>Na vyplnění zbývá</p>
-          <Casovac rezervaceVyprsi = {this.rezervaceVyprsi}/>
+          <Casovac rezervaceVyprsi={this.rezervaceVyprsi}/>
           <input
-            onChange = {this.zmenTym}
-            placeholder = "jméno týmu"
-            type = "text"
-            value = {this.state.tym} />
+            onChange={this.zmenTym}
+            placeholder='jméno týmu'
+            type='text'
+            value={this.state.tym} />
           {this.vytvorVyberHracu()}
-          <button onClick = {this.prihlasit}>Přihlásit</button>
-          <button onClick = {this.prihlasitPozdeji}>Přihlásit hráče později</button>
+          <button onClick={this.prihlasit}>Přihlásit</button>
+          <button onClick={this.prihlasitPozdeji}>Přihlásit hráče později</button>
         </div>
       </div>
-    );
+    )
   }
 }

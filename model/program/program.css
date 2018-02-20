@@ -45,6 +45,12 @@ body { font-family: sans-serif; }
 .tabulka-hlavicka-cas { width: 5%; }
 .tabulka-zadne-aktivity { text-align: center; }
 
+/* Podbarvení buněk dle stavu */
+.bunka_prihlaseniNemozne { background-color: #ddd }
+.bunka_organizuje { background-color: blue }
+.bunka_neprihlasen { background-color: white }
+.bunka_prihlasen { background-color: green }
+
 /*Vypis nazvu linii*/
 .vyber-linie-nezvolena { background-color: #f00; }
 .vyber-linie-zvolena { background-color: #0f0; }

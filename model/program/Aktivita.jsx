@@ -8,24 +8,24 @@ class Aktivita extends React.Component {
 
   urciTriduBunky () {
     if (this.aktivita.organizuje) {
-      return 'organizuje' // uživatel je vypravěč
+      return 'bunka_organizuje' // uživatel je vypravěč
     }
     if (this.aktivita.prihlasen) {
-      return 'prihlasen'
+      return 'bunka_prihlasen'
     }
     if (this.aktivita.prihlasenJakoNahradnik) {
-      return 'nahradnik'
+      return 'bunka_nahradnik'
     }
     if (this.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.uzivatelPohlavi)) {
-      return 'prihlaseniNemozne'
+      return 'bunka_prihlaseniNemozne'
     }
     if (this.aktivita.vDalsiVlne) {
-      return 'vDalsiVlne'
+      return 'bunka_vDalsiVlne'
     }
     if (this.aktivita.otevrenoPrihlasovani) {
-      return 'neprihlasen'
+      return 'bunka_neprihlasen'
     }
-    return 'prihlaseniNemozne'
+    return 'bunka_prihlaseniNemozne'
   }
 
   render () {
