@@ -20,7 +20,7 @@ class TlacitkoTymove extends React.Component {
     let povahaTlacitka = this.povahaTlacitka()
     if (povahaTlacitka) {
       return (
-        <button className={this.props.tridaTlacitka} onClick={(event) => { event.stopPropagation(); povahaTlacitka.metoda(); this.props.api.nactiDetailTymu(this.aktivita.id) }}>
+        <button className={this.props.tridaTlacitka} onClick={(event) => { event.stopPropagation(); povahaTlacitka.metoda() }}>
           {povahaTlacitka.text}
         </button>
       )
@@ -33,12 +33,12 @@ class TlacitkoTymove extends React.Component {
     return (
       <div>
         {this.vytvorTlacitko()}
+        {this.props.zobrazenTymovyModal &&
         <TymovyModal
           aktivita={this.aktivita}
           api={this.props.api}
           zavriModal={this.props.zavriModal}
-          zobrazen={this.props.zobrazenTymovyModal}
-        />
+        />}
       </div>
     )
   }

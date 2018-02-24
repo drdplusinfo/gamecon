@@ -15,6 +15,7 @@ class Program {
     $this->cacheSouboru->nastav('reactVProhlizeci', REACT_V_PROHLIZECI);
     $this->cacheSouboru->nastav('babelBinarka', BABEL_BINARKA);
     $this->cacheSouboru->pridejReact(__DIR__ . '/*.jsx');
+    $this->cacheSouboru->pridejReact(__DIR__ . '/tlacitka-a-modaly/*.jsx');
 
     // TODO přidat do elementu něco jako `class=cProgramCssClass` a v css
     // souboru pak dávat `.cProgramCssClass něco {`, nebo to celé obalit

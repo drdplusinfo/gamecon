@@ -50,7 +50,7 @@ class TlacitkoPrihlasovaci extends React.Component {
       return null
     }
     if (!this.props.data.uzivatelPrihlasen) {
-      console.log('1')
+      // console.log('1')
       return {text: 'Přihlásit', metoda: this.uzivatelSeMusiRegistrovatNaGC}
     }
     if (this.aktivita.organizuje) {
@@ -70,14 +70,14 @@ class TlacitkoPrihlasovaci extends React.Component {
         return null
       }
       if (this.aktivita.prihlasenoMuzu > 0 || this.aktivita.prihlasenoZen > 0) {
-        console.log('2')
+        // console.log('2')
         return {text: 'Přihlásit', metoda: this.prihlas}
       }
-      console.log('3')
+      // console.log('3')
       return {text: 'Přihlásit', metoda: this.props.zobrazTymovyModal}
     }
     if (!this.props.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.data.uzivatelPohlavi)) {
-      console.log('4')
+      // console.log('4')
       return {text: 'Přihlásit', metoda: this.prihlas}
     }
     if (this.aktivita.prihlasenJakoNahradnik) {
@@ -90,10 +90,10 @@ class TlacitkoPrihlasovaci extends React.Component {
   }
 
   zavolejMetoduTlacitka (povahaTlacitka) {
-    povahaTlacitka.metoda()
-    if (this.aktivita.tymovaData) { // pokud je aktivita týmová, načti spolu s voláním i týmová data
+    /*if (this.aktivita.tymovaData) { // pokud je aktivita týmová, načti spolu s voláním i týmová data
       this.props.api.nactiDetailTymu(this.aktivita.id)
-    }
+    }*/
+    povahaTlacitka.metoda()
   }
 
   vytvorTlacitko () {
@@ -113,12 +113,13 @@ class TlacitkoPrihlasovaci extends React.Component {
     return (
       <div>
         {this.vytvorTlacitko()}
+        {this.props.zobrazenTymovyModal &&
         <TymovyModal
           aktivita={this.aktivita}
           api={this.props.api}
+          hraciTymovky={this.props.hraciTymovky}
           zavriModal={this.props.zavriModal}
-          zobrazenTymovyModal={this.props.zobrazenTymovyModal}
-        />
+        />}
       </div>
     )
   }

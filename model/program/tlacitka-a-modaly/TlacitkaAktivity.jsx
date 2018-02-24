@@ -5,6 +5,7 @@ class TlacitkaAktivity extends React.Component {
     this.state = {
       tymovyModal: false,
       kolapsovanyModal: false,
+      hraci: null
     }
 
     this.aktivita = this.props.aktivita
@@ -38,6 +39,7 @@ class TlacitkaAktivity extends React.Component {
             aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
             api={this.props.api}
             data={this.props.data}
+            hraciTymovky={this.state.hraci}
             tridaTlacitka='tlacitko_prihlasit'
             zavriModal={this.zavriModal}
             zobrazenTymovyModal={this.state.tymovyModal}
@@ -66,7 +68,8 @@ class TlacitkaAktivity extends React.Component {
   }
 
   zobrazTymovyModal () {
-    this.setState({tymovyModal: true})
+    console.log('Zavolal jsem funkci zobrazTymovyModal')
+    this.props.api.nactiDetailTymu(this.aktivita.id, (data) => { this.setState({hraci: this.aktivita.tymovaData.hraci}); this.setState({tymovyModal: true}); console.log(this.aktivita.tymovaData) })
   }
 
   render () {
