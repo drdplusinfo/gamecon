@@ -1,104 +1,98 @@
-function najdiHrace(castJmena) {
-  let hraci = [
-    "Pepa", "Honza", "Maník", "Godric", "Arwi", "Cemi", "Sirien",
-    "Malý bobr", "Tomáš Veselý", "David František Wagner", "Tomáš Duli Dulka",
-    "Aleš Dorian Svoboda"
-  ];
-  let cast = castJmena.trim().toLowerCase();
-  return hraci.filter(hrac => {
-    return hrac.toLowerCase().indexOf(cast) > -1;
-  });
-}
-
 class VyberHrace extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     //Používáme react-autosuggest https://github.com/moroshko/react-autosuggest
     //Je to kontrolovaná komponenta, hodnota hráče přichází v props
-    //suggestions jsou na začátku prázdné, protože box s návrhy je zavřený
+    //navrhy jsou na začátku prázdné, protože box s návrhy je zavřený
     this.state = {
-      suggestions: []
-    };
+      aktualniHodnota: '',
+      navrhy: []
+    }
 
-    this.onChange = this.onChange.bind(this);
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+    this.priZmene = this.priZmene.bind(this)
+    this.priZadostiONacitaniNavrhu = this.priZadostiONacitaniNavrhu.bind(this)
+    this.priZadostiOVymazaniNavrhu = this.priZadostiOVymazaniNavrhu.bind(this)
+    this.priZvoleniNavrhu = this.priZvoleniNavrhu.bind(this)
   }
 
   // musíme naučit Autosuggest jak vypočítat návrhy
   // ze všech hráčů navrhujeme ty, které obsahují text, který je právě v input poli
-  getSuggestions(value) {
-    let hraci = najdiHrace(value);
-    return hraci.filter(hrac => {
-      return this.props.hraci.indexOf(hrac) === -1;
-    });
-  };
-
-  //
-  getSuggestionValue(suggestion) {
-    return suggestion;
+  nactiNavrhy(hodnotaVInputu) {
+    if (hodnotaVInputu.length >= 3) {
+      this.props.api.najdiHrace(hodnotaVInputu, (navrhyHracu) => {
+        this.setState({
+          navrhy: navrhyHracu
+        })
+      })
+    } else {
+      this.setState({
+        navrhy: []
+      })
+    }
   }
 
   // Autosuggest zavolá tuto funkci když se mění input pole
-  onChange(event, { newValue }) {
-    this.props.zmenHrace(this.props.index, newValue);
-  };
+  priZmene(event, zmena) {
+    this.setState({
+      aktualniHodnota: zmena.newValue,
+    })
+  }
 
   // Autosuggest zavolá tuto funkci vždy když se mají aktualizovat štítky
-  onSuggestionsFetchRequested({ value }) {
-    this.setState({
-      suggestions: this.getSuggestions(value)
-    });
-  };
+  priZadostiONacitaniNavrhu(zadost) {
+    this.nactiNavrhy(zadost.value)
+  }
 
   // Autosuggest zavolá tuto funkci když se mají vymazat návrhy
-  onSuggestionsClearRequested() {
+  priZadostiOVymazaniNavrhu() {
     this.setState({
-      suggestions: []
-    });
-  };
+      navrhy: []
+    })
+  }
 
   // Autosuggest zavolá tuto funkci, když si uživatel vybere jeden z návrhů
-  onSuggestionSelected(event, { suggestion }) {
-    this.props.zmenHrace(this.props.index, suggestion);
+  priZvoleniNavrhu(event, zvolenyPrvek) {
+    this.props.zmenHrace(this.props.index, zvolenyPrvek.suggestion)
 
     this.setState({
-      suggestions: []
-    });
+      aktualniHodnota: zvolenyPrvek.suggestion.jmeno,
+      navrhy: []
+    })
   }
 
   // Určuje v jaké podobě budou návrhy vytvořeny
-  renderSuggestion(suggestion) {
+  vyrenderujNavrh(navrh) {
     return (
       <div>
-        {suggestion}
+        {navrh.jmeno}
       </div>
-    );
+    )
+  }
+
+  ziskejHodnotuNavrhu(navrh) {
+    return navrh
   }
 
   render(){
-    const { suggestions } = this.state;
-    const value = this.props.hrac || '';
     // Autosuggest předá tyto props inputovému poli, můžeme si tady nastavit,
     // jaké atributy ten input má mít
-    const inputProps = {
+    let inputProps = {
       placeholder: 'další hráč',
-      value: value,
-      onChange: this.onChange
-    };
+      value: this.state.aktualniHodnota,
+      onChange: this.priZmene
+    }
     return (
       <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        onSuggestionSelected = {this.onSuggestionSelected}
+        suggestions={this.state.navrhy}
+        onSuggestionsFetchRequested={this.priZadostiONacitaniNavrhu}
+        onSuggestionsClearRequested={this.priZadostiOVymazaniNavrhu}
+        getSuggestionValue={this.ziskejHodnotuNavrhu}
+        renderSuggestion={this.vyrenderujNavrh}
+        onSuggestionSelected = {this.priZvoleniNavrhu}
         highlightFirstSuggestion = {true}
         inputProps={inputProps}
         id = {"inputHrace" + this.props.index}
       />
-    );
+    )
   }
 }
