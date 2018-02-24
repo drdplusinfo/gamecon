@@ -2,7 +2,7 @@
 function Loader() {
   return (
     <div>
-      Načítávám...
+      Už jen sekundu ...
     </div>
   );
 }

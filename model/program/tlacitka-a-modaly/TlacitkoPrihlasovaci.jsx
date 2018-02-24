@@ -90,7 +90,7 @@ class TlacitkoPrihlasovaci extends React.Component {
   }
 
   zavolejMetoduTlacitka (povahaTlacitka) {
-    /*if (this.aktivita.tymovaData) { // pokud je aktivita týmová, načti spolu s voláním i týmová data
+    /* if (this.aktivita.tymovaData) { // pokud je aktivita týmová, načti spolu s voláním i týmová data
       this.props.api.nactiDetailTymu(this.aktivita.id)
     }*/
     povahaTlacitka.metoda()
@@ -113,13 +113,6 @@ class TlacitkoPrihlasovaci extends React.Component {
     return (
       <div>
         {this.vytvorTlacitko()}
-        {this.props.zobrazenTymovyModal &&
-        <TymovyModal
-          aktivita={this.aktivita}
-          api={this.props.api}
-          hraciTymovky={this.props.hraciTymovky}
-          zavriModal={this.props.zavriModal}
-        />}
       </div>
     )
   }
