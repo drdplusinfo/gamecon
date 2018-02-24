@@ -21,6 +21,7 @@ if($proProdukci) {
 
 // sestavení souborů
 $cache->sestavReact(__DIR__ . '/../model/program/*.jsx');
+$cache->sestavReact(__DIR__ . '/../model/program/tlacitka-a-modaly/*.jsx');
 
 // úklid
 if($proProdukci) {
