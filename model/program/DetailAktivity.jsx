@@ -117,6 +117,7 @@ class DetailAktivity extends React.Component {
 
   render() {
     let aktivita = this.props.data.aktivity.find(akt => akt.id === this.props.idZvoleneAktivity);
+    console.log(aktivita)
     let linie = this.props.data.linie.find(lajna => lajna.id == aktivita.linie);
 
     return (

@@ -14,13 +14,15 @@ class Program extends React.Component {
       zvolenyDen: KONSTANTY.DNY_V_TYDNU.CTVRTEK,
       idZvoleneAktivity: null,
       stitky: this.ziskejStitky(),
-      zobrazJenVolneAktivity: false
+      zobrazJenVolneAktivity: false,
+      mujProgramZapnuty: false
     }
 
     this.aktivitaJePlnaProPohlaviUzivatele = this.aktivitaJePlnaProPohlaviUzivatele.bind(this)
     this.prepniZobrazeniVolnychAktivit = this.prepniZobrazeniVolnychAktivit.bind(this)
     this.zmenLinie = this.zmenLinie.bind(this)
     this.zmenStitky = this.zmenStitky.bind(this)
+    this.zvolMujProgram = this.zvolMujProgram.bind(this)
     this.zvolTentoDen = this.zvolTentoDen.bind(this)
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this)
   }
@@ -79,8 +81,18 @@ class Program extends React.Component {
     this.setState({stitky: stitky})
   }
 
+  zvolMujProgram () {
+    this.setState({
+      mujProgramZapnuty: true,
+      zvolenyDen: null
+    })
+  }
+
   zvolTentoDen (cisloDneVTydnu) {
-    this.setState({zvolenyDen: cisloDneVTydnu})
+    this.setState({
+      mujProgramZapnuty: false,
+      zvolenyDen: cisloDneVTydnu
+    })
   }
 
   zvolTutoAktivitu (aktivita) {
@@ -104,20 +116,30 @@ class Program extends React.Component {
           stitky={this.state.stitky}
           zmenStitky={this.zmenStitky}
         />
-        <ZvolDen
+        <ZvolDenNeboMujProgram
+          mujProgramZapnuty = {this.state.mujProgramZapnuty}
+          zvolMujProgram = {this.zvolMujProgram}
           zvolenyDen={this.state.zvolenyDen}
           zvolTentoDen={this.zvolTentoDen}
         />
-        <Rozvrh
-          aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
-          api={this.props.api}
-          data={this.data}
-          zobrazJenVolneAktivity={this.state.zobrazJenVolneAktivity}
-          linie={this.state.linie}
-          stitky={this.state.stitky}
-          zvolenyDen={this.state.zvolenyDen}
-          zvolTutoAktivitu={this.zvolTutoAktivitu}
-        />
+        {
+          this.state.mujProgramZapnuty ?
+          <MujProgram 
+            data = {this.data}
+            zvolTutoAktivitu={this.zvolTutoAktivitu}
+          />
+          :
+          <Rozvrh
+            aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
+            api={this.props.api}
+            data={this.data}
+            zobrazJenVolneAktivity={this.state.zobrazJenVolneAktivity}
+            linie={this.state.linie}
+            stitky={this.state.stitky}
+            zvolenyDen={this.state.zvolenyDen}
+            zvolTutoAktivitu={this.zvolTutoAktivitu}
+          />
+        }
         {this.state.idZvoleneAktivity &&
           <DetailAktivity
             api={this.props.api}
