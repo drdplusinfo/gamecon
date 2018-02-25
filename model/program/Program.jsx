@@ -7,12 +7,11 @@ class Program extends React.Component {
 
     this.zapniUpdateUIPriZmeneDat()
 
-    this.data = this.props.api.zakladniData
 
     this.state = {
-      linie: this.uklidLinie(this.data.linie),
+      linie: this.uklidLinie(this.props.api.zakladniData.linie),
       zvolenyDen: KONSTANTY.DNY_V_TYDNU.CTVRTEK,
-      idZvoleneAktivity: null,
+      zvolenaAktivita: {},
       stitky: this.ziskejStitky(),
       zobrazJenVolneAktivity: false,
       mujProgramZapnuty: false
@@ -57,7 +56,7 @@ class Program extends React.Component {
   ziskejStitky () {
     // Projdi pole aktivit, vytáhni všechny štítky a nastav je jako nezvolené
     let stitky = []
-    this.data.aktivity.forEach(aktivita => {
+    this.props.api.zakladniData.aktivity.forEach(aktivita => {
       aktivita.stitky.forEach(stitek => {
         if (!(stitky.includes(stitek))) {
           stitky.push(stitek)
@@ -96,8 +95,12 @@ class Program extends React.Component {
   }
 
   zvolTutoAktivitu (aktivita) {
-    console.log(aktivita)
-    this.setState({idZvoleneAktivity: aktivita.id})
+    console.log('Zvol tuto aktivitu volá: ', aktivita)
+    this.setState({zvolenaAktivita: aktivita})
+  }
+
+  componentWillUpdate (nextProps, nextState) {
+    console.log(nextState)
   }
 
   render () {
@@ -124,15 +127,15 @@ class Program extends React.Component {
         />
         {
           this.state.mujProgramZapnuty ?
-          <MujProgram 
-            data = {this.data}
+          <MujProgram
+            data = {this.props.api.zakladniData}
             zvolTutoAktivitu={this.zvolTutoAktivitu}
           />
           :
           <Rozvrh
             aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
             api={this.props.api}
-            data={this.data}
+            data={this.props.api.zakladniData}
             zobrazJenVolneAktivity={this.state.zobrazJenVolneAktivity}
             linie={this.state.linie}
             stitky={this.state.stitky}
@@ -140,11 +143,11 @@ class Program extends React.Component {
             zvolTutoAktivitu={this.zvolTutoAktivitu}
           />
         }
-        {this.state.idZvoleneAktivity &&
+        {this.state.zvolenaAktivita.id &&
           <DetailAktivity
             api={this.props.api}
-            data={this.data}
-            idZvoleneAktivity={this.state.idZvoleneAktivity}
+            data={this.props.api.zakladniData}
+            zvolenaAktivita={this.state.zvolenaAktivita}
             zvolTutoAktivitu={this.zvolTutoAktivitu}
             aktivitaJePlnaProPohlaviUzivatele={this.aktivitaJePlnaProPohlaviUzivatele}
           />

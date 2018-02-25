@@ -7,7 +7,6 @@ class TlacitkaAktivity extends React.Component {
       kolapsovanyModal: false,
     }
 
-    this.aktivita = this.props.aktivita
     this.TlacitkoDleSdruzenostiAktivity = this.TlacitkoDleSdruzenostiAktivity.bind(this)
     this.zavriModal = this.zavriModal.bind(this)
     this.zobrazKolapsovanyModal = this.zobrazKolapsovanyModal.bind(this)
@@ -15,10 +14,10 @@ class TlacitkaAktivity extends React.Component {
   }
 
   TlacitkoDleSdruzenostiAktivity () {
-    if (this.aktivita.sdruzene) {
+    if (this.props.aktivita.sdruzene && !this.props.vnorena) {
       return (
         <TlacitkoSdruzeneAktivity
-          aktivita={this.aktivita}
+          aktivita={this.props.aktivita}
           aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
           api={this.props.api}
           data={this.props.data}
@@ -34,7 +33,7 @@ class TlacitkaAktivity extends React.Component {
       return (
         <div>
           <TlacitkoPrihlasovaci
-            aktivita={this.aktivita}
+            aktivita={this.props.aktivita}
             aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
             api={this.props.api}
             data={this.props.data}
@@ -45,7 +44,7 @@ class TlacitkaAktivity extends React.Component {
             zobrazTymovyModal={this.zobrazTymovyModal}
           />
           <TlacitkoTymove
-            aktivita={this.aktivita}
+            aktivita={this.props.aktivita}
             aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
             api={this.props.api}
             tridaTlacitka='tlacitko_tym'
@@ -67,9 +66,7 @@ class TlacitkaAktivity extends React.Component {
   }
 
   zobrazTymovyModal () {
-    console.log('Zavolal jsem funkci zobrazTymovyModal')
     this.setState({tymovyModal: true})
-    console.log(this.aktivita.tymovaData)
   }
 
   render () {

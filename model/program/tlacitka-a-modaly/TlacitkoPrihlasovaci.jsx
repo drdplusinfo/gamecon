@@ -10,11 +10,10 @@ class TlacitkoPrihlasovaci extends React.Component {
     this.odhlas = this.odhlas.bind(this)
     this.povahaTlacitka = this.povahaTlacitka.bind(this)
     this.zavolejMetoduTlacitka = this.zavolejMetoduTlacitka.bind(this)
-    this.aktivita = this.props.aktivita
   }
 
   odhlas () {
-    this.props.api.odhlas(this.aktivita.id,
+    this.props.api.odhlas(this.props.aktivita.id,
       (data) => {},
       (error) => {
         console.log(error)
@@ -26,7 +25,7 @@ class TlacitkoPrihlasovaci extends React.Component {
   }
 
   prihlas () {
-    this.props.api.prihlas(this.aktivita.id,
+    this.props.api.prihlas(this.props.aktivita.id,
       (data) => {},
       (error) => {
         console.log(error)
@@ -46,6 +45,7 @@ class TlacitkoPrihlasovaci extends React.Component {
   }
 
   povahaTlacitka () {
+    let aktivita = this.props.aktivita
     if (!this.props.data.spustenoPrihlasovani) {
       return null
     }
@@ -53,46 +53,43 @@ class TlacitkoPrihlasovaci extends React.Component {
       // console.log('1')
       return {text: 'Přihlásit', metoda: this.uzivatelSeMusiRegistrovatNaGC}
     }
-    if (this.aktivita.organizuje) {
+    if (aktivita.organizuje) {
       return null
     }
-    if (!this.aktivita.otevrenoPrihlasovani) {
+    if (!aktivita.otevrenoPrihlasovani) {
       return null
     }
-    if (this.aktivita.prihlasen) {
+    if (aktivita.prihlasen) {
       return {text: 'Odhlásit', metoda: this.odhlas}
     }
-    if (this.aktivita.tymovaData) {
-      if (this.aktivita.tymovaData.zamcenaDo) {
+    if (aktivita.tymovaData) {
+      if (aktivita.tymovaData.zamcenaDo) {
         return {text: 'Zamčeno', metoda: this.uzivatelMusiPockatDoOdemceni}
       }
-      if (this.props.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.data.uzivatelPohlavi)) {
+      if (this.props.aktivitaJePlnaProPohlaviUzivatele(aktivita, this.props.data.uzivatelPohlavi)) {
         return null
       }
-      if (this.aktivita.prihlasenoMuzu > 0 || this.aktivita.prihlasenoZen > 0) {
+      if (aktivita.prihlasenoMuzu > 0 || aktivita.prihlasenoZen > 0) {
         // console.log('2')
         return {text: 'Přihlásit', metoda: this.prihlas}
       }
       // console.log('3')
       return {text: 'Přihlásit', metoda: this.props.zobrazTymovyModal}
     }
-    if (!this.props.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.data.uzivatelPohlavi)) {
+    if (!this.props.aktivitaJePlnaProPohlaviUzivatele(aktivita, this.props.data.uzivatelPohlavi)) {
       // console.log('4')
       return {text: 'Přihlásit', metoda: this.prihlas}
     }
-    if (this.aktivita.prihlasenJakoNahradnik) {
+    if (aktivita.prihlasenJakoNahradnik) {
       return {text: 'Odhlásit jako náhradník', metoda: this.odhlasNahradnika}
     }
-    if (this.aktivita.nahradnictviMozne) {
+    if (aktivita.nahradnictviMozne) {
       return {text: 'Přihlásit jako náhradník', metoda: this.prihlasNahradnika}
     }
     return null
   }
 
   zavolejMetoduTlacitka (povahaTlacitka) {
-    /* if (this.aktivita.tymovaData) { // pokud je aktivita týmová, načti spolu s voláním i týmová data
-      this.props.api.nactiDetailTymu(this.aktivita.id)
-    }*/
     povahaTlacitka.metoda()
   }
 
@@ -100,7 +97,7 @@ class TlacitkoPrihlasovaci extends React.Component {
     let povahaTlacitka = this.povahaTlacitka()
     if (povahaTlacitka) {
       return (
-        <button className={this.props.tridaTlacitka} onClick={(event) => { event.stopPropagation(); this.zavolejMetoduTlacitka(povahaTlacitka) }}>
+        <button className={this.props.tridaTlacitka} onClick={(event) => { event.stopPropagation(); this.zavolejMetoduTlacitka(povahaTlacitka); console.log('Zavolal jsem metodu tlačítka:', povahaTlacitka) }}>
           {povahaTlacitka.text}
         </button>
       )

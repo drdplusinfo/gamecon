@@ -48,8 +48,6 @@ class TymovyModal extends React.Component {
 
   inicializujDalsiKola () {
     let idsPrvnichTerminu = this.aktivita.tymovaData.vyberKol.map((kolo) => {
-      console.log('ID prvního termínu:')
-      console.log(kolo[0].id)
       return kolo[0].id
     })
     this.setState({idsDalsichKol: idsPrvnichTerminu})
@@ -178,7 +176,6 @@ class TymovyModal extends React.Component {
 
   zobrazVolnaMista () {
     let output = []
-    console.log(this.aktivita)
     for (let i = this.aktivita.tymovaData.hraci.length; i < this.state.momentalneMax; i++) {
       output.push(
         <input type='text' value='volné místo (může se přihlásit kdokoliv)' disabled={true} />

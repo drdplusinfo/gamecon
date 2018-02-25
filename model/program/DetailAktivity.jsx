@@ -1,49 +1,43 @@
 class DetailAktivity extends React.Component {
-  componentDidMount() {
-    this.nactiDetail();
+  componentDidMount () {
+    this.nactiDetail(this.props.zvolenaAktivita.id)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.idZvoleneAktivity !== this.props.idZvoleneAktivity) {
-      this.nactiDetail();
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.zvolenaAktivita.id !== this.props.zvolenaAktivita.id) {
+      this.nactiDetail(nextProps.zvolenaAktivita.id)
     }
   }
 
-  nactiDetail() {
-    this.props.api.nactiDetail(this.props.idZvoleneAktivity);
+  nactiDetail (idAktivity) {
+    this.props.api.nactiDetail(idAktivity)
   }
 
-  //udělěj element pro štítky každé kategorie(kde nějaké štítky jsou)
-  //a element pro ostatní štítky
-  vykresliStitky(aktivita) {
-    let kategorizovaneStitky = this.priradStitkyAktivityDoKategorii(aktivita);
+  // udělěj element pro štítky každé kategorie(kde nějaké štítky jsou)
+  // a element pro ostatní štítky
+  vykresliStitky (aktivita) {
+    let kategorizovaneStitky = this.priradStitkyAktivityDoKategorii(aktivita)
 
-    let naplneneKategorie = kategorizovaneStitky.kategorie.filter(kat => kat.stitky.length > 0);
-    let serazeneKategorie = naplneneKategorie.sort((katA, katB) => katA.poradi - katB.poradi);
+    let naplneneKategorie = kategorizovaneStitky.kategorie.filter(kat => kat.stitky.length > 0)
+    let serazeneKategorie = naplneneKategorie.sort((katA, katB) => katA.poradi - katB.poradi)
 
     let kategorieJakoElementy = serazeneKategorie.map((kat, index) => {
       return (
         <p key = {index}>{kat.nazev + ": " + kat.stitky.join(", ")}</p>
-      );
-    });
+      )
+    })
 
     return (
       <div>
         {kategorieJakoElementy}
         <p>{kategorizovaneStitky.ostatni.join(", ")}</p>
       </div>
-    );
+    )
   }
 
   priradStitkyAktivityDoKategorii(aktivita) {
-    let testStitky = [
-      "Systém: Kdo z koho", "Systém: Oko za oko", "Herní styl: komedie", "Herní styl: na Buchtíka", "Herní styl: absurdní drama",
-      "Žánr: epika", "Žánr: whatever", "Prostředí: Maníkův barák", "Prostředí: My little pony", "Prostředí: julo: pomstitel",
-      "další štítek", "pro pokročilé", "pro zkušené", "nechceme nikoho"
-    ];
 
-    //TODO: v ostré verzi změnit na stitky = aktivita.stitky
-    let stitky = testStitky;
+    let stitky = aktivita.stitky
 
     let kategorie = [
       {
@@ -66,62 +60,61 @@ class DetailAktivity extends React.Component {
         stitky: [],
         poradi: 4
       }
-    ];
-    let ostatni = [];
+    ]
+    let ostatni = []
 
     //pro každý štítek testujeme pro každou kategorii, jestli patří do jedné z nich
     //jestli patří, vložíme část za dvojtečkou do objektu k dané kategorii
     //jestli nepatří do žádné kategorie, vložíme ho do pole "ostatni"
     stitky.forEach(stitek => {
-      let patriDoKategorie = false;
+      let patriDoKategorie = false
 
       kategorie.forEach(kat => {
-        let regex = new RegExp(kat.nazev + ': (.*)');
-        let match = stitek.match(regex);
+        let regex = new RegExp(kat.nazev + ': (.*)')
+        let match = stitek.match(regex)
 
         if(match) {
-          let castZaDvouteckou = match[1];
-          kat.stitky.push(castZaDvouteckou);
-          patriDoKategorie = true;
+          let castZaDvouteckou = match[1]
+          kat.stitky.push(castZaDvouteckou)
+          patriDoKategorie = true
         }
-      });
+      })
 
       if(!patriDoKategorie) {
-        ostatni.push(stitek);
+        ostatni.push(stitek)
       }
-    });
+    })
 
     return {
       kategorie: kategorie,
       ostatni: ostatni
-    };
+    }
   }
 
   vytvorZaviraciTlacitko() {
     return <button onClick = {() => this.props.zvolTutoAktivitu({})}>x</button>
   }
 
-  zobrazDlouhyPopisNeboLoader(aktivita) {
+  zobrazDlouhyPopisNeboLoader (aktivita) {
     if (aktivita.popisDlouhy) {
-      return <p dangerouslySetInnerHTML = {{__html: aktivita.popisDlouhy}}></p>
+      return <p dangerouslySetInnerHTML={{__html: aktivita.popisDlouhy}} />
     } else {
-      return <Loader />;
+      return <Loader />
     }
   }
 
-  zobrazVypravece(aktivita) {
+  zobrazVypravece (aktivita) {
     if (!aktivita.sdruzit) {
       return <p>Vypravěč: {aktivita.organizatori.join(', ')}</p>
     }
   }
 
-  render() {
-    let aktivita = this.props.data.aktivity.find(akt => akt.id === this.props.idZvoleneAktivity);
-    console.log(aktivita)
-    let linie = this.props.data.linie.find(lajna => lajna.id == aktivita.linie);
+  render () {
+    let aktivita = this.props.zvolenaAktivita
+    let linie = this.props.data.linie.find(lajna => lajna.id === aktivita.linie.toString())
 
     return (
-      <div className = "detail-aktivity">
+      <div className='detail-aktivity'>
         {this.vytvorZaviraciTlacitko()}
 
         <h2>{aktivita.nazev}</h2>
@@ -137,12 +130,12 @@ class DetailAktivity extends React.Component {
         <p>{aktivita.popisKratky}</p>
 
         <TlacitkoPrihlasovaci
-          aktivita = {aktivita}
+          aktivita={aktivita}
           aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
-          api = {this.props.api}
-          data = {this.props.data}
-          trida = 'tlacitko-prihlasit--detail'
-          uzivatelPohlavi = {this.props.data.uzivatelPohlavi}
+          api={this.props.api}
+          data={this.props.data}
+          trida='tlacitko-prihlasit--detail'
+          uzivatelPohlavi={this.props.data.uzivatelPohlavi}
         />
 
         <p>---</p>
@@ -151,6 +144,6 @@ class DetailAktivity extends React.Component {
           {this.zobrazDlouhyPopisNeboLoader(aktivita)}
         </div>
       </div>
-    );
+    )
   }
 }

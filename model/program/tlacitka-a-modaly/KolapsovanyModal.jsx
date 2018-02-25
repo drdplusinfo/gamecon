@@ -14,24 +14,22 @@ class KolapsovanyModal extends React.Component {
 
   vypisSdruzeneAktivity () {
     let radekSdruzeneAktivity = this.props.aktivita.sdruzene.map((aktivita, index) => {
-      let aktivitaNesdruzena = Object.assign({}, aktivita, {sdruzit: false})
+      let aktivitaNesdruzena = Object.assign({}, aktivita, {sdruzit: false}, {sdruzene: null})
       return (
         <tr>
           <td>{index}</td>
           <td>{aktivitaNesdruzena.tymovaData.nazevTymu}</td>
           <td>{aktivitaNesdruzena.organizatori}</td>
           <td><a href='/drd/prihlaseni/panove-jeskyne' target='_blank'>PJ</a></td>
-          <td><TlacitkoPrihlasovaci
-            aktivita={aktivitaNesdruzena}
-            aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
-            api={this.props.api}
-            data={this.props.data}
-            trida='tlacitko-prihlasit_modal'
-            uzivatelPohlavi={this.props.uzivatelPohlavi}
-            zavriModal={this.props.zavriModal}
-            zobrazenTymovyModal={this.props.zobrazenTymovyModal}
-            zobrazTymovyModal={this.props.zobrazTymovyModal}
-           /></td>
+          <td>
+            <TlacitkaAktivity
+              aktivita={aktivita}
+              vnorena={true}
+              api={this.props.api}
+              data={this.props.data}
+              aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
+            />
+          </td>
         </tr>
       )
     })
