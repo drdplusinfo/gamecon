@@ -1,6 +1,6 @@
 function MujProgram (props) {
   function vyfiltrujMojeAktivity (aktivity) {
-    return aktivity.filter(aktivita => aktivita.prihlasen)
+    return aktivity.filter(aktivita => aktivita.prihlasen || aktivita.organizuje || aktivita.prihlasenJakoNahradnik)
   }
 
   function vyfiltrujAktivityDne (cisloDne, aktivity) {
