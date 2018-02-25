@@ -18,12 +18,17 @@ class TymovyModal extends React.Component {
         this.rezervaceVyprsi = new Date(this.aktivita.tymovaData.zamcenaDo)
       }
     }
+    if (this.aktivita.prihlasen && !this.aktivita.tymovaData.zamcenaDo && this.aktivita.tymovaData.hraci) {
+      this.momentalneMax = this.aktivita.kapacitaUniverzalni - this.aktivita.tymovaData.hraci.length
+    } else {
+      this.momentalneMax = this.aktivita.tymovaData.maxKapacita
+    }
 
     // Stavy modalu
     this.state = {
       nazevTymu: this.aktivita.tymovaData.nazevTymu,
       potencialniHraci: this.incializujPotencialniHrace(),
-      momentalneMax: this.aktivita.tymovaData.maxKapacita,
+      momentalneMax: this.momentalneMax,
       idsDalsichKol: this.incializujDalsiKola()
     }
 
@@ -163,6 +168,38 @@ class TymovyModal extends React.Component {
     return <div>{output}</div>
   }
 
+  zobrazPrihlaseneHrace () {
+    console.log(this.aktivita.tymovaData.hraci)
+    if (this.aktivita.tymovaData.hraci) {
+      return this.aktivita.tymovaData.hraci.map((hrac, index) => {
+        return (
+          <div>
+            <input type='text' key={index} value={hrac} disabled={true} />
+            <br />
+          </div>
+        )
+      })
+    }
+  }
+
+  zobrazVolnaMista () {
+    let output = []
+    for (let i = this.aktivita.tymovaData.hraci.length; i <= this.state.momentalneMax; i++) {
+      output.push(
+        <input type='text' value='volné místo (může se přihlásit kdokoliv)' disabled={true} />
+        ,
+        <button onClick={() => this.odeberInputHrace(i)}>Odebrat hráče</button>,
+        <br />
+      )
+    }
+    if (this.aktivita.tymovaData.hraci) {
+      if (this.state.momentalneMax < this.kapacitaMax - this.aktivita.tymovaData.hraci.length) {
+        output.push(<button onClick={this.pridejInputHrace}>Přidat hráče</button>)
+      }
+    }
+    return <div>{output}</div>
+  }
+
   zrusModal () {
     this.props.zavriModal()
     this.props.api.odhlas(this.aktivita.id)
@@ -224,26 +261,17 @@ class TymovyModal extends React.Component {
   }
 
   renderModalTymPrihlasen () {
+    console.log(this.aktivita)
     return (
       <div className='tymovy-modal' onClick={this.handleClick}>
         <div className='tymovy-modal--vnitrek'>
-          <div className='modal-tlacitko_zavrit' onClick={this.zrusModal}>Zrušit</div>
+          <div className='modal-tlacitko_zavrit' onClick={this.props.zavriModal}>Zavřít</div>
           <h2>Týmová aktivita</h2>
-          <p>Aktivita je týmová a máš právo sestavit si tým (družinu). Po odeslání
-          budou automaticky přihlášeni a informováni e-mailem.</p>
-          <p>Políčka, která necháš prázdná se otevřou pro přihlášení komukoli. Ta,
-          která odebereš, se znepřístupní</p>
-          <p>Na vyplnění zbývá</p>
-          <Casovac rezervaceVyprsi={this.rezervaceVyprsi} />
-          <input
-            onChange={this.zmenNazevTymu}
-            placeholder='Název týmu (družiny)'
-            type='text'
-            value={this.state.nazevTymu} />
-          {this.vytvorVyberHracu()}
-          {this.vytvorVyberDalsichKol()}
-          <button onClick={this.prihlasTym}>Přihlásit tým</button>
-          <button onClick={this.props.zavriModal}>renderModalTymPrihlasen</button>
+          <p>Aktivita je týmová a tvůj tým (družina) je již přihlášen. Nyní můžeš jen odebírat nebo přidávat místa, která se otevřou pro přihlášení komukoli.</p>
+          <div>{this.state.nazevTymu}</div>
+          {this.zobrazPrihlaseneHrace()}
+          {this.zobrazVolnaMista()}
+          <button onClick={() => { this.props.api.nastavKapacituTymu(this.aktivita.id, this.state.momentalneMax + this.aktivita.tymovaData.hraci.length); this.props.zavriModal() }}>Potvrď novou kapacitu</button>
         </div>
       </div>
     )
