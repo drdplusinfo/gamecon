@@ -91,10 +91,6 @@ class Program extends React.Component {
   render () {
     return (
       <div>
-        <TestVyber 
-          api = {this.props.api}
-          aktivita = {this.data.aktivity.find(aktivita => aktivita.tymovaData)}
-        />
         <Header />
         <ZvolTypy
           zobrazJenVolneAktivity={this.state.zobrazJenVolneAktivity}

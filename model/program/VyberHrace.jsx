@@ -5,14 +5,15 @@ class VyberHrace extends React.Component {
     //Je to kontrolovaná komponenta, hodnota hráče přichází v props
     //navrhy jsou na začátku prázdné, protože box s návrhy je zavřený
     this.state = {
-      aktualniHodnota: '',
-      navrhy: []
+      navrhy: [],
     }
 
     this.priZmene = this.priZmene.bind(this)
     this.priZadostiONacitaniNavrhu = this.priZadostiONacitaniNavrhu.bind(this)
     this.priZadostiOVymazaniNavrhu = this.priZadostiOVymazaniNavrhu.bind(this)
     this.priZvoleniNavrhu = this.priZvoleniNavrhu.bind(this)
+    this.vyrenderujInput = this.vyrenderujInput.bind(this)
+    this.zrusZvoleni = this.zrusZvoleni.bind(this)
   }
 
   // musíme naučit Autosuggest jak vypočítat návrhy
@@ -33,8 +34,10 @@ class VyberHrace extends React.Component {
 
   // Autosuggest zavolá tuto funkci když se mění input pole
   priZmene(event, zmena) {
-    this.setState({
-      aktualniHodnota: zmena.newValue,
+    this.props.zmenHrace(this.props.index, {
+      jmeno: zmena.newValue,
+      id: null,
+      zvolen: false,
     })
   }
 
@@ -52,12 +55,33 @@ class VyberHrace extends React.Component {
 
   // Autosuggest zavolá tuto funkci, když si uživatel vybere jeden z návrhů
   priZvoleniNavrhu(event, zvolenyPrvek) {
-    this.props.zmenHrace(this.props.index, zvolenyPrvek.suggestion)
-
-    this.setState({
-      aktualniHodnota: zvolenyPrvek.suggestion.jmeno,
-      navrhy: []
+    console.log(zvolenyPrvek)
+    this.props.zmenHrace(this.props.index, {
+      jmeno: zvolenyPrvek.suggestion.jmeno,
+      id: zvolenyPrvek.suggestion.id,
+      zvolen: true,
     })
+  }
+
+  priZvyrazneniNavrhu() {
+    return
+  }
+
+  vyrenderujInput(inputProps) {
+    if (this.props.hraci[this.props.index].zvolen) {
+      return (
+        <div>
+          <input {...inputProps} disabled={true}/>
+          <button onClick = {this.zrusZvoleni}>x</button>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <input {...inputProps} />
+        </div>
+      )
+    }
   }
 
   // Určuje v jaké podobě budou návrhy vytvořeny
@@ -73,12 +97,22 @@ class VyberHrace extends React.Component {
     return navrh
   }
 
+  zrusZvoleni() {
+    this.props.zmenHrace(this.props.index, {
+      jmeno: '',
+      id: null,
+      zvolen: false
+    })
+  }
+
   render(){
     // Autosuggest předá tyto props inputovému poli, můžeme si tady nastavit,
     // jaké atributy ten input má mít
+    let hrac = this.props.hraci[this.props.index]
+    console.log(hrac)
     let inputProps = {
       placeholder: 'další hráč',
-      value: this.state.aktualniHodnota,
+      value: this.props.hraci[this.props.index].jmeno,
       onChange: this.priZmene
     }
     return (
@@ -89,6 +123,8 @@ class VyberHrace extends React.Component {
         getSuggestionValue={this.ziskejHodnotuNavrhu}
         renderSuggestion={this.vyrenderujNavrh}
         onSuggestionSelected = {this.priZvoleniNavrhu}
+        onSuggestionHighlighted = {this.priZvyrazneniNavrhu}
+        renderInputComponent = {this.vyrenderujInput}
         highlightFirstSuggestion = {true}
         inputProps={inputProps}
         id = {"inputHrace" + this.props.index}

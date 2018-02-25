@@ -22,7 +22,7 @@ class TymovyModal extends React.Component {
     // Stavy modalu
     this.state = {
       nazevTymu: this.aktivita.tymovaData.nazevTymu,
-      potencialniHraci: [],
+      potencialniHraci: this.incializujPotencialniHrace(),
       momentalneMax: this.aktivita.tymovaData.maxKapacita,
       idsDalsichKol: this.incializujDalsiKola()
     }
@@ -48,13 +48,30 @@ class TymovyModal extends React.Component {
     return []
   }
 
+  incializujPotencialniHrace () {
+    return new Array(this.kapacitaMax).fill({
+      jmeno: '',
+      id: null,
+      zvolen: false
+    })
+  }
+
   odeberInputHrace (i) {
     let hraci = this.state.potencialniHraci.filter((el, index) => index !== i)
     this.setState({momentalneMax: this.state.momentalneMax - 1, potencialniHraci: hraci})
   }
 
   pridejInputHrace () {
-    this.setState({momentalneMax: this.state.momentalneMax + 1})
+    let hraci = this.state.potencialniHraci.slice()
+    hraci.push({
+      jmeno: '',
+      id: null,
+      zvolen: false
+    })
+    this.setState({
+      momentalneMax: this.state.momentalneMax + 1,
+      potencialniHraci: hraci
+    })
   }
 
   prihlasTym () {
@@ -100,7 +117,6 @@ class TymovyModal extends React.Component {
   }
 
   zobrazPrihlaseneHrace () {
-    console.log(this.aktivita.tymovaData.hraci)
     if (this.aktivita.tymovaData.hraci) {
       return this.aktivita.tymovaData.hraci.map((hrac, index) => {
         return (
@@ -119,9 +135,10 @@ class TymovyModal extends React.Component {
     for (let i = 0; i < this.kapacitaMin - 1; i++) {
       output.push(
         <VyberHrace
-          hraci={this.state.hraciTymovky}
+          hraci={this.state.potencialniHraci}
           index={i}
           zmenHrace={this.zmenHrace}
+          api = {this.props.api}
         />
         , <br />
       )
@@ -130,9 +147,10 @@ class TymovyModal extends React.Component {
     for (let i = this.kapacitaMin - 1; i < this.state.momentalneMax; i++) {
       output.push(
         <VyberHrace
-          hraci={this.state.hraciTymovky}
+          hraci={this.state.potencialniHraci}
           index={i}
           zmenHrace={this.zmenHrace}
+          api = {this.props.api}
         />
         ,
         <button onClick={() => this.odeberInputHrace(i)}>Odebrat hráče</button>,
@@ -150,10 +168,10 @@ class TymovyModal extends React.Component {
     this.props.api.odhlas(this.aktivita.id)
   }
 
-  zmenHrace (index, noveJmeno) {
-    let hraci = this.props.hraciTymovky.slice()
-    hraci[index] = noveJmeno
-    this.setState({hraci: hraci})
+  zmenHrace (index, novaHodnota) {
+    let hraci = this.state.potencialniHraci.slice()
+    hraci[index] = novaHodnota
+    this.setState({potencialniHraci: hraci})
   }
 
   zmenNazevTymu (event) {
