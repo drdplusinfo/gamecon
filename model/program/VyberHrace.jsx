@@ -55,7 +55,6 @@ class VyberHrace extends React.Component {
 
   // Autosuggest zavolá tuto funkci, když si uživatel vybere jeden z návrhů
   priZvoleniNavrhu(event, zvolenyPrvek) {
-    console.log(zvolenyPrvek)
     this.props.zmenHrace(this.props.index, {
       jmeno: zvolenyPrvek.suggestion.jmeno,
       id: zvolenyPrvek.suggestion.id,
@@ -109,7 +108,6 @@ class VyberHrace extends React.Component {
     // Autosuggest předá tyto props inputovému poli, můžeme si tady nastavit,
     // jaké atributy ten input má mít
     let hrac = this.props.hraci[this.props.index]
-    console.log(hrac)
     let inputProps = {
       placeholder: 'další hráč',
       value: this.props.hraci[this.props.index].jmeno,

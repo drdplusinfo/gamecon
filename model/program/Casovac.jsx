@@ -9,7 +9,6 @@ class Casovac extends React.Component {
 
   componentDidMount () {
     this.timer = setInterval(() => this.tik(), 1000)
-    console.log(this.state.cas)
   }
 
   componentWillUnmount () {

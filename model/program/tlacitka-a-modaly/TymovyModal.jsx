@@ -2,12 +2,12 @@ class TymovyModal extends React.Component {
   constructor (props) {
     super(props)
 
+    // Při konstruování týmového modalu načti kompletní týmová data
     if (this.props.aktivita.prihlasen) {
-      this.props.api.nactiDetailTymu(this.props.aktivita.id)
+      this.props.api.nactiDetailTymu(this.props.aktivita.id, () => { this.inicializujDalsiKola() }, (error) => console.log(error))
     }
 
     // Definice proměnných v modalu
-    // TODO Zamyslet se, proč je tam první if a dát data přímo do state (nevyužívat zbytečných proměnných)
     this.aktivita = this.props.aktivita
     if (this.aktivita.tymovaData) {
       this.kapacitaMin = this.aktivita.tymovaData.minKapacita
@@ -19,7 +19,7 @@ class TymovyModal extends React.Component {
       }
     }
     if (this.aktivita.prihlasen && !this.aktivita.tymovaData.zamcenaDo && this.aktivita.tymovaData.hraci) {
-      this.momentalneMax = this.aktivita.kapacitaUniverzalni - this.aktivita.tymovaData.hraci.length
+      this.momentalneMax = this.aktivita.kapacitaUniverzalni
     } else {
       this.momentalneMax = this.aktivita.tymovaData.maxKapacita
     }
@@ -29,11 +29,12 @@ class TymovyModal extends React.Component {
       nazevTymu: this.aktivita.tymovaData.nazevTymu,
       potencialniHraci: this.incializujPotencialniHrace(),
       momentalneMax: this.momentalneMax,
-      idsDalsichKol: this.incializujDalsiKola()
+      idsDalsichKol: []
     }
 
     // Bindování funkcí
     this.handleClick = this.handleClick.bind(this)
+    this.inicializujDalsiKola = this.inicializujDalsiKola.bind(this)
     this.pridejInputHrace = this.pridejInputHrace.bind(this)
     this.prihlasTym = this.prihlasTym.bind(this)
     this.zrusModal = this.zrusModal.bind(this)
@@ -45,16 +46,18 @@ class TymovyModal extends React.Component {
     event.stopPropagation()
   }
 
-  incializujDalsiKola () {
-    if (this.aktivita.tymovaData.idsDalsichKol) {
-      let idsPrvnichTerminu = this.aktivita.tymovaData.idsDalsichKol.map(kolo => kolo[0].id)
-      return idsPrvnichTerminu
-    }
-    return []
+  inicializujDalsiKola () {
+    let idsPrvnichTerminu = this.aktivita.tymovaData.vyberKol.map((kolo) => {
+      console.log('ID prvního termínu:')
+      console.log(kolo[0].id)
+      return kolo[0].id
+    })
+    this.setState({idsDalsichKol: idsPrvnichTerminu})
   }
 
   incializujPotencialniHrace () {
-    return new Array(this.kapacitaMax).fill({
+    // Vrať pole potenciálních hráčů mínus TymLidr
+    return new Array(this.kapacitaMax - 1).fill({
       jmeno: '',
       id: null,
       zvolen: false
@@ -80,8 +83,13 @@ class TymovyModal extends React.Component {
   }
 
   prihlasTym () {
-    // TODO zavolej api
-    console.log('Přihlásil se tým, nutno dodělat volání API')
+    let idsSpoluhracu = []
+    this.state.potencialniHraci.map((hrac, index) => {
+      if (hrac.id) {
+        idsSpoluhracu.push(hrac.id)
+      }
+    })
+    this.props.api.prihlasTym(this.aktivita.id, idsSpoluhracu, this.state.nazevTymu, this.state.momentalneMax, this.state.idsDalsichKol, () => {}, (error) => console.log(error))
   }
 
   vytvorVyberDalsichKol () {
@@ -136,7 +144,7 @@ class TymovyModal extends React.Component {
 
   zobrazPotencialniHrace () {
     let output = []
-    // Vypiš neodebratelná místa
+    // Vypiš neodebratelná místa mínus TymLidr
     for (let i = 0; i < this.kapacitaMin - 1; i++) {
       output.push(
         <VyberHrace
@@ -148,8 +156,8 @@ class TymovyModal extends React.Component {
         , <br />
       )
     }
-    // Vypiš odebratelná místa
-    for (let i = this.kapacitaMin - 1; i < this.state.momentalneMax; i++) {
+    // Vypiš odebratelná místa mínus TymLidr
+    for (let i = this.kapacitaMin - 1; i < this.state.momentalneMax - 1; i++) {
       output.push(
         <VyberHrace
           hraci={this.state.potencialniHraci}
@@ -168,23 +176,10 @@ class TymovyModal extends React.Component {
     return <div>{output}</div>
   }
 
-  zobrazPrihlaseneHrace () {
-    console.log(this.aktivita.tymovaData.hraci)
-    if (this.aktivita.tymovaData.hraci) {
-      return this.aktivita.tymovaData.hraci.map((hrac, index) => {
-        return (
-          <div>
-            <input type='text' key={index} value={hrac} disabled={true} />
-            <br />
-          </div>
-        )
-      })
-    }
-  }
-
   zobrazVolnaMista () {
     let output = []
-    for (let i = this.aktivita.tymovaData.hraci.length; i <= this.state.momentalneMax; i++) {
+    console.log(this.aktivita)
+    for (let i = this.aktivita.tymovaData.hraci.length; i < this.state.momentalneMax; i++) {
       output.push(
         <input type='text' value='volné místo (může se přihlásit kdokoliv)' disabled={true} />
         ,
@@ -192,10 +187,8 @@ class TymovyModal extends React.Component {
         <br />
       )
     }
-    if (this.aktivita.tymovaData.hraci) {
-      if (this.state.momentalneMax < this.kapacitaMax - this.aktivita.tymovaData.hraci.length) {
-        output.push(<button onClick={this.pridejInputHrace}>Přidat hráče</button>)
-      }
+    if (this.state.momentalneMax < this.kapacitaMax) {
+      output.push(<button onClick={this.pridejInputHrace}>Přidat hráče</button>)
     }
     return <div>{output}</div>
   }
@@ -215,13 +208,13 @@ class TymovyModal extends React.Component {
     this.setState({nazevTymu: event.target.value})
   }
 
-  renderModalNikdoNeprihlasen () {
+  renderModalCekaNaNacteniDat () {
     // po vyrenderování modalu se aktivita zamče a přihlásí se týmlídr
-    this.props.api.prihlasTymlidra(this.aktivita.id, () => {}, (error) => console.log(error))
+    this.props.api.prihlasTymlidra(this.aktivita.id, () => { this.inicializujDalsiKola() }, (error) => console.log(error))
     return (
       <div className='tymovy-modal' onClick={this.handleClick}>
         <div className='tymovy-modal--vnitrek'>
-          <div className='modal-tlacitko_zavrit' onClick={this.zrusModal}>Zrušit</div>
+          <div className='modal-tlacitko_zavrit' onClick={this.zrusModal}>Odhlásit a zrušit</div>
           <h2>Týmová aktivita</h2>
           <p>Aktivita je týmová a máš právo sestavit si tým (družinu). Po odeslání
           budou automaticky přihlášeni a informováni e-mailem.</p>
@@ -253,7 +246,7 @@ class TymovyModal extends React.Component {
           {this.zobrazPrihlaseneHrace()}
           {this.zobrazPotencialniHrace()}
           {this.vytvorVyberDalsichKol()}
-          <button onClick={this.prihlasTym}>Přihlásit tým</button>
+          <button onClick={() => { this.prihlasTym(); this.props.zavriModal() }}>Přihlásit tým</button>
           <button onClick={this.props.zavriModal}>Přihlásit tým později</button>
         </div>
       </div>
@@ -261,24 +254,32 @@ class TymovyModal extends React.Component {
   }
 
   renderModalTymPrihlasen () {
-    console.log(this.aktivita)
+    let output
+    if (this.aktivita.tymovaData.hraci) {
+      output =
+        <div>
+          <div>{this.state.nazevTymu}</div>
+          {this.zobrazPrihlaseneHrace()}
+          {this.zobrazVolnaMista()}
+          <button onClick={() => { this.props.api.nastavKapacituTymu(this.aktivita.id, this.state.momentalneMax); this.props.zavriModal() }}>Potvrď novou kapacitu</button>
+        </div>
+    } else {
+      output = <Loader />
+    }
     return (
       <div className='tymovy-modal' onClick={this.handleClick}>
         <div className='tymovy-modal--vnitrek'>
           <div className='modal-tlacitko_zavrit' onClick={this.props.zavriModal}>Zavřít</div>
           <h2>Týmová aktivita</h2>
           <p>Aktivita je týmová a tvůj tým (družina) je již přihlášen. Nyní můžeš jen odebírat nebo přidávat místa, která se otevřou pro přihlášení komukoli.</p>
-          <div>{this.state.nazevTymu}</div>
-          {this.zobrazPrihlaseneHrace()}
-          {this.zobrazVolnaMista()}
-          <button onClick={() => { this.props.api.nastavKapacituTymu(this.aktivita.id, this.state.momentalneMax + this.aktivita.tymovaData.hraci.length); this.props.zavriModal() }}>Potvrď novou kapacitu</button>
+          {output}
         </div>
       </div>
     )
   }
 
   render () {
-    if (!this.aktivita.prihlasen) return this.renderModalNikdoNeprihlasen()
+    if (!this.aktivita.prihlasen) return this.renderModalCekaNaNacteniDat()
     if (this.aktivita.prihlasen) {
       if (this.aktivita.tymovaData.zamcenaDo) return this.renderModalTymlidrPrihlasen()
       return this.renderModalTymPrihlasen()
