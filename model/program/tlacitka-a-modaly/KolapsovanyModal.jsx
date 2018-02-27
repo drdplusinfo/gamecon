@@ -24,10 +24,10 @@ class KolapsovanyModal extends React.Component {
           <td>
             <TlacitkaAktivity
               aktivita={aktivita}
-              vnorena={true}
+              aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
               api={this.props.api}
               data={this.props.data}
-              aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
+              vnorena={true}
             />
           </td>
         </tr>

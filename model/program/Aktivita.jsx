@@ -2,27 +2,34 @@ class Aktivita extends React.Component {
   constructor (props) {
     super(props)
 
-    this.aktivitaJePlnaProPohlaviUzivatele = this.props.aktivitaJePlnaProPohlaviUzivatele
-    this.aktivita = this.props.aktivita
-  }
+    this.aktivitaJePlnaProPohlaviUzivatele = this.props.aktivitaJePlnaProPohlaviUzivatele.bind(this)
 
   urciTriduBunky () {
-    if (this.aktivita.organizuje) {
-      return 'bunka_organizuje' // uživatel je vypravěč
+    let aktivita = this.props.aktivita
+    if (this.props.aktivita.sdruzene) {
+      var aktivity = this.props.aktivita.sdruzene.filter(aktivita =>
+        aktivita.prihlasen || aktivita.organizuje || aktivita.prihlasenJakoNahradnik
+      )
+      if (aktivity[0]) {
+        aktivita = aktivity[0]
+      }
     }
-    if (this.aktivita.prihlasen) {
+    if (aktivita.organizuje) {
+      return 'bunka_organizuje'
+    }
+    if (aktivita.prihlasen) {
       return 'bunka_prihlasen'
     }
-    if (this.aktivita.prihlasenJakoNahradnik) {
+    if (aktivita.prihlasenJakoNahradnik) {
       return 'bunka_nahradnik'
     }
-    if (this.aktivitaJePlnaProPohlaviUzivatele(this.aktivita, this.props.uzivatelPohlavi)) {
+    if (this.aktivitaJePlnaProPohlaviUzivatele(aktivita, this.props.data.uzivatelPohlavi)) {
       return 'bunka_prihlaseniNemozne'
     }
-    if (this.aktivita.vDalsiVlne) {
+    if (aktivita.vDalsiVlne) {
       return 'bunka_vDalsiVlne'
     }
-    if (this.aktivita.otevrenoPrihlasovani) {
+    if (aktivita.otevrenoPrihlasovani) {
       return 'bunka_neprihlasen'
     }
     return 'bunka_prihlaseniNemozne'
@@ -30,11 +37,11 @@ class Aktivita extends React.Component {
 
   render () {
     return (
-      <td colSpan={this.aktivita.delka} className={this.urciTriduBunky()} onClick={() => this.props.zvolTutoAktivitu(this.aktivita)}>
-        <span>{this.aktivita.nazev}</span>
+      <td colSpan={this.props.aktivita.delka} className={this.urciTriduBunky()} onClick={() => this.props.zvolTutoAktivitu(this.props.aktivita)}>
+        <span>{this.props.aktivita.nazev}</span>
         <br />
         <ZobrazeniKapacity
-          aktivita={this.aktivita}
+          aktivita={this.props.aktivita}
           tridy={{
             tridaZeny: 'kapacita-zeny',
             tridaMuzi: 'kapacita-muzi',
@@ -43,7 +50,7 @@ class Aktivita extends React.Component {
           }}
         />
         <TlacitkaAktivity
-          aktivita={this.aktivita}
+          aktivita={this.props.aktivita}
           api={this.props.api}
           data={this.props.data}
           aktivitaJePlnaProPohlaviUzivatele={this.props.aktivitaJePlnaProPohlaviUzivatele}
