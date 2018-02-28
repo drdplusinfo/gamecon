@@ -1,6 +1,7 @@
 #hlavniMenu { //nepodporuje IE11, to-do: fallback v js?
   position: sticky;
   top: 0px;
+  margin-bottom: -51px;
 }
 
 /* ------------------------- POLOŽKY DROPDOWN MENU ----------------------------  */
@@ -75,7 +76,7 @@
 
 /* ------------------------- NAVIGAČNÍ MENU ----------------------------  */
 .navbar {
-  background: $black;
+  background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   position: absolute;
   width: 100vw;
   z-index: 2;
@@ -83,8 +84,8 @@
 }
 .navbar-brand {
   color: $white;
-  text-transform: uppercase;
-  font-size: $font-size-md;
+  font-family: "Eczar";
+  font-size: $font-size-base;
   font-weight: 600;
   letter-spacing: 0.2px;
   &:hover {

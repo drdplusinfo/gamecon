@@ -2,81 +2,170 @@
 .coverPhoto {
   background-image:
     url(soubor('grafika/titulka/cover-photo-overlay.svg')),
-    url(soubor('grafika/titulka/cover-photo-1.jpg'));
+    url(soubor('grafika/titulka/cover-photo-2.jpg'));
   background-size: 3px 3px, cover;
-  background-position: center top;
+  background-position: center bottom;
   background-repeat: repeat, repeat;
   width: 100%;
   height: 38vw;
+  text-align: center;
+}
+
+.coverPhoto_info {
+  top: 12vw;
+  position: relative;
+}
+
+.coverPhoto_datum {
+  font-family: "Open Sans";
+  font-size: 1vw;
+  font-weight: 700;
+  color: $red;
+  text-transform: uppercase;
+  @include media-breakpoint-down(xs) {
+    font-size: 2vw;
+  }
 }
 
 .coverPhoto_nadpis {
-  @extend h1;
-  font-size: 4vw;
+  font-family: "Eczar";
+  font-weight: 600;
+  font-size: 12vw;
   color: $white;
-  position: relative;
-  left: 20vw;
-  top: 12vw;
+  margin: -4vw 0 -3.5vw 0;
   @include media-breakpoint-down(xs) {
-    font-size: 5vw;
+    font-size: 16vw;
   }
 }
 
 .coverPhoto_podnadpis {
-  font-family: "Open Sans";
-  font-size: 2vw;
-  font-weight: 700;
-  color: $red;
-  margin-top: 1vw;
+  font-family: "Eczar";
+  font-size: 1.5vw;
+  color: $white;
   @include media-breakpoint-down(xs) {
-    font-size: 3vw;
+    font-size: 2vw;
   }
 }
 
 
 /* ---------------- ZÁKLADNÍ INFO --------------*/
-.zakladniInfo {
-  margin: 0px 0px 20px 0px;
-  color: $black;
-  & > div {
-    max-width: 800px;
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    margin-top: -80px;
-  }
-  & div,.col-4 {
-    flex-shrink: 1;
-  }
+.zakladniInfo_box-vnejsi {
+  max-width: 1200px;
+  background-color: $white;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
 }
-.zakladniInfo_cislo {
-  @extend h1;
-  color: $red;
-  @include media-breakpoint-up(sm) {
-    margin-top: 40px;
-  }
+
+.zakladniInfo_box-vnitrni {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 32px 0px 40px 0px
 }
-.zakladniInfo_popis {
-  @extend h5;
-  font-weight: 700;
-  margin-top: -6px;
+
+.zakladniInfo_boxSCislem {
+  width: 200px;
+  text-align: center;
 }
-.zakladniInfo_lomitko {
-  color: $gray-300;
-  opacity: 0.25;
-  font-size: 3em;
-  font-weight: 400;
+
+.zakladniInfo-boxSCislem-velkym {
+  flex: 0 0 15%;
   @include media-breakpoint-down(xs) {
-    font-size: 2em;
-  }
-  @include media-breakpoint-up(sm) {
-    margin-top: 40px;
-  }
-  &:after {
-    content: "/";
+    flex: 0 0 100%
   }
 }
 
+.zakladniInfo-boxSCislem-malym {
+  flex: 0 0 10%;
+  @include media-breakpoint-down(xs) {
+    flex: 0 0 100%
+  }
+}
+
+.zakladniInfo_box-cislo {
+  font-family: "Eczar";
+  font-size: 4rem;
+  font-weight: 600;
+  @include media-breakpoint-down(xs) {
+    float: left;
+    text-align: right;
+    width: 144px;
+    font-size: 2.5rem;
+  }
+}
+
+.zakladniInfo_box-popisek {
+  font-family: "Open Sans";
+  font-weight: 600;
+  margin-top: -10px;
+  font-size: $font-size-md;
+  @include media-breakpoint-down(xs) {
+    float: left;
+    text-align: center;
+    margin: 15px 0px 0 20px;
+  }
+}
+
+.zakladniInfo_box-cislo-gamecon {
+  font-family: "Eczar";
+  font-size: 4rem;
+  font-weight: 600;
+  @include media-breakpoint-down(xs) {
+    font-size: 2.5rem;
+  }
+}
+
+.zakladniInfo_box-popisek-gamecon {
+  font-family: "Open Sans";
+  font-weight: 600;
+  margin-top: -10px;
+  font-size: $font-size-md;
+  @include media-breakpoint-down(xs) {
+    visibility: hidden;
+    height: 0px;
+  }
+}
+
+.zakladniInfo_znamenko {
+  flex: 0 0 6.25%;
+  width: 100px;
+  text-align: center;
+  color: $gray-200;
+  @extend h1;
+  @include media-breakpoint-down(xs) {
+    flex: 0 0 100%
+  }
+}
+
+.zakladniInfo_cislo {
+  @extend h1;
+  @include media-breakpoint-up(sm) {
+    margin-top: 40px;
+  }
+}
+ /* Textová část */
+.zakladniInfo_textovaCast {
+  max-width: 700px;
+  padding: 0px 30px;
+}
+
+.zakladniInfo_nadpis {
+  font-family: "Eczar";
+  font-size: $h1-font-size * 1.35;
+  font-weight: 600;
+  color: $red;
+  @include media-breakpoint-down(sm) {
+    font-size: $h2-font-size * 1.35;
+  }
+  @include media-breakpoint-down(xs) {
+    font-size: $h4-font-size * 1.35;
+  }
+}
+
+.zakladniInfo_odstavec {
+  font-family: "Eczar";
+  font-weight: 600;
+}
 /* ---------------- PITCH -----------------*/
 .pitch_sloupec {
   @include media-breakpoint-up(lg) {

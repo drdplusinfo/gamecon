@@ -81,9 +81,10 @@ h5, .h5 {
 }
 
 h6, .h6 {
-  font-family: "Eczar";
+  font-family: "Open Sans";
   font-size: $h6-font-size;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
   @include media-breakpoint-up(xs) {
     font-size: $h6-font-size * .7;
   };

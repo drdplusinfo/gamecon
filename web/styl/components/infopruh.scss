@@ -7,7 +7,7 @@
   font-weight: 700;
   letter-spacing: 0.2px;
   text-align: center;
-  background-color: $black;
+  background-color: $red;
   color: $white;
   @include media-breakpoint-down(xs) {
     font-size: $font-size-xxs;
@@ -32,7 +32,8 @@
 
 }
 .infopruh_udalost-probehnuta {
-  color: $gray-300;
+  color: $white;
+  opacity: 0.6
 }
 .infopruh_sipka-aktivni {
   height: 10px;
@@ -40,7 +41,7 @@
   margin: 0px 3px;
   display: inline-block;
   & .cls-1 {
-    fill: $red;
+    fill: $white;
   }
 }
 .infopruh_sipka-probehnuta {
@@ -48,9 +49,8 @@
   width: 10px;
   margin: 0px 3px;
   display: inline-block;
-  @include .infopruh_sipka-aktivni;
-  & path {
-    fill: $gray-300;
+  & .cls-1 {
+    fill: rgba(255,255,255,0.6);
   }
 }
 .infopruh_zatrzitko {
@@ -59,6 +59,6 @@
   margin: 0px 3px;
   display: inline-block;
   & .cls-1 {
-    fill: $gray-300;
+    fill: rgba(255,255,255,0.6);
   }
 }

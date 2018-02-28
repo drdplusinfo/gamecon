@@ -2,9 +2,10 @@
 <div class="container-fluid">
   <!--                COVER PHOTO                    -->
   <div class="coverPhoto">
-    <div class="coverPhoto_nadpis">Největší festival<br>
-    nepočítačových her
-      <div class="coverPhoto_podnadpis">19.–21. července, Pardubice</div>
+    <div class="coverPhoto_info">
+      <div class="coverPhoto_datum">19.–21. července, Pardubice</div>
+      <div class="coverPhoto_nadpis">gamecon<br></div>
+      <div class="coverPhoto_podnadpis">Největší festival nepočítačových her</div>
     </div>
   </div>
 
@@ -70,7 +71,7 @@
         <!-- begin: predDruhouVlnouVlny -->
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <span class="infopruh_udalost-cekajici">{druhaVlna} Druhá vlna aktivit</span>
           <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
           <span class="infopruh_udalost-cekajici">{tretiVlna} Třetí vlna aktivit</span>
@@ -80,10 +81,10 @@
         <!-- begin: predTretiVlnouVlny -->
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta"> Druhá vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <span class="infopruh_udalost-cekajici">{tretiVlna} Třetí vlna aktivit</span>
           <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
           <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
@@ -91,25 +92,25 @@
         <!-- begin: predZacatkemGCVlny -->
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta"> Druhá vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta"> Třetí vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <span class="infopruh_udalost-cekajici">{zacatekGC} GAMECON!</span>
         <!-- end: predZacatkemGCVlny -->
         <!-- begin: vPrubehuGCVlny -->
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta">První vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta"> Druhá vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta"> Třetí vlna aktivit</span>
-          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-aktivni">
+          <img src="soubory/grafika/ikony/sipka_vpravo.svg" class="infopruh_sipka-probehnuta">
           <img src="soubory/grafika/ikony//titulka/zatrzitko.svg" class="infopruh_zatrzitko">
           <span class="infopruh_udalost-probehnuta"> GAMECON!</span>
         <!-- end: vPrubehuGCVlny -->
@@ -120,40 +121,67 @@
   odpocet('{casOdpoctu}');
   </script>
 
-  <!--                 ZÁKLADNÍ INFO NOVÉ                     -->
+  <!--                 ZÁKLADNÍ INFO                     -->
 
-<div class="row">
-  <div class="col-1 hidden-lg-down"></div>
-  <div class="col-lg-4 col-12">
-    <div class="row">
-      <div class="col-12 text-center zakladniInfo">
-        <h2>Co čekat od gameconu</h2>
-      </div>
-    </div>
-    <div class="row mt-0">
-      <div class="col-4 text-center">
-        <div class="zakladniInfo_cislo">4</div>
-        <div class="zakladniInfo_popis">dny zábavy</div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="zakladniInfo_cislo">200+</div>
-        <div class="zakladniInfo_popis">aktivit</div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="zakladniInfo_cislo">800+</div>
-        <div class="zakladniInfo_popis">účastníků</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 hidden-lg-up"></div>
-      <div class="col-lg-12 col-md-8 col-sm-12 pitch_popis">
-        Deskové a karetní hry, RPG a Larpy, akční hry, wargaming, mistrovství světa v Dračím doupěti, pohybové workshopy, koncert a párty. Skvělí účastníci a žážitky, na které se budete těšit zase za rok, to je Gamecon.
-      </div>
-      <div class="col-md-2 hidden-lg-up"></div>
-    </div>
+<div class="row justify-content-center">
+  <div class="col-12 text-center zakladniInfo_textovaCast">
+      <h6 class="mt-5">Kdo jsme a co děláme?</h6>
+      <h1 class="zakladniInfo_nadpis mt-3">Co čekat od GameConu</h1>
+      <p class="zakladniInfo_odstavec mt-4">Deskové a karetní hry, RPG a Larpy, akční hry, wargaming, mistrovství světa v Dračím doupěti, pohybové workshopy, koncerta párty. Skvělí účastníci a žážitky, na které se budete těšit zase za rok, to je Gamecon</p>
   </div>
-  <div class="col-lg-7 hidden-lg-down">
-    oprásky
+</div>
+
+<div class="row ml-0 mr-0 pl-3 pr-3 justify-content-center">
+  <div class="zakladniInfo_box-vnejsi">
+    <div class="zakladniInfo_box-vnitrni">
+      <div class="zakladniInfo_boxSCislem zakladniInfo-boxSCislem-malym">
+        <div class="zakladniInfo_box-cislo">
+          4
+        </div>
+        <div class="zakladniInfo_box-popisek">
+          dny zábavy
+        </div>
+      </div>
+      <div class="zakladniInfo_znamenko">+</div>
+      <div class="zakladniInfo_boxSCislem zakladniInfo-boxSCislem-velkym">
+        <div class="zakladniInfo_box-cislo">
+          200
+        </div>
+        <div class="zakladniInfo_box-popisek">
+          zábavných aktivit
+        </div>
+      </div>
+      <div class="zakladniInfo_znamenko">+</div>
+      <div class="zakladniInfo_boxSCislem zakladniInfo-boxSCislem-velkym">
+        <div class="zakladniInfo_box-cislo">
+          820
+        </div>
+        <div class="zakladniInfo_box-popisek">
+          přátelských účastníků
+        </div>
+      </div>
+      <div class="zakladniInfo_znamenko">+</div>
+      <div class="zakladniInfo_boxSCislem zakladniInfo-boxSCislem-malym">
+        <div class="zakladniInfo_box-cislo">
+          1
+        </div>
+        <div class="zakladniInfo_box-popisek">
+          dokonalá párty
+        </div>
+      </div>
+      <div class="zakladniInfo_znamenko">=</div>
+      <div class="zakladniInfo_boxSCislem">
+        <div class="zakladniInfo_box-cislo-gamecon">
+          GC
+        </div>
+        <div class="zakladniInfo_box-popisek-gamecon">
+          to je gamecon
+        </div>
+        <script>
+        zmenZakladniInfo ()
+        </script>
+      </div>
+    </div>
   </div>
 </div>
 
