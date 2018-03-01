@@ -10,7 +10,7 @@
 
 // stylelint-disable
 $white:    #fff !default;
-$gray-50: #e6e6e6 !default;
+$gray-50:  #e6e6e6 !default;
 $gray-100: #dcdcdc !default;
 $gray-200: #c4c4c4 !default;
 $gray-250: #ababab !default;
@@ -18,8 +18,8 @@ $gray-300: #878787 !default;
 $gray-700: #444444 !default;
 $gray-800: #383838 !default;
 $black:    #2e2e2e !default;
-$red:     #fc4349 !default;
-$blue:    #202435 !default;
+$red:      #fc4349 !default;
+$blue:     #212536 !default;
 // Fialová u prvků
 $purple-dark: #c41d72 !default;
 $purple-light: #f8348c !default;
@@ -248,7 +248,7 @@ $font-weight-bold:            700 !default;
 $font-weight-base:            $font-weight-normal !default;
 $line-height-base:            1.5 !default;
 
-$h1-font-size:                $font-size-base * 2.5 !default;
+$h1-font-size:                $font-size-base * 3 !default;
 $h2-font-size:                $font-size-base * 2 !default;
 $h3-font-size:                $font-size-base * 1.75 !default;
 $h4-font-size:                $font-size-base * 1.5 !default;

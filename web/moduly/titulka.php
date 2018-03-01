@@ -97,6 +97,9 @@ foreach ($poleAktivit as $a) {
   $t->parse('titulka.aktivita');
 }
 
+/* ------------------------------ PARTNEŘI ------------------------------*/
+$t->assign('partneri', Modul::zNazvu('partneri')->spust()->vystup());
+
 
 
 

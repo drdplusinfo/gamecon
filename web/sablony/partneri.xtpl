@@ -1,8 +1,11 @@
 <!-- begin:partneri -->
-<div class="container sirka-1200">
+<div class="container sirka-1200 mb-5">
 
   <div class="row mt-5 justify-content-center">
-    <div class="h1">Děkujeme našim partnerům</div>
+    <div class="h1 red">Děkujeme našim partnerům</div>
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <div class="partneri_podnadpis">Hlavní sponzoři</div>
   </div>
   <div class="row mt-4 justify-content-center align-items-center">
     <!-- begin:hlavni -->
@@ -16,8 +19,8 @@
     <!-- end:hlavni -->
   </div>
 
-  <div class="row mt-5 mb-3 justify-content-center">
-    <div class="uppercase gray-300 font-weight-bold">Další partneři</div>
+  <div class="row mt-5 justify-content-center">
+    <div class="partneri_podnadpis">Další partneři</div>
   </div>
   <div class="row mt-0 justify-content-center align-items-center">
     <!-- begin:normalni -->

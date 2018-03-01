@@ -123,7 +123,7 @@
 
   <!--                 ZÁKLADNÍ INFO                     -->
 
-<div class="row justify-content-center">
+<div class="row mb-4 mb-md-6 justify-content-center">
   <div class="col-12 text-center zakladniInfo_textovaCast">
       <h6 class="mt-5">Kdo jsme a co děláme?</h6>
       <h1 class="zakladniInfo_nadpis mt-3">Co čekat od GameConu</h1>
@@ -274,8 +274,8 @@
                       <td><b>{a.cena}</b></td>
                     </tr>
                     <tr>
-                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
-                      <td class="aktivita_info_tabulka_bunka-cena">
+                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_info_ikona_delka"></td>
+                      <td class="aktivita_info_tabulka_bunka-delka">
                         délka:</td>
                       <td><b>{a.delka} hod</b></td>
                     </tr>
@@ -310,11 +310,26 @@
 
 <!--                 CALL TO ACTION                     -->
 <div class="container-fluid callToAction">
-  <div class="row mt-0 pt-5 no-gutters justify-content-center align-items-center">
-    <div class="h3 white">Na nic nečekej a přihlaš se na Gamecon</div>
+  <div class="row mt-0 pt-3 pt-sm-6 no-gutters justify-content-center align-items-center">
+    <div class="h1 white text-center">Na nic nečekej<br>
+    a přihlaš se na Gamecon</div>
   </div>
+  <div class="row mt-3 mt-md-4 no-gutters justify-content-center align-items-center">
+    <a href="/prihlaska">
+      <div class="box-tlacitko box-tlacitko-bile">
+        <div class="box-tlacitko-ohraniceni">
+          <div class="box-tlacitko-obsah">
+            jdu do toho!
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
 
 </div> <!-- konec kontejneru -->
+
+{partneri}
 
 <!-- begin:info -->
 <!-- end:info -->

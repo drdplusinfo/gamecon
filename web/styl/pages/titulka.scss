@@ -87,6 +87,7 @@
   font-family: "Eczar";
   font-size: 4rem;
   font-weight: 600;
+  color: $blue;
   @include media-breakpoint-down(xs) {
     float: left;
     text-align: right;
@@ -217,37 +218,6 @@
   }
 }
 
-/* ---------------- PITCH -----------------*/
-.pitch_sloupec {
-  @include media-breakpoint-up(lg) {
-    margin-left: -400px;
-  }
-  @include media-breakpoint-down(lg) {
-    margin-left: -200px;
-  }
-  @include media-breakpoint-down(md) {
-    margin-left: 0px;
-  }
-}
-
-.pitch_obrazek {
-  width: 100%;
-}
-.pitch_popis {
-  @extend h4;
-  line-height: 1.5;
-  @include media-breakpoint-down(md) {
-    text-align: center;
-    padding: 0px 30px;
-  }
-}
-.pitch_vlnovka {
-  margin-bottom: 1.5vw;
-  @include media-breakpoint-down(sm) {
-    display: none;
-  }
-}
-
 /* ---------------- ROZŠÍŘENÉ INFO -----------------*/
 .rozsireneInfo_box {
   width: 250px;
@@ -265,6 +235,7 @@
   max-width: 200px;
   margin-top: 20px;
   @extend h4;
+  color: $blue;
   font-weight: 700;
 }
 
@@ -291,8 +262,10 @@
 
 /* --------------------- CALL TO ACTION -----------------------*/
 .callToAction {
-  background-color: $blue;
-  height: 240px;
+  background-image: url(soubor('grafika/titulka/pozadi/call-to-action.jpg'));
+  background-position-y: 70%;
+  background-size: cover;
+  height: 320px;
   flex-flow: column wrap;
   @include media-breakpoint-down(xs) {
     height: 160px;
@@ -301,7 +274,7 @@
 
 /* ----------------------- PATIČKA -------------------------*/
 .paticka {
-  background-color: $black;
+  background-color: $blue;
   padding-bottom: 40px;
 }
 .paticka_mail {

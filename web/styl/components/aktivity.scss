@@ -85,10 +85,10 @@
 }
 .aktivita_info_ikona_cas {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
   width: 24px;
-  padding-bottom: 2px;
   text-align: right;
+  margin-top: -10px;
 }
 .aktivita_info_ikona_cena {
   display: inline-block;
@@ -96,13 +96,19 @@
   width: 24px;
   text-align: right;
 }
-.aktivita_info_tabulka_bunka-cas {
-  width: 38px;
-}
-.aktivita_info_tabulka_bunka-cena {
-  width: 40px;
-  text-align: left;
+.aktivita_info_ikona_delka {
+  display: inline-block;
   vertical-align: middle;
+  width: 24px;
+  text-align: right;
+}
+.aktivita_info_tabulka_bunka-denAktivity {
+  padding-right: 2px !important;
+}
+.aktivita_info_tabulka_bunka-prava {
+  width: 40px;
+  vertical-align: middle;
+  text-align: left;
 }
 .aktivita_info_tabulka_bunka-ikona {
   padding: 4px 0px 0px 0px;
@@ -121,7 +127,6 @@
 }
 .aktivita_nadpis {
   @extend .h3;
-  margin-top: 32px;
   display: flex;
   align-items: center;
 }
@@ -175,7 +180,6 @@
 .aktivita_vlajecky {
   position: absolute;
   top: 30px;
-  margin-left:-10px;
 }
 .aktivita_vlajecka {
   display: inline-block;

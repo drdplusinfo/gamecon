@@ -7,6 +7,13 @@
   }
 }
 
+.partneri_podnadpis {
+  text-transform: uppercase;
+  color: $gray-300;
+  font-weight: bold;
+  font-size: $font-size-xs;
+}
+
 .hlavniPartner_obrazek {
   max-width: 120px;
   max-height: 120px;

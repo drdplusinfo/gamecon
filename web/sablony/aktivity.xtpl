@@ -31,8 +31,8 @@
     <div class="grid"> <!-- Masonry -->
 
       <!-- begin: aktivita -->
-      <div class="grid-item box-360 box_obal">
-        <div class="box_ohraniceni">
+      <div class="grid-item box-360">
+        <div class="aktivita_obrazek" style="background-image: url({a.obrazek})">
           <div class="aktivita_vlajecky">
            <!-- begin: vlajecka -->
            <div class="aktivita_vlajecka">
@@ -43,13 +43,13 @@
            hráči: {a.obsazenost}
            </div>
           </div>
-          <div class="aktivita_obrazek" style="background-image: url({a.obrazek})">
-            <div class="aktivita-obrazek-prekryv row mt-0 justify-content-center">
-                <div class="box_obal box-tlacitko">
-                  <div class="box_obsah">Přihlásit se přes PROGRAM</div>
-                </div>
-            </div>
+          <div class="aktivita-obrazek-prekryv row mt-0 justify-content-center">
+              <div class="box_obal box-tlacitko">
+                <div class="box_obsah">Přihlásit se přes PROGRAM</div>
+              </div>
           </div>
+        </div>
+        <div class="box_ohraniceni">
           <div class="box_obsah">
             <div class="pl-30px pr-30px">
               <div class="h4 aktivita_nadpis">{a.nazev}</div>
@@ -79,7 +79,7 @@
                   <table class="aktivita_info_tabulka-cas">
                     <!-- begin: termin -->
                     <tr>
-                      <td>{denAktivity}:</td>
+                      <td class="aktivita_info_tabulka_bunka-denAktivity">{denAktivity}: </td>
                       <td><b>{casyAktivityVJednomDni}</b></td>
                     </tr>
                     <!-- end: termin -->
@@ -88,16 +88,16 @@
                 <div class="aktivita_info-prava">
                   <table>
                     <tr>
-                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
-                      <td class="aktivita_info_tabulka_bunka-cena">
-                        <span>cena:</span></td>
-                      <td><b>{a.cena}</b></td>
+                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_info_ikona_delka"></td>
+                      <td class="aktivita_info_tabulka_bunka-prava">
+                        délka:</td>
+                      <td><b>{a.delka} hod</b></td>
                     </tr>
                     <tr>
                       <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
-                      <td class="aktivita_info_tabulka_bunka-cena">
-                        délka:</td>
-                      <td><b>{a.delka} hod</b></td>
+                      <td class="aktivita_info_tabulka_bunka-prava">
+                        <span>cena:</span></td>
+                      <td><b>{a.cena}</b></td>
                     </tr>
                   </table>
                 </div>
