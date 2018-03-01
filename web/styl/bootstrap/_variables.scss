@@ -13,8 +13,9 @@ $white:    #fff !default;
 $gray-50: #e6e6e6 !default;
 $gray-100: #dcdcdc !default;
 $gray-200: #c4c4c4 !default;
+$gray-250: #ababab !default;
 $gray-300: #878787 !default;
-$gray-400: #ababab !default;
+$gray-700: #444444 !default;
 $gray-800: #383838 !default;
 $black:    #2e2e2e !default;
 $red:     #fc4349 !default;
@@ -37,7 +38,7 @@ $grays: map-merge((
   "100": $gray-100,
   "200": $gray-200,
   "300": $gray-300,
-  "400": $gray-400,
+  "400": $gray-250,
   "500": $gray-500,
   "600": $gray-600,
   "700": $gray-700,
@@ -363,7 +364,7 @@ $input-bg:                              $white !default;
 $input-disabled-bg:                     $gray-200 !default;
 
 $input-color:                           $gray-700 !default;
-$input-border-color:                    $gray-400 !default;
+$input-border-color:                    $gray-250 !default;
 $input-btn-border-width:                $border-width !default; // For form controls and buttons
 $input-box-shadow:                      inset 0 1px 1px rgba($black,.075) !default;
 

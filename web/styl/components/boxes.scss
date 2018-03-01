@@ -3,7 +3,7 @@
   @extend .drop-shadow;
   position: relative;
   float: right;
-  margin: -10px 10px 10px -10px;
+  margin: 212px 10px 10px -10px;
   @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
     margin-right: -10px;
   }
@@ -18,8 +18,9 @@
   left: 10px;
   width: 100%;
   height: 100%;
-  margin: 2px 0 0 10px;
-  outline: 3px solid $black;
+  margin: -202px 0 0 10px;
+  border: 2px solid $black;
+  border-radius: 5px;
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
 }
 /* ---------------- MODIFIKÁTORY -----------------*/
@@ -27,16 +28,6 @@
   @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
     left: -14px !important;
     margin-left: 10px;
-  }
-}
-.box_ohraniceni-tlacitko {
-  top: 4px;
-  left: 4px;
-  outline-width: 2px;
-  width: calc(100% - 15px);
-  height: calc(100% - 8px);
-  & :hover {
-    text-decoration: underline;
   }
 }
 .box_ohraniceni-cervene {
@@ -54,10 +45,6 @@
 .pr-30px {
   padding-right: 30px;
 }
-.box-280 {
-  background-color: $white;
-  width: 280px;
-}
 .box-360 {
   background-color: $white;
   width: 360px;
@@ -66,14 +53,28 @@
   }*/
 }
 .box-tlacitko {
-  background-color: $white;
-  width: 160px;
-  padding: 24px 32px 18px 32px;
-  margin: -5px 9px 10px -5px;
-  font-weight: 700;
+  background-color: $black;
+  border-radius: 4px;
+  font-size: $font-size-sm;
+}
+
+.box-tlacitko-ohraniceni {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid $black;
+  border-radius: 4px;
+  padding: 6px 34px 14px 34px;
+  & :hover {
+    text-decoration: underline;
+  }
+.box-tlacitko-obsah {
   text-transform: uppercase;
-  text-align: center;
-  font-size: $font-size-xs;
+  color: $white;
+  margin-left: -5px;
+}
 }
 .box_obal {
   @include media-breakpoint-down(xs) {

@@ -185,65 +185,71 @@
   </div>
 </div>
 
+<!--                     FOTKY                         -->
+<div class="row">
+  <div class="col-sm-12 col-md-4 order-2 order-md-1">
+    <img src="soubory/grafika/titulka/fotky/chiisai.jpg" class="titulkaFotka titulkaFotka-prvni">
+    <img src="soubory/grafika/titulka/fotky/five-leaf-clover.jpg" class="titulkaFotka titulkaFotka-druha">
+  </div>
+  <div class="col-sm-12 col-md-5 order-1 order-md-2">
+    <img src="soubory/grafika/titulka/fotky/show.jpg" class="titulkaFotka titulkaFotka-treti">
+  </div>
+  <div class="col-3 hidden-md-down order-3">
+      <img src="soubory/grafika/titulka/fotky/wargaming.jpg" class="titulkaFotka titulkaFotka-ctvrta">
+      <img src="soubory/grafika/titulka/fotky/boardgame.jpg" class="titulkaFotka titulkaFotka-pata">
+  </div>
+</div>
+
   <!--                 ROZŠÍŘENÉ INFO                     -->
-  <div class="row justify-content-center align-items-center">
+  <div class="row justify-content-center align-items-center mb-md-5">
     <!-- begin:polozkaRozsireneInfo -->
-    <div class="pr-5 justify-content-center sirka-1200">
-      <div class="text-center box_obal box-280">
-        <div class="box_ohraniceni">
-          <div class="box_obsah box_obsah-5px">
-            <img src="soubory/grafika/ikony/titulka/{ikonaRozsireneInfo}" class="rozsireneInfo_obrazek"><br>
-            <div class="rozsireneInfo_nadpis">{nadpisRozsireneInfo}</div>
-            <div class="rozsireneInfo_popis">{popisRozsireneInfo}</div>
-          </div>
-        </div>
-      </div>
+    <div class="rozsireneInfo_box">
+      <div class="rozsireneInfo_nadpis">{nadpisRozsireneInfo}</div><br>
+      <div class="rozsireneInfo_cara"></div><br>
+      <div class="rozsireneInfo_popis">{popisRozsireneInfo}</div>
     </div>
     <!-- end:polozkaRozsireneInfo -->
-  </div>
-
-  <!--                     FOTKY                         -->
-  <div class="row">
-    <div class="col-12 text-center h5 font-weight-bold">Jsme nadšenci, co milují hry</div>
-  </div>
-  <div class="row justify-content-between no-gutters mt-2 mb-2">
-    <div class="col-md-4_fotka hidden-md-down">
-      <img src="soubory/grafika/titulka/fotky/gamecon_2017-276.jpg" class="titulkaFotka">
-    </div>
-    <div class="col-md-4_fotka col-sm-6_fotka col-xs-12 pb-3">
-      <img src="soubory/grafika/titulka/fotky/gamecon_2016-104.jpg" class="titulkaFotka">
-    </div>
-    <div class="col-md-4_fotka col-sm-6_fotka col-xs-12">
-      <img src="soubory/grafika/titulka/fotky/gamecon_2017-258.jpg" class="titulkaFotka">
-    </div>
   </div>
 
 </div> <!-- konec kontejneru -->
 
 <!--               VYBRANÉ AKTIVITY                      -->
-<div class="pozadi-prechod">
+<div class="pozadi-alternativni">
   <div class="container aktivity sirka-1200">
-    <div class="row mt-0 pt-7">
-      <div class="col-12 text-center h2 white">Na co se můžete těšit</div>
-    </div>
-    <div class="row mt-0">
-      <div class="col-12 text-center p white mb-5">Vybrali jsme pro vás volné aktivity, které stojí za to si zahrát. Desítky dalších naleznete v <a href="/program" class="white">programu</a>.</div>
+    <div class="row pt-6">
+      <div class="col-12 text-center">
+        <div class="h6 red mb-2">Co jsme pro vás připravili?</div>
+        <div class="h2 mb-5">Na co se můžete těšit</div>
+      </div>
     </div>
 
     <div class="grid">
 
       <!-- begin: aktivita -->
-      <div class="grid-item box-360 box_obal">
-        <div class="box_ohraniceni">
-          <div class="aktivita_obrazek-obal">
-            <img class="aktivita_obrazek" src="{obrazekAktivity}"></img>
+      <div class="grid-item box-360">
+        <div class="aktivita_obrazek" style="background-image: url({a.obrazek})">
+          <div class="aktivita-obrazek-prekryv row mt-0 justify-content-center">
+              <div class="box_obal box-tlacitko">
+                <div class="box_obsah">Přihlásit se přes PROGRAM</div>
+              </div>
           </div>
+        </div>
+        <!-- <img class="aktivita_obrazek" src="{obrazekAktivity}"></img> -->
+        <div class="box_ohraniceni">
           <div class="box_obsah">
             <div class="pl-30px pr-30px">
               <div class="aktivita_sekce">{linieAktivity}</div>
-              <div class="h4 aktivita_nadpis-titulka">{nazevAktivity}</div>
-              <div class="aktivita_popis">{kratkyPopisAktivity}</div>
+              <div class="aktivita_nadpis-titulka">{a.nazev}</div>
+              <div class="aktivita_popis">{a.kratkyPopis}</div>
               <div class="text-center">
+                <div class="clickable" onclick="displayToggleMasonry('{a.id}');">
+                  <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
+                  <div id="{a.id}_sipka_nahoru" class="aktivita_ikona_sipka_nahoru" style="display: none;"></div>
+                </div>
+                <div id="{a.id}_popis" class="aktivita_popis" style="display: none;">
+                  <div class="aktivita_cara"></div>
+                  {a.popis}
+                </div>
                 <div class="aktivita_cara"></div>
               </div>
               <!-- begin:info -->
@@ -251,12 +257,28 @@
                 <div class="aktivita_info-leva">
                   <img src="soubory/grafika/ikony/hodiny.svg" class="aktivita_info_ikona_cas">
                   <table class="aktivita_info_tabulka-cas">
-                    <!-- begin:termin -->
+                    <!-- begin: termin -->
                     <tr>
-                      <td class="aktivita_info_tabulka_bunka-cena">{denAktivity}</td>
+                      <td>{denAktivity}</td>
                       <td><b>{casAktivity}</b></td>
                     </tr>
-                    <!-- end:termin -->
+                    <!-- end: termin -->
+                </table>
+                </div>
+                <div class="aktivita_info-prava">
+                  <table>
+                    <tr>
+                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
+                      <td class="aktivita_info_tabulka_bunka-cena">
+                        <span>cena:</span></td>
+                      <td><b>{a.cena}</b></td>
+                    </tr>
+                    <tr>
+                      <td class="aktivita_info_tabulka_bunka-ikona"><img src="soubory/grafika/ikony/cena.svg" class="aktivita_info_ikona_cena"></td>
+                      <td class="aktivita_info_tabulka_bunka-cena">
+                        délka:</td>
+                      <td><b>{a.delka} hod</b></td>
+                    </tr>
                   </table>
                 </div>
               </div>
@@ -273,12 +295,15 @@
     </script>
 
     <div class="row pb-6 align-items-center justify-content-center">
-      <a href="/program" class="href text-uppercase text-center font-weight-bold white">
-        <span class="p pr-2 font-size-sm">prohlédnout celý program</span>
+      <a href="/program">
+        <div class="box-tlacitko">
+          <div class="box-tlacitko-ohraniceni">
+            <div class="box-tlacitko-obsah">
+              kompletní program
+            </div>
+          </div>
+        </div>
       </a>
-      <svg class="red" width="16px" height="16px" viewBox="0 0 50 80" xml:space="preserve">
-        <polyline stroke-width="14" stroke-linecap="round" stroke-linejoin="round" points="0,0 35,38 0,75"/>
-      </svg>
     </div>
   </div> <!-- konec kontejneru -->
 </div> <!-- konec přechodu pozadí -->
@@ -288,15 +313,7 @@
   <div class="row mt-0 pt-5 no-gutters justify-content-center align-items-center">
     <div class="h3 white">Na nic nečekej a přihlaš se na Gamecon</div>
   </div>
-  <div class="row mt-5 no-gutters justify-content-center">
-    <a href="/prihlaska">
-      <div class="box_ohraniceni box_ohraniceni-bile box_ohraniceni-tlacitko">
-        <div class="box_obal box-tlacitko">
-          <div class="box_obsah">Jdu do toho!</div>
-        </div>
-      </div>
-    </a>
-  </div>
+
 </div> <!-- konec kontejneru -->
 
 <!-- begin:info -->

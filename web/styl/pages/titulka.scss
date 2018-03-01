@@ -53,6 +53,7 @@
   max-width: 1200px;
   background-color: $white;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .zakladniInfo_box-vnitrni {
@@ -166,6 +167,56 @@
   font-family: "Eczar";
   font-weight: 600;
 }
+
+/* --------------------- FOTKY -----------------------*/
+.titulkaFotka {
+  border-radius: 5px;
+}
+
+.titulkaFotka-prvni {
+  width: 78%;
+  margin-left: 20%;
+}
+
+.titulkaFotka-druha {
+  width: 84%;
+  margin: 34px 0 0 5%;
+  @include media-breakpoint-down(sm) {
+    margin: 12px 0 0 5%;
+  }
+}
+
+.titulkaFotka-treti {
+  width: 100%;
+  margin-top: 40px;
+  @include media-breakpoint-down(sm) {
+    width: 92%;
+    margin: 0px 15px 12px 15px;
+  }
+}
+
+.titulkaFotka-ctvrta {
+  width: 94%;
+  margin-top: 32px;
+}
+
+.titulkaFotka-pata {
+  width: 46%;
+  margin: 40px 0 0 22%;
+}
+
+
+.col-md-4_fotka {
+  @include media-breakpoint-up(md) {
+    flex: 0 0 32.333333%;
+  }
+}
+.col-sm-6_fotka {
+  @include media-breakpoint-only(sm) {
+    flex: 0 0 49%;
+  }
+}
+
 /* ---------------- PITCH -----------------*/
 .pitch_sloupec {
   @include media-breakpoint-up(lg) {
@@ -198,50 +249,43 @@
 }
 
 /* ---------------- ROZŠÍŘENÉ INFO -----------------*/
-.rozsireneInfo_obrazek {
-  width: 56px;
-  height: 56px;
-  margin-bottom: 6px;
-  margin-top: 32px;
-  display: inline-block;
-  & path {
-    fill: $red;
-  }
-}
-.rozsireneInfo_nadpis {
-  font-size: $font-size-md;
-  color: $red;
-  font-weight: 700;
-  text-transform: uppercase;
-  display: inline-block;
+.rozsireneInfo_box {
+  width: 250px;
+  margin: 40px 40px;
+  text-align: center;
+  background-color: $white;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
   @include media-breakpoint-down(sm) {
-    padding-top: 20px;
-  }
-}
-.rozsireneInfo_popis {
-  font-size: $font-size-sm;
-  color: $black;
-  width: 200px;
-  display: inline-block;
-  margin-top: 12px;
-  padding-bottom: 24px;
-  @include media-breakpoint-down(sm) {
-    padding-bottom: 12px;
+    margin: 8px 8px;
   }
 }
 
-/* --------------------- FOTKY -----------------------*/
-.titulkaFotka {
-  width: 100%;
+.rozsireneInfo_nadpis {
+  display: inline-block;
+  max-width: 200px;
+  margin-top: 20px;
+  @extend h4;
+  font-weight: 700;
 }
-.col-md-4_fotka {
-  @include media-breakpoint-up(md) {
-    flex: 0 0 32.333333%;
-  }
+
+.rozsireneInfo_cara {
+  display: inline-block;
+  width: 36px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: $red;
+  margin: 8px 0px;
 }
-.col-sm-6_fotka {
-  @include media-breakpoint-only(sm) {
-    flex: 0 0 49%;
+
+.rozsireneInfo_popis {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $black;
+  width: 200px;
+  display: inline-block;
+  margin-bottom: 24px;
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 12px;
   }
 }
 

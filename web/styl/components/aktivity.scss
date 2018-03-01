@@ -53,7 +53,7 @@
 /* ------------ KONKRÉTNÍ AKTIVITA -------------------- */
 .aktivita_cara {
   width: 300px;
-  height: 3px;
+  height: 2px;
   background-color: $gray-100;
   margin-bottom: 6px;
   display: inline-block;
@@ -64,7 +64,7 @@
   padding-bottom: 12px;
   & table {
     font-size: $font-size-base * .8;
-    color: $gray-300;
+    color: $gray-700;
     line-height: 1.6;
     display: inline-block;
     padding: 0;
@@ -120,22 +120,22 @@
   display: inline-block;
 }
 .aktivita_nadpis {
-  @extend h2;
+  @extend .h3;
   margin-top: 32px;
   display: flex;
   align-items: center;
 }
 .aktivita_nadpis-titulka {
   @extend .aktivita_nadpis;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 .aktivita_obrazek {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  left: -10px;
   width: 100%;
   height: 203px;
-  margin: -12px 0 0 -10px;
   &:hover .aktivita-obrazek-prekryv {
     opacity: 1;
     cursor: pointer;
@@ -150,14 +150,17 @@
   background-repeat: repeat, repeat;
   opacity: 0;
 }
+.aktivita_popis {
+  font-size: $font-size-sm * 1.1;
+  color: $gray-700;
+}
 .aktivita_sekce {
   font-size: $font-size-sm;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: $red;
+  color: $gray-300;
   text-align: left;
-  padding-top: 32px;
 }
 .aktivita_tagy {
   padding-bottom: 8px;

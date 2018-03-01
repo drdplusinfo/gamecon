@@ -67,9 +67,9 @@ $t->assign('casOdpoctu',$casOdpoctu);
 
 /* ------------------------------ ROZŠÍŘENÉ INFO ------------------------------*/
 $poleRozsireneInfo = [
-  ['Akce pro všechny', 'jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si', 'akce_pro_vsechny.svg'],
-  ['Festival aktivní zábavy', 'na všech aktivitách je potřeba zapojit tělo, mozek či obojí', 'festival_aktivni_zabavy.svg'],
-  ['Volná deskoherna', 'stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme', 'volna_deskoherna.svg'],
+  ['Akce<br> pro všechny', 'jsme otevření, vítáme všechny mezi 0 a 99 lety a tykáme si', 'akce_pro_vsechny.svg'],
+  ['Festival<br> aktivní zábavy', 'na všech aktivitách je potřeba zapojit tělo, mozek či obojí', 'festival_aktivni_zabavy.svg'],
+  ['Volná<br> deskoherna', 'stovky deskových her zdarma k vyzkoušení, hry Vás rádi naučíme', 'volna_deskoherna.svg'],
 ];
 foreach($poleRozsireneInfo as $polozka) {
   $t->assign([
@@ -85,10 +85,8 @@ $poleAktivit = Aktivita::zDoporucenych();
 
 foreach ($poleAktivit as $a) {
   $t->assign([
-    'obrazekAktivity' => $a->obrazek(),
+    'a'               => $a,
     'linieAktivity'   => $a->typ()->nazev(),
-    'nazevAktivity'   => $a->nazev(),
-    'kratkyPopisAktivity'   => $a->kratkyPopis(),
     'denAktivity'     => $a->zacatek() ? $a->zacatek()->format('l').': ' : '',
     'casAktivity'     => $a->zacatek() ? $a->zacatek()->format('H:i') : '',
   ]);

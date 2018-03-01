@@ -7,7 +7,7 @@
 /* ------------------------- POLOŽKY DROPDOWN MENU ----------------------------  */
 .dropdown-item {
   background-color: $gray-800;
-  color: $gray-400;
+  color: $gray-250;
   font-size: $font-size-sm;
   padding: 12px 32px;
   display: flex;
@@ -27,7 +27,7 @@
     height: 30px;
     margin-right: 12px;
   & path {
-    fill: $gray-400;
+    fill: $gray-250;
   }
 }
 .dropdown-header {
