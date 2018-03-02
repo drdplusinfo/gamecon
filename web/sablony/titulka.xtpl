@@ -291,7 +291,7 @@
 
     </div>
     <script>
-    displayMasonry();
+    displayMasonry('.grid');
     </script>
 
     <div class="row pb-6 align-items-center justify-content-center">

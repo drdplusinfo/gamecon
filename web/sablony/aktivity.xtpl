@@ -25,9 +25,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-12 aktivity_podnadpis">Co vás čeká?</div>
     </div>
-    <div class="row justify-content-center">
-
-    </div>
+    <div class="row"></div>
     <div class="grid"> <!-- Masonry -->
 
       <!-- begin: aktivita -->
@@ -47,7 +45,7 @@
         <div class="box_ohraniceni box_ohraniceni-aktivity">
           <div class="box_obsah box_obsah-aktivity">
             <div class="pl-30px pr-30px">
-              <div class="h4 aktivita_nadpis">{a.nazev}</div>
+              <div class="aktivita_nadpis">{a.nazev}</div>
               <!-- begin: organizatori -->
               <div class="aktivita_vypravec">Vypravěč: <span>{orgJmena}</span></div>
               <!-- end: organizatori -->
@@ -128,7 +126,7 @@
 </div> <!-- konec přechodu pozadí -->
 
 <script>
-displayMasonry();
+displayMasonry('.grid');
 </script>
 
 <!-- end:aktivity -->

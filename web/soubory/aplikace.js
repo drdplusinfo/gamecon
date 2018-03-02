@@ -64,13 +64,13 @@ function odpocet(cas) {
 };
 
 /* -------------- MASONRY ------------------- */
-function displayMasonry() { //spočítej masonry a zobraz
-  $grid = $('.grid').masonry({
+function displayMasonry (gridName) { // spočítej masonry a zobraz
+  $grid = $(gridName).masonry({
     columnWidth: 360,
     itemSelector: '.grid-item',
     gutter: 40,
     fitWidth: true
-  });
+  })
   return $grid;
 }
 
