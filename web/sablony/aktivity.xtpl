@@ -55,16 +55,12 @@
                 <!-- end: tag -->
               </div>
               <div class="aktivita_popis">{a.kratkyPopis}</div>
-              <a href="/program">
-                <div class="box-tlacitko aktivita_obrazek-tlacitko aktivita_tlacitko-prihlasit">
-                  <div class="box-tlacitko-ohraniceni">
-                    <div class="box-tlacitko-obsah">
-                      přihlásit přes program
-                    </div>
-                  </div>
-                </div>
-              </a>
               <div class="text-center">
+                <a href="/program">
+                  <div class="aktivita_mobilniTlacitko">
+                    přihlásit přes program
+                  </div>
+                </a>
                 <div class="clickable" onclick="displayToggleMasonry('{a.id}','.grid');">
                   <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
                   <div id="{a.id}_sipka_nahoru" class="aktivita_ikona_sipka_nahoru" style="display: none;"></div>
@@ -109,7 +105,7 @@
         </div>
         <div class="aktivita_obrazek-prekryv aktivita_obrazek-aktivity row mt-0 justify-content-center">
           <a href="/program">
-            <div class="box-tlacitko box-tlacitko-bile aktivita_obrazek-tlacitko">
+            <div class="box-tlacitko-male box-tlacitko-bile aktivita_obrazek-tlacitko">
               <div class="box-tlacitko-ohraniceni">
                 <div class="box-tlacitko-obsah">
                   přihlásit přes program

@@ -125,6 +125,12 @@
   padding-top: 8px;
   display: inline-block;
 }
+.aktivita_mobilniTlacitko {
+  @extend .box_tlacitko-male;
+  padding: 9px 39px;
+  margin: 16px 0px;
+  display: inline-block;
+}
 .aktivita_nadpis {
   @extend .h3;
   display: flex;
