@@ -141,19 +141,32 @@
   background-size: 100% 100%;
   width: 100%;
   height: 203px;
-  &:hover .aktivita-obrazek-prekryv {
-    opacity: 1;
-    cursor: pointer;
-  }
 }
-.aktivita-obrazek-prekryv {
-  width: 100%;
-  height: 100%;
+.aktivita_obrazek-aktivity {
+  @include media-breakpoint-down(xs) {
+    display: none;
+  };
+}
+.aktivita_obrazek-prekryv {
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  width: 360px;
+  height: 203px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   background-image: url(soubor('grafika/titulka/cover-photo-overlay.svg'));
   background-size: 3px 3px, cover;
   background-position: center top;
   background-repeat: repeat, repeat;
   opacity: 0;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+.aktivita_obrazek-tlacitko {
+  margin-top: 80px;
 }
 .aktivita_popis {
   font-size: $font-size-sm * 1.1;
@@ -176,6 +189,13 @@
   display: inline-block;
   background-color: $gray-50;
   padding: 4px;
+}
+.aktivita_tlacitko-prihlasit {
+  display: none;
+  @include media-breakpoint-down(sm) {
+    display: block;
+    margin: 10px 0px;
+  }
 }
 .aktivita_vlajecky {
   position: absolute;

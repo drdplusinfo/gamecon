@@ -32,7 +32,7 @@
 
       <!-- begin: aktivita -->
       <div class="grid-item box-360">
-        <div class="aktivita_obrazek" style="background-image: url({a.obrazek})">
+        <div class="aktivita_obrazek aktivita_obrazek-aktivity" style="background-image: url({a.obrazek})">
           <div class="aktivita_vlajecky">
            <!-- begin: vlajecka -->
            <div class="aktivita_vlajecka">
@@ -43,14 +43,9 @@
            hráči: {a.obsazenost}
            </div>
           </div>
-          <div class="aktivita-obrazek-prekryv row mt-0 justify-content-center">
-              <div class="box_obal box-tlacitko">
-                <div class="box_obsah">Přihlásit se přes PROGRAM</div>
-              </div>
-          </div>
         </div>
-        <div class="box_ohraniceni">
-          <div class="box_obsah">
+        <div class="box_ohraniceni box_ohraniceni-aktivity">
+          <div class="box_obsah box_obsah-aktivity">
             <div class="pl-30px pr-30px">
               <div class="h4 aktivita_nadpis">{a.nazev}</div>
               <!-- begin: organizatori -->
@@ -62,6 +57,15 @@
                 <!-- end: tag -->
               </div>
               <div class="aktivita_popis">{a.kratkyPopis}</div>
+              <a href="/program">
+                <div class="box-tlacitko aktivita_obrazek-tlacitko aktivita_tlacitko-prihlasit">
+                  <div class="box-tlacitko-ohraniceni">
+                    <div class="box-tlacitko-obsah">
+                      přihlásit přes program
+                    </div>
+                  </div>
+                </div>
+              </a>
               <div class="text-center">
                 <div class="clickable" onclick="displayToggleMasonry('{a.id}');">
                   <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
@@ -104,6 +108,17 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="aktivita_obrazek-prekryv aktivita_obrazek-aktivity row mt-0 justify-content-center">
+          <a href="/program">
+            <div class="box-tlacitko box-tlacitko-bile aktivita_obrazek-tlacitko">
+              <div class="box-tlacitko-ohraniceni">
+                <div class="box-tlacitko-obsah">
+                  přihlásit přes program
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       <!-- end: aktivita -->

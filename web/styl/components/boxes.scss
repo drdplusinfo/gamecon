@@ -8,8 +8,10 @@
     margin-right: -10px;
   }
 }
-.box_obsah-5px {
-  margin: -10px 5px 5px -10px;
+.box_obsah-aktivity {
+  @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
+    margin-top: 0px;
+  }
 }
 .box_ohraniceni {
   position: relative;
@@ -23,21 +25,18 @@
   border-radius: 5px;
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
 }
+.box_ohraniceni-aktivity {
+  @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
+    margin-top: 0px;
+    padding-top: 10px;
+  }
+}
 /* ---------------- MODIFIKÁTORY -----------------*/
 .box_obal_aktivita {
   @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
     left: -14px !important;
     margin-left: 10px;
   }
-}
-.box_ohraniceni-cervene {
-  outline-color: $red;
-}
-.box_ohraniceni-bile {
-  outline-color: $white;
-}
-.pl-10px {
-  padding-left: 10px;
 }
 .pl-30px {
   padding-left: 30px;
@@ -48,15 +47,16 @@
 .box-360 {
   background-color: $white;
   width: 360px;
-  /*@include media-breakpoint-down(xs) {
-    width: 340px; // ošetření kvůli mansonry
-  }*/
+  @include media-breakpoint-down(xs) {
+    width: 92%;
+  }
 }
 
 .box-tlacitko {
   background-color: $blue;
   border-radius: 4px;
   font-size: $font-size-sm;
+  text-align: center;
 }
 
 .box-tlacitko-ohraniceni {
@@ -87,11 +87,5 @@
   }
   & .box-tlacitko-obsah {
     color: $black;
-  }
-}
-
-.box_obal {
-  @include media-breakpoint-down(xs) {
-    width: 92%;
   }
 }

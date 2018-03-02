@@ -108,6 +108,8 @@ while($a) {
         $t->parse('aktivity.aktivita.vlajecka');
       }
       else {
+        $pattern = '/(\w+):(\w+)/';
+        $tag = preg_replace($pattern,'$2',$tag);
         $t->assign('tag', $tag);
         $t->parse('aktivity.aktivita.tag');
       }
