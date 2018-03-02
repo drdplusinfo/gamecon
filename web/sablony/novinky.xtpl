@@ -1,0 +1,36 @@
+<!-- begin:novinky -->
+
+<div class="container sirka-1200 mt-3">
+  <div class="row mt-7">
+    <div class="col-12 text-center">
+      <div class="h6">co je nového? krátce a stručně</div>
+      <div class="h1 red mt-3 mb-6">Novinky z Gameconu</div>
+    </div>
+  </div>
+  <div class="grid">
+    <!-- begin:novinka -->
+    <div class="grid-item box-360">
+      <div class="novinka_ohraniceni">
+        <div class="box_obsah-aktivity">
+          <div class="pl-30px pr-30px">
+            <div class="novinka_datum">{novinka.datum}</div>
+            <div class="novinka_nadpis">{novinka.nazev}</div>
+            <div class="novinka_popis">{novinka.Text}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:novinka -->
+  </div>
+</div>
+
+<script>
+displayMasonry('.grid');
+</script>
+
+<p style="text-align:center">
+  <!-- begin:novejsi --> <a href="{url}">« novější</a> &emsp;&emsp; <!-- end:novejsi -->
+  <!-- begin:starsi --> <a href="{url}">starší »</a> <!-- end:starsi -->
+</p>
+
+<!-- end:novinky -->

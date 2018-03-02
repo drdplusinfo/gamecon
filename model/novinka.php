@@ -13,7 +13,7 @@ class Novinka extends DbObject {
   }
 
   function datum() {
-    return date('j.n.', strtotime($this->r['vydat']));
+    return (new DateTimeCz($this->r['vydat']))->formatBlog();
   }
 
   function hlavniText() {
