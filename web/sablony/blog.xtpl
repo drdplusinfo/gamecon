@@ -19,11 +19,11 @@
 <div class="row mt-7">
   <div class="col-12 text-center">
     <div class="h6">o čem sníme když náhodou nespíme</div>
-    <div class="h1 red mt-3 mb-6">Gamecon blog</div>
+    <div class="h1 red mt-3 mb-3">Gamecon blog</div>
   </div>
 </div>
   <!-- begin:post -->
-    <div class="row align-items-center">
+    <div class="row mb-7 align-items-center">
       <div class="col-12 col-md-6">
           <img src="{blog.obrazek}" class="blog_obrazek">
       </div>

@@ -15,16 +15,9 @@
 }
 
 .blog_tlacitko {
-  padding: 9px 0px;
-  color: $white;
-  width: 126px;
-  font-size: $font-size-xs;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: $red;
-  @extend .drop-strong-shadow;
+  @extend .box_tlacitko-male;
   @include media-breakpoint-down(sm) {
-    display: inline-block; 
+    display: inline-block;
   };
 }
 
