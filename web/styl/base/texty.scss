@@ -113,6 +113,12 @@ p, .p {
   };
 }
 
+a {
+  color: $red;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .font-size-sm {
   font-family: "Open Sans";
   font-size: $font-size-sm;
