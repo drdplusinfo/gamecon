@@ -228,11 +228,6 @@
       <!-- begin: aktivita -->
       <div class="grid-item box-360">
         <div class="aktivita_obrazek" style="background-image: url({a.obrazek})">
-          <div class="aktivita_obrazek-prekryv row mt-0 justify-content-center">
-              <div class="box_obal box-tlacitko">
-                <div class="box_obsah">Přihlásit se přes PROGRAM</div>
-              </div>
-          </div>
         </div>
         <!-- <img class="aktivita_obrazek" src="{obrazekAktivity}"></img> -->
         <div class="box_ohraniceni">

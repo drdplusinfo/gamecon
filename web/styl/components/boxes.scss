@@ -8,9 +8,12 @@
     margin-right: -10px;
   }
 }
-.box_obsah-aktivity {
-  @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
+.box_obsah-bezObrazku {
     margin-top: 0px;
+}
+.box_obsah-aktivita {
+  @include media-breakpoint-down(xs) {
+    @extend .box_obsah-bezObrazku;
   }
 }
 .box_ohraniceni {
@@ -25,15 +28,18 @@
   border-radius: 5px;
   box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05);
 }
-.box_ohraniceni-aktivity {
-  @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
+.box_ohraniceni-bezObrazku {
     margin-top: 0px;
     padding-top: 10px;
+}
+.box_ohraniceni-aktivita {
+  @include media-breakpoint-down(xs) {
+    @extend .box_ohraniceni-bezObrazku;
   }
 }
 /* ---------------- MODIFIKÁTORY -----------------*/
 .box_obal_aktivita {
-  @include media-breakpoint-down(xs) { // ošetření kvůli mansonry
+  @include media-breakpoint-down(xs) {
     left: -14px !important;
     margin-left: 10px;
   }

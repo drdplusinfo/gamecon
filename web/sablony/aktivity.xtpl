@@ -42,8 +42,8 @@
            </div>
           </div>
         </div>
-        <div class="box_ohraniceni box_ohraniceni-aktivity">
-          <div class="box_obsah box_obsah-aktivity">
+        <div class="box_ohraniceni box_ohraniceni-aktivita">
+          <div class="box_obsah box_obsah-aktivita">
             <div class="pl-30px pr-30px">
               <div class="aktivita_nadpis">{a.nazev}</div>
               <!-- begin: organizatori -->
