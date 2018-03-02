@@ -13,7 +13,7 @@
 }
 .box_obsah-aktivita {
   @include media-breakpoint-down(xs) {
-    @extend .box_obsah-bezObrazku;
+    margin-top: 0px;
   }
 }
 .box_ohraniceni {
@@ -34,7 +34,8 @@
 }
 .box_ohraniceni-aktivita {
   @include media-breakpoint-down(xs) {
-    @extend .box_ohraniceni-bezObrazku;
+    margin-top: 0px;
+    padding-top: 10px;
   }
 }
 /* ---------------- MODIFIKÁTORY -----------------*/

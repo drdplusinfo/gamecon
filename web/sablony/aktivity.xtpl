@@ -65,7 +65,7 @@
                 </div>
               </a>
               <div class="text-center">
-                <div class="clickable" onclick="displayToggleMasonry('{a.id}');">
+                <div class="clickable" onclick="displayToggleMasonry('{a.id}','.grid');">
                   <div id="{a.id}_sipka_dolu" class="aktivita_ikona_sipka_dolu"></div>
                   <div id="{a.id}_sipka_nahoru" class="aktivita_ikona_sipka_nahoru" style="display: none;"></div>
                 </div>

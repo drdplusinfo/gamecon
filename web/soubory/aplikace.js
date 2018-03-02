@@ -74,8 +74,8 @@ function displayMasonry (gridName) { // spočítej masonry a zobraz
   return $grid;
 }
 
-function displayToggleMasonry(aktivita) { //zobraz popis u aktivity a přepočítej celé masonry
-  var $grid = displayMasonry();
+function displayToggleMasonry(aktivita, gridName) { //zobraz popis u aktivity a přepočítej celé masonry
+  var $grid = displayMasonry(gridName);
   $('#'+aktivita+'_popis').slideToggle(200);
   setTimeout(function(){
     $grid.masonry('layout');

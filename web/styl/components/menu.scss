@@ -88,7 +88,6 @@
   font-size: $font-size-base;
   font-weight: 600;
   letter-spacing: 0.2px;
-  text-decoration: none;
   &:hover {
     color: $red;
   }
@@ -99,7 +98,6 @@
   font-size: 13px;
   letter-spacing: 0.2px;
   margin: 0 10px;
-  text-decoration: none;
   &:hover { color: $red; }
 }
 .navbar-toggler-icon { background-image: url(soubor('grafika/ikony/titulka/hamburger-menu.png'))}

@@ -171,6 +171,10 @@
 .aktivita_popis {
   font-size: $font-size-sm * 1.1;
   color: $gray-700;
+  & p {
+    font-size: $font-size-sm * 1.1;
+    color: $gray-700;
+  }
 }
 .aktivita_sekce {
   font-size: $font-size-sm;
