@@ -1,0 +1,41 @@
+.blog_AutorADatum {
+  @extend .aktivita_sekce;
+  margin: 14px 0px;
+}
+
+.blog_popis {
+  margin: 18px 0px;
+  font-size: $font-size-base;
+  color: $gray-700;
+  line-height: 1.6;
+  & p {
+    font-size: $font-size-base;
+    color: $gray-700;
+  }
+}
+
+.blog_tlacitko {
+  padding: 9px 0px;
+  color: $white;
+  width: 126px;
+  font-size: $font-size-xs;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: $red;
+  @extend .drop-strong-shadow;
+  @include media-breakpoint-down(sm) {
+    display: inline-block; 
+  };
+}
+
+.blog_obrazek {
+  max-height: 320px;
+  max-width: 92%;
+  float: right;
+  margin-right: 40px;
+  @include media-breakpoint-down(sm) {
+    margin-right: 0;
+    max-width: 100%;
+    float: none;
+  };
+}
