@@ -10,12 +10,19 @@
   <div class="grid">
     <!-- begin:novinka -->
     <div class="grid-item box-360">
-      <div class="novinka_ohraniceni">
-        <div class="box_obsah-aktivity">
+      <!-- begin:SObrazkem -->
+      <div class="aktivita_obrazek" style="background-image: url({novinka.obrazek})"></div>
+      <div class="box_ohraniceni">
+        <div class="box_obsah">
+      <!-- end:SObrazkem -->
+      <!-- begin:BezObrazku -->
+      <div class="box_ohraniceni box_ohraniceni-bezObrazku">
+        <div class="box_obsah box_obsah-bezObrazku">
+      <!-- end:BezObrazku -->
           <div class="pl-30px pr-30px">
             <div class="novinka_datum">{novinka.datum}</div>
             <div class="novinka_nadpis">{novinka.nazev}</div>
-            <div class="novinka_popis">{novinka.Text}</div>
+            <div class="novinka_popis">{novinka.hlavniText}</div>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ foreach(Novinka::zNejnovejsich($start, $stranka) as $n) {
     $t->assign([
       'novinka' =>  $n,
     ]);
+    $n->obrazek() ? $t->parse('novinky.novinka.SObrazkem') : $t->parse('novinky.novinka.BezObrazku');
     $t->parse('novinky.novinka');
   }
 }
