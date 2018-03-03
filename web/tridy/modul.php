@@ -12,8 +12,9 @@ class Modul {
   protected $vystup;
   protected $bezDekorace = false;
   protected $bezMenu = false;
-  protected $bezStranky = false;
   protected $bezOkraju = false;
+  protected $bezStranky = false;
+  protected $bezPaticky = false;
   protected $info;
 
   const VYCHOZI = 'titulka';
@@ -45,6 +46,12 @@ class Modul {
   function bezStranky($val = null) {
     if(isset($val)) $this->bezStranky = $val;
     return $this->bezStranky;
+  }
+
+  /** Jestli se má modul renderovat bez patičky */
+  function bezPaticky($val = null) {
+    if(isset($val)) $this->bezPaticky = $val;
+    return $this->bezPaticky;
   }
 
   function info($val = null) {
@@ -86,6 +93,11 @@ class Modul {
     if($t) {
       $t->parse($this->nazev());
       $t->out($this->nazev());
+    }
+    if(!$this->bezPaticky) {
+      $t = new XTemplate('sablony/paticka.xtpl');
+      $t->parse('paticka');
+      $t->out('paticka');
     }
     $this->vystup = ob_get_clean();
     return $this;

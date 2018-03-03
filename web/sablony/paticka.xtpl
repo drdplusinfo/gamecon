@@ -1,0 +1,48 @@
+<!-- begin:paticka -->
+<div class="container-fluid">
+  <div class="row mt-6 no-gutters paticka">
+    <div class="container sirka-1200">
+      <div class="row mt-4">
+        <div class="col-6">
+          <a class="white h4 paticka_mail" href="mailto: info@gamecon.cz">info@gamecon.cz</a><br>
+            <p class="gray-300 font-size-xs paticka_credits">© 2017 Gamecon, created with love by</p>
+            <p class="gray-300 font-size-xs paticka_credits">Duli, Godric, Honza, Manik, Martin</p>
+        </div>
+        <div class="col-6">
+          <div class="row mt-3 justify-content-center">
+            <div class="paticka_odkaz lg-12 hidden-lg-down">
+              <div class="paticka_odkaz-center">
+                <a class="gray-300" href="/o-gameconu">o gameconu</a>
+                <span class="paticka_lomitko"></span>
+                <a class="gray-300" href="/organizatori">organizátoři</a>
+                <span class="paticka_lomitko"></span>
+                <a class="gray-300" href="/kontakt">kontakt</a>
+                <span class="paticka_lomitko"></span>
+                <a class="gray-300 paticka_odkaz-facebook" href="https://www.facebook.com/gamecon/">
+                  <img src="soubory/grafika/ikony/facebook.png" height="16px">
+                  facebook
+                </a>
+              </div>
+            </div>
+            <div class="hidden-lg-up col-md-4 col-sm-6 col-xs-12 paticka_odkaz">
+              <a class="gray-300" href="/o-gameconu">o gameconu</a>
+            </div>
+            <div class="hidden-lg-up col-md-4 col-sm-6 col-xs-12 paticka_odkaz">
+              <a class="gray-300" href="/organizatori">organizátoři</a>
+            </div>
+            <div class="hidden-lg-up col-md-4 col-sm-6 col-xs-12 paticka_odkaz">
+              <a class="gray-300" href="/kontakt">kontakt</a>
+            </div>
+            <div class="hidden-lg-up col-md-4 col-sm-6 col-xs-12 paticka_odkaz">
+              <a class="gray-300 paticka_odkaz-facebook" href="https://www.facebook.com/gamecon/">
+                <img src="soubory/grafika/ikony/facebook.png" height="16px">
+                facebook
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end:paticka -->

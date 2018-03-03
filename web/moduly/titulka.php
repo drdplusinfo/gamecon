@@ -98,11 +98,9 @@ foreach ($poleAktivit as $a) {
 }
 
 /* ------------------------------ PARTNEŘI ------------------------------*/
+// TODO Nedělat jako modul ale jako include jedné šablony do druhé
+Modul::bezPaticky(true);
 $t->assign('partneri', Modul::zNazvu('partneri')->spust()->vystup());
-
-
-
-
 
 
 

@@ -1,0 +1,55 @@
+.paticka {
+  background-color: $blue;
+  padding-bottom: 40px;
+}
+.paticka_mail {
+  font-family: "Open Sans";
+  line-height: 3;
+  border-bottom: 2px solid $white;
+  padding-bottom: 3px;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+.paticka_credits {
+  line-height: 1.2;
+  margin-bottom: 4px;
+  padding: 0;
+}
+.paticka_odkaz {
+  @extend .uppercase;
+  @extend .text-center;
+  @extend .font-size-sm;
+  @extend .font-weight-bold;
+  & a:hover {
+    color: white;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: $font-size-xs;
+  }
+}
+.paticka_odkaz-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paticka_odkaz-facebook {
+  color: $white;
+  & img {
+    margin-top: -2px;
+    margin-right: 6px;
+  }
+}
+.paticka_lomitko {
+  @include media-breakpoint-up(lg) {
+    &:after {
+      color: $gray-300;
+      font-size: 2em;
+      font-weight: 400;
+      content: "/";
+      padding: 0px 24px 0px 24px;
+    }
+  }
+}
