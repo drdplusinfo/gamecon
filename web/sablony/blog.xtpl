@@ -2,10 +2,22 @@
 <div class="container sirka-1200 mt-3">
 
 <!-- begin:post -->
-  <h1>{blog.nazev}</h1>
-  <p><img src="{blog.obrazek}"></p>
-  <div class="autor">{blog.autor}, {blog.vydat.formatBlog}</div>
-  {blog.hlavniText}
+<div class="row mt-7 justify-content-center">
+  <div class="col-12 blog_uvodnik">
+    <h6>{blog.autor} &#9679; {blog.vydat.formatBlog}</h6>
+    <div class="h1 red">{blog.nazev}</div>
+  </div>
+</div>
+<div class="row mt-5 justify-content-center">
+  <div class="col-12 text-center">
+    <img src="{blog.obrazek}" class="blog_obrazek">
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-12 blog_hlavniText">
+    {blog.hlavniText}
+  </div>
+</div>
 <!-- end:post -->
 
 <!-- begin:seznam -->
@@ -25,15 +37,15 @@
   <!-- begin:post -->
     <div class="row mb-7 align-items-center">
       <div class="col-12 col-md-6">
-          <img src="{blog.obrazek}" class="blog_obrazek">
+          <img src="{blog.obrazek}" class="blog_seznam_obrazek">
       </div>
       <div class="col-12 col-md-6">
-        <div class="blog_AutorADatum">{blog.autor} &#9679; {blog.vydat.formatBlog}</div>
-        <div class="h3">{blog.nazev}</div>
-        <div class="blog_popis">{blog.nahled}</div>
+        <div class="blog_seznam_AutorADatum">{blog.autor} &#9679; {blog.vydat.formatBlog}</div>
+        <a href="blog/{blog.url}"><div class="h3">{blog.nazev}</div></a>
+        <div class="blog_seznam_popis">{blog.nahled}</div>
         <div class="text-center">
           <a href="blog/{blog.url}">
-            <div class="blog_tlacitko">číst více</div>
+            <div class="blog_seznam_tlacitko">číst více</div>
           </a>
         </div>
       </div>

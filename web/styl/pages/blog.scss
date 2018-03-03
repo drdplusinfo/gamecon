@@ -1,9 +1,23 @@
-.blog_AutorADatum {
+/* Výpis blogů */
+
+.blog_seznam_AutorADatum {
   @extend .aktivita_sekce;
   margin: 14px 0px;
 }
 
-.blog_popis {
+.blog_seznam_obrazek {
+  max-height: 320px;
+  max-width: 92%;
+  float: right;
+  margin-right: 40px;
+  @include media-breakpoint-down(sm) {
+    margin-right: 0;
+    max-width: 100%;
+    float: none;
+  };
+}
+
+.blog_seznam_popis {
   margin: 18px 0px;
   font-size: $font-size-base;
   color: $gray-700;
@@ -14,21 +28,33 @@
   }
 }
 
-.blog_tlacitko {
+.blog_seznam_tlacitko {
   @extend .box_tlacitko-male;
+  width: 139px;
   @include media-breakpoint-down(sm) {
     display: inline-block;
   };
 }
 
+/* Blogový příspěvek */
+
 .blog_obrazek {
-  max-height: 320px;
-  max-width: 92%;
-  float: right;
-  margin-right: 40px;
-  @include media-breakpoint-down(sm) {
-    margin-right: 0;
-    max-width: 100%;
-    float: none;
-  };
+  max-width: 1200px;
+}
+
+.blog_hlavniText {
+  max-width: 800px;
+  & h1, h2, h3, h4, h5, h6 {
+    color: $red;
+  }
+  & h2 {
+    margin-top: 72px;
+  }
+  & h3 {
+    margin-top: 48px;
+  }
+}
+
+.blog_uvodnik {
+  max-width: 800px;
 }
