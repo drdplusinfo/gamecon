@@ -85,10 +85,10 @@
 }
 .aktivita_info_ikona_cas {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   width: 24px;
   text-align: right;
-  margin-top: -10px;
+  margin-top: -1px;
 }
 .aktivita_info_ikona_cena {
   display: inline-block;
@@ -129,7 +129,10 @@
   @extend .box_tlacitko-male;
   padding: 9px 39px;
   margin: 16px 0px;
-  display: inline-block;
+  display: none;
+  @include media-breakpoint-down(sm) {
+    display: inline-block;
+  }
 }
 .aktivita_nadpis {
   @extend .h3;
@@ -170,9 +173,13 @@
     opacity: 1;
     cursor: pointer;
   }
+  & a:hover {
+    color: $white;
+  }
 }
 .aktivita_obrazek-tlacitko {
-  margin-top: 80px;
+  margin-top: 132px;
+  @extend .box_tlacitko-male;
 }
 .aktivita_popis {
   font-size: $font-size-sm * 1.1;

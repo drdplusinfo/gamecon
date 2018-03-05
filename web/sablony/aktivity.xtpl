@@ -38,7 +38,7 @@
            </div><br>
            <!-- end: vlajecka -->
            <div class="aktivita_vlajecka">
-           hráči: {a.obsazenost}
+           {pocethracu}
            </div>
           </div>
         </div>
@@ -105,14 +105,10 @@
         </div>
         <div class="aktivita_obrazek-prekryv aktivita_obrazek-aktivity row mt-0 justify-content-center">
           <a href="/program">
-            <div class="box-tlacitko-male box-tlacitko-bile aktivita_obrazek-tlacitko">
-              <div class="box-tlacitko-ohraniceni">
-                <div class="box-tlacitko-obsah">
-                  přihlásit přes program
-                </div>
-              </div>
-            </div>
-          </a>
+          <div class="aktivita_obrazek-tlacitko">
+              přihlásit přes program
+          </div>
+        </a>
         </div>
       </div>
       <!-- end: aktivita -->

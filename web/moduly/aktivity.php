@@ -87,17 +87,14 @@ while($a) {
     if(CENY_VIDITELNE && $a->cena()) {
       $do = new DateTime(SLEVA_DO);
       $t->assign([
-        'cena' => $a->cena($u),
-        'stdCena' => $a->cena(),
-        'zakladniCena' => $a->cenaZaklad().'&thinsp;Kč',
+        'cena'          => $a->cena($u),
+        'stdCena'       => $a->cena(),
+        'zakladniCena'  => $a->cenaZaklad().'&thinsp;Kč',
         'rozhodneDatum' => $do->format('j.n.'),
+        'pocethracu'    => $a->kapacita().' '.tvarSlovaHraci($a->kapacita())
         //TODO způsob načtení a zobrazení orgů (per termín, per aktivita, proklik na jejich osobní stránku, ...?)
         //TODO optimalizace načítání popisků (do jiné tabulky, jeden dotaz, pokud bude výkonnostně problém)
       ]);
-      /*if($a->bezSlevy())                $t->parse('aktivity.aktivita.cena.fixni');
-      elseif($u && $u->gcPrihlasen())   $t->parse('aktivity.aktivita.cena.moje');
-      else                              $t->parse('aktivity.aktivita.cena.obecna');*/
-      //$t->parse('aktivity.aktivita.cena');
       //TODO Manik: Jakmile Honza dodělá funkci cena, toto je potřeba upravit
     }
     foreach($a->tagy() as $tag) {
@@ -117,7 +114,7 @@ while($a) {
     foreach($casyAktivitVeSkupine as $den => $poleSCasy) {
       $poleSCasy = implode (', ', $poleSCasy);
       $t->assign([
-        'denAktivity'             => $den,
+        'denAktivity'             => mb_substr($den,0,2),
         'casyAktivityVJednomDni'  => $poleSCasy,
       ]);
       $t->parse('aktivity.aktivita.termin');

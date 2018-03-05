@@ -487,6 +487,16 @@ function ma_pravo($uzivatel,$cislo_prava)
   return false;
 }
 
+function tvarSlovaHraci ($pocetHracu) {
+  if($pocetHracu < 1) {
+    return 'hráč';
+  } elseif ($pocetHracu > 1 && $pocetHracu < 5) {
+    return 'hráči';
+  } else {
+    return 'hráčů';
+  }
+}
+
 
 /** Znaménkové crc32 chovající se stejně na 32bit i 64bit systémech */
 function scrc32($data) {
