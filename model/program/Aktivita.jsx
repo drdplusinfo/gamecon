@@ -3,6 +3,7 @@ class Aktivita extends React.Component {
     super(props)
 
     this.aktivitaJePlnaProPohlaviUzivatele = this.props.aktivitaJePlnaProPohlaviUzivatele.bind(this)
+  }
 
   urciTriduBunky () {
     let aktivita = this.props.aktivita
