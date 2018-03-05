@@ -14,6 +14,7 @@ class Menu {
   ];
 
   protected $prakticke = [
+    'novinky' => 'Novinky',
     'kdy-a-kde' => 'Kdy a kde?',
     'ubytovani' => 'Ubytování',
     'stravovani' => 'Stravování',
