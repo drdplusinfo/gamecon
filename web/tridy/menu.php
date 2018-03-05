@@ -9,7 +9,7 @@ class Menu {
     'jak-to-probiha' => 'Jak to probíhá?',
     'organizacni-vypomoc' => 'Pomoz nám s přípravou',
     'blog' => 'Blog',
-    'sponzori' => 'Sponzoři',
+    'partneri' => 'Partneři',
     'kontakt' => 'Kontakt'
   ];
 
