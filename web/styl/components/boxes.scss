@@ -64,7 +64,7 @@
   border-radius: 4px;
   font-size: $font-size-sm;
   text-align: center;
-  & :hover {
+  &:hover {
     cursor: pointer;
   }
 }
@@ -78,7 +78,7 @@
   border: 2px solid $blue;
   border-radius: 4px;
   padding: 6px 34px 14px 34px;
-  & :hover {
+  &:hover {
     text-decoration: underline;
   }
 }
@@ -109,7 +109,7 @@
   text-transform: uppercase;
   background-color: $red;
   @extend .drop-strong-shadow;
-  & :hover {
+  &:hover {
     cursor: pointer;
   }
 }
