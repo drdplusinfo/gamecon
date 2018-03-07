@@ -4,25 +4,25 @@ h1, .h1 {
   font-size: $h1-font-size;
   font-weight: 600;
   line-height: 120%;
-  @include media-breakpoint-down(sm) {
-    font-size: $h2-font-size;
-  }
-  @include media-breakpoint-down(xs) {
-    font-size: $h4-font-size;
-  }
+  @extend .mb-5;
 }
 
 h2, .h2 {
   font-family: "Eczar";
+  font-size: $h2-font-size;
   font-weight: 600;
+  @extend .mb-3;
   @include media-breakpoint-up(xs) {
-    font-size: 6vw;
+    font-size: $h2-font-size * .675;
+  };
+  @include media-breakpoint-up(sm) {
+    font-size: $h2-font-size * .75;
   };
   @include media-breakpoint-up(md) {
-    font-size: 4vw;
+    font-size: $h2-font-size * .75;
   };
   @include media-breakpoint-up(lg) {
-    font-size: 3vw;
+    font-size: $h2-font-size;
   };
 }
 
@@ -99,7 +99,7 @@ h6, .h6 {
 p, .p {
   font-family: "Open Sans";
   line-height: 1.6;
-  font-size: $font-size-base;
+  font-size: $font-size-base * .875;
   @include media-breakpoint-up(xs) {
     font-size: $font-size-base * .7;
   };
@@ -109,12 +109,10 @@ p, .p {
   @include media-breakpoint-up(md) {
     font-size: $font-size-base * .875;
   };
-  @include media-breakpoint-up(lg) {
-    font-size: $font-size-base;
-  };
 }
 
 p {
+  margin: 12px 0px;
   & a {
     color: $red;
     text-decoration: underline;

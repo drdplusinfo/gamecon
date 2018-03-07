@@ -110,7 +110,7 @@ class Modul {
     elseif($this->bezOkraju)
       return $this->vystup . '<style>.hlavni { max-width: 95% }</style>';
     else
-      return '<div class="blok stranka"><div class="obal">' . $this->vystup . '</div></div>';
+      return $this->vystup;
   }
 
   /** Načte modul odpovídající dané Url (pokud není zadaná, použije aktuální) */

@@ -64,6 +64,9 @@
   border-radius: 4px;
   font-size: $font-size-sm;
   text-align: center;
+  & :hover {
+    cursor: pointer;
+  }
 }
 
 .box-tlacitko-ohraniceni {
@@ -98,6 +101,7 @@
 }
 
 .box_tlacitko-male {
+  display: inline-block;
   padding: 9px 39px;
   color: $white;
   font-size: $font-size-xs;
@@ -105,4 +109,7 @@
   text-transform: uppercase;
   background-color: $red;
   @extend .drop-strong-shadow;
+  & :hover {
+    cursor: pointer;
+  }
 }

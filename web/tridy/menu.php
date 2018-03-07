@@ -7,7 +7,7 @@ class Menu {
   protected $ogameconu = [
     'co-je-gamecon' => 'Co je GameCon?',
     'jak-to-probiha' => 'Jak to probíhá?',
-    'organizacni-vypomoc' => 'Pomoz nám s přípravou',
+    'chci-se-zapojit' => 'Pomoz nám s přípravou',
     'blog' => 'Blog',
     'partneri' => 'Partneři',
     'kontakt' => 'Kontakt'

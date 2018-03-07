@@ -1,3 +1,10 @@
+/* -------------- ZOBRAZOVÁNÍ SKRYTÝCH DIVŮ ----------------- */
+function zobrazSkryj (event) {
+  $('#' + event.target.id + '-obsah').slideToggle()
+  event.preventDefault()
+}
+
+
 /* -------------- ODKAZY NA NOVOU ZÁLOŽKU ------------------- */
 $(function () {
   $('a[href^="http"]').attr('target', '_blank')
@@ -17,12 +24,9 @@ function zmenPozadiNavbar (){
 
 /* Změna nápisu na homepage na mobilu */
 function zmenZakladniInfo () {
-  console.log('funkce')
   if (window.matchMedia('(max-width: 576px)').matches) {
-    console.log('funkce1')
     document.getElementsByClassName('zakladniInfo_box-cislo-gamecon')[0].innerHTML = 'Gamecon'
   } else {
-    console.log('funkce2')
     document.getElementsByClassName('zakladniInfo_box-cislo-gamecon')[0].innerHTML = 'GC'
   }
 }
