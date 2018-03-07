@@ -15,7 +15,7 @@ class Stranka extends DbObject {
       }, $html);
       $this->html = $html;
     }
-    return $this->html;
+    return '<div class="container mt-7 obsahovaStranka">'.$this->html.'</div>';
   }
 
   function nadpis() {

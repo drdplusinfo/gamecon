@@ -4,6 +4,43 @@
 .sirka-1200 { // Používá se pro kontejner
   max-width: 1200px;
 }
+.obsahovaStranka {
+  max-width: 800px;
+  & h1,h2,h3,h4,h5 {
+    color: $red;
+  }
+  & h2 {
+    margin-top: 60px;
+  }
+  & ol, ul {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    counter-reset: itrem;
+    & li {
+      margin-bottom: 12px;
+      padding: 0 0 0 1rem;
+      text-indent: -2rem;
+      list-style-type: none;
+      counter-increment: item;
+    }
+    & li:before {
+      display: inline-block;
+      width: 1rem;
+      padding-right: 1rem;
+      font-weight: bold;
+      text-align: right;
+      content: counter(item);
+    }
+  }
+  & a {
+    color: $red;
+  }
+  & .skryty {
+    text-indent: 0rem;
+    display: none;
+    overflow: hidden; // hack: skákání při jQuery slideToggle
+  }
+}
 .row {       // Každý řádek má nad sebou mezeru
   margin-top: 4vw;
 }
