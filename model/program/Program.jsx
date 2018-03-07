@@ -7,7 +7,6 @@ class Program extends React.Component {
 
     this.zapniUpdateUIPriZmeneDat()
 
-
     this.state = {
       linie: this.uklidLinie(this.props.api.zakladniData.linie),
       zvolenyDen: KONSTANTY.DNY_V_TYDNU.CTVRTEK,
@@ -24,6 +23,19 @@ class Program extends React.Component {
     this.zvolMujProgram = this.zvolMujProgram.bind(this)
     this.zvolTentoDen = this.zvolTentoDen.bind(this)
     this.zvolTutoAktivitu = this.zvolTutoAktivitu.bind(this)
+  }
+
+  componentDidMount() {
+    let idAktivityZHashe = window.location.hash.substring(1)
+    let uvodniZvolenaAktivita = this.props.api.zakladniData.aktivity.find(aktivita => aktivita.id.toString() === idAktivityZHashe)
+    
+    if (uvodniZvolenaAktivita) {
+      let uvodniZvolenyDen = new Date(uvodniZvolenaAktivita.zacatek).getDay()
+      this.setState({
+        zvolenaAktivita: uvodniZvolenaAktivita,
+        zvolenyDen: uvodniZvolenyDen
+      })
+    }
   }
 
   aktivitaJePlnaProPohlaviUzivatele (aktivita, pohlavi) {
@@ -97,6 +109,7 @@ class Program extends React.Component {
   zvolTutoAktivitu (aktivita) {
     console.log('Zvol tuto aktivitu volá: ', aktivita)
     this.setState({zvolenaAktivita: aktivita})
+    window.location.hash = aktivita.id || '';
   }
 
   componentWillUpdate (nextProps, nextState) {
