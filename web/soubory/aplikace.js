@@ -1,6 +1,10 @@
 /* -------------- ZOBRAZOVÁNÍ SKRYTÝCH DIVŮ ----------------- */
-function zobrazSkryj (event) {
-  $('#' + event.target.id + '-obsah').slideToggle()
+function zobrazSkryj (event, obsah) {
+  if (typeof obsah === 'undefined') {
+    $('#' + event.target.id + '-obsah').slideToggle()
+  } else {
+    $('#' + obsah).slideToggle()
+  }
   event.preventDefault()
 }
 
