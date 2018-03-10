@@ -6,6 +6,7 @@ class Stranka extends DbObject {
   protected static $pk = 'id_stranky';
 
   function html() {
+    $bezOkraju = null;
     if(!isset($this->html)) {
       $html = markdownNoCache($this->r['obsah']);
       $html = preg_replace_callback('@(<p>)?\(widget:([a-z\-]+)\)(</p>)?@', function($m) {
@@ -13,9 +14,14 @@ class Stranka extends DbObject {
         if($w)  return $w->html();
         else    return 'widget neexistuje';
       }, $html);
+      preg_match('/@BEZ_OKRAJU/', $html, $bezOkraju);
       $this->html = $html;
     }
-    return '<div class="container mt-7 obsahovaStranka">'.$this->html.'</div>';
+    if (!$bezOkraju) {
+      return '<div class="container mt-7 obsahovaStranka">'.$this->html.'</div>';
+    } else {
+      return '<div class="container">'.$this->html.'</div>';
+    }
   }
 
   function nadpis() {
