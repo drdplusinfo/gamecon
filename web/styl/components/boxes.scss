@@ -1,6 +1,5 @@
 /* ---------------- ZÁKLADNÍ -----------------*/
 .box_obsah {
-  @extend .drop-shadow;
   position: relative;
   float: right;
   margin: 212px 10px 10px -10px;
@@ -57,6 +56,11 @@
   @include media-breakpoint-down(xs) {
     width: 92%;
   }
+}
+
+.box-250 {
+  background-color: $white;
+  width: 250px;
 }
 
 .box-tlacitko {

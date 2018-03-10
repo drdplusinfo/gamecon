@@ -72,9 +72,10 @@ function odpocet(cas) {
 };
 
 /* -------------- MASONRY ------------------- */
-function displayMasonry (gridName) { // spočítej masonry a zobraz
+function displayMasonry (gridName, columnWidth = 360) { // spočítej masonry a zobraz
+  console.log('Funkce displayMasonry se zavolala')
   $grid = $(gridName).masonry({
-    columnWidth: 360,
+    columnWidth: columnWidth,
     itemSelector: '.grid-item',
     gutter: 40,
     fitWidth: true
