@@ -5,6 +5,7 @@
   max-width: 1200px;
 }
 .obsahovaStranka {
+  line-height: 1.7;
   max-width: 800px;
   & h1,h2,h3,h4,h5 {
     color: $red;
@@ -18,10 +19,10 @@
     counter-reset: itrem;
     & li {
       margin-bottom: 12px;
-      padding: 0 0 0 1rem;
-      text-indent: -2rem;
+      padding: 0 0 0 0rem;
       list-style-type: none;
       counter-increment: item;
+      text-indent: -1rem;
     }
     & li:before {
       display: inline-block;
@@ -34,12 +35,19 @@
   }
   & a {
     color: $red;
-    text-transform: uppercase;
   }
   & .skryty {
     text-indent: 0rem;
     display: none;
     overflow: hidden; // hack: skákání při jQuery slideToggle
+  }
+  & .infobox {
+    line-height: 1.9;
+    font-size: 0.875rem;
+    padding: 12px 18px;
+    margin: 24px -24px;
+    background-color: $white;
+    @extend .drop-strong-shadow;
   }
 }
 .row {       // Každý řádek má nad sebou mezeru
