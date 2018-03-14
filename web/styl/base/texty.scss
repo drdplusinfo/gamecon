@@ -5,6 +5,18 @@ h1, .h1 {
   font-weight: 600;
   line-height: 120%;
   @extend .mb-5;
+  @include media-breakpoint-up(xs) {
+    font-size: $h1-font-size * .675;
+  };
+  @include media-breakpoint-up(sm) {
+    font-size: $h1-font-size * .75;
+  };
+  @include media-breakpoint-up(md) {
+    font-size: $h1-font-size * .75;
+  };
+  @include media-breakpoint-up(lg) {
+    font-size: $h1-font-size;
+  };
 }
 
 h2, .h2 {
