@@ -5,7 +5,7 @@ class Menu {
   protected static $linie;
 
   protected $ogameconu = [
-    'co-je-gamecon' => 'Co je GameCon?',
+    'cojegamecon' => 'Co je GameCon?',
     'jak-to-probiha' => 'Jak to probíhá?',
     'chci-se-zapojit' => 'Pomoz nám s přípravou',
     'blog' => 'Blog',

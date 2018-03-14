@@ -1,0 +1,49 @@
+.coJeGamecon_perex {
+  max-width: 604px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.coJeGamecon_obrazek {
+  border-radius: 5px;
+}
+
+.coJeGamecon_obrazek-levy {
+  @extend .coJeGamecon_obrazek;
+  margin-left: 10%;
+  width: 78%;
+}
+
+.coJeGamecon_obrazek-pravy {
+  @extend .coJeGamecon_obrazek;
+  width: 92%;
+  margin-top: -5%;
+  margin-left: 24%;
+}
+
+.coJeGamecon_obrazek_spodni {
+  @extend .coJeGamecon_obrazek;
+  display: inline-block;
+  float: right;
+  margin-right: 5%;
+  margin-top: -354px;
+  width: 13%;
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+.coJeGamecon_box {
+  @extend .drop-strong-shadow;
+  display: inline-block;
+  padding: 48px 80px;
+  background-color: $white;
+  max-width: 750px;
+  font-size: $font-size-md;
+  & a {
+    @extend .mt-6;
+    @extend .red;
+    @extend .h4;
+    text-decoration: underline;
+  }
+}
