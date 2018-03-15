@@ -76,11 +76,16 @@
 
 /* ------------------------- NAVIGAČNÍ MENU ----------------------------  */
 .navbar {
-  background-color: $black;
   position: absolute;
   width: 100vw;
   z-index: 2;
   padding: 0.4rem 1rem;
+}
+.navbar-cerny {
+  background-color: $black;
+}
+.navbar-pruhledny {
+  background: linear-gradient($black, rgba(0,0,0,0));
 }
 .navbar-brand {
   color: $white;

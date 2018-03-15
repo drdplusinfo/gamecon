@@ -1,4 +1,12 @@
 <!-- begin:titulka -->
+<script>
+$('.navbar').toggleClass('navbar-pruhledny')
+$(document).scroll(function(){
+    $('.navbar').toggleClass('navbar-pruhledny', $(this).scrollTop() < 1);
+});
+</script>
+
+
 <div class="container-fluid">
   <!--                COVER PHOTO                    -->
   <div class="coverPhoto">

@@ -1,5 +1,5 @@
 <!-- begin: menu -->
-<nav class="navbar navbar-expand-md" id="hlavniMenu">
+<nav class="navbar navbar-cerny navbar-expand-md" id="hlavniMenu">
   <!-- Brand and toggle get grouped for better mobile display -->
   <a class="navbar-brand ml-xl-8 ml-lg-7" href="">gamecon 2018</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="zmenPozadiNavbar()">
