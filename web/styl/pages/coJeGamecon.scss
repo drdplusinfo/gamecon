@@ -53,6 +53,9 @@
       opacity: 0.7;
     }
   }
+  @include media-breakpoint-down(md) {
+    padding: 40px 28px;
+  }
 }
 
 .coJeGamecon_row {

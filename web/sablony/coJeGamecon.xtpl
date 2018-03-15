@@ -37,7 +37,7 @@
     <div class="col-12">
       <div class="h1 red">A co dál?</div>
       <div class="coJeGamecon_perex">
-        <p>Ideálně si do kalendáře na 19. - 22.7. zapiš “Jsem na Gameconu” :) Ne, vážně. Pokud zvažuješ účast, určitě se rozhlédni po tomhle webu. Doporučujeme kliknout hlavně na “Jak to probíhá” a “Kdy a kde”. To jsou místa, kde najdeš klíčové informace.</p>
+        <p>Ideálně si do kalendáře na 19. - 22.7. zapiš “Jsem na Gameconu” :) Ne, vážně. Pokud zvažuješ účast, určitě se rozhlédni po tomhle webu. Doporučujeme kliknout hlavně na <a href="jak-to-probiha" target="_blank">Jak to probíhá</a> a <a href="kdy-a-kde" target="_blank">Kdy a kde</a>. To jsou místa, kde najdeš klíčové informace.</p>
       </div>
       <img src="soubory/obsah/stranky/cojegamecon/archery.png" class="coJeGamecon_obrazek_spodni" alt="">
     </div>
