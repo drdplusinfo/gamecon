@@ -111,7 +111,7 @@ h6, .h6 {
 p, .p {
   font-family: "Open Sans";
   line-height: 1.6;
-  font-size: $font-size-base * .875;
+  font-size: $font-size-base;
   @include media-breakpoint-up(xs) {
     font-size: $font-size-base * .7;
   };
@@ -120,6 +120,9 @@ p, .p {
   };
   @include media-breakpoint-up(md) {
     font-size: $font-size-base * .875;
+  };
+  @include media-breakpoint-up(lg) {
+    font-size: $font-size-base;
   };
 }
 
