@@ -113,10 +113,7 @@ p, .p {
   line-height: 1.6;
   font-size: $font-size-base;
   @include media-breakpoint-up(xs) {
-    font-size: $font-size-base * .7;
-  };
-  @include media-breakpoint-up(sm) {
-    font-size: $font-size-base * .75;
+    font-size: $font-size-base * .8;
   };
   @include media-breakpoint-up(md) {
     font-size: $font-size-base * .875;
