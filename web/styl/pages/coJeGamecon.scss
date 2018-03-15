@@ -12,6 +12,10 @@
   @extend .coJeGamecon_obrazek;
   margin-left: 10%;
   width: 78%;
+  @include media-breakpoint-only(md) {
+    margin-left: 0%;
+    width: 94%;
+  }
 }
 
 .coJeGamecon_obrazek-pravy {
