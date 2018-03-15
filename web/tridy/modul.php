@@ -15,6 +15,7 @@ class Modul {
   protected $bezOkraju = false;
   protected $bezStranky = false;
   protected $bezPaticky = false;
+  protected $bezVrchnnihoOkrajePaticky = false;
   protected $info;
 
   const VYCHOZI = 'titulka';
@@ -52,6 +53,11 @@ class Modul {
   function bezPaticky($val = null) {
     if(isset($val)) $this->bezPaticky = $val;
     return $this->bezPaticky;
+  }
+
+  function bezVrchnnihoOkrajePaticky($val = null) {
+    if(isset($val)) $this->bezVrchnnihoOkrajePaticky = $val;
+    return $this->bezVrchnnihoOkrajePaticky;
   }
 
   function info($val = null) {
@@ -96,6 +102,11 @@ class Modul {
     }
     if(!$this->bezPaticky) {
       $t = new XTemplate('sablony/paticka.xtpl');
+      if ($this->bezVrchnnihoOkrajePaticky) {
+        $t->parse('paticka.bezOkraje');
+      } else {
+        $t->parse('paticka.sOkrajem');
+      }
       $t->parse('paticka');
       $t->out('paticka');
     }

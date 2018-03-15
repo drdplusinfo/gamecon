@@ -1,6 +1,11 @@
 <!-- begin:paticka -->
 <div class="container-fluid">
+  <!-- begin:bezOkraje -->
+  <div class="row mt-0 no-gutters paticka">
+  <!-- end:bezOkraje -->
+  <!-- begin:sOkrajem -->
   <div class="row mt-6 no-gutters paticka">
+  <!-- end:sOkrajem -->
     <div class="container sirka-1200">
       <div class="row mt-4">
         <div class="col-6">
