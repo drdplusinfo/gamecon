@@ -1,0 +1,3 @@
+<?php
+
+Modul::bezVrchnnihoOkrajePaticky(true);

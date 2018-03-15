@@ -49,5 +49,13 @@
     @extend .red;
     @extend .h4;
     text-decoration: underline;
+    &:hover {
+      opacity: 0.7;
+    }
   }
+}
+
+.coJeGamecon_row {
+  margin-left: 0;
+  margin-right: 0;
 }
