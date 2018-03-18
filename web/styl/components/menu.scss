@@ -43,7 +43,7 @@
   border-radius: 0;
   border-style: none;
   padding: 12px 0px;
-  margin: 0;
+  margin: 0 0 0 -40px;
 }
 .dropdown-toggle:after { //nastavení polohy šipečky
   vertical-align: middle;
@@ -51,7 +51,7 @@
 .dropdown-menu-large {
   background-color: $gray-800;
   width: 800px;
-  left: -300px;
+  left: -260px;
   padding: 12px 0px;
 }
 .dropdown-menu-large_col-md-3 {
@@ -72,7 +72,12 @@
     max-width: 100/12*4%;
   }
 }
-
+.dropdown-menu-prihlasit {
+  min-width: 200px;
+}
+.dropdown-menu_textbox {
+  margin: 0 0 6px 16px;
+}
 
 /* ------------------------- NAVIGAČNÍ MENU ----------------------------  */
 .navbar {
@@ -80,12 +85,6 @@
   width: 100vw;
   z-index: 2;
   padding: 0.4rem 1rem;
-}
-.navbar-cerny {
-  background-color: $black;
-}
-.navbar-pruhledny {
-  background: linear-gradient($black, rgba(0,0,0,0));
 }
 .navbar-brand {
   color: $white;
@@ -97,6 +96,23 @@
     color: $red;
   }
 }
+.navbar-cerny {
+  background-color: $black;
+}
+.navbar-pruhledny {
+  background: linear-gradient($black, rgba(0,0,0,0));
+}
+.navbar-registrovat {
+  @extend .nav-link;
+  padding: 6px 12px;
+  border: 1px solid $red;
+  color: $red !important;
+  &:hover {
+    color: $white !important;
+    border-color: $white;
+  }
+}
+
 .nav-link {
   color: $white;
   font-weight: 700;
@@ -104,6 +120,9 @@
   letter-spacing: 0.2px;
   margin: 0 10px;
   &:hover { color: $red; }
+}
+.nav-link_prihlasit::after {
+  display: none;
 }
 .navbar-toggler-icon { background-image: url(soubor('grafika/ikony/titulka/hamburger-menu.png'))}
 

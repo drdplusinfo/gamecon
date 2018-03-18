@@ -53,12 +53,27 @@
         </div>
       </li>
     </ul>
-    <a class="nav-link pl-md-3 pl-0 mr-xl-8 mr-lg-7" href="prihlasit">Přihlásit</a>
+
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle nav-link_prihlasit" data-hover="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Přihlásit
+      </a>
+      <div class="dropdown-menu dropdown-menu-prihlasit" aria-labelledby="navbarDropdown">
+          <input type="textbox" class="dropdown-menu_textbox" placeholder="e-mail">
+          <input type="textbox" class="dropdown-menu_textbox" placeholder="heslo">
+          <div class="box-tlacitko_male">
+                Přihlásit
+          </div>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="prihlaska" class="nav-link"><div class="navbar-registrovat pl-md-3 pl-0 mr-xl-8 mr-lg-7">Registrovat na GC</div></a>
+    </div>
     <!-- Přihlašovací menu -->
     <!-- begin:neprihlasen -->
     <!-- end:neprihlasen -->
     <!-- begin:prihlasen -->
-    <a class="nav-link" href="prihlasit">Přihlášen</a>
+    <a class="nav-link pl-md-3 pl-0 mr-xl-8 mr-lg-7" href="prihlasit">Přihlášen</a>
     <!-- end:prihlasen -->
   </div><!-- /.navbar-collapse -->
 </nav>

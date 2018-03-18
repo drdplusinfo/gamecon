@@ -1,0 +1,7 @@
+input[type=textbox] {
+  color: $black;
+  font-size: $font-size-md;
+  &::placeholder {
+    color: $gray-300;
+  }
+}
