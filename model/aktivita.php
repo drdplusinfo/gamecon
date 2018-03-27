@@ -451,7 +451,7 @@ class Aktivita {
 
   /** Vrací krátký popis aktivity (max 160 znaků)*/
   function kratkyPopis() {
-    return $this->a['kratky_popis'];
+    return $this->a['popis_kratky'];
   }
 
   /**
