@@ -20,7 +20,7 @@ chdir(__DIR__ . '/../');
 // testování větve před pushem a čistoty repa, aby se na FTP nedostalo smetí
 exec('git rev-parse --abbrev-ref HEAD', $out);
 $vetev = $out[0];
-if(!($vetev === 'master' || strpos($vetev, 'redesign') === 0)) {
+if(!($vetev === 'master' || strpos($vetev, 'new-redesign') === 0)) {
   echo "notice: you're not on automatically deployed branch, deplyoment skipped\n";
   exit(0);
 }
