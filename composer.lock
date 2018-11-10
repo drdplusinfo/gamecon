@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a16688743d37b215f63f60567e807463",
+    "content-hash": "952ef42f7a47eea38e8cb87a5baf9ce1",
     "packages": [
         {
             "name": "defuse/php-encryption",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/defuse/php-encryption.git",
-                "reference": "0d4d27c368ca6798bc162469e43248c363c73495"
+                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0d4d27c368ca6798bc162469e43248c363c73495",
-                "reference": "0d4d27c368ca6798bc162469e43248c363c73495",
+                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+                "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
                 "shasum": ""
             },
             "require": {
                 "ext-openssl": "*",
-                "paragonie/random_compat": "~2.0",
+                "paragonie/random_compat": ">= 2",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -67,21 +67,24 @@
                 "security",
                 "symmetric key cryptography"
             ],
-            "time": "2018-04-23T19:33:40+00:00"
+            "time": "2018-07-24T23:27:56+00:00"
         },
         {
             "name": "dg/mysql-dump",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/MySQL-dump.git",
-                "reference": "8970328c9a8665e65f3855c849f5d4de94075f13"
+                "reference": "6c9cf07092bcc4a140bef01c64d883ebfccfccfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/MySQL-dump/zipball/8970328c9a8665e65f3855c849f5d4de94075f13",
-                "reference": "8970328c9a8665e65f3855c849f5d4de94075f13",
+                "url": "https://api.github.com/repos/dg/MySQL-dump/zipball/6c9cf07092bcc4a140bef01c64d883ebfccfccfa",
+                "reference": "6c9cf07092bcc4a140bef01c64d883ebfccfccfa",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
             },
             "type": "library",
             "autoload": {
@@ -104,7 +107,37 @@
             "keywords": [
                 "mysql"
             ],
-            "time": "2017-05-24T12:44:51+00:00"
+            "time": "2018-10-31T00:31:09+00:00"
+        },
+        {
+            "name": "godric/asset-manager",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/godric-cz/asset-manager.git",
+                "reference": "17277e15a66b41918642e09e28fd396cea1e52fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/godric-cz/asset-manager/zipball/17277e15a66b41918642e09e28fd396cea1e52fe",
+                "reference": "17277e15a66b41918642e09e28fd396cea1e52fe",
+                "shasum": ""
+            },
+            "require": {
+                "leafo/scssphp": "^0.7.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Godric\\AssetManager\\": "src/"
+                }
+            },
+            "description": "Static asset management with no need for commandline.",
+            "support": {
+                "source": "https://github.com/godric-cz/asset-manager/tree/master",
+                "issues": "https://github.com/godric-cz/asset-manager/issues"
+            },
+            "time": "2018-11-10T18:29:00+00:00"
         },
         {
             "name": "godric/db-backup",
@@ -134,7 +167,7 @@
                 "source": "https://github.com/godric-cz/db-backup/tree/master",
                 "issues": "https://github.com/godric-cz/db-backup/issues"
             },
-            "time": "2018-09-19 20:51:29"
+            "time": "2018-09-19T20:51:29+00:00"
         },
         {
             "name": "godric/db-migrations",
@@ -164,7 +197,7 @@
                 "source": "https://github.com/godric-cz/db-migrations/tree/master",
                 "issues": "https://github.com/godric-cz/db-migrations/issues"
             },
-            "time": "2018-09-04 12:38:38"
+            "time": "2018-09-04T12:38:38+00:00"
         },
         {
             "name": "godric/db-test",
@@ -191,7 +224,7 @@
                 "source": "https://github.com/godric-cz/db-test/tree/master",
                 "issues": "https://github.com/godric-cz/db-test/issues"
             },
-            "time": "2018-07-15 16:17:18"
+            "time": "2018-07-15T16:17:18+00:00"
         },
         {
             "name": "godric/xtemplate",
@@ -218,7 +251,59 @@
                 "source": "https://github.com/godric-cz/xtemplate/tree/master",
                 "issues": "https://github.com/godric-cz/xtemplate/issues"
             },
-            "time": "2016-02-28 19:55:11"
+            "time": "2016-02-28T19:55:11+00:00"
+        },
+        {
+            "name": "leafo/scssphp",
+            "version": "v0.7.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafo/scssphp.git",
+                "reference": "1d656f8c02a3a69404bba6b28ec4e06edddf0f49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/1d656f8c02a3a69404bba6b28ec4e06edddf0f49",
+                "reference": "1d656f8c02a3a69404bba6b28ec4e06edddf0f49",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.6",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Leafo\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://leafo.github.io/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "time": "2018-07-22T01:22:08+00:00"
         },
         {
             "name": "michelf/php-markdown",
@@ -267,96 +352,30 @@
             "time": "2018-01-15T00:49:33+00:00"
         },
         {
-            "name": "oyejorge/less.php",
-            "version": "v1.7.0.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "42925c5a01a07d67ca7e82dfc8fb31814d557bc9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/42925c5a01a07d67ca7e82dfc8fb31814d557bc9",
-                "reference": "42925c5a01a07d67ca7e82dfc8fb31814d557bc9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8.24"
-            },
-            "bin": [
-                "bin/lessc"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Less": "lib/"
-                },
-                "classmap": [
-                    "lessc.inc.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Agar",
-                    "homepage": "https://github.com/agar"
-                },
-                {
-                    "name": "Martin Jantošovič",
-                    "homepage": "https://github.com/Mordred"
-                },
-                {
-                    "name": "Josh Schmidt",
-                    "homepage": "https://github.com/oyejorge"
-                }
-            ],
-            "description": "PHP port of the Javascript version of LESS http://lesscss.org (Originally maintained by Josh Schmidt)",
-            "homepage": "http://lessphp.gpeasy.com",
-            "keywords": [
-                "css",
-                "less",
-                "less.js",
-                "lesscss",
-                "php",
-                "stylesheet"
-            ],
-            "time": "2017-03-28T22:19:25+00:00"
-        },
-        {
             "name": "paragonie/random_compat",
-            "version": "v2.0.17",
+            "version": "v9.99.99",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
+                "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
-                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
+                "reference": "84b4dfb120c6f9b4ff7b3685f9b8f1aa365a0c95",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.0"
+                "php": "^7"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*|5.*"
+                "phpunit/phpunit": "4.*|5.*",
+                "vimeo/psalm": "^1"
             },
             "suggest": {
                 "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
             },
             "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/random.php"
-                ]
-            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -375,7 +394,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-07-04T16:31:37+00:00"
+            "time": "2018-07-02T15:55:56+00:00"
         },
         {
             "name": "roderik/pwgen-php",
@@ -426,16 +445,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.5.1",
+            "version": "v2.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "bea9df15a1cdbf3ec50ef3a75f5ada1ab536d679"
+                "reference": "35fa649b483b28e16f61de07110ea0585fc8d6ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/bea9df15a1cdbf3ec50ef3a75f5ada1ab536d679",
-                "reference": "bea9df15a1cdbf3ec50ef3a75f5ada1ab536d679",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/35fa649b483b28e16f61de07110ea0585fc8d6ea",
+                "reference": "35fa649b483b28e16f61de07110ea0585fc8d6ea",
                 "shasum": ""
             },
             "require": {
@@ -445,7 +464,8 @@
             },
             "require-dev": {
                 "nette/di": "~2.3",
-                "nette/tester": "~1.7"
+                "nette/tester": "~1.7",
+                "nette/utils": "~2.3"
             },
             "suggest": {
                 "https://nette.org/donate": "Please support Tracy via a donation"
@@ -487,7 +507,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2018-07-03T11:34:33+00:00"
+            "time": "2018-11-05T15:10:59+00:00"
         }
     ],
     "packages-dev": [
@@ -555,7 +575,8 @@
         "godric/xtemplate": 20,
         "godric/db-backup": 20,
         "godric/db-test": 20,
-        "godric/db-migrations": 20
+        "godric/db-migrations": 20,
+        "godric/asset-manager": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

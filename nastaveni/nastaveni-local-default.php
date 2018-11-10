@@ -31,5 +31,6 @@ define('AUTOMATICKE_MIGRACE', true);
 define('PROFILOVACI_LISTA', true);
 define('CACHE_SLOZKY_PRAVA', 0777);
 define('ZOBRAZIT_STACKTRACE_VYJIMKY', true);
+define('AUTOMATICKE_SESTAVENI', true);
 
 error_reporting(E_ALL);

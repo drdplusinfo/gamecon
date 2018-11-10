@@ -54,6 +54,13 @@ if(!$i->titulek())
 if($m->bezStranky()) {
   echo $m->vystup();
 } else {
+
+  // TODO přesunout
+  $am = new Godric\AssetManager\AssetManager(CACHE . '/sestavene', URL_CACHE . '/sestavene');
+  $am->setAutobuild(AUTOMATICKE_SESTAVENI);
+  $am->setConfig(__DIR__ . '/../assety.json');
+  $am->addScss(['soubory/styl/styl.scss']);
+
   // šablona pro index (obal stránky) a nastavní proměnných pro index
   $t = new XTemplate('sablony/index.xtpl'); // TODO nejde vygrepovat
   $t->assign([
@@ -65,8 +72,7 @@ if($m->bezStranky()) {
     'chyba'         =>  Chyba::vyzvedniHtml(), // TODO možná brát jen text a řídit si html elementy sami
 
     // TODO
-    'css'           =>  '', // TODO
-    'js'            =>  '', // TODO
+    'assety'        =>  $am->getTags(),
   ]);
 
   // tisk věcí a zdar
