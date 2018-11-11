@@ -1,5 +1,5 @@
 {
   "possibleBuilds": [
-    {"type": "scss", "files": ["web/soubory/styl/styl.scss"]}
+    {"type": "scss", "files": ["web/soubory/styl/styl.scss", "web/soubory/styl/komponenty/*.scss"]}
   ]
 }

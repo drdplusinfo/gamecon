@@ -115,12 +115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/godric-cz/asset-manager.git",
-                "reference": "17277e15a66b41918642e09e28fd396cea1e52fe"
+                "reference": "f03540dd0cc3eabee1eb29cece3f56670cb52fb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/godric-cz/asset-manager/zipball/17277e15a66b41918642e09e28fd396cea1e52fe",
-                "reference": "17277e15a66b41918642e09e28fd396cea1e52fe",
+                "url": "https://api.github.com/repos/godric-cz/asset-manager/zipball/f03540dd0cc3eabee1eb29cece3f56670cb52fb7",
+                "reference": "f03540dd0cc3eabee1eb29cece3f56670cb52fb7",
                 "shasum": ""
             },
             "require": {
@@ -137,7 +137,7 @@
                 "source": "https://github.com/godric-cz/asset-manager/tree/master",
                 "issues": "https://github.com/godric-cz/asset-manager/issues"
             },
-            "time": "2018-11-10T18:29:00+00:00"
+            "time": "2018-11-11T17:22:40+00:00"
         },
         {
             "name": "godric/db-backup",

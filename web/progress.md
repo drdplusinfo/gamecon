@@ -42,9 +42,11 @@
             - [x] pro otestování bude nutné mít nějaké testovací sassy a assety
         - [x] předělat do balíčku
         - [x] nainstalovat a nacommitovat změny v GC repu
+        - [x] předělat identitu souborů na relativní cesty (vůči čemu?)
+            - problém je v tom, že stávající verze sice kind-of funguje, ale při nahrántí sestaveného buildu na produkci se cesty změní a tím pádem se změní i cílové názvy souborů a nejede to.
         - [ ] includování v sassech (kvůli ověřování časů. Než bude, includovat v php)
     - [ ] deployment na redesign.gamecon.cz
-        - [ ] sestavování a určení složek nahrávaných na FTP
+        - [x] sestavování a určení složek nahrávaných na FTP
         - [ ] zaheslovat vstup, jinak je to ghey
     - [ ] watcher
         - při změně souborů reloadnout prohlížeč - imho by šel udělat skriptík, otázka jestli dělat do asset manageru (viz také hodně speciální distro / tools kombinaci), ale v principu má linux geniálně jednoduché [api přes inotify](https://stackpointer.io/unix/linux-monitor-file-system-changes/397/).

@@ -59,7 +59,7 @@ if($m->bezStranky()) {
   $am = new Godric\AssetManager\AssetManager(CACHE . '/sestavene', URL_CACHE . '/sestavene');
   $am->setAutobuild(AUTOMATICKE_SESTAVENI);
   $am->setConfig(__DIR__ . '/../assety.json');
-  $am->addScss(['soubory/styl/styl.scss']);
+  $am->addScss(['soubory/styl/styl.scss', 'soubory/styl/komponenty/*.scss']);
 
   // šablona pro index (obal stránky) a nastavní proměnných pro index
   $t = new XTemplate('sablony/index.xtpl'); // TODO nejde vygrepovat

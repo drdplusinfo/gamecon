@@ -4,5 +4,9 @@
     foo
 </div>
 
+<div class="testKomponentaA">
+    bar
+</div>
+
 asdf
 <!-- end: titulka -->
