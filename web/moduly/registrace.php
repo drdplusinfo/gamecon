@@ -1,6 +1,10 @@
 <?php
 function vytvorDatumZeVstupuUzivatele(string $datumJakoText): DateTime {
-  return DateTime::createFromFormat('j.n.Y', preg_replace('~\s~', '', $datumJakoText));
+  $date = DateTime::createFromFormat('j.n.Y', preg_replace('~\s~', '', $datumJakoText));
+  if (!$date) {
+      throw new InvalidArgumentException("Date can not be created from given date '${datumJakoText}' and expected format 'j.n.Y'");
+  }
+  return $date;
 }
 
 if (!empty($_GET['ajax'])) { //samo sebe volání ajaxu
