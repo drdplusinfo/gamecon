@@ -1,29 +1,13 @@
 <?php
-try {
-  /** @var \Godric\DbMigrations\Migration $this */
-  $this->q(<<<SQL
-ALTER TABLE stranky
-ADD COLUMN url_prefix CHAR(10) NOT NULL DEFAULT '' AFTER url_stranky,
-ADD INDEX url_prefix(url_prefix);
+/** @var \Godric\DbMigrations\Migration $this */
+
+$typProplaceniBonusu = Shop::PROPLACENI_BONUSU;
+$this->q(<<<SQL
+ALTER TABLE `shop_predmety`
+CHANGE `typ` `typ` TINYINT NOT NULL COMMENT '1-předmět, 2-ubytování, 3-tričko, 4-jídlo, 5-vstupné, 6-parcon, 7-vyplaceni' AFTER `kusu_vyrobeno`;
+
+INSERT INTO `shop_predmety` (`nazev`, `model_rok`, `cena_aktualni`, `stav`, `auto`, `nabizet_do`, `kusu_vyrobeno`, `typ`, `ubytovani_den`, `popis`)
+VALUES ('Proplacení bonusu', 2019, 0, 1, 0, NULL, NULL, {$typProplaceniBonusu}, NULL, 'Pro vyplacení bonusů za vedení aktivit')
 SQL
-  );
-  $this->q(<<<SQL
-CREATE TEMPORARY TABLE IF NOT EXISTS url_prefixes_temp (
-    new_url_prefix CHAR(10) PRIMARY KEY
 );
 
-INSERT IGNORE INTO url_prefixes_temp(new_url_prefix) VALUES ('drd'), ('legendy'), ('rpg'), ('larpy');
-
-UPDATE stranky
-    JOIN url_prefixes_temp
-SET stranky.url_prefix = new_url_prefix
-WHERE stranky.url_stranky LIKE CONCAT(url_prefixes_temp.new_url_prefix, '%')
-SQL
-  );
-} catch (\Exception $exception) {
-  throw new RuntimeException(
-    sprintf("Migration %s failed: '%s'. Check it: \n%s", basename(__FILE__, '.php'), $exception->getMessage(), $query),
-    $exception->getCode(),
-    $exception
-  );
-}
