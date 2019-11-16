@@ -1,12 +1,26 @@
 <?php
 /** @var \Godric\DbMigrations\Migration $this */
-
-$typProplaceniBonusu = Shop::PROPLACENI_BONUSU;
 $this->q(<<<SQL
-ALTER TABLE `shop_predmety`
-CHANGE `typ` `typ` TINYINT NOT NULL COMMENT '1-předmět, 2-ubytování, 3-tričko, 4-jídlo, 5-vstupné, 6-parcon, 7-vyplaceni' AFTER `kusu_vyrobeno`;
+DROP PROCEDURE IF EXISTS GDPR_PROCISTENI_UDAJU;
 
-INSERT INTO `shop_predmety` (`nazev`, `model_rok`, `cena_aktualni`, `stav`, `auto`, `nabizet_do`, `kusu_vyrobeno`, `typ`, `ubytovani_den`, `popis`)
-VALUES ('Proplacení bonusu', 2019, 0, 1, 0, NULL, NULL, {$typProplaceniBonusu}, NULL, 'Pro vyplacení bonusů za vedení aktivit')
+CREATE PROCEDURE `GDPR_PROCISTENI_UDAJU`(IN cilove_id_uzivatele INT)
+    MODIFIES SQL DATA
+UPDATE uzivatele_hodnoty
+SET jmeno_uzivatele      = 'ANON',
+    prijmeni_uzivatele   = 'ANON',
+    datum_narozeni       = DATE_FORMAT(datum_narozeni, '%y-01-01'),
+    telefon_uzivatele    = 'ANON',
+    email1_uzivatele     = UUID(),
+    email2_uzivatele     = UUID(),
+    ulice_a_cp_uzivatele = 'ANON',
+    ubytovan_s           = 'ANON',
+    op                   = 'ANON',
+    login_uzivatele      = UUID(),
+    heslo_md5            = 'ANON',
+    jine_uzivatele       = 'ANON',
+    skola                = 'ANON',
+    pomoc_typ            = 'ANON',
+    pomoc_vice           = 'ANON'
+WHERE id_uzivatele = cilove_id_uzivatele
 SQL
 );
