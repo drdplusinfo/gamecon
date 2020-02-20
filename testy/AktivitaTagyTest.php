@@ -49,7 +49,7 @@ class AktivitaTagyTest extends GcDbTest {
   function testKopiePriInstanciaci($idAktivity, $_, $tagy) {
     $a = Aktivita::zId($idAktivity);
     $a->nastavTagy($tagy);
-    $b = $a->instanciuj();
+    $b = $a->instancuj();
     $this->assertEquals(serazene($tagy), serazene($b->tagy()),
       "Tagy se musí propsat i do nově vytvořené instance"
     );
