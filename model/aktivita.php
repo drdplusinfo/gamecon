@@ -640,8 +640,10 @@ class Aktivita
     return $this->lokace ?: null;
   }
 
-  function lokaceId() {
-    return $this->a['lokace'];
+  function lokaceId(): ?int {
+    return $this->a['lokace'] !== null
+      ? (int)$this->a['lokace']
+      : null;
   }
 
   /**
